@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import "./App.css";
 
-type AuthMode = "register" | "login" | "forgot" | "reset";
+type AuthMode = "register" | "login" | "forgot";
 
 type AuthUser = {
   id: string;
@@ -110,6 +110,11 @@ export function App() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [resetTokenInput, setResetTokenInput] = useState("");
+  const [forgotStep, setForgotStep] = useState<"request" | "reset">("request");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [legalView, setLegalView] = useState<"terms" | "privacy" | null>(null);
   const [token, setToken] = useState<string>(() => localStorage.getItem(TOKEN_KEY) ?? "");
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
   const [decks, setDecks] = useState<DeckSummary[]>([]);
@@ -137,7 +142,7 @@ export function App() {
       return password.length > 0;
     }
 
-    if (mode === "forgot") {
+    if (mode === "forgot" && forgotStep === "request") {
       return true;
     }
 
@@ -145,7 +150,7 @@ export function App() {
       return false;
     }
 
-    if (mode === "reset" && !resetTokenInput) {
+    if (mode === "forgot" && forgotStep === "reset" && !resetTokenInput) {
       return false;
     }
 
@@ -153,8 +158,12 @@ export function App() {
       return false;
     }
 
+    if (mode === "register" && !acceptedTerms) {
+      return false;
+    }
+
     return true;
-  }, [mode, email, password, confirmPassword, username, resetTokenInput]);
+  }, [mode, email, password, confirmPassword, username, resetTokenInput, forgotStep, acceptedTerms]);
 
   function appendLog(message: string): void {
     setEventLog((prev) => [`${new Date().toLocaleTimeString()} ${message}`, ...prev].slice(0, 30));
@@ -302,10 +311,15 @@ export function App() {
 
     clearMessages();
 
-    if (mode === "register" || mode === "reset") {
+    if (mode === "register" || (mode === "forgot" && forgotStep === "reset")) {
       const validationError = validatePassword(password);
       if (validationError) {
         setErrorMessage(validationError);
+        return;
+      }
+
+      if (!/\S+@\S+\.\S+/.test(email)) {
+        setErrorMessage("Please enter a valid email address.");
         return;
       }
 
@@ -313,6 +327,16 @@ export function App() {
         setErrorMessage("Password and confirm password do not match.");
         return;
       }
+    }
+
+    if (mode === "login" && !/\S+@\S+\.\S+/.test(email)) {
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
+    if (mode === "register" && !/^[a-zA-Z0-9_]{3,24}$/.test(username)) {
+      setErrorMessage("Username must be 3-24 chars and only letters, numbers, underscore.");
+      return;
     }
 
     setIsLoading(true);
@@ -330,12 +354,12 @@ export function App() {
         setToken(response.token);
         setCurrentUser(response.user);
         appendLog("login success");
-      } else if (mode === "forgot") {
+      } else if (mode === "forgot" && forgotStep === "request") {
         const response = await callApi<{ message: string; resetToken?: string }>("/auth/forgot-password", "POST", { email });
         setSuccessMessage(response.message);
         if (response.resetToken) {
           setResetTokenInput(response.resetToken);
-          setMode("reset");
+          setForgotStep("reset");
           setSuccessMessage("Dev token generated. Paste/use it to reset password.");
         }
       } else {
@@ -345,6 +369,7 @@ export function App() {
         });
         setSuccessMessage(response.message);
         setMode("login");
+        setForgotStep("request");
         setPassword("");
         setConfirmPassword("");
       }
@@ -453,19 +478,10 @@ export function App() {
                   onClick={() => {
                     clearMessages();
                     setMode("forgot");
+                    setForgotStep("request");
                   }}
                 >
-                  Forgot
-                </button>
-                <button
-                  className={`tab ${mode === "reset" ? "active" : ""}`}
-                  type="button"
-                  onClick={() => {
-                    clearMessages();
-                    setMode("reset");
-                  }}
-                >
-                  Reset
+                  Forgot / Reset
                 </button>
               </div>
 
@@ -482,29 +498,68 @@ export function App() {
                   </label>
                 ) : null}
 
-                {mode === "reset" ? (
+                {mode === "forgot" && forgotStep === "reset" ? (
                   <label className="label">
                     Reset Token
                     <input className="input" type="text" value={resetTokenInput} onChange={(e) => setResetTokenInput(e.target.value)} required />
                   </label>
                 ) : null}
 
-                {mode !== "forgot" ? (
+                {mode !== "forgot" || forgotStep === "reset" ? (
                   <label className="label">
                     Password
-                    <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <div className="input-wrap">
+                      <input
+                        className="input"
+                        type={passwordVisible ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+                      <button className="peek" type="button" onClick={() => setPasswordVisible((v) => !v)}>
+                        {passwordVisible ? "Hide" : "Show"}
+                      </button>
+                    </div>
                   </label>
                 ) : null}
 
-                {mode === "register" || mode === "reset" ? (
+                {mode === "register" || (mode === "forgot" && forgotStep === "reset") ? (
                   <label className="label">
                     Confirm Password
-                    <input className="input" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+                    <div className="input-wrap">
+                      <input
+                        className="input"
+                        type={confirmPasswordVisible ? "text" : "password"}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                      />
+                      <button className="peek" type="button" onClick={() => setConfirmPasswordVisible((v) => !v)}>
+                        {confirmPasswordVisible ? "Hide" : "Show"}
+                      </button>
+                    </div>
                   </label>
                 ) : null}
 
-                {mode === "register" || mode === "reset" ? (
+                {mode === "register" || (mode === "forgot" && forgotStep === "reset") ? (
                   <p className="muted">Password must include uppercase, lowercase, number, and symbol.</p>
+                ) : null}
+
+                {mode === "register" ? (
+                  <label className="muted checkbox">
+                    <input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />
+                    <span>
+                      I agree to the{" "}
+                      <button type="button" className="link" onClick={() => setLegalView("terms")}>
+                        Terms
+                      </button>{" "}
+                      and{" "}
+                      <button type="button" className="link" onClick={() => setLegalView("privacy")}>
+                        Privacy Policy
+                      </button>
+                      .
+                    </span>
+                  </label>
                 ) : null}
 
                 {errorMessage ? <p className="error">{errorMessage}</p> : null}
@@ -513,14 +568,25 @@ export function App() {
                 <button className="button primary" type="submit" disabled={isLoading || !canSubmit}>
                   {isLoading
                     ? "Working..."
-                    : mode === "forgot"
+                    : mode === "forgot" && forgotStep === "request"
                     ? "Send Reset"
-                    : mode === "reset"
+                    : mode === "forgot" && forgotStep === "reset"
                     ? "Reset Password"
                     : mode === "register"
                     ? "Create Account"
                     : "Sign In"}
                 </button>
+
+                {mode === "forgot" ? (
+                  <div className="row">
+                    <button className="button" type="button" onClick={() => setForgotStep("request")}>
+                      Request Token
+                    </button>
+                    <button className="button" type="button" onClick={() => setForgotStep("reset")}>
+                      Reset With Token
+                    </button>
+                  </div>
+                ) : null}
               </form>
             </>
           ) : (
@@ -629,8 +695,32 @@ export function App() {
               </div>
             </div>
           )}
+
+          <p className="muted footer-note">© 2026 Chronicles of the Rift. All rights reserved.</p>
         </div>
       </section>
+
+      {legalView ? (
+        <div className="legal-overlay" role="dialog" aria-modal="true">
+          <div className="legal-card">
+            <h3>{legalView === "terms" ? "Terms of Service" : "Privacy Policy"}</h3>
+            {legalView === "terms" ? (
+              <p className="muted">
+                You agree to fair play, no abuse/exploitation, and compliance with local laws. Accounts violating platform
+                integrity may be suspended. Game systems may change as balancing updates roll out.
+              </p>
+            ) : (
+              <p className="muted">
+                We store account credentials (hashed), gameplay metadata, and match activity to run multiplayer services.
+                We do not sell personal data. You may request account deletion by contacting support.
+              </p>
+            )}
+            <button className="button primary" type="button" onClick={() => setLegalView(null)}>
+              Close
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
