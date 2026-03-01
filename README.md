@@ -1,6 +1,6 @@
 # TCG Monorepo
 
-Day 1 + Day 2 + Day 3 + Day 4 + Day 5 + Day 6 scaffold for a web-based TCG project.
+Day 1 + Day 2 + Day 3 + Day 4 + Day 5 + Day 6 + Day 7 scaffold for a web-based TCG project.
 
 ## Apps
 - `apps/frontend`: React + Vite TypeScript client
@@ -63,6 +63,13 @@ Deck rules in this MVP:
   - deck rules tests
   - realtime payload schema tests
 
+## Day 7 launch prep (completed)
+- Production CORS handling with support for multiple origins.
+- Deploy templates and docs:
+  - `render.yaml` for backend service setup
+  - `docs/deploy.md` with Render + Vercel launch steps
+- Env templates updated for production-like setup.
+
 ## Quick start
 1. Use MongoDB Atlas and set backend env:
    - Copy `apps/backend/.env.example` to `apps/backend/.env`
@@ -84,3 +91,4 @@ Deck rules in this MVP:
 - Backend default URL: `http://localhost:4000`
 - Frontend default URL: `http://localhost:5173`
 - Auth token expiration: 7 days
+- Deployment guide: `docs/deploy.md`

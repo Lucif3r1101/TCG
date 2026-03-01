@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: tcg-backend
+    env: node
+    rootDir: .
+    plan: free
+    buildCommand: npm install && npm run build -w @tcg/backend
+    startCommand: npm run start -w @tcg/backend
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 4000
+      - key: CORS_ORIGIN
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
