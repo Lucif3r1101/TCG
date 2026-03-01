@@ -307,6 +307,12 @@ body {
   text-decoration: underline;
 }
 
+.forgot-inline {
+  justify-self: end;
+  margin-top: -0.2rem;
+  font-size: 0.82rem;
+}
+
 .grid {
   display: grid;
   gap: 0.75rem;

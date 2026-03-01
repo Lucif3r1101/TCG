@@ -111,6 +111,16 @@ export function App() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [forgotOpen, setForgotOpen] = useState(false);
+  const [forgotStep, setForgotStep] = useState<"request" | "reset">("request");
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotToken, setForgotToken] = useState("");
+  const [forgotPassword, setForgotPassword] = useState("");
+  const [forgotConfirmPassword, setForgotConfirmPassword] = useState("");
+  const [forgotPasswordVisible, setForgotPasswordVisible] = useState(false);
+  const [forgotConfirmVisible, setForgotConfirmVisible] = useState(false);
+  const [forgotMessage, setForgotMessage] = useState("");
+  const [forgotError, setForgotError] = useState("");
   const [token, setToken] = useState<string>(() => localStorage.getItem(TOKEN_KEY) ?? "");
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
   const [decks, setDecks] = useState<DeckSummary[]>([]);
@@ -150,6 +160,11 @@ export function App() {
   function clearMessages(): void {
     setErrorMessage("");
     setSuccessMessage("");
+  }
+
+  function clearForgotMessages(): void {
+    setForgotMessage("");
+    setForgotError("");
   }
 
   async function loadDecks(authToken: string): Promise<void> {
@@ -387,6 +402,61 @@ export function App() {
     socketRef.current.emit("room_start", { roomCode: currentRoom.roomCode });
   }
 
+  async function handleForgotRequest() {
+    clearForgotMessages();
+    if (!/\S+@\S+\.\S+/.test(forgotEmail)) {
+      setForgotError("Enter a valid email address.");
+      return;
+    }
+
+    try {
+      const response = await callApi<{ message: string; resetToken?: string }>("/auth/forgot-password", "POST", {
+        email: forgotEmail
+      });
+      setForgotMessage(response.message);
+      if (response.resetToken) {
+        setForgotToken(response.resetToken);
+        setForgotStep("reset");
+        setForgotMessage("Dev token generated. Use it below to set a new password.");
+      }
+    } catch (error) {
+      setForgotError(error instanceof Error ? error.message : "Failed to request reset.");
+    }
+  }
+
+  async function handleForgotReset() {
+    clearForgotMessages();
+
+    const passwordError = validatePassword(forgotPassword);
+    if (passwordError) {
+      setForgotError(passwordError);
+      return;
+    }
+
+    if (forgotPassword !== forgotConfirmPassword) {
+      setForgotError("Password and confirm password do not match.");
+      return;
+    }
+
+    if (!forgotToken) {
+      setForgotError("Reset token is required.");
+      return;
+    }
+
+    try {
+      const response = await callApi<{ message: string }>("/auth/reset-password", "POST", {
+        token: forgotToken,
+        password: forgotPassword
+      });
+      setForgotMessage(response.message);
+      setForgotPassword("");
+      setForgotConfirmPassword("");
+      setMode("login");
+    } catch (error) {
+      setForgotError(error instanceof Error ? error.message : "Failed to reset password.");
+    }
+  }
+
   return (
     <div className="page">
       <section className="hero">
@@ -438,6 +508,21 @@ export function App() {
                     Email
                     <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                   </label>
+
+                  {mode === "login" ? (
+                    <button
+                      type="button"
+                      className="link forgot-inline"
+                      onClick={() => {
+                        clearForgotMessages();
+                        setForgotOpen(true);
+                        setForgotStep("request");
+                        setForgotEmail(email);
+                      }}
+                    >
+                      Forgot password?
+                    </button>
+                  ) : null}
 
                   {mode === "register" ? (
                     <label className="label">
@@ -636,6 +721,77 @@ export function App() {
               </p>
             )}
             <button className="button primary" type="button" onClick={() => setLegalView(null)}>
+              Close
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      {forgotOpen ? (
+        <div className="legal-overlay" role="dialog" aria-modal="true">
+          <div className="legal-card">
+            <h3>{forgotStep === "request" ? "Reset your password" : "Set a new password"}</h3>
+
+            {forgotStep === "request" ? (
+              <div className="grid">
+                <label className="label">
+                  Account Email
+                  <input className="input" value={forgotEmail} onChange={(e) => setForgotEmail(e.target.value)} type="email" />
+                </label>
+                <button className="button primary" type="button" onClick={handleForgotRequest}>
+                  Send Reset Token
+                </button>
+                <button className="button" type="button" onClick={() => setForgotStep("reset")}>
+                  I already have a token
+                </button>
+              </div>
+            ) : (
+              <div className="grid">
+                <label className="label">
+                  Reset Token
+                  <input className="input" value={forgotToken} onChange={(e) => setForgotToken(e.target.value)} type="text" />
+                </label>
+                <label className="label">
+                  New Password
+                  <div className="input-wrap">
+                    <input
+                      className="input"
+                      value={forgotPassword}
+                      onChange={(e) => setForgotPassword(e.target.value)}
+                      type={forgotPasswordVisible ? "text" : "password"}
+                    />
+                    <button className="peek" type="button" onClick={() => setForgotPasswordVisible((v) => !v)}>
+                      {forgotPasswordVisible ? "Hide" : "Show"}
+                    </button>
+                  </div>
+                </label>
+                <label className="label">
+                  Confirm Password
+                  <div className="input-wrap">
+                    <input
+                      className="input"
+                      value={forgotConfirmPassword}
+                      onChange={(e) => setForgotConfirmPassword(e.target.value)}
+                      type={forgotConfirmVisible ? "text" : "password"}
+                    />
+                    <button className="peek" type="button" onClick={() => setForgotConfirmVisible((v) => !v)}>
+                      {forgotConfirmVisible ? "Hide" : "Show"}
+                    </button>
+                  </div>
+                </label>
+                <p className="muted">Password must include uppercase, lowercase, number, and symbol.</p>
+                <button className="button primary" type="button" onClick={handleForgotReset}>
+                  Update Password
+                </button>
+                <button className="button" type="button" onClick={() => setForgotStep("request")}>
+                  Back
+                </button>
+              </div>
+            )}
+
+            {forgotError ? <p className="error">{forgotError}</p> : null}
+            {forgotMessage ? <p className="good">{forgotMessage}</p> : null}
+            <button className="button" type="button" onClick={() => setForgotOpen(false)}>
               Close
             </button>
           </div>
