@@ -23,9 +23,17 @@
 - `MONGODB_URI=<atlas-uri-with-/tcg-db>`
 - `JWT_SECRET=<long-random-secret>`
 - `CORS_ORIGIN=https://<your-vercel-domain>`
+- `RESEND_API_KEY=<resend-api-key>`
+- `EMAIL_FROM=TCG Support <your-verified-sender@yourdomain.com>`
+- `RESET_PASSWORD_URL=https://<your-vercel-domain>`
 
 If you have multiple frontend domains, set comma-separated origins:
 - `CORS_ORIGIN=https://app.example.com,https://preview.example.com`
+
+### Password reset email notes
+- In production, reset token is not returned in API response.
+- Backend sends reset email via Resend using `RESEND_API_KEY` and `EMAIL_FROM`.
+- `RESET_PASSWORD_URL` is used to build the reset link included in emails.
 
 ## 3) Frontend (Vercel)
 - Import repo in Vercel.

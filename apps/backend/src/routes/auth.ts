@@ -7,6 +7,7 @@ import { UserModel } from "../models/User.js";
 import { signAuthToken } from "../utils.auth.js";
 import { requireAuth } from "../middleware/auth.js";
 import { grantStarterSetForUser } from "../services/starterSetup.js";
+import { sendPasswordResetEmail } from "../services/email.js";
 
 const PASSWORD_RULE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,72}$/;
 
@@ -134,6 +135,17 @@ export function buildAuthRouter(jwtSecret: string): Router {
     const response: Record<string, string> = {
       message: "If the email is registered, a reset link has been generated."
     };
+
+    const sent = await sendPasswordResetEmail({
+      to: user.email,
+      username: user.username,
+      resetToken,
+      resetPasswordUrl: process.env.RESET_PASSWORD_URL
+    });
+
+    if (!sent && process.env.NODE_ENV === "production") {
+      console.error("Password reset email could not be sent. Check RESEND_API_KEY/EMAIL_FROM config.");
+    }
 
     if (process.env.NODE_ENV !== "production") {
       response.resetToken = resetToken;
