@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 type SfxKey = "click" | "turn" | "error";
 
@@ -45,7 +45,7 @@ export function useAudioEngine(enabled: boolean) {
     }
   }, [enabled]);
 
-  function playSfx(key: SfxKey) {
+  const playSfx = useCallback((key: SfxKey) => {
     if (!enabled) {
       return;
     }
@@ -57,7 +57,7 @@ export function useAudioEngine(enabled: boolean) {
 
     sound.currentTime = 0;
     void sound.play().catch(() => undefined);
-  }
+  }, [enabled]);
 
   return { playSfx };
 }

@@ -1,5 +1,14 @@
 import { z } from "zod";
 
+const characterIds = [
+  "riftforged-sentinel",
+  "void-ranger",
+  "ember-arcanist",
+  "ironbound-beastmaster",
+  "chronomancer",
+  "abyss-revenant"
+] as const;
+
 export const queueJoinPayloadSchema = z.object({
   deckId: z.string().min(1)
 });
@@ -10,12 +19,14 @@ export const matchActionPayloadSchema = z.object({
 
 export const roomCreatePayloadSchema = z.object({
   deckId: z.string().min(1),
+  characterId: z.enum(characterIds),
   maxPlayers: z.number().int().min(2).max(6).default(6)
 });
 
 export const roomJoinPayloadSchema = z.object({
   roomCode: z.string().min(4).max(12),
-  deckId: z.string().min(1)
+  deckId: z.string().min(1),
+  characterId: z.enum(characterIds)
 });
 
 export const roomCodePayloadSchema = z.object({

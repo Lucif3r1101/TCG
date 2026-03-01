@@ -36,8 +36,20 @@ type ActiveMatchState = {
 type RoomPlayer = {
   userId: string;
   deckId: string;
+  characterId: string;
   ready: boolean;
+  handCount: number;
+  deckCount: number;
+  mana: number;
+  maxMana: number;
   joinedAt: string;
+};
+
+type RoomBattleState = {
+  turn: number;
+  activePlayerId: string;
+  playerOrder: string[];
+  turnDeadlineAt: string;
 };
 
 type RoomState = {
@@ -46,10 +58,11 @@ type RoomState = {
   maxPlayers: number;
   status: "open" | "in_game";
   createdAt: string;
+  battle: RoomBattleState | null;
   players: RoomPlayer[];
 };
 
-const TURN_DURATION_MS = 45_000;
+const TURN_DURATION_MS = 60_000;
 const QUEUE_ACTION_COOLDOWN_MS = 1_500;
 const MATCH_ACTION_COOLDOWN_MS = 250;
 const ROOM_ACTION_COOLDOWN_MS = 350;
@@ -187,8 +200,41 @@ function toRoomPublicState(room: RoomState) {
     maxPlayers: room.maxPlayers,
     status: room.status,
     createdAt: room.createdAt,
+    battle: room.battle,
     players: room.players
   };
+}
+
+function findRoomByCodeForActivePlayer(roomCode: string): RoomState | null {
+  const room = activeRooms.get(roomCode);
+  if (!room || room.status !== "in_game" || !room.battle) {
+    return null;
+  }
+  return room;
+}
+
+function advanceRoomTurn(room: RoomState): void {
+  if (!room.battle || room.battle.playerOrder.length === 0) {
+    return;
+  }
+
+  const currentIndex = room.battle.playerOrder.findIndex((id) => id === room.battle!.activePlayerId);
+  const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % room.battle.playerOrder.length;
+  const nextPlayerId = room.battle.playerOrder[nextIndex];
+  const nextPlayer = room.players.find((player) => player.userId === nextPlayerId);
+
+  room.battle.turn += 1;
+  room.battle.activePlayerId = nextPlayerId;
+  room.battle.turnDeadlineAt = new Date(Date.now() + TURN_DURATION_MS).toISOString();
+
+  if (nextPlayer) {
+    nextPlayer.maxMana = Math.min(nextPlayer.maxMana + 1, 10);
+    nextPlayer.mana = nextPlayer.maxMana;
+    if (nextPlayer.deckCount > 0) {
+      nextPlayer.deckCount -= 1;
+      nextPlayer.handCount += 1;
+    }
+  }
 }
 
 function emitRoomState(io: Server, room: RoomState): void {
@@ -205,12 +251,19 @@ function removeUserFromAllRooms(io: Server, userId: string): void {
     }
 
     room.players = room.players.filter((player) => player.userId !== userId);
+    if (room.battle) {
+      room.battle.playerOrder = room.battle.playerOrder.filter((id) => id !== userId);
+      if (room.battle.activePlayerId === userId && room.battle.playerOrder.length > 0) {
+        room.battle.activePlayerId = room.battle.playerOrder[0];
+        room.battle.turnDeadlineAt = new Date(Date.now() + TURN_DURATION_MS).toISOString();
+      }
+    }
 
     if (room.hostUserId === userId && room.players.length > 0) {
       room.hostUserId = room.players[0].userId;
     }
 
-    if (room.players.length === 0) {
+    if (room.players.length === 0 || (room.status === "in_game" && room.players.length < 2)) {
       activeRooms.delete(code);
       continue;
     }
@@ -325,7 +378,58 @@ function hydrateActiveMatchState(matchDoc: any): ActiveMatchState {
   };
 }
 
+function advanceMatchTurn(match: ActiveMatchState): void {
+  const nextPlayer = match.playerIds[0] === match.activePlayerId ? match.playerIds[1] : match.playerIds[0];
+  match.turn += 1;
+  match.activePlayerId = nextPlayer;
+  match.turnDeadlineAt = new Date(Date.now() + TURN_DURATION_MS).toISOString();
+
+  if (nextPlayer === match.playerIds[0]) {
+    match.player1Mana = Math.min(match.player1Mana + 1, 10);
+  } else {
+    match.player2Mana = Math.min(match.player2Mana + 1, 10);
+  }
+}
+
 export function registerRealtime(io: Server, jwtSecret: string): void {
+  setInterval(async () => {
+    const now = Date.now();
+
+    for (const room of activeRooms.values()) {
+      if (!room.battle || room.status !== "in_game") {
+        continue;
+      }
+
+      if (new Date(room.battle.turnDeadlineAt).getTime() <= now) {
+        advanceRoomTurn(room);
+        emitRoomState(io, room);
+      }
+    }
+
+    for (const match of activeMatches.values()) {
+      if (match.winnerId) {
+        continue;
+      }
+
+      if (new Date(match.turnDeadlineAt).getTime() <= now) {
+        advanceMatchTurn(match);
+        await MatchModel.findByIdAndUpdate(match.matchId, {
+          $set: {
+            "state.turn": match.turn,
+            "state.activePlayerId": match.activePlayerId,
+            "state.player1Mana": match.player1Mana,
+            "state.player2Mana": match.player2Mana,
+            "state.turnDeadlineAt": match.turnDeadlineAt
+          }
+        });
+
+        const payloadState = buildPublicMatchState(match);
+        emitToUser(io, match.playerIds[0], "match_state", payloadState);
+        emitToUser(io, match.playerIds[1], "match_state", payloadState);
+      }
+    }
+  }, 1000);
+
   io.use((socket, next) => {
     const token = socket.handshake.auth?.token as string | undefined;
 
@@ -361,7 +465,7 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         return;
       }
 
-      const { deckId, maxPlayers } = parsed.data;
+      const { deckId, characterId, maxPlayers } = parsed.data;
 
       const deckOk = await loadAndValidateDeck(userId, deckId);
       if (!deckOk) {
@@ -378,11 +482,17 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         maxPlayers,
         status: "open",
         createdAt: new Date().toISOString(),
+        battle: null,
         players: [
           {
             userId,
             deckId,
+            characterId,
             ready: true,
+            handCount: 0,
+            deckCount: 0,
+            mana: 0,
+            maxMana: 0,
             joinedAt: new Date().toISOString()
           }
         ]
@@ -406,7 +516,7 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       }
 
       const roomCode = normalizeRoomCode(parsed.data.roomCode);
-      const { deckId } = parsed.data;
+      const { deckId, characterId } = parsed.data;
       const room = activeRooms.get(roomCode);
 
       if (!room) {
@@ -428,6 +538,7 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       const existing = room.players.find((player) => player.userId === userId);
       if (existing) {
         existing.deckId = deckId;
+        existing.characterId = characterId;
         existing.ready = true;
         emitRoomState(io, room);
         return;
@@ -443,7 +554,12 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       room.players.push({
         userId,
         deckId,
+        characterId,
         ready: false,
+        handCount: 0,
+        deckCount: 0,
+        mana: 0,
+        maxMana: 0,
         joinedAt: new Date().toISOString()
       });
 
@@ -470,12 +586,19 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       }
 
       room.players = room.players.filter((player) => player.userId !== userId);
+      if (room.battle) {
+        room.battle.playerOrder = room.battle.playerOrder.filter((id) => id !== userId);
+        if (room.battle.activePlayerId === userId && room.battle.playerOrder.length > 0) {
+          room.battle.activePlayerId = room.battle.playerOrder[0];
+          room.battle.turnDeadlineAt = new Date(Date.now() + TURN_DURATION_MS).toISOString();
+        }
+      }
 
       if (room.hostUserId === userId && room.players.length > 0) {
         room.hostUserId = room.players[0].userId;
       }
 
-      if (room.players.length === 0) {
+      if (room.players.length === 0 || (room.status === "in_game" && room.players.length < 2)) {
         activeRooms.delete(roomCode);
         socket.emit("room_left", { roomCode });
         return;
@@ -550,15 +673,65 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
 
       room.status = "in_game";
       const order = [...room.players].sort(() => Math.random() - 0.5).map((player) => player.userId);
+      const activePlayerId = order[0];
+      const turnDeadlineAt = new Date(Date.now() + TURN_DURATION_MS).toISOString();
+      room.battle = {
+        turn: 1,
+        activePlayerId,
+        playerOrder: order,
+        turnDeadlineAt
+      };
+
+      room.players = room.players.map((player) => {
+        const isActive = player.userId === activePlayerId;
+        return {
+          ...player,
+          handCount: 5,
+          deckCount: 47,
+          maxMana: 1,
+          mana: isActive ? 1 : 0
+        };
+      });
 
       for (const player of room.players) {
         emitToUser(io, player.userId, "room_started", {
           roomCode,
           playerOrder: order,
+          activePlayerId,
+          turn: 1,
+          turnDeadlineAt,
           playerCount: room.players.length
         });
       }
 
+      emitRoomState(io, room);
+    });
+
+    socket.on("room_end_turn", (payload: unknown) => {
+      if (isOnCooldown(lastRoomActionAtByUser, userId, ROOM_ACTION_COOLDOWN_MS)) {
+        socket.emit("room_error", { message: "Too many room actions. Slow down." });
+        return;
+      }
+
+      const parsed = roomCodePayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("room_error", { message: "Invalid room end turn payload." });
+        return;
+      }
+
+      const roomCode = normalizeRoomCode(parsed.data.roomCode);
+      const room = findRoomByCodeForActivePlayer(roomCode);
+      if (!room || !room.battle) {
+        socket.emit("room_error", { message: "Active room game not found." });
+        return;
+      }
+
+      if (room.battle.activePlayerId !== userId) {
+        socket.emit("room_error", { message: "Not your turn." });
+        return;
+      }
+
+      advanceRoomTurn(room);
       emitRoomState(io, room);
     });
 
@@ -668,21 +841,12 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         return;
       }
 
-      const nextPlayer = match.playerIds[0] === userId ? match.playerIds[1] : match.playerIds[0];
-      match.turn += 1;
-      match.activePlayerId = nextPlayer;
-      match.turnDeadlineAt = new Date(Date.now() + TURN_DURATION_MS).toISOString();
-
-      if (nextPlayer === match.playerIds[0]) {
-        match.player1Mana = Math.min(match.player1Mana + 1, 10);
-      } else {
-        match.player2Mana = Math.min(match.player2Mana + 1, 10);
-      }
+      advanceMatchTurn(match);
 
       await MatchModel.findByIdAndUpdate(matchId, {
         $set: {
           "state.turn": match.turn,
-          "state.activePlayerId": nextPlayer,
+          "state.activePlayerId": match.activePlayerId,
           "state.player1Mana": match.player1Mana,
           "state.player2Mana": match.player2Mana,
           "state.turnDeadlineAt": match.turnDeadlineAt

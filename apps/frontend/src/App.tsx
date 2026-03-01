@@ -7,6 +7,7 @@ import { TopNav } from "./components/TopNav";
 import { ForgotPasswordModal } from "./components/modals/ForgotPasswordModal";
 import { GuideModal } from "./components/modals/GuideModal";
 import { LegalModal } from "./components/modals/LegalModal";
+import { CHARACTER_CLASSES } from "./constants/game";
 import { ONBOARDING_KEY, PASSWORD_RULE, SOCKET_URL, TOKEN_KEY } from "./constants/game";
 import { useAudioEngine } from "./hooks/useAudioEngine";
 import { callApi } from "./lib/api";
@@ -50,12 +51,15 @@ export function App() {
   const [activeMatchState, setActiveMatchState] = useState<MatchState | null>(null);
   const [roomCodeInput, setRoomCodeInput] = useState("");
   const [roomMaxPlayers, setRoomMaxPlayers] = useState(4);
+  const [selectedCharacterId, setSelectedCharacterId] = useState<string>(CHARACTER_CLASSES[0].id);
   const [currentRoom, setCurrentRoom] = useState<RoomState | null>(null);
+  const [tabletopMode, setTabletopMode] = useState(false);
   const [eventLog, setEventLog] = useState<string[]>([]);
   const [guideOpen, setGuideOpen] = useState(false);
   const [guideSection, setGuideSection] = useState<GuideSection>("lore");
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [impact, setImpact] = useState(false);
+  const [, setClockTick] = useState(0);
 
   const socketRef = useRef<Socket | null>(null);
   const impactTimerRef = useRef<number | null>(null);
@@ -139,6 +143,7 @@ export function App() {
       setSelectedDeckId("");
       setActiveMatchState(null);
       setCurrentRoom(null);
+      setTabletopMode(false);
       return;
     }
 
@@ -231,15 +236,18 @@ export function App() {
     socket.on("room_state", (payload: { room: RoomState }) => {
       setCurrentRoom(payload.room);
       setRoomCodeInput(payload.room.roomCode);
+      setTabletopMode(payload.room.status === "in_game");
       appendLog(`room state: ${payload.room.roomCode} (${payload.room.players.length}/${payload.room.maxPlayers})`);
     });
     socket.on("room_left", (payload: { roomCode: string }) => {
       if (currentRoom?.roomCode === payload.roomCode) {
         setCurrentRoom(null);
+        setTabletopMode(false);
       }
       appendLog(`room left: ${payload.roomCode}`);
     });
     socket.on("room_started", (payload: { roomCode: string; playerCount: number }) => {
+      setTabletopMode(true);
       appendLog(`room started: ${payload.roomCode} (${payload.playerCount} players)`);
     });
 
@@ -256,6 +264,11 @@ export function App() {
     }
     socketRef.current?.emit("match_sync", { matchId: activeMatchState.matchId });
   }, [activeMatchState?.matchId, socketConnected]);
+
+  useEffect(() => {
+    const id = window.setInterval(() => setClockTick((v) => (v + 1) % 100000), 1000);
+    return () => window.clearInterval(id);
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -322,6 +335,7 @@ export function App() {
     setCurrentUser(null);
     setActiveMatchState(null);
     setCurrentRoom(null);
+    setTabletopMode(false);
     setEventLog([]);
     clearMessages();
   }
@@ -339,7 +353,11 @@ export function App() {
       return;
     }
     playSfx("click");
-    socketRef.current.emit("room_create", { deckId: selectedDeckId, maxPlayers: roomMaxPlayers });
+    socketRef.current.emit("room_create", {
+      deckId: selectedDeckId,
+      characterId: selectedCharacterId,
+      maxPlayers: roomMaxPlayers
+    });
   }
 
   function handleJoinRoom() {
@@ -347,7 +365,11 @@ export function App() {
       return;
     }
     playSfx("click");
-    socketRef.current.emit("room_join", { roomCode: roomCodeInput, deckId: selectedDeckId });
+    socketRef.current.emit("room_join", {
+      roomCode: roomCodeInput,
+      deckId: selectedDeckId,
+      characterId: selectedCharacterId
+    });
   }
 
   function handleLeaveRoom() {
@@ -356,6 +378,7 @@ export function App() {
     }
     playSfx("click");
     socketRef.current.emit("room_leave", { roomCode: currentRoom.roomCode });
+    setTabletopMode(false);
   }
 
   function handleToggleReady() {
@@ -422,7 +445,7 @@ export function App() {
   }
 
   return (
-    <div className={`page ${impact ? "impact" : ""}`}>
+    <div className={`page ${impact ? "impact" : ""} ${tabletopMode ? "tabletop-page" : ""}`}>
       <TopNav
         soundEnabled={soundEnabled}
         onOpenGuide={() => {
@@ -435,15 +458,17 @@ export function App() {
         }}
       />
 
-      <section className="hero">
-        <div className="hero-content">
-          <h1>Chronicles of the RIFT</h1>
-          <p>
-            First-time players get a guided lore and battle tutorial. Returning players can always reopen How to Play from the
-            top bar.
-          </p>
-        </div>
-      </section>
+      {!currentUser || !tabletopMode ? (
+        <section className="hero">
+          <div className="hero-content">
+            <h1>Chronicles of the RIFT</h1>
+            <p>
+              First-time players get a guided lore and battle tutorial. Returning players can always reopen How to Play from
+              the top bar.
+            </p>
+          </div>
+        </section>
+      ) : null}
 
       <section className="panel">
         <div className="card">
@@ -484,13 +509,14 @@ export function App() {
             />
           ) : (
             <GameBoard
-              currentUser={currentUser}
               socketConnected={socketConnected}
               activeMatchState={activeMatchState}
               decks={decks}
               selectedDeckId={selectedDeckId}
               roomCodeInput={roomCodeInput}
               roomMaxPlayers={roomMaxPlayers}
+              selectedCharacterId={selectedCharacterId}
+              tabletopMode={tabletopMode}
               currentRoom={currentRoom}
               meReady={Boolean(meInRoom?.ready)}
               isRoomHost={isRoomHost}
@@ -498,6 +524,7 @@ export function App() {
               onDeckChange={setSelectedDeckId}
               onRoomCodeInput={(value) => setRoomCodeInput(value.toUpperCase())}
               onRoomMaxPlayersChange={setRoomMaxPlayers}
+              onCharacterChange={setSelectedCharacterId}
               onCreateRoom={handleCreateRoom}
               onJoinRoom={handleJoinRoom}
               onLeaveRoom={handleLeaveRoom}
@@ -505,7 +532,11 @@ export function App() {
               onStartRoom={handleStartRoom}
               onQueueJoin={handleQueueJoin}
               onLogout={handleLogout}
-              onEndTurn={() => socketRef.current?.emit("match_end_turn", { matchId: activeMatchState?.matchId })}
+              onEndTurn={() =>
+                currentRoom?.status === "in_game"
+                  ? socketRef.current?.emit("room_end_turn", { roomCode: currentRoom.roomCode })
+                  : socketRef.current?.emit("match_end_turn", { matchId: activeMatchState?.matchId })
+              }
               onConcede={() => socketRef.current?.emit("match_concede", { matchId: activeMatchState?.matchId })}
               onTilt={applyTilt}
               onTiltReset={resetTilt}

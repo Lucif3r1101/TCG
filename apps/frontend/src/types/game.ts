@@ -44,8 +44,20 @@ export type MatchFoundPayload = MatchState & {
 export type RoomPlayer = {
   userId: string;
   deckId: string;
+  characterId: string;
   ready: boolean;
+  handCount: number;
+  deckCount: number;
+  mana: number;
+  maxMana: number;
   joinedAt: string;
+};
+
+export type RoomBattleState = {
+  turn: number;
+  activePlayerId: string;
+  playerOrder: string[];
+  turnDeadlineAt: string;
 };
 
 export type RoomState = {
@@ -54,6 +66,7 @@ export type RoomState = {
   maxPlayers: number;
   status: "open" | "in_game";
   createdAt: string;
+  battle: RoomBattleState | null;
   players: RoomPlayer[];
 };
 
