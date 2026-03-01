@@ -1,0 +1,6245 @@
+{
+  "generatedAt": "2026-03-01T13:02:15.215Z",
+  "cards": [
+    {
+      "slug": "riftforged-sentinel-c01",
+      "file": "2x/riftforged-sentinel-c01.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c02",
+      "file": "2x/riftforged-sentinel-c02.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c03",
+      "file": "2x/riftforged-sentinel-c03.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c04",
+      "file": "2x/riftforged-sentinel-c04.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c05",
+      "file": "2x/riftforged-sentinel-c05.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c06",
+      "file": "2x/riftforged-sentinel-c06.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c07",
+      "file": "2x/riftforged-sentinel-c07.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c08",
+      "file": "2x/riftforged-sentinel-c08.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c09",
+      "file": "2x/riftforged-sentinel-c09.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c10",
+      "file": "2x/riftforged-sentinel-c10.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c11",
+      "file": "2x/riftforged-sentinel-c11.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c12",
+      "file": "2x/riftforged-sentinel-c12.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c13",
+      "file": "2x/riftforged-sentinel-c13.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c14",
+      "file": "2x/riftforged-sentinel-c14.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c15",
+      "file": "2x/riftforged-sentinel-c15.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c16",
+      "file": "2x/riftforged-sentinel-c16.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c17",
+      "file": "2x/riftforged-sentinel-c17.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c18",
+      "file": "2x/riftforged-sentinel-c18.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c19",
+      "file": "2x/riftforged-sentinel-c19.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c20",
+      "file": "2x/riftforged-sentinel-c20.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c21",
+      "file": "2x/riftforged-sentinel-c21.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c22",
+      "file": "2x/riftforged-sentinel-c22.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c23",
+      "file": "2x/riftforged-sentinel-c23.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c24",
+      "file": "2x/riftforged-sentinel-c24.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c25",
+      "file": "2x/riftforged-sentinel-c25.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c26",
+      "file": "2x/riftforged-sentinel-c26.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c27",
+      "file": "2x/riftforged-sentinel-c27.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c28",
+      "file": "2x/riftforged-sentinel-c28.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c29",
+      "file": "2x/riftforged-sentinel-c29.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c30",
+      "file": "2x/riftforged-sentinel-c30.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c31",
+      "file": "2x/riftforged-sentinel-c31.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c32",
+      "file": "2x/riftforged-sentinel-c32.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c33",
+      "file": "2x/riftforged-sentinel-c33.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c34",
+      "file": "2x/riftforged-sentinel-c34.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c35",
+      "file": "2x/riftforged-sentinel-c35.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c36",
+      "file": "2x/riftforged-sentinel-c36.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c37",
+      "file": "2x/riftforged-sentinel-c37.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c38",
+      "file": "2x/riftforged-sentinel-c38.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c39",
+      "file": "2x/riftforged-sentinel-c39.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c40",
+      "file": "2x/riftforged-sentinel-c40.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c41",
+      "file": "2x/riftforged-sentinel-c41.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c42",
+      "file": "2x/riftforged-sentinel-c42.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c43",
+      "file": "2x/riftforged-sentinel-c43.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c44",
+      "file": "2x/riftforged-sentinel-c44.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c45",
+      "file": "2x/riftforged-sentinel-c45.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c46",
+      "file": "2x/riftforged-sentinel-c46.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c47",
+      "file": "2x/riftforged-sentinel-c47.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c48",
+      "file": "2x/riftforged-sentinel-c48.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c49",
+      "file": "2x/riftforged-sentinel-c49.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c50",
+      "file": "2x/riftforged-sentinel-c50.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c51",
+      "file": "2x/riftforged-sentinel-c51.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c52",
+      "file": "2x/riftforged-sentinel-c52.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "riftforged-sentinel",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c01",
+      "file": "2x/void-ranger-c01.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c02",
+      "file": "2x/void-ranger-c02.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c03",
+      "file": "2x/void-ranger-c03.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c04",
+      "file": "2x/void-ranger-c04.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c05",
+      "file": "2x/void-ranger-c05.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c06",
+      "file": "2x/void-ranger-c06.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c07",
+      "file": "2x/void-ranger-c07.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c08",
+      "file": "2x/void-ranger-c08.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c09",
+      "file": "2x/void-ranger-c09.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c10",
+      "file": "2x/void-ranger-c10.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c11",
+      "file": "2x/void-ranger-c11.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c12",
+      "file": "2x/void-ranger-c12.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c13",
+      "file": "2x/void-ranger-c13.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c14",
+      "file": "2x/void-ranger-c14.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c15",
+      "file": "2x/void-ranger-c15.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c16",
+      "file": "2x/void-ranger-c16.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c17",
+      "file": "2x/void-ranger-c17.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c18",
+      "file": "2x/void-ranger-c18.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c19",
+      "file": "2x/void-ranger-c19.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c20",
+      "file": "2x/void-ranger-c20.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c21",
+      "file": "2x/void-ranger-c21.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c22",
+      "file": "2x/void-ranger-c22.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c23",
+      "file": "2x/void-ranger-c23.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c24",
+      "file": "2x/void-ranger-c24.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c25",
+      "file": "2x/void-ranger-c25.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c26",
+      "file": "2x/void-ranger-c26.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c27",
+      "file": "2x/void-ranger-c27.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c28",
+      "file": "2x/void-ranger-c28.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c29",
+      "file": "2x/void-ranger-c29.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c30",
+      "file": "2x/void-ranger-c30.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c31",
+      "file": "2x/void-ranger-c31.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c32",
+      "file": "2x/void-ranger-c32.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c33",
+      "file": "2x/void-ranger-c33.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c34",
+      "file": "2x/void-ranger-c34.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c35",
+      "file": "2x/void-ranger-c35.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c36",
+      "file": "2x/void-ranger-c36.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c37",
+      "file": "2x/void-ranger-c37.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c38",
+      "file": "2x/void-ranger-c38.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c39",
+      "file": "2x/void-ranger-c39.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c40",
+      "file": "2x/void-ranger-c40.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c41",
+      "file": "2x/void-ranger-c41.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c42",
+      "file": "2x/void-ranger-c42.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c43",
+      "file": "2x/void-ranger-c43.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c44",
+      "file": "2x/void-ranger-c44.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c45",
+      "file": "2x/void-ranger-c45.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c46",
+      "file": "2x/void-ranger-c46.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c47",
+      "file": "2x/void-ranger-c47.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c48",
+      "file": "2x/void-ranger-c48.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c49",
+      "file": "2x/void-ranger-c49.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c50",
+      "file": "2x/void-ranger-c50.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c51",
+      "file": "2x/void-ranger-c51.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c52",
+      "file": "2x/void-ranger-c52.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "void-ranger",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c01",
+      "file": "2x/ember-arcanist-c01.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c02",
+      "file": "2x/ember-arcanist-c02.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c03",
+      "file": "2x/ember-arcanist-c03.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c04",
+      "file": "2x/ember-arcanist-c04.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c05",
+      "file": "2x/ember-arcanist-c05.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c06",
+      "file": "2x/ember-arcanist-c06.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c07",
+      "file": "2x/ember-arcanist-c07.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c08",
+      "file": "2x/ember-arcanist-c08.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c09",
+      "file": "2x/ember-arcanist-c09.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c10",
+      "file": "2x/ember-arcanist-c10.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c11",
+      "file": "2x/ember-arcanist-c11.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c12",
+      "file": "2x/ember-arcanist-c12.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c13",
+      "file": "2x/ember-arcanist-c13.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c14",
+      "file": "2x/ember-arcanist-c14.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c15",
+      "file": "2x/ember-arcanist-c15.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c16",
+      "file": "2x/ember-arcanist-c16.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c17",
+      "file": "2x/ember-arcanist-c17.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c18",
+      "file": "2x/ember-arcanist-c18.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c19",
+      "file": "2x/ember-arcanist-c19.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c20",
+      "file": "2x/ember-arcanist-c20.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c21",
+      "file": "2x/ember-arcanist-c21.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c22",
+      "file": "2x/ember-arcanist-c22.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c23",
+      "file": "2x/ember-arcanist-c23.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c24",
+      "file": "2x/ember-arcanist-c24.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c25",
+      "file": "2x/ember-arcanist-c25.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c26",
+      "file": "2x/ember-arcanist-c26.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c27",
+      "file": "2x/ember-arcanist-c27.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c28",
+      "file": "2x/ember-arcanist-c28.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c29",
+      "file": "2x/ember-arcanist-c29.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c30",
+      "file": "2x/ember-arcanist-c30.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c31",
+      "file": "2x/ember-arcanist-c31.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c32",
+      "file": "2x/ember-arcanist-c32.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c33",
+      "file": "2x/ember-arcanist-c33.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c34",
+      "file": "2x/ember-arcanist-c34.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c35",
+      "file": "2x/ember-arcanist-c35.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c36",
+      "file": "2x/ember-arcanist-c36.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c37",
+      "file": "2x/ember-arcanist-c37.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c38",
+      "file": "2x/ember-arcanist-c38.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c39",
+      "file": "2x/ember-arcanist-c39.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c40",
+      "file": "2x/ember-arcanist-c40.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c41",
+      "file": "2x/ember-arcanist-c41.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c42",
+      "file": "2x/ember-arcanist-c42.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c43",
+      "file": "2x/ember-arcanist-c43.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c44",
+      "file": "2x/ember-arcanist-c44.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c45",
+      "file": "2x/ember-arcanist-c45.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c46",
+      "file": "2x/ember-arcanist-c46.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c47",
+      "file": "2x/ember-arcanist-c47.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c48",
+      "file": "2x/ember-arcanist-c48.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c49",
+      "file": "2x/ember-arcanist-c49.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c50",
+      "file": "2x/ember-arcanist-c50.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c51",
+      "file": "2x/ember-arcanist-c51.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c52",
+      "file": "2x/ember-arcanist-c52.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ember-arcanist",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c01",
+      "file": "2x/ironbound-beastmaster-c01.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c02",
+      "file": "2x/ironbound-beastmaster-c02.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c03",
+      "file": "2x/ironbound-beastmaster-c03.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c04",
+      "file": "2x/ironbound-beastmaster-c04.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c05",
+      "file": "2x/ironbound-beastmaster-c05.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c06",
+      "file": "2x/ironbound-beastmaster-c06.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c07",
+      "file": "2x/ironbound-beastmaster-c07.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c08",
+      "file": "2x/ironbound-beastmaster-c08.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c09",
+      "file": "2x/ironbound-beastmaster-c09.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c10",
+      "file": "2x/ironbound-beastmaster-c10.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c11",
+      "file": "2x/ironbound-beastmaster-c11.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c12",
+      "file": "2x/ironbound-beastmaster-c12.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c13",
+      "file": "2x/ironbound-beastmaster-c13.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c14",
+      "file": "2x/ironbound-beastmaster-c14.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c15",
+      "file": "2x/ironbound-beastmaster-c15.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c16",
+      "file": "2x/ironbound-beastmaster-c16.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c17",
+      "file": "2x/ironbound-beastmaster-c17.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c18",
+      "file": "2x/ironbound-beastmaster-c18.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c19",
+      "file": "2x/ironbound-beastmaster-c19.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c20",
+      "file": "2x/ironbound-beastmaster-c20.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c21",
+      "file": "2x/ironbound-beastmaster-c21.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c22",
+      "file": "2x/ironbound-beastmaster-c22.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c23",
+      "file": "2x/ironbound-beastmaster-c23.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c24",
+      "file": "2x/ironbound-beastmaster-c24.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c25",
+      "file": "2x/ironbound-beastmaster-c25.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c26",
+      "file": "2x/ironbound-beastmaster-c26.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c27",
+      "file": "2x/ironbound-beastmaster-c27.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c28",
+      "file": "2x/ironbound-beastmaster-c28.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c29",
+      "file": "2x/ironbound-beastmaster-c29.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c30",
+      "file": "2x/ironbound-beastmaster-c30.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c31",
+      "file": "2x/ironbound-beastmaster-c31.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c32",
+      "file": "2x/ironbound-beastmaster-c32.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c33",
+      "file": "2x/ironbound-beastmaster-c33.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c34",
+      "file": "2x/ironbound-beastmaster-c34.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c35",
+      "file": "2x/ironbound-beastmaster-c35.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c36",
+      "file": "2x/ironbound-beastmaster-c36.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c37",
+      "file": "2x/ironbound-beastmaster-c37.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c38",
+      "file": "2x/ironbound-beastmaster-c38.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c39",
+      "file": "2x/ironbound-beastmaster-c39.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c40",
+      "file": "2x/ironbound-beastmaster-c40.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c41",
+      "file": "2x/ironbound-beastmaster-c41.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c42",
+      "file": "2x/ironbound-beastmaster-c42.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c43",
+      "file": "2x/ironbound-beastmaster-c43.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c44",
+      "file": "2x/ironbound-beastmaster-c44.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c45",
+      "file": "2x/ironbound-beastmaster-c45.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c46",
+      "file": "2x/ironbound-beastmaster-c46.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c47",
+      "file": "2x/ironbound-beastmaster-c47.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c48",
+      "file": "2x/ironbound-beastmaster-c48.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c49",
+      "file": "2x/ironbound-beastmaster-c49.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c50",
+      "file": "2x/ironbound-beastmaster-c50.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c51",
+      "file": "2x/ironbound-beastmaster-c51.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c52",
+      "file": "2x/ironbound-beastmaster-c52.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "ironbound-beastmaster",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c01",
+      "file": "2x/chronomancer-c01.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c02",
+      "file": "2x/chronomancer-c02.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c03",
+      "file": "2x/chronomancer-c03.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c04",
+      "file": "2x/chronomancer-c04.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c05",
+      "file": "2x/chronomancer-c05.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c06",
+      "file": "2x/chronomancer-c06.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c07",
+      "file": "2x/chronomancer-c07.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c08",
+      "file": "2x/chronomancer-c08.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c09",
+      "file": "2x/chronomancer-c09.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c10",
+      "file": "2x/chronomancer-c10.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c11",
+      "file": "2x/chronomancer-c11.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c12",
+      "file": "2x/chronomancer-c12.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c13",
+      "file": "2x/chronomancer-c13.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c14",
+      "file": "2x/chronomancer-c14.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c15",
+      "file": "2x/chronomancer-c15.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c16",
+      "file": "2x/chronomancer-c16.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c17",
+      "file": "2x/chronomancer-c17.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c18",
+      "file": "2x/chronomancer-c18.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c19",
+      "file": "2x/chronomancer-c19.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c20",
+      "file": "2x/chronomancer-c20.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c21",
+      "file": "2x/chronomancer-c21.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c22",
+      "file": "2x/chronomancer-c22.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c23",
+      "file": "2x/chronomancer-c23.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c24",
+      "file": "2x/chronomancer-c24.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c25",
+      "file": "2x/chronomancer-c25.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c26",
+      "file": "2x/chronomancer-c26.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c27",
+      "file": "2x/chronomancer-c27.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c28",
+      "file": "2x/chronomancer-c28.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c29",
+      "file": "2x/chronomancer-c29.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c30",
+      "file": "2x/chronomancer-c30.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c31",
+      "file": "2x/chronomancer-c31.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c32",
+      "file": "2x/chronomancer-c32.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c33",
+      "file": "2x/chronomancer-c33.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c34",
+      "file": "2x/chronomancer-c34.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c35",
+      "file": "2x/chronomancer-c35.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c36",
+      "file": "2x/chronomancer-c36.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c37",
+      "file": "2x/chronomancer-c37.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c38",
+      "file": "2x/chronomancer-c38.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c39",
+      "file": "2x/chronomancer-c39.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c40",
+      "file": "2x/chronomancer-c40.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c41",
+      "file": "2x/chronomancer-c41.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c42",
+      "file": "2x/chronomancer-c42.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c43",
+      "file": "2x/chronomancer-c43.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c44",
+      "file": "2x/chronomancer-c44.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c45",
+      "file": "2x/chronomancer-c45.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c46",
+      "file": "2x/chronomancer-c46.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c47",
+      "file": "2x/chronomancer-c47.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c48",
+      "file": "2x/chronomancer-c48.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c49",
+      "file": "2x/chronomancer-c49.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c50",
+      "file": "2x/chronomancer-c50.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c51",
+      "file": "2x/chronomancer-c51.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c52",
+      "file": "2x/chronomancer-c52.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "chronomancer",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c01",
+      "file": "2x/abyss-revenant-c01.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c02",
+      "file": "2x/abyss-revenant-c02.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c03",
+      "file": "2x/abyss-revenant-c03.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c04",
+      "file": "2x/abyss-revenant-c04.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c05",
+      "file": "2x/abyss-revenant-c05.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c06",
+      "file": "2x/abyss-revenant-c06.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c07",
+      "file": "2x/abyss-revenant-c07.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c08",
+      "file": "2x/abyss-revenant-c08.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c09",
+      "file": "2x/abyss-revenant-c09.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c10",
+      "file": "2x/abyss-revenant-c10.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c11",
+      "file": "2x/abyss-revenant-c11.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c12",
+      "file": "2x/abyss-revenant-c12.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c13",
+      "file": "2x/abyss-revenant-c13.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c14",
+      "file": "2x/abyss-revenant-c14.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c15",
+      "file": "2x/abyss-revenant-c15.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c16",
+      "file": "2x/abyss-revenant-c16.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c17",
+      "file": "2x/abyss-revenant-c17.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c18",
+      "file": "2x/abyss-revenant-c18.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c19",
+      "file": "2x/abyss-revenant-c19.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c20",
+      "file": "2x/abyss-revenant-c20.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c21",
+      "file": "2x/abyss-revenant-c21.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c22",
+      "file": "2x/abyss-revenant-c22.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c23",
+      "file": "2x/abyss-revenant-c23.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c24",
+      "file": "2x/abyss-revenant-c24.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c25",
+      "file": "2x/abyss-revenant-c25.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c26",
+      "file": "2x/abyss-revenant-c26.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c27",
+      "file": "2x/abyss-revenant-c27.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c28",
+      "file": "2x/abyss-revenant-c28.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c29",
+      "file": "2x/abyss-revenant-c29.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c30",
+      "file": "2x/abyss-revenant-c30.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c31",
+      "file": "2x/abyss-revenant-c31.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c32",
+      "file": "2x/abyss-revenant-c32.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c33",
+      "file": "2x/abyss-revenant-c33.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c34",
+      "file": "2x/abyss-revenant-c34.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c35",
+      "file": "2x/abyss-revenant-c35.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c36",
+      "file": "2x/abyss-revenant-c36.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c37",
+      "file": "2x/abyss-revenant-c37.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c38",
+      "file": "2x/abyss-revenant-c38.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c39",
+      "file": "2x/abyss-revenant-c39.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c40",
+      "file": "2x/abyss-revenant-c40.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c41",
+      "file": "2x/abyss-revenant-c41.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c42",
+      "file": "2x/abyss-revenant-c42.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c43",
+      "file": "2x/abyss-revenant-c43.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c44",
+      "file": "2x/abyss-revenant-c44.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c45",
+      "file": "2x/abyss-revenant-c45.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c46",
+      "file": "2x/abyss-revenant-c46.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c47",
+      "file": "2x/abyss-revenant-c47.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c48",
+      "file": "2x/abyss-revenant-c48.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c49",
+      "file": "2x/abyss-revenant-c49.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c50",
+      "file": "2x/abyss-revenant-c50.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c51",
+      "file": "2x/abyss-revenant-c51.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c52",
+      "file": "2x/abyss-revenant-c52.png",
+      "scale": "2x",
+      "width": 768,
+      "height": 1024,
+      "faction": "abyss-revenant",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c01",
+      "file": "4x/riftforged-sentinel-c01.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c02",
+      "file": "4x/riftforged-sentinel-c02.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c03",
+      "file": "4x/riftforged-sentinel-c03.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c04",
+      "file": "4x/riftforged-sentinel-c04.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c05",
+      "file": "4x/riftforged-sentinel-c05.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c06",
+      "file": "4x/riftforged-sentinel-c06.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c07",
+      "file": "4x/riftforged-sentinel-c07.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c08",
+      "file": "4x/riftforged-sentinel-c08.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c09",
+      "file": "4x/riftforged-sentinel-c09.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c10",
+      "file": "4x/riftforged-sentinel-c10.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c11",
+      "file": "4x/riftforged-sentinel-c11.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c12",
+      "file": "4x/riftforged-sentinel-c12.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c13",
+      "file": "4x/riftforged-sentinel-c13.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c14",
+      "file": "4x/riftforged-sentinel-c14.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c15",
+      "file": "4x/riftforged-sentinel-c15.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c16",
+      "file": "4x/riftforged-sentinel-c16.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c17",
+      "file": "4x/riftforged-sentinel-c17.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c18",
+      "file": "4x/riftforged-sentinel-c18.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c19",
+      "file": "4x/riftforged-sentinel-c19.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c20",
+      "file": "4x/riftforged-sentinel-c20.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c21",
+      "file": "4x/riftforged-sentinel-c21.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c22",
+      "file": "4x/riftforged-sentinel-c22.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c23",
+      "file": "4x/riftforged-sentinel-c23.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c24",
+      "file": "4x/riftforged-sentinel-c24.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c25",
+      "file": "4x/riftforged-sentinel-c25.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c26",
+      "file": "4x/riftforged-sentinel-c26.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c27",
+      "file": "4x/riftforged-sentinel-c27.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c28",
+      "file": "4x/riftforged-sentinel-c28.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c29",
+      "file": "4x/riftforged-sentinel-c29.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c30",
+      "file": "4x/riftforged-sentinel-c30.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c31",
+      "file": "4x/riftforged-sentinel-c31.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c32",
+      "file": "4x/riftforged-sentinel-c32.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "riftforged-sentinel-c33",
+      "file": "4x/riftforged-sentinel-c33.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c34",
+      "file": "4x/riftforged-sentinel-c34.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c35",
+      "file": "4x/riftforged-sentinel-c35.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c36",
+      "file": "4x/riftforged-sentinel-c36.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c37",
+      "file": "4x/riftforged-sentinel-c37.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c38",
+      "file": "4x/riftforged-sentinel-c38.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c39",
+      "file": "4x/riftforged-sentinel-c39.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c40",
+      "file": "4x/riftforged-sentinel-c40.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c41",
+      "file": "4x/riftforged-sentinel-c41.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c42",
+      "file": "4x/riftforged-sentinel-c42.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c43",
+      "file": "4x/riftforged-sentinel-c43.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c44",
+      "file": "4x/riftforged-sentinel-c44.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c45",
+      "file": "4x/riftforged-sentinel-c45.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c46",
+      "file": "4x/riftforged-sentinel-c46.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c47",
+      "file": "4x/riftforged-sentinel-c47.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c48",
+      "file": "4x/riftforged-sentinel-c48.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c49",
+      "file": "4x/riftforged-sentinel-c49.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c50",
+      "file": "4x/riftforged-sentinel-c50.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c51",
+      "file": "4x/riftforged-sentinel-c51.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "riftforged-sentinel-c52",
+      "file": "4x/riftforged-sentinel-c52.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "riftforged-sentinel",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c01",
+      "file": "4x/void-ranger-c01.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c02",
+      "file": "4x/void-ranger-c02.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c03",
+      "file": "4x/void-ranger-c03.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c04",
+      "file": "4x/void-ranger-c04.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c05",
+      "file": "4x/void-ranger-c05.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c06",
+      "file": "4x/void-ranger-c06.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c07",
+      "file": "4x/void-ranger-c07.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c08",
+      "file": "4x/void-ranger-c08.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c09",
+      "file": "4x/void-ranger-c09.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c10",
+      "file": "4x/void-ranger-c10.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c11",
+      "file": "4x/void-ranger-c11.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c12",
+      "file": "4x/void-ranger-c12.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c13",
+      "file": "4x/void-ranger-c13.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c14",
+      "file": "4x/void-ranger-c14.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c15",
+      "file": "4x/void-ranger-c15.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c16",
+      "file": "4x/void-ranger-c16.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c17",
+      "file": "4x/void-ranger-c17.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c18",
+      "file": "4x/void-ranger-c18.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c19",
+      "file": "4x/void-ranger-c19.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c20",
+      "file": "4x/void-ranger-c20.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c21",
+      "file": "4x/void-ranger-c21.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c22",
+      "file": "4x/void-ranger-c22.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c23",
+      "file": "4x/void-ranger-c23.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c24",
+      "file": "4x/void-ranger-c24.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c25",
+      "file": "4x/void-ranger-c25.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c26",
+      "file": "4x/void-ranger-c26.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c27",
+      "file": "4x/void-ranger-c27.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c28",
+      "file": "4x/void-ranger-c28.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c29",
+      "file": "4x/void-ranger-c29.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c30",
+      "file": "4x/void-ranger-c30.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c31",
+      "file": "4x/void-ranger-c31.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c32",
+      "file": "4x/void-ranger-c32.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "void-ranger-c33",
+      "file": "4x/void-ranger-c33.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c34",
+      "file": "4x/void-ranger-c34.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c35",
+      "file": "4x/void-ranger-c35.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c36",
+      "file": "4x/void-ranger-c36.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c37",
+      "file": "4x/void-ranger-c37.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c38",
+      "file": "4x/void-ranger-c38.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c39",
+      "file": "4x/void-ranger-c39.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c40",
+      "file": "4x/void-ranger-c40.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c41",
+      "file": "4x/void-ranger-c41.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c42",
+      "file": "4x/void-ranger-c42.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c43",
+      "file": "4x/void-ranger-c43.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c44",
+      "file": "4x/void-ranger-c44.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c45",
+      "file": "4x/void-ranger-c45.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c46",
+      "file": "4x/void-ranger-c46.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c47",
+      "file": "4x/void-ranger-c47.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c48",
+      "file": "4x/void-ranger-c48.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c49",
+      "file": "4x/void-ranger-c49.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c50",
+      "file": "4x/void-ranger-c50.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c51",
+      "file": "4x/void-ranger-c51.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "void-ranger-c52",
+      "file": "4x/void-ranger-c52.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "void-ranger",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c01",
+      "file": "4x/ember-arcanist-c01.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c02",
+      "file": "4x/ember-arcanist-c02.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c03",
+      "file": "4x/ember-arcanist-c03.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c04",
+      "file": "4x/ember-arcanist-c04.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c05",
+      "file": "4x/ember-arcanist-c05.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c06",
+      "file": "4x/ember-arcanist-c06.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c07",
+      "file": "4x/ember-arcanist-c07.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c08",
+      "file": "4x/ember-arcanist-c08.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c09",
+      "file": "4x/ember-arcanist-c09.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c10",
+      "file": "4x/ember-arcanist-c10.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c11",
+      "file": "4x/ember-arcanist-c11.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c12",
+      "file": "4x/ember-arcanist-c12.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c13",
+      "file": "4x/ember-arcanist-c13.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c14",
+      "file": "4x/ember-arcanist-c14.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c15",
+      "file": "4x/ember-arcanist-c15.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c16",
+      "file": "4x/ember-arcanist-c16.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c17",
+      "file": "4x/ember-arcanist-c17.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c18",
+      "file": "4x/ember-arcanist-c18.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c19",
+      "file": "4x/ember-arcanist-c19.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c20",
+      "file": "4x/ember-arcanist-c20.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c21",
+      "file": "4x/ember-arcanist-c21.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c22",
+      "file": "4x/ember-arcanist-c22.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c23",
+      "file": "4x/ember-arcanist-c23.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c24",
+      "file": "4x/ember-arcanist-c24.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c25",
+      "file": "4x/ember-arcanist-c25.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c26",
+      "file": "4x/ember-arcanist-c26.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c27",
+      "file": "4x/ember-arcanist-c27.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c28",
+      "file": "4x/ember-arcanist-c28.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c29",
+      "file": "4x/ember-arcanist-c29.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c30",
+      "file": "4x/ember-arcanist-c30.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c31",
+      "file": "4x/ember-arcanist-c31.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c32",
+      "file": "4x/ember-arcanist-c32.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ember-arcanist-c33",
+      "file": "4x/ember-arcanist-c33.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c34",
+      "file": "4x/ember-arcanist-c34.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c35",
+      "file": "4x/ember-arcanist-c35.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c36",
+      "file": "4x/ember-arcanist-c36.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c37",
+      "file": "4x/ember-arcanist-c37.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c38",
+      "file": "4x/ember-arcanist-c38.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c39",
+      "file": "4x/ember-arcanist-c39.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c40",
+      "file": "4x/ember-arcanist-c40.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c41",
+      "file": "4x/ember-arcanist-c41.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c42",
+      "file": "4x/ember-arcanist-c42.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c43",
+      "file": "4x/ember-arcanist-c43.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c44",
+      "file": "4x/ember-arcanist-c44.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c45",
+      "file": "4x/ember-arcanist-c45.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c46",
+      "file": "4x/ember-arcanist-c46.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c47",
+      "file": "4x/ember-arcanist-c47.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c48",
+      "file": "4x/ember-arcanist-c48.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c49",
+      "file": "4x/ember-arcanist-c49.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c50",
+      "file": "4x/ember-arcanist-c50.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c51",
+      "file": "4x/ember-arcanist-c51.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ember-arcanist-c52",
+      "file": "4x/ember-arcanist-c52.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ember-arcanist",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c01",
+      "file": "4x/ironbound-beastmaster-c01.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c02",
+      "file": "4x/ironbound-beastmaster-c02.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c03",
+      "file": "4x/ironbound-beastmaster-c03.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c04",
+      "file": "4x/ironbound-beastmaster-c04.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c05",
+      "file": "4x/ironbound-beastmaster-c05.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c06",
+      "file": "4x/ironbound-beastmaster-c06.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c07",
+      "file": "4x/ironbound-beastmaster-c07.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c08",
+      "file": "4x/ironbound-beastmaster-c08.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c09",
+      "file": "4x/ironbound-beastmaster-c09.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c10",
+      "file": "4x/ironbound-beastmaster-c10.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c11",
+      "file": "4x/ironbound-beastmaster-c11.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c12",
+      "file": "4x/ironbound-beastmaster-c12.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c13",
+      "file": "4x/ironbound-beastmaster-c13.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c14",
+      "file": "4x/ironbound-beastmaster-c14.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c15",
+      "file": "4x/ironbound-beastmaster-c15.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c16",
+      "file": "4x/ironbound-beastmaster-c16.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c17",
+      "file": "4x/ironbound-beastmaster-c17.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c18",
+      "file": "4x/ironbound-beastmaster-c18.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c19",
+      "file": "4x/ironbound-beastmaster-c19.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c20",
+      "file": "4x/ironbound-beastmaster-c20.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c21",
+      "file": "4x/ironbound-beastmaster-c21.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c22",
+      "file": "4x/ironbound-beastmaster-c22.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c23",
+      "file": "4x/ironbound-beastmaster-c23.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c24",
+      "file": "4x/ironbound-beastmaster-c24.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c25",
+      "file": "4x/ironbound-beastmaster-c25.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c26",
+      "file": "4x/ironbound-beastmaster-c26.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c27",
+      "file": "4x/ironbound-beastmaster-c27.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c28",
+      "file": "4x/ironbound-beastmaster-c28.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c29",
+      "file": "4x/ironbound-beastmaster-c29.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c30",
+      "file": "4x/ironbound-beastmaster-c30.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c31",
+      "file": "4x/ironbound-beastmaster-c31.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c32",
+      "file": "4x/ironbound-beastmaster-c32.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "ironbound-beastmaster-c33",
+      "file": "4x/ironbound-beastmaster-c33.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c34",
+      "file": "4x/ironbound-beastmaster-c34.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c35",
+      "file": "4x/ironbound-beastmaster-c35.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c36",
+      "file": "4x/ironbound-beastmaster-c36.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c37",
+      "file": "4x/ironbound-beastmaster-c37.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c38",
+      "file": "4x/ironbound-beastmaster-c38.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c39",
+      "file": "4x/ironbound-beastmaster-c39.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c40",
+      "file": "4x/ironbound-beastmaster-c40.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c41",
+      "file": "4x/ironbound-beastmaster-c41.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c42",
+      "file": "4x/ironbound-beastmaster-c42.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c43",
+      "file": "4x/ironbound-beastmaster-c43.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c44",
+      "file": "4x/ironbound-beastmaster-c44.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c45",
+      "file": "4x/ironbound-beastmaster-c45.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c46",
+      "file": "4x/ironbound-beastmaster-c46.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c47",
+      "file": "4x/ironbound-beastmaster-c47.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c48",
+      "file": "4x/ironbound-beastmaster-c48.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c49",
+      "file": "4x/ironbound-beastmaster-c49.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c50",
+      "file": "4x/ironbound-beastmaster-c50.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c51",
+      "file": "4x/ironbound-beastmaster-c51.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "ironbound-beastmaster-c52",
+      "file": "4x/ironbound-beastmaster-c52.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "ironbound-beastmaster",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c01",
+      "file": "4x/chronomancer-c01.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c02",
+      "file": "4x/chronomancer-c02.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c03",
+      "file": "4x/chronomancer-c03.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c04",
+      "file": "4x/chronomancer-c04.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c05",
+      "file": "4x/chronomancer-c05.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c06",
+      "file": "4x/chronomancer-c06.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c07",
+      "file": "4x/chronomancer-c07.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c08",
+      "file": "4x/chronomancer-c08.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c09",
+      "file": "4x/chronomancer-c09.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c10",
+      "file": "4x/chronomancer-c10.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c11",
+      "file": "4x/chronomancer-c11.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c12",
+      "file": "4x/chronomancer-c12.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c13",
+      "file": "4x/chronomancer-c13.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c14",
+      "file": "4x/chronomancer-c14.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c15",
+      "file": "4x/chronomancer-c15.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c16",
+      "file": "4x/chronomancer-c16.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c17",
+      "file": "4x/chronomancer-c17.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c18",
+      "file": "4x/chronomancer-c18.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c19",
+      "file": "4x/chronomancer-c19.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c20",
+      "file": "4x/chronomancer-c20.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c21",
+      "file": "4x/chronomancer-c21.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c22",
+      "file": "4x/chronomancer-c22.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c23",
+      "file": "4x/chronomancer-c23.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c24",
+      "file": "4x/chronomancer-c24.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c25",
+      "file": "4x/chronomancer-c25.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c26",
+      "file": "4x/chronomancer-c26.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c27",
+      "file": "4x/chronomancer-c27.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c28",
+      "file": "4x/chronomancer-c28.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c29",
+      "file": "4x/chronomancer-c29.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c30",
+      "file": "4x/chronomancer-c30.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c31",
+      "file": "4x/chronomancer-c31.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c32",
+      "file": "4x/chronomancer-c32.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "chronomancer-c33",
+      "file": "4x/chronomancer-c33.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c34",
+      "file": "4x/chronomancer-c34.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c35",
+      "file": "4x/chronomancer-c35.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c36",
+      "file": "4x/chronomancer-c36.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c37",
+      "file": "4x/chronomancer-c37.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c38",
+      "file": "4x/chronomancer-c38.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c39",
+      "file": "4x/chronomancer-c39.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c40",
+      "file": "4x/chronomancer-c40.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c41",
+      "file": "4x/chronomancer-c41.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c42",
+      "file": "4x/chronomancer-c42.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c43",
+      "file": "4x/chronomancer-c43.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c44",
+      "file": "4x/chronomancer-c44.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c45",
+      "file": "4x/chronomancer-c45.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c46",
+      "file": "4x/chronomancer-c46.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c47",
+      "file": "4x/chronomancer-c47.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c48",
+      "file": "4x/chronomancer-c48.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c49",
+      "file": "4x/chronomancer-c49.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c50",
+      "file": "4x/chronomancer-c50.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c51",
+      "file": "4x/chronomancer-c51.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "chronomancer-c52",
+      "file": "4x/chronomancer-c52.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "chronomancer",
+      "rarity": "legendary",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c01",
+      "file": "4x/abyss-revenant-c01.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c02",
+      "file": "4x/abyss-revenant-c02.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c03",
+      "file": "4x/abyss-revenant-c03.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c04",
+      "file": "4x/abyss-revenant-c04.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c05",
+      "file": "4x/abyss-revenant-c05.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c06",
+      "file": "4x/abyss-revenant-c06.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c07",
+      "file": "4x/abyss-revenant-c07.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c08",
+      "file": "4x/abyss-revenant-c08.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c09",
+      "file": "4x/abyss-revenant-c09.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c10",
+      "file": "4x/abyss-revenant-c10.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c11",
+      "file": "4x/abyss-revenant-c11.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c12",
+      "file": "4x/abyss-revenant-c12.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c13",
+      "file": "4x/abyss-revenant-c13.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c14",
+      "file": "4x/abyss-revenant-c14.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c15",
+      "file": "4x/abyss-revenant-c15.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c16",
+      "file": "4x/abyss-revenant-c16.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c17",
+      "file": "4x/abyss-revenant-c17.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c18",
+      "file": "4x/abyss-revenant-c18.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c19",
+      "file": "4x/abyss-revenant-c19.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c20",
+      "file": "4x/abyss-revenant-c20.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c21",
+      "file": "4x/abyss-revenant-c21.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c22",
+      "file": "4x/abyss-revenant-c22.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c23",
+      "file": "4x/abyss-revenant-c23.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c24",
+      "file": "4x/abyss-revenant-c24.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c25",
+      "file": "4x/abyss-revenant-c25.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c26",
+      "file": "4x/abyss-revenant-c26.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c27",
+      "file": "4x/abyss-revenant-c27.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c28",
+      "file": "4x/abyss-revenant-c28.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c29",
+      "file": "4x/abyss-revenant-c29.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "common",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c30",
+      "file": "4x/abyss-revenant-c30.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c31",
+      "file": "4x/abyss-revenant-c31.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c32",
+      "file": "4x/abyss-revenant-c32.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "unit"
+    },
+    {
+      "slug": "abyss-revenant-c33",
+      "file": "4x/abyss-revenant-c33.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c34",
+      "file": "4x/abyss-revenant-c34.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c35",
+      "file": "4x/abyss-revenant-c35.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c36",
+      "file": "4x/abyss-revenant-c36.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c37",
+      "file": "4x/abyss-revenant-c37.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c38",
+      "file": "4x/abyss-revenant-c38.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c39",
+      "file": "4x/abyss-revenant-c39.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c40",
+      "file": "4x/abyss-revenant-c40.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c41",
+      "file": "4x/abyss-revenant-c41.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c42",
+      "file": "4x/abyss-revenant-c42.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c43",
+      "file": "4x/abyss-revenant-c43.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "rare",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c44",
+      "file": "4x/abyss-revenant-c44.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c45",
+      "file": "4x/abyss-revenant-c45.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c46",
+      "file": "4x/abyss-revenant-c46.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c47",
+      "file": "4x/abyss-revenant-c47.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c48",
+      "file": "4x/abyss-revenant-c48.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c49",
+      "file": "4x/abyss-revenant-c49.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c50",
+      "file": "4x/abyss-revenant-c50.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c51",
+      "file": "4x/abyss-revenant-c51.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "epic",
+      "type": "spell"
+    },
+    {
+      "slug": "abyss-revenant-c52",
+      "file": "4x/abyss-revenant-c52.png",
+      "scale": "4x",
+      "width": 1536,
+      "height": 2048,
+      "faction": "abyss-revenant",
+      "rarity": "legendary",
+      "type": "spell"
+    }
+  ]
+}

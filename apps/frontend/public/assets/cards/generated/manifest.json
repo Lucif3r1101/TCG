@@ -1,0 +1,2189 @@
+{
+  "generatedAt": "2026-03-01T12:53:46.675Z",
+  "cards": [
+    {
+      "slug": "riftforged-sentinel-c01",
+      "file": "generated/riftforged-sentinel-c01.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c02",
+      "file": "generated/riftforged-sentinel-c02.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c03",
+      "file": "generated/riftforged-sentinel-c03.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c04",
+      "file": "generated/riftforged-sentinel-c04.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c05",
+      "file": "generated/riftforged-sentinel-c05.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c06",
+      "file": "generated/riftforged-sentinel-c06.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c07",
+      "file": "generated/riftforged-sentinel-c07.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c08",
+      "file": "generated/riftforged-sentinel-c08.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c09",
+      "file": "generated/riftforged-sentinel-c09.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c10",
+      "file": "generated/riftforged-sentinel-c10.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c11",
+      "file": "generated/riftforged-sentinel-c11.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c12",
+      "file": "generated/riftforged-sentinel-c12.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c13",
+      "file": "generated/riftforged-sentinel-c13.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c14",
+      "file": "generated/riftforged-sentinel-c14.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c15",
+      "file": "generated/riftforged-sentinel-c15.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c16",
+      "file": "generated/riftforged-sentinel-c16.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c17",
+      "file": "generated/riftforged-sentinel-c17.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c18",
+      "file": "generated/riftforged-sentinel-c18.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c19",
+      "file": "generated/riftforged-sentinel-c19.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c20",
+      "file": "generated/riftforged-sentinel-c20.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c21",
+      "file": "generated/riftforged-sentinel-c21.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c22",
+      "file": "generated/riftforged-sentinel-c22.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c23",
+      "file": "generated/riftforged-sentinel-c23.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c24",
+      "file": "generated/riftforged-sentinel-c24.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c25",
+      "file": "generated/riftforged-sentinel-c25.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c26",
+      "file": "generated/riftforged-sentinel-c26.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c27",
+      "file": "generated/riftforged-sentinel-c27.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c28",
+      "file": "generated/riftforged-sentinel-c28.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c29",
+      "file": "generated/riftforged-sentinel-c29.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "riftforged-sentinel-c30",
+      "file": "generated/riftforged-sentinel-c30.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c31",
+      "file": "generated/riftforged-sentinel-c31.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c32",
+      "file": "generated/riftforged-sentinel-c32.svg",
+      "faction": "riftforged-sentinel",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c33",
+      "file": "generated/riftforged-sentinel-c33.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c34",
+      "file": "generated/riftforged-sentinel-c34.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c35",
+      "file": "generated/riftforged-sentinel-c35.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c36",
+      "file": "generated/riftforged-sentinel-c36.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c37",
+      "file": "generated/riftforged-sentinel-c37.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c38",
+      "file": "generated/riftforged-sentinel-c38.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c39",
+      "file": "generated/riftforged-sentinel-c39.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c40",
+      "file": "generated/riftforged-sentinel-c40.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c41",
+      "file": "generated/riftforged-sentinel-c41.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c42",
+      "file": "generated/riftforged-sentinel-c42.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c43",
+      "file": "generated/riftforged-sentinel-c43.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "riftforged-sentinel-c44",
+      "file": "generated/riftforged-sentinel-c44.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "riftforged-sentinel-c45",
+      "file": "generated/riftforged-sentinel-c45.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "riftforged-sentinel-c46",
+      "file": "generated/riftforged-sentinel-c46.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "riftforged-sentinel-c47",
+      "file": "generated/riftforged-sentinel-c47.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "riftforged-sentinel-c48",
+      "file": "generated/riftforged-sentinel-c48.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "riftforged-sentinel-c49",
+      "file": "generated/riftforged-sentinel-c49.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "riftforged-sentinel-c50",
+      "file": "generated/riftforged-sentinel-c50.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "riftforged-sentinel-c51",
+      "file": "generated/riftforged-sentinel-c51.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "riftforged-sentinel-c52",
+      "file": "generated/riftforged-sentinel-c52.svg",
+      "faction": "riftforged-sentinel",
+      "type": "spell",
+      "rarity": "legendary"
+    },
+    {
+      "slug": "void-ranger-c01",
+      "file": "generated/void-ranger-c01.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c02",
+      "file": "generated/void-ranger-c02.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c03",
+      "file": "generated/void-ranger-c03.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c04",
+      "file": "generated/void-ranger-c04.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c05",
+      "file": "generated/void-ranger-c05.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c06",
+      "file": "generated/void-ranger-c06.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c07",
+      "file": "generated/void-ranger-c07.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c08",
+      "file": "generated/void-ranger-c08.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c09",
+      "file": "generated/void-ranger-c09.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c10",
+      "file": "generated/void-ranger-c10.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c11",
+      "file": "generated/void-ranger-c11.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c12",
+      "file": "generated/void-ranger-c12.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c13",
+      "file": "generated/void-ranger-c13.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c14",
+      "file": "generated/void-ranger-c14.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c15",
+      "file": "generated/void-ranger-c15.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c16",
+      "file": "generated/void-ranger-c16.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c17",
+      "file": "generated/void-ranger-c17.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c18",
+      "file": "generated/void-ranger-c18.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c19",
+      "file": "generated/void-ranger-c19.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c20",
+      "file": "generated/void-ranger-c20.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c21",
+      "file": "generated/void-ranger-c21.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c22",
+      "file": "generated/void-ranger-c22.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c23",
+      "file": "generated/void-ranger-c23.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c24",
+      "file": "generated/void-ranger-c24.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c25",
+      "file": "generated/void-ranger-c25.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c26",
+      "file": "generated/void-ranger-c26.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c27",
+      "file": "generated/void-ranger-c27.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c28",
+      "file": "generated/void-ranger-c28.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c29",
+      "file": "generated/void-ranger-c29.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "void-ranger-c30",
+      "file": "generated/void-ranger-c30.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c31",
+      "file": "generated/void-ranger-c31.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c32",
+      "file": "generated/void-ranger-c32.svg",
+      "faction": "void-ranger",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c33",
+      "file": "generated/void-ranger-c33.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c34",
+      "file": "generated/void-ranger-c34.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c35",
+      "file": "generated/void-ranger-c35.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c36",
+      "file": "generated/void-ranger-c36.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c37",
+      "file": "generated/void-ranger-c37.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c38",
+      "file": "generated/void-ranger-c38.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c39",
+      "file": "generated/void-ranger-c39.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c40",
+      "file": "generated/void-ranger-c40.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c41",
+      "file": "generated/void-ranger-c41.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c42",
+      "file": "generated/void-ranger-c42.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c43",
+      "file": "generated/void-ranger-c43.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "void-ranger-c44",
+      "file": "generated/void-ranger-c44.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "void-ranger-c45",
+      "file": "generated/void-ranger-c45.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "void-ranger-c46",
+      "file": "generated/void-ranger-c46.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "void-ranger-c47",
+      "file": "generated/void-ranger-c47.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "void-ranger-c48",
+      "file": "generated/void-ranger-c48.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "void-ranger-c49",
+      "file": "generated/void-ranger-c49.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "void-ranger-c50",
+      "file": "generated/void-ranger-c50.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "void-ranger-c51",
+      "file": "generated/void-ranger-c51.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "void-ranger-c52",
+      "file": "generated/void-ranger-c52.svg",
+      "faction": "void-ranger",
+      "type": "spell",
+      "rarity": "legendary"
+    },
+    {
+      "slug": "ember-arcanist-c01",
+      "file": "generated/ember-arcanist-c01.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c02",
+      "file": "generated/ember-arcanist-c02.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c03",
+      "file": "generated/ember-arcanist-c03.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c04",
+      "file": "generated/ember-arcanist-c04.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c05",
+      "file": "generated/ember-arcanist-c05.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c06",
+      "file": "generated/ember-arcanist-c06.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c07",
+      "file": "generated/ember-arcanist-c07.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c08",
+      "file": "generated/ember-arcanist-c08.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c09",
+      "file": "generated/ember-arcanist-c09.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c10",
+      "file": "generated/ember-arcanist-c10.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c11",
+      "file": "generated/ember-arcanist-c11.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c12",
+      "file": "generated/ember-arcanist-c12.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c13",
+      "file": "generated/ember-arcanist-c13.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c14",
+      "file": "generated/ember-arcanist-c14.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c15",
+      "file": "generated/ember-arcanist-c15.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c16",
+      "file": "generated/ember-arcanist-c16.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c17",
+      "file": "generated/ember-arcanist-c17.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c18",
+      "file": "generated/ember-arcanist-c18.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c19",
+      "file": "generated/ember-arcanist-c19.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c20",
+      "file": "generated/ember-arcanist-c20.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c21",
+      "file": "generated/ember-arcanist-c21.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c22",
+      "file": "generated/ember-arcanist-c22.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c23",
+      "file": "generated/ember-arcanist-c23.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c24",
+      "file": "generated/ember-arcanist-c24.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c25",
+      "file": "generated/ember-arcanist-c25.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c26",
+      "file": "generated/ember-arcanist-c26.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c27",
+      "file": "generated/ember-arcanist-c27.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c28",
+      "file": "generated/ember-arcanist-c28.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c29",
+      "file": "generated/ember-arcanist-c29.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ember-arcanist-c30",
+      "file": "generated/ember-arcanist-c30.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c31",
+      "file": "generated/ember-arcanist-c31.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c32",
+      "file": "generated/ember-arcanist-c32.svg",
+      "faction": "ember-arcanist",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c33",
+      "file": "generated/ember-arcanist-c33.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c34",
+      "file": "generated/ember-arcanist-c34.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c35",
+      "file": "generated/ember-arcanist-c35.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c36",
+      "file": "generated/ember-arcanist-c36.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c37",
+      "file": "generated/ember-arcanist-c37.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c38",
+      "file": "generated/ember-arcanist-c38.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c39",
+      "file": "generated/ember-arcanist-c39.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c40",
+      "file": "generated/ember-arcanist-c40.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c41",
+      "file": "generated/ember-arcanist-c41.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c42",
+      "file": "generated/ember-arcanist-c42.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c43",
+      "file": "generated/ember-arcanist-c43.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ember-arcanist-c44",
+      "file": "generated/ember-arcanist-c44.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ember-arcanist-c45",
+      "file": "generated/ember-arcanist-c45.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ember-arcanist-c46",
+      "file": "generated/ember-arcanist-c46.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ember-arcanist-c47",
+      "file": "generated/ember-arcanist-c47.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ember-arcanist-c48",
+      "file": "generated/ember-arcanist-c48.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ember-arcanist-c49",
+      "file": "generated/ember-arcanist-c49.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ember-arcanist-c50",
+      "file": "generated/ember-arcanist-c50.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ember-arcanist-c51",
+      "file": "generated/ember-arcanist-c51.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ember-arcanist-c52",
+      "file": "generated/ember-arcanist-c52.svg",
+      "faction": "ember-arcanist",
+      "type": "spell",
+      "rarity": "legendary"
+    },
+    {
+      "slug": "ironbound-beastmaster-c01",
+      "file": "generated/ironbound-beastmaster-c01.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c02",
+      "file": "generated/ironbound-beastmaster-c02.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c03",
+      "file": "generated/ironbound-beastmaster-c03.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c04",
+      "file": "generated/ironbound-beastmaster-c04.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c05",
+      "file": "generated/ironbound-beastmaster-c05.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c06",
+      "file": "generated/ironbound-beastmaster-c06.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c07",
+      "file": "generated/ironbound-beastmaster-c07.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c08",
+      "file": "generated/ironbound-beastmaster-c08.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c09",
+      "file": "generated/ironbound-beastmaster-c09.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c10",
+      "file": "generated/ironbound-beastmaster-c10.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c11",
+      "file": "generated/ironbound-beastmaster-c11.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c12",
+      "file": "generated/ironbound-beastmaster-c12.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c13",
+      "file": "generated/ironbound-beastmaster-c13.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c14",
+      "file": "generated/ironbound-beastmaster-c14.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c15",
+      "file": "generated/ironbound-beastmaster-c15.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c16",
+      "file": "generated/ironbound-beastmaster-c16.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c17",
+      "file": "generated/ironbound-beastmaster-c17.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c18",
+      "file": "generated/ironbound-beastmaster-c18.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c19",
+      "file": "generated/ironbound-beastmaster-c19.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c20",
+      "file": "generated/ironbound-beastmaster-c20.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c21",
+      "file": "generated/ironbound-beastmaster-c21.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c22",
+      "file": "generated/ironbound-beastmaster-c22.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c23",
+      "file": "generated/ironbound-beastmaster-c23.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c24",
+      "file": "generated/ironbound-beastmaster-c24.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c25",
+      "file": "generated/ironbound-beastmaster-c25.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c26",
+      "file": "generated/ironbound-beastmaster-c26.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c27",
+      "file": "generated/ironbound-beastmaster-c27.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c28",
+      "file": "generated/ironbound-beastmaster-c28.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c29",
+      "file": "generated/ironbound-beastmaster-c29.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "ironbound-beastmaster-c30",
+      "file": "generated/ironbound-beastmaster-c30.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c31",
+      "file": "generated/ironbound-beastmaster-c31.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c32",
+      "file": "generated/ironbound-beastmaster-c32.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c33",
+      "file": "generated/ironbound-beastmaster-c33.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c34",
+      "file": "generated/ironbound-beastmaster-c34.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c35",
+      "file": "generated/ironbound-beastmaster-c35.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c36",
+      "file": "generated/ironbound-beastmaster-c36.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c37",
+      "file": "generated/ironbound-beastmaster-c37.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c38",
+      "file": "generated/ironbound-beastmaster-c38.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c39",
+      "file": "generated/ironbound-beastmaster-c39.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c40",
+      "file": "generated/ironbound-beastmaster-c40.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c41",
+      "file": "generated/ironbound-beastmaster-c41.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c42",
+      "file": "generated/ironbound-beastmaster-c42.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c43",
+      "file": "generated/ironbound-beastmaster-c43.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "ironbound-beastmaster-c44",
+      "file": "generated/ironbound-beastmaster-c44.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ironbound-beastmaster-c45",
+      "file": "generated/ironbound-beastmaster-c45.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ironbound-beastmaster-c46",
+      "file": "generated/ironbound-beastmaster-c46.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ironbound-beastmaster-c47",
+      "file": "generated/ironbound-beastmaster-c47.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ironbound-beastmaster-c48",
+      "file": "generated/ironbound-beastmaster-c48.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ironbound-beastmaster-c49",
+      "file": "generated/ironbound-beastmaster-c49.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ironbound-beastmaster-c50",
+      "file": "generated/ironbound-beastmaster-c50.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ironbound-beastmaster-c51",
+      "file": "generated/ironbound-beastmaster-c51.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "ironbound-beastmaster-c52",
+      "file": "generated/ironbound-beastmaster-c52.svg",
+      "faction": "ironbound-beastmaster",
+      "type": "spell",
+      "rarity": "legendary"
+    },
+    {
+      "slug": "chronomancer-c01",
+      "file": "generated/chronomancer-c01.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c02",
+      "file": "generated/chronomancer-c02.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c03",
+      "file": "generated/chronomancer-c03.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c04",
+      "file": "generated/chronomancer-c04.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c05",
+      "file": "generated/chronomancer-c05.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c06",
+      "file": "generated/chronomancer-c06.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c07",
+      "file": "generated/chronomancer-c07.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c08",
+      "file": "generated/chronomancer-c08.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c09",
+      "file": "generated/chronomancer-c09.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c10",
+      "file": "generated/chronomancer-c10.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c11",
+      "file": "generated/chronomancer-c11.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c12",
+      "file": "generated/chronomancer-c12.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c13",
+      "file": "generated/chronomancer-c13.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c14",
+      "file": "generated/chronomancer-c14.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c15",
+      "file": "generated/chronomancer-c15.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c16",
+      "file": "generated/chronomancer-c16.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c17",
+      "file": "generated/chronomancer-c17.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c18",
+      "file": "generated/chronomancer-c18.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c19",
+      "file": "generated/chronomancer-c19.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c20",
+      "file": "generated/chronomancer-c20.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c21",
+      "file": "generated/chronomancer-c21.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c22",
+      "file": "generated/chronomancer-c22.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c23",
+      "file": "generated/chronomancer-c23.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c24",
+      "file": "generated/chronomancer-c24.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c25",
+      "file": "generated/chronomancer-c25.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c26",
+      "file": "generated/chronomancer-c26.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c27",
+      "file": "generated/chronomancer-c27.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c28",
+      "file": "generated/chronomancer-c28.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c29",
+      "file": "generated/chronomancer-c29.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "chronomancer-c30",
+      "file": "generated/chronomancer-c30.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c31",
+      "file": "generated/chronomancer-c31.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c32",
+      "file": "generated/chronomancer-c32.svg",
+      "faction": "chronomancer",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c33",
+      "file": "generated/chronomancer-c33.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c34",
+      "file": "generated/chronomancer-c34.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c35",
+      "file": "generated/chronomancer-c35.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c36",
+      "file": "generated/chronomancer-c36.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c37",
+      "file": "generated/chronomancer-c37.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c38",
+      "file": "generated/chronomancer-c38.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c39",
+      "file": "generated/chronomancer-c39.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c40",
+      "file": "generated/chronomancer-c40.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c41",
+      "file": "generated/chronomancer-c41.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c42",
+      "file": "generated/chronomancer-c42.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c43",
+      "file": "generated/chronomancer-c43.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "chronomancer-c44",
+      "file": "generated/chronomancer-c44.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "chronomancer-c45",
+      "file": "generated/chronomancer-c45.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "chronomancer-c46",
+      "file": "generated/chronomancer-c46.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "chronomancer-c47",
+      "file": "generated/chronomancer-c47.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "chronomancer-c48",
+      "file": "generated/chronomancer-c48.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "chronomancer-c49",
+      "file": "generated/chronomancer-c49.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "chronomancer-c50",
+      "file": "generated/chronomancer-c50.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "chronomancer-c51",
+      "file": "generated/chronomancer-c51.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "chronomancer-c52",
+      "file": "generated/chronomancer-c52.svg",
+      "faction": "chronomancer",
+      "type": "spell",
+      "rarity": "legendary"
+    },
+    {
+      "slug": "abyss-revenant-c01",
+      "file": "generated/abyss-revenant-c01.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c02",
+      "file": "generated/abyss-revenant-c02.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c03",
+      "file": "generated/abyss-revenant-c03.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c04",
+      "file": "generated/abyss-revenant-c04.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c05",
+      "file": "generated/abyss-revenant-c05.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c06",
+      "file": "generated/abyss-revenant-c06.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c07",
+      "file": "generated/abyss-revenant-c07.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c08",
+      "file": "generated/abyss-revenant-c08.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c09",
+      "file": "generated/abyss-revenant-c09.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c10",
+      "file": "generated/abyss-revenant-c10.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c11",
+      "file": "generated/abyss-revenant-c11.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c12",
+      "file": "generated/abyss-revenant-c12.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c13",
+      "file": "generated/abyss-revenant-c13.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c14",
+      "file": "generated/abyss-revenant-c14.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c15",
+      "file": "generated/abyss-revenant-c15.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c16",
+      "file": "generated/abyss-revenant-c16.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c17",
+      "file": "generated/abyss-revenant-c17.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c18",
+      "file": "generated/abyss-revenant-c18.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c19",
+      "file": "generated/abyss-revenant-c19.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c20",
+      "file": "generated/abyss-revenant-c20.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c21",
+      "file": "generated/abyss-revenant-c21.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c22",
+      "file": "generated/abyss-revenant-c22.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c23",
+      "file": "generated/abyss-revenant-c23.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c24",
+      "file": "generated/abyss-revenant-c24.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c25",
+      "file": "generated/abyss-revenant-c25.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c26",
+      "file": "generated/abyss-revenant-c26.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c27",
+      "file": "generated/abyss-revenant-c27.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c28",
+      "file": "generated/abyss-revenant-c28.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c29",
+      "file": "generated/abyss-revenant-c29.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "common"
+    },
+    {
+      "slug": "abyss-revenant-c30",
+      "file": "generated/abyss-revenant-c30.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c31",
+      "file": "generated/abyss-revenant-c31.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c32",
+      "file": "generated/abyss-revenant-c32.svg",
+      "faction": "abyss-revenant",
+      "type": "unit",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c33",
+      "file": "generated/abyss-revenant-c33.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c34",
+      "file": "generated/abyss-revenant-c34.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c35",
+      "file": "generated/abyss-revenant-c35.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c36",
+      "file": "generated/abyss-revenant-c36.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c37",
+      "file": "generated/abyss-revenant-c37.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c38",
+      "file": "generated/abyss-revenant-c38.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c39",
+      "file": "generated/abyss-revenant-c39.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c40",
+      "file": "generated/abyss-revenant-c40.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c41",
+      "file": "generated/abyss-revenant-c41.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c42",
+      "file": "generated/abyss-revenant-c42.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c43",
+      "file": "generated/abyss-revenant-c43.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "rare"
+    },
+    {
+      "slug": "abyss-revenant-c44",
+      "file": "generated/abyss-revenant-c44.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "abyss-revenant-c45",
+      "file": "generated/abyss-revenant-c45.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "abyss-revenant-c46",
+      "file": "generated/abyss-revenant-c46.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "abyss-revenant-c47",
+      "file": "generated/abyss-revenant-c47.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "abyss-revenant-c48",
+      "file": "generated/abyss-revenant-c48.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "abyss-revenant-c49",
+      "file": "generated/abyss-revenant-c49.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "abyss-revenant-c50",
+      "file": "generated/abyss-revenant-c50.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "abyss-revenant-c51",
+      "file": "generated/abyss-revenant-c51.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "epic"
+    },
+    {
+      "slug": "abyss-revenant-c52",
+      "file": "generated/abyss-revenant-c52.svg",
+      "faction": "abyss-revenant",
+      "type": "spell",
+      "rarity": "legendary"
+    }
+  ]
+}

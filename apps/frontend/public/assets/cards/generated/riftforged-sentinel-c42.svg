@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="768" height="1024" viewBox="0 0 768 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-riftforged-sentinel-c42" x1="60" y1="40" x2="728" y2="1004" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a1e3f"/>
+      <stop offset="0.55" stop-color="#204f8a"/>
+      <stop offset="1" stop-color="#0a1e3f"/>
+    </linearGradient>
+    <radialGradient id="glow-riftforged-sentinel-c42" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(182.73 167.42) rotate(90) scale(263.01 263.01)">
+      <stop stop-color="#2ee6ff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#2ee6ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-riftforged-sentinel-c42" x1="0" y1="0" x2="768" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2ee6ff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#d8fbff" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="768" height="1024" rx="32" fill="#060910"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#bg-riftforged-sentinel-c42)"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#glow-riftforged-sentinel-c42)"/>
+
+  <g opacity="0.88">
+    <polygon points="384.00,327.68 543.63,419.84 543.63,604.16 384.00,696.32 224.37,604.16 224.37,419.84" fill="none" stroke="#2ee6ff" stroke-width="10" opacity="0.7"/>
+<polygon points="384.00,327.68 543.63,419.84 543.63,604.16 384.00,696.32 224.37,604.16 224.37,419.84" fill="none" stroke="#d8fbff" stroke-width="3" opacity="0.95" transform="scale(0.78) translate(107.52000000000001,143.36)"/>
+  </g>
+
+  <g opacity="0.8">
+    <circle cx="103.21" cy="363.17" r="4.07" fill="#d8fbff" opacity="0.43"/><circle cx="168.27" cy="24.06" r="2.31" fill="#2ee6ff" opacity="0.58"/><circle cx="32.79" cy="531.41" r="1.76" fill="#d8fbff" opacity="0.67"/><circle cx="723.25" cy="121.61" r="2.48" fill="#2ee6ff" opacity="0.28"/><circle cx="571.54" cy="689.22" r="3.59" fill="#d8fbff" opacity="0.72"/><circle cx="470.35" cy="380.00" r="1.68" fill="#2ee6ff" opacity="0.54"/><circle cx="510.00" cy="1004.72" r="3.34" fill="#d8fbff" opacity="0.68"/><circle cx="493.84" cy="616.83" r="2.63" fill="#2ee6ff" opacity="0.47"/><circle cx="90.34" cy="257.83" r="1.31" fill="#d8fbff" opacity="0.49"/><circle cx="521.26" cy="772.39" r="2.25" fill="#2ee6ff" opacity="0.33"/><circle cx="429.69" cy="322.53" r="4.40" fill="#d8fbff" opacity="0.62"/><circle cx="666.38" cy="824.05" r="2.86" fill="#2ee6ff" opacity="0.51"/><circle cx="750.44" cy="804.79" r="3.11" fill="#d8fbff" opacity="0.32"/><circle cx="427.61" cy="965.09" r="3.37" fill="#2ee6ff" opacity="0.34"/><circle cx="27.69" cy="319.78" r="1.72" fill="#d8fbff" opacity="0.48"/><circle cx="576.70" cy="59.18" r="3.08" fill="#2ee6ff" opacity="0.38"/><circle cx="384.65" cy="251.63" r="2.70" fill="#d8fbff" opacity="0.53"/><circle cx="175.64" cy="247.33" r="1.90" fill="#2ee6ff" opacity="0.61"/><circle cx="43.52" cy="755.14" r="4.00" fill="#d8fbff" opacity="0.56"/><circle cx="165.23" cy="928.02" r="3.24" fill="#2ee6ff" opacity="0.33"/><circle cx="674.50" cy="426.50" r="3.17" fill="#d8fbff" opacity="0.73"/><circle cx="704.08" cy="40.38" r="1.37" fill="#2ee6ff" opacity="0.68"/><circle cx="490.82" cy="113.33" r="4.88" fill="#d8fbff" opacity="0.41"/><circle cx="551.74" cy="340.65" r="4.52" fill="#2ee6ff" opacity="0.34"/><circle cx="337.71" cy="182.01" r="2.56" fill="#d8fbff" opacity="0.48"/><circle cx="336.78" cy="133.46" r="4.81" fill="#2ee6ff" opacity="0.52"/><circle cx="733.33" cy="80.83" r="3.12" fill="#d8fbff" opacity="0.26"/><circle cx="171.17" cy="127.93" r="4.47" fill="#2ee6ff" opacity="0.61"/>
+  </g>
+
+  <rect x="16" y="16" width="736" height="992" rx="24" stroke="url(#edge-riftforged-sentinel-c42)" stroke-width="2.5" opacity="0.85"/>
+  <rect x="22" y="22" width="724" height="980" rx="20" stroke="#78d8ff" stroke-width="2" opacity="0.74"/>
+
+  <rect x="34" y="34" width="700" height="72" rx="14" fill="#070b14" fill-opacity="0.72" stroke="#78d8ff" stroke-opacity="0.55"/>
+  <text x="54" y="80" fill="#EAF4FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="32" font-weight="700">Riftforged Sentinel</text>
+
+  <rect x="34" y="872" width="700" height="92" rx="14" fill="#070b14" fill-opacity="0.74" stroke="#78d8ff" stroke-opacity="0.6"/>
+  <text x="54" y="924" fill="#D9E7FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="30" font-weight="600">Tempo Swing</text>
+
+  <rect x="598" y="36" width="118" height="42" rx="10" fill="#78d8ff" fill-opacity="0.2" stroke="#78d8ff" stroke-opacity="0.8"/>
+  <text x="612" y="65" fill="#78d8ff" font-family="Exo 2, Segoe UI, sans-serif" font-size="20" font-weight="700">RARE</text>
+
+  <circle cx="708" cy="954" r="26" fill="#080d18" stroke="#78d8ff" stroke-opacity="0.8"/>
+  <text x="696" y="962" fill="#E7F2FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="24" font-weight="700">42</text>
+</svg>

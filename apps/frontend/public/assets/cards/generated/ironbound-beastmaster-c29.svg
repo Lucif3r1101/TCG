@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="768" height="1024" viewBox="0 0 768 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-ironbound-beastmaster-c29" x1="60" y1="40" x2="728" y2="1004" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#15140f"/>
+      <stop offset="0.55" stop-color="#5d4522"/>
+      <stop offset="1" stop-color="#15140f"/>
+    </linearGradient>
+    <radialGradient id="glow-ironbound-beastmaster-c29" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(410.98 610.19) rotate(90) scale(214.52 214.52)">
+      <stop stop-color="#ab7f3e" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ab7f3e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-ironbound-beastmaster-c29" x1="0" y1="0" x2="768" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ab7f3e" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#8fd15f" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="768" height="1024" rx="32" fill="#060910"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#bg-ironbound-beastmaster-c29)"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#glow-ironbound-beastmaster-c29)"/>
+
+  <g opacity="0.88">
+    <path d="M191.60,240.15 C233.87,428.57 267.68,478.88 170.40,687.54" stroke="#8fd15f" stroke-width="10" fill="none" opacity="0.7"/><path d="M265.74,311.72 C313.07,477.73 326.90,598.50 241.27,732.61" stroke="#ab7f3e" stroke-width="9" fill="none" opacity="0.7"/><path d="M360.73,248.51 C419.91,413.45 381.40,549.26 359.34,652.89" stroke="#8fd15f" stroke-width="8" fill="none" opacity="0.7"/><path d="M437.23,280.95 C503.73,491.85 471.02,644.20 419.94,787.17" stroke="#ab7f3e" stroke-width="7" fill="none" opacity="0.7"/>
+  </g>
+
+  <g opacity="0.8">
+    <circle cx="125.77" cy="107.81" r="2.20" fill="#8fd15f" opacity="0.60"/><circle cx="518.68" cy="527.57" r="4.48" fill="#ab7f3e" opacity="0.60"/><circle cx="33.75" cy="858.94" r="3.82" fill="#8fd15f" opacity="0.61"/><circle cx="701.10" cy="137.90" r="3.19" fill="#ab7f3e" opacity="0.65"/><circle cx="117.37" cy="377.90" r="2.86" fill="#8fd15f" opacity="0.69"/><circle cx="364.57" cy="968.31" r="2.01" fill="#ab7f3e" opacity="0.62"/><circle cx="484.98" cy="827.23" r="3.44" fill="#8fd15f" opacity="0.38"/><circle cx="602.34" cy="1013.47" r="4.54" fill="#ab7f3e" opacity="0.41"/><circle cx="63.67" cy="832.83" r="4.67" fill="#8fd15f" opacity="0.40"/><circle cx="469.31" cy="321.31" r="4.48" fill="#ab7f3e" opacity="0.46"/><circle cx="640.44" cy="671.97" r="2.08" fill="#8fd15f" opacity="0.57"/><circle cx="634.84" cy="850.51" r="2.01" fill="#ab7f3e" opacity="0.48"/><circle cx="104.09" cy="224.47" r="4.70" fill="#8fd15f" opacity="0.71"/><circle cx="132.52" cy="958.50" r="1.79" fill="#ab7f3e" opacity="0.37"/><circle cx="410.81" cy="424.65" r="2.97" fill="#8fd15f" opacity="0.70"/><circle cx="424.76" cy="154.75" r="3.23" fill="#ab7f3e" opacity="0.29"/><circle cx="163.03" cy="61.14" r="3.54" fill="#8fd15f" opacity="0.26"/><circle cx="211.18" cy="18.78" r="3.11" fill="#ab7f3e" opacity="0.45"/><circle cx="542.21" cy="337.61" r="3.95" fill="#8fd15f" opacity="0.27"/><circle cx="142.72" cy="801.70" r="3.65" fill="#ab7f3e" opacity="0.26"/><circle cx="750.53" cy="812.00" r="1.34" fill="#8fd15f" opacity="0.52"/><circle cx="331.49" cy="51.28" r="2.05" fill="#ab7f3e" opacity="0.54"/><circle cx="696.90" cy="155.64" r="1.70" fill="#8fd15f" opacity="0.54"/><circle cx="469.12" cy="1015.53" r="2.61" fill="#ab7f3e" opacity="0.47"/><circle cx="181.95" cy="827.94" r="4.86" fill="#8fd15f" opacity="0.32"/><circle cx="15.24" cy="675.45" r="2.58" fill="#ab7f3e" opacity="0.41"/><circle cx="410.43" cy="317.53" r="4.56" fill="#8fd15f" opacity="0.60"/><circle cx="537.83" cy="1016.40" r="1.48" fill="#ab7f3e" opacity="0.56"/>
+  </g>
+
+  <rect x="16" y="16" width="736" height="992" rx="24" stroke="url(#edge-ironbound-beastmaster-c29)" stroke-width="2.5" opacity="0.85"/>
+  <rect x="22" y="22" width="724" height="980" rx="20" stroke="#8aa0c4" stroke-width="2" opacity="0.74"/>
+
+  <rect x="34" y="34" width="700" height="72" rx="14" fill="#070b14" fill-opacity="0.72" stroke="#8aa0c4" stroke-opacity="0.55"/>
+  <text x="54" y="80" fill="#EAF4FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="32" font-weight="700">Ironbound Beastmaster</text>
+
+  <rect x="34" y="872" width="700" height="92" rx="14" fill="#070b14" fill-opacity="0.74" stroke="#8aa0c4" stroke-opacity="0.6"/>
+  <text x="54" y="924" fill="#D9E7FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="30" font-weight="600">Frontline Prime</text>
+
+  <rect x="598" y="36" width="118" height="42" rx="10" fill="#8aa0c4" fill-opacity="0.2" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="612" y="65" fill="#8aa0c4" font-family="Exo 2, Segoe UI, sans-serif" font-size="20" font-weight="700">COMMON</text>
+
+  <circle cx="708" cy="954" r="26" fill="#080d18" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="696" y="962" fill="#E7F2FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="24" font-weight="700">29</text>
+</svg>

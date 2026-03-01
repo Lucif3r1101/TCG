@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="768" height="1024" viewBox="0 0 768 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-chronomancer-c14" x1="60" y1="40" x2="728" y2="1004" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#101425"/>
+      <stop offset="0.55" stop-color="#2a4478"/>
+      <stop offset="1" stop-color="#101425"/>
+    </linearGradient>
+    <radialGradient id="glow-chronomancer-c14" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(274.21 384.63) rotate(90) scale(284.56 284.56)">
+      <stop stop-color="#c7a64a" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#c7a64a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-chronomancer-c14" x1="0" y1="0" x2="768" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c7a64a" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#9bd3ff" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="768" height="1024" rx="32" fill="#060910"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#bg-chronomancer-c14)"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#glow-chronomancer-c14)"/>
+
+  <g opacity="0.88">
+    <circle cx="384" cy="512" r="184" fill="none" stroke="#c7a64a" stroke-width="8" opacity="0.72"/>
+<circle cx="384" cy="512" r="132" fill="none" stroke="#9bd3ff" stroke-width="4" opacity="0.76"/>
+<line x1="524.00" y1="512.00" x2="560.00" y2="512.00" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="505.24" y1="582.00" x2="536.42" y2="600.00" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="454.00" y1="633.24" x2="472.00" y2="664.42" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="384.00" y1="652.00" x2="384.00" y2="688.00" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="314.00" y1="633.24" x2="296.00" y2="664.42" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="262.76" y1="582.00" x2="231.58" y2="600.00" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="244.00" y1="512.00" x2="208.00" y2="512.00" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="262.76" y1="442.00" x2="231.58" y2="424.00" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="314.00" y1="390.76" x2="296.00" y2="359.58" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="384.00" y1="372.00" x2="384.00" y2="336.00" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="454.00" y1="390.76" x2="472.00" y2="359.58" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/><line x1="505.24" y1="442.00" x2="536.42" y2="424.00" stroke="#9bd3ff" stroke-width="4" opacity="0.7"/>
+<line x1="384" y1="512" x2="466.00" y2="486.00" stroke="#c7a64a" stroke-width="8" opacity="0.9"/>
+<line x1="384" y1="512" x2="342.00" y2="604.00" stroke="#9bd3ff" stroke-width="6" opacity="0.9"/>
+  </g>
+
+  <g opacity="0.8">
+    <circle cx="551.77" cy="829.67" r="1.98" fill="#9bd3ff" opacity="0.27"/><circle cx="12.74" cy="323.53" r="2.21" fill="#c7a64a" opacity="0.63"/><circle cx="250.88" cy="176.43" r="4.54" fill="#9bd3ff" opacity="0.25"/><circle cx="252.84" cy="717.19" r="2.69" fill="#c7a64a" opacity="0.34"/><circle cx="679.57" cy="696.97" r="3.42" fill="#9bd3ff" opacity="0.50"/><circle cx="644.88" cy="515.92" r="3.70" fill="#c7a64a" opacity="0.47"/><circle cx="277.67" cy="21.61" r="4.81" fill="#9bd3ff" opacity="0.59"/><circle cx="461.29" cy="459.41" r="1.62" fill="#c7a64a" opacity="0.63"/><circle cx="528.54" cy="833.85" r="3.73" fill="#9bd3ff" opacity="0.54"/><circle cx="435.60" cy="979.27" r="3.37" fill="#c7a64a" opacity="0.32"/><circle cx="750.72" cy="500.20" r="4.51" fill="#9bd3ff" opacity="0.67"/><circle cx="247.44" cy="498.27" r="2.02" fill="#c7a64a" opacity="0.55"/><circle cx="203.82" cy="313.80" r="1.50" fill="#9bd3ff" opacity="0.60"/><circle cx="46.26" cy="400.82" r="2.98" fill="#c7a64a" opacity="0.72"/><circle cx="586.06" cy="719.32" r="4.94" fill="#9bd3ff" opacity="0.61"/><circle cx="144.40" cy="253.65" r="3.50" fill="#c7a64a" opacity="0.68"/><circle cx="71.05" cy="822.23" r="2.25" fill="#9bd3ff" opacity="0.34"/><circle cx="446.75" cy="133.41" r="4.09" fill="#c7a64a" opacity="0.65"/><circle cx="716.75" cy="928.07" r="1.71" fill="#9bd3ff" opacity="0.60"/><circle cx="422.39" cy="239.97" r="1.82" fill="#c7a64a" opacity="0.58"/><circle cx="529.04" cy="435.96" r="4.60" fill="#9bd3ff" opacity="0.51"/><circle cx="127.72" cy="927.05" r="2.27" fill="#c7a64a" opacity="0.63"/><circle cx="112.04" cy="283.13" r="3.14" fill="#9bd3ff" opacity="0.53"/><circle cx="611.59" cy="218.88" r="1.73" fill="#c7a64a" opacity="0.24"/><circle cx="463.13" cy="691.74" r="4.13" fill="#9bd3ff" opacity="0.53"/><circle cx="614.27" cy="52.03" r="4.78" fill="#c7a64a" opacity="0.33"/><circle cx="127.21" cy="551.46" r="1.83" fill="#9bd3ff" opacity="0.52"/><circle cx="259.43" cy="136.95" r="1.50" fill="#c7a64a" opacity="0.65"/>
+  </g>
+
+  <rect x="16" y="16" width="736" height="992" rx="24" stroke="url(#edge-chronomancer-c14)" stroke-width="2.5" opacity="0.85"/>
+  <rect x="22" y="22" width="724" height="980" rx="20" stroke="#8aa0c4" stroke-width="2" opacity="0.74"/>
+
+  <rect x="34" y="34" width="700" height="72" rx="14" fill="#070b14" fill-opacity="0.72" stroke="#8aa0c4" stroke-opacity="0.55"/>
+  <text x="54" y="80" fill="#EAF4FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="32" font-weight="700">Chronomancer</text>
+
+  <rect x="34" y="872" width="700" height="92" rx="14" fill="#070b14" fill-opacity="0.74" stroke="#8aa0c4" stroke-opacity="0.6"/>
+  <text x="54" y="924" fill="#D9E7FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="30" font-weight="600">Siegebreaker</text>
+
+  <rect x="598" y="36" width="118" height="42" rx="10" fill="#8aa0c4" fill-opacity="0.2" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="612" y="65" fill="#8aa0c4" font-family="Exo 2, Segoe UI, sans-serif" font-size="20" font-weight="700">COMMON</text>
+
+  <circle cx="708" cy="954" r="26" fill="#080d18" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="696" y="962" fill="#E7F2FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="24" font-weight="700">14</text>
+</svg>

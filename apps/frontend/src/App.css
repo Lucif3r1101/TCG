@@ -633,8 +633,85 @@ body {
   min-height: 72vh;
 }
 
-.poker-seats {
-  grid-template-columns: repeat(3, minmax(130px, 1fr));
+.tabletop-surface {
+  position: relative;
+  min-height: 520px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(55, 159, 112, 0.18), rgba(10, 22, 17, 0.95) 65%),
+    radial-gradient(circle at 15% 12%, rgba(46, 230, 255, 0.16), transparent 30%),
+    radial-gradient(circle at 85% 88%, rgba(53, 243, 177, 0.12), transparent 35%),
+    linear-gradient(165deg, #0b1a12, #07120d);
+  overflow: hidden;
+}
+
+.tabletop-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(360px, 68vw);
+  aspect-ratio: 1.65 / 1;
+  border-radius: 999px;
+  border: 2px solid rgba(169, 217, 180, 0.45);
+  background:
+    radial-gradient(circle at 50% 40%, rgba(40, 110, 74, 0.85), rgba(16, 58, 39, 0.93) 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.42),
+    inset 0 0 30px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(222, 255, 233, 0.16);
+  display: grid;
+  place-items: center;
+  gap: 0.2rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.tabletop-core strong {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.18rem;
+  letter-spacing: 0.03em;
+}
+
+.tabletop-surface .table-seat {
+  position: absolute;
+  width: clamp(150px, 18vw, 210px);
+  min-height: 128px;
+  backdrop-filter: blur(4px);
+}
+
+.tabletop-surface .seat-top {
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tabletop-surface .seat-top-right {
+  top: 18%;
+  right: 3%;
+}
+
+.tabletop-surface .seat-bottom-right {
+  bottom: 16%;
+  right: 3%;
+}
+
+.tabletop-surface .seat-bottom {
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tabletop-surface .seat-bottom-left {
+  bottom: 16%;
+  left: 3%;
+}
+
+.tabletop-surface .seat-top-left {
+  top: 18%;
+  left: 3%;
 }
 
 .hand-zone {
@@ -652,6 +729,15 @@ body {
   gap: 0.32rem;
   transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   transition: transform 180ms cubic-bezier(0.18, 0.82, 0.22, 1), border-color 180ms ease;
+}
+
+.hand-card-art {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  background: rgba(6, 10, 19, 0.8);
 }
 
 .turn-orb {
@@ -853,8 +939,34 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .poker-seats {
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  .tabletop-surface {
+    min-height: auto;
+    padding: 0.65rem;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .tabletop-core {
+    position: relative;
+    transform: none;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    aspect-ratio: auto;
+    border-radius: 16px;
+    padding: 0.8rem;
+  }
+
+  .tabletop-surface .table-seat {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    transform: none;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
   }
 
   .avatar-grid {

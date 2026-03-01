@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="768" height="1024" viewBox="0 0 768 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-ember-arcanist-c11" x1="60" y1="40" x2="728" y2="1004" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#25120a"/>
+      <stop offset="0.55" stop-color="#8c2b12"/>
+      <stop offset="1" stop-color="#25120a"/>
+    </linearGradient>
+    <radialGradient id="glow-ember-arcanist-c11" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(560.78 184.94) rotate(90) scale(285.57 285.57)">
+      <stop stop-color="#ff8e2d" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ff8e2d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-ember-arcanist-c11" x1="0" y1="0" x2="768" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff8e2d" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ff5f7a" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="768" height="1024" rx="32" fill="#060910"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#bg-ember-arcanist-c11)"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#glow-ember-arcanist-c11)"/>
+
+  <g opacity="0.88">
+    <circle cx="384" cy="552.96" r="70" fill="none" stroke="#ff5f7a" stroke-width="7" opacity="0.75"/><circle cx="384" cy="552.96" r="108" fill="none" stroke="#ff8e2d" stroke-width="3" opacity="0.63"/><circle cx="384" cy="552.96" r="146" fill="none" stroke="#ff5f7a" stroke-width="3" opacity="0.51"/><circle cx="384" cy="552.96" r="184" fill="none" stroke="#ff8e2d" stroke-width="3" opacity="0.39"/><path d="M344,552.96 L384,496.96000000000004 L424,552.96 L384,608.96 Z" fill="none" stroke="#ff5f7a" stroke-width="6" opacity="0.9"/>
+  </g>
+
+  <g opacity="0.8">
+    <circle cx="237.37" cy="1016.34" r="1.50" fill="#ff5f7a" opacity="0.34"/><circle cx="716.21" cy="629.52" r="2.76" fill="#ff8e2d" opacity="0.55"/><circle cx="479.75" cy="693.95" r="2.32" fill="#ff5f7a" opacity="0.56"/><circle cx="8.50" cy="484.21" r="4.28" fill="#ff8e2d" opacity="0.51"/><circle cx="433.86" cy="326.66" r="4.76" fill="#ff5f7a" opacity="0.44"/><circle cx="549.62" cy="0.42" r="3.30" fill="#ff8e2d" opacity="0.66"/><circle cx="275.77" cy="38.00" r="4.33" fill="#ff5f7a" opacity="0.27"/><circle cx="33.12" cy="142.67" r="2.00" fill="#ff8e2d" opacity="0.61"/><circle cx="335.24" cy="433.40" r="4.25" fill="#ff5f7a" opacity="0.72"/><circle cx="741.19" cy="360.69" r="2.35" fill="#ff8e2d" opacity="0.35"/><circle cx="414.85" cy="666.53" r="2.04" fill="#ff5f7a" opacity="0.43"/><circle cx="532.29" cy="857.13" r="4.65" fill="#ff8e2d" opacity="0.73"/><circle cx="600.61" cy="696.00" r="4.60" fill="#ff5f7a" opacity="0.52"/><circle cx="82.83" cy="590.82" r="2.84" fill="#ff8e2d" opacity="0.49"/><circle cx="662.87" cy="48.69" r="2.84" fill="#ff5f7a" opacity="0.66"/><circle cx="12.86" cy="797.74" r="3.14" fill="#ff8e2d" opacity="0.32"/><circle cx="556.43" cy="410.83" r="2.67" fill="#ff5f7a" opacity="0.42"/><circle cx="486.04" cy="169.69" r="3.33" fill="#ff8e2d" opacity="0.30"/><circle cx="370.48" cy="213.96" r="2.84" fill="#ff5f7a" opacity="0.66"/><circle cx="731.29" cy="553.36" r="2.92" fill="#ff8e2d" opacity="0.72"/><circle cx="636.99" cy="798.21" r="3.75" fill="#ff5f7a" opacity="0.69"/><circle cx="614.35" cy="574.69" r="4.29" fill="#ff8e2d" opacity="0.69"/><circle cx="653.58" cy="192.59" r="4.18" fill="#ff5f7a" opacity="0.43"/><circle cx="761.67" cy="960.01" r="4.07" fill="#ff8e2d" opacity="0.28"/><circle cx="313.44" cy="815.07" r="3.33" fill="#ff5f7a" opacity="0.41"/><circle cx="110.83" cy="993.40" r="2.70" fill="#ff8e2d" opacity="0.64"/><circle cx="15.08" cy="597.91" r="2.05" fill="#ff5f7a" opacity="0.52"/><circle cx="495.70" cy="421.08" r="3.26" fill="#ff8e2d" opacity="0.27"/>
+  </g>
+
+  <rect x="16" y="16" width="736" height="992" rx="24" stroke="url(#edge-ember-arcanist-c11)" stroke-width="2.5" opacity="0.85"/>
+  <rect x="22" y="22" width="724" height="980" rx="20" stroke="#8aa0c4" stroke-width="2" opacity="0.74"/>
+
+  <rect x="34" y="34" width="700" height="72" rx="14" fill="#070b14" fill-opacity="0.72" stroke="#8aa0c4" stroke-opacity="0.55"/>
+  <text x="54" y="80" fill="#EAF4FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="32" font-weight="700">Ember Arcanist</text>
+
+  <rect x="34" y="872" width="700" height="92" rx="14" fill="#070b14" fill-opacity="0.74" stroke="#8aa0c4" stroke-opacity="0.6"/>
+  <text x="54" y="924" fill="#D9E7FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="30" font-weight="600">Captain</text>
+
+  <rect x="598" y="36" width="118" height="42" rx="10" fill="#8aa0c4" fill-opacity="0.2" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="612" y="65" fill="#8aa0c4" font-family="Exo 2, Segoe UI, sans-serif" font-size="20" font-weight="700">COMMON</text>
+
+  <circle cx="708" cy="954" r="26" fill="#080d18" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="696" y="962" fill="#E7F2FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="24" font-weight="700">11</text>
+</svg>

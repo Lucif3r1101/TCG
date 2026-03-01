@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="768" height="1024" viewBox="0 0 768 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-void-ranger-c19" x1="60" y1="40" x2="728" y2="1004" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f1028"/>
+      <stop offset="0.55" stop-color="#352b7f"/>
+      <stop offset="1" stop-color="#0f1028"/>
+    </linearGradient>
+    <radialGradient id="glow-void-ranger-c19" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(469.73 611.19) rotate(90) scale(267.81 267.81)">
+      <stop stop-color="#29d3ff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#29d3ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-void-ranger-c19" x1="0" y1="0" x2="768" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#29d3ff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#9f8dff" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="768" height="1024" rx="32" fill="#060910"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#bg-void-ranger-c19)"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#glow-void-ranger-c19)"/>
+
+  <g opacity="0.88">
+    <line x1="357.21" y1="721.27" x2="523.75" y2="371.25" stroke="#9f8dff" stroke-width="4" opacity="0.72"/><line x1="297.03" y1="430.73" x2="619.69" y2="726.39" stroke="#29d3ff" stroke-width="2" opacity="0.72"/><line x1="228.81" y1="487.37" x2="597.89" y2="755.79" stroke="#9f8dff" stroke-width="4" opacity="0.72"/><line x1="129.65" y1="434.93" x2="468.79" y2="565.23" stroke="#29d3ff" stroke-width="5" opacity="0.72"/><line x1="216.36" y1="387.87" x2="610.36" y2="572.55" stroke="#9f8dff" stroke-width="5" opacity="0.72"/><line x1="178.73" y1="664.84" x2="682.09" y2="630.62" stroke="#29d3ff" stroke-width="5" opacity="0.72"/><line x1="190.50" y1="230.82" x2="544.58" y2="390.40" stroke="#9f8dff" stroke-width="2" opacity="0.72"/>
+  </g>
+
+  <g opacity="0.8">
+    <circle cx="490.39" cy="684.40" r="4.73" fill="#9f8dff" opacity="0.32"/><circle cx="524.22" cy="5.25" r="4.07" fill="#29d3ff" opacity="0.49"/><circle cx="557.61" cy="665.47" r="1.32" fill="#9f8dff" opacity="0.52"/><circle cx="277.35" cy="942.26" r="3.36" fill="#29d3ff" opacity="0.35"/><circle cx="725.85" cy="323.04" r="4.95" fill="#9f8dff" opacity="0.65"/><circle cx="629.29" cy="277.07" r="1.59" fill="#29d3ff" opacity="0.69"/><circle cx="371.42" cy="366.61" r="1.68" fill="#9f8dff" opacity="0.25"/><circle cx="127.31" cy="913.54" r="1.79" fill="#29d3ff" opacity="0.28"/><circle cx="395.89" cy="607.76" r="1.37" fill="#9f8dff" opacity="0.59"/><circle cx="379.01" cy="26.61" r="2.70" fill="#29d3ff" opacity="0.30"/><circle cx="275.71" cy="31.01" r="4.19" fill="#9f8dff" opacity="0.30"/><circle cx="459.12" cy="497.09" r="3.74" fill="#29d3ff" opacity="0.59"/><circle cx="105.31" cy="864.19" r="4.69" fill="#9f8dff" opacity="0.68"/><circle cx="231.80" cy="670.53" r="1.43" fill="#29d3ff" opacity="0.59"/><circle cx="759.78" cy="278.13" r="2.82" fill="#9f8dff" opacity="0.66"/><circle cx="384.79" cy="904.78" r="1.86" fill="#29d3ff" opacity="0.38"/><circle cx="216.76" cy="584.93" r="2.35" fill="#9f8dff" opacity="0.70"/><circle cx="368.66" cy="612.70" r="4.03" fill="#29d3ff" opacity="0.46"/><circle cx="320.14" cy="383.14" r="3.91" fill="#9f8dff" opacity="0.62"/><circle cx="754.33" cy="39.73" r="2.80" fill="#29d3ff" opacity="0.59"/><circle cx="634.33" cy="921.76" r="4.59" fill="#9f8dff" opacity="0.41"/><circle cx="609.78" cy="435.73" r="2.91" fill="#29d3ff" opacity="0.26"/><circle cx="356.62" cy="424.88" r="3.38" fill="#9f8dff" opacity="0.26"/><circle cx="44.98" cy="984.01" r="3.96" fill="#29d3ff" opacity="0.69"/><circle cx="218.94" cy="452.92" r="2.65" fill="#9f8dff" opacity="0.36"/><circle cx="44.67" cy="480.56" r="4.12" fill="#29d3ff" opacity="0.48"/><circle cx="574.03" cy="97.71" r="4.79" fill="#9f8dff" opacity="0.54"/><circle cx="207.02" cy="259.18" r="1.49" fill="#29d3ff" opacity="0.73"/>
+  </g>
+
+  <rect x="16" y="16" width="736" height="992" rx="24" stroke="url(#edge-void-ranger-c19)" stroke-width="2.5" opacity="0.85"/>
+  <rect x="22" y="22" width="724" height="980" rx="20" stroke="#8aa0c4" stroke-width="2" opacity="0.74"/>
+
+  <rect x="34" y="34" width="700" height="72" rx="14" fill="#070b14" fill-opacity="0.72" stroke="#8aa0c4" stroke-opacity="0.55"/>
+  <text x="54" y="80" fill="#EAF4FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="32" font-weight="700">Void Ranger</text>
+
+  <rect x="34" y="872" width="700" height="92" rx="14" fill="#070b14" fill-opacity="0.74" stroke="#8aa0c4" stroke-opacity="0.6"/>
+  <text x="54" y="924" fill="#D9E7FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="30" font-weight="600">Aegis Warder</text>
+
+  <rect x="598" y="36" width="118" height="42" rx="10" fill="#8aa0c4" fill-opacity="0.2" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="612" y="65" fill="#8aa0c4" font-family="Exo 2, Segoe UI, sans-serif" font-size="20" font-weight="700">COMMON</text>
+
+  <circle cx="708" cy="954" r="26" fill="#080d18" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="696" y="962" fill="#E7F2FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="24" font-weight="700">19</text>
+</svg>

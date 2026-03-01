@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="768" height="1024" viewBox="0 0 768 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-abyss-revenant-c06" x1="60" y1="40" x2="728" y2="1004" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#130f1e"/>
+      <stop offset="0.55" stop-color="#462356"/>
+      <stop offset="1" stop-color="#130f1e"/>
+    </linearGradient>
+    <radialGradient id="glow-abyss-revenant-c06" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(454.00 616.48) rotate(90) scale(256.08 256.08)">
+      <stop stop-color="#7a2b45" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#7a2b45" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-abyss-revenant-c06" x1="0" y1="0" x2="768" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7a2b45" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#f06d88" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="768" height="1024" rx="32" fill="#060910"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#bg-abyss-revenant-c06)"/>
+  <rect x="16" y="16" width="736" height="992" rx="24" fill="url(#glow-abyss-revenant-c06)"/>
+
+  <g opacity="0.88">
+    <path d="M233.37,286.37 C301.80,222.82 178.38,481.90 245.79,626.35" stroke="#f06d88" stroke-width="7" fill="none" opacity="0.72"/><path d="M293.77,313.98 C356.26,225.33 220.45,481.26 305.11,696.08" stroke="#7a2b45" stroke-width="6.3" fill="none" opacity="0.72"/><path d="M357.10,285.69 C442.46,222.12 284.94,505.92 376.16,637.64" stroke="#f06d88" stroke-width="5.6" fill="none" opacity="0.72"/><path d="M426.75,274.92 C509.63,175.04 341.47,435.86 443.69,665.09" stroke="#7a2b45" stroke-width="4.9" fill="none" opacity="0.72"/><path d="M492.95,300.25 C579.66,202.08 403.33,485.55 507.53,594.72" stroke="#f06d88" stroke-width="4.2" fill="none" opacity="0.72"/><path d="M548.20,260.54 C620.94,141.07 474.29,452.14 563.40,562.34" stroke="#7a2b45" stroke-width="3.5" fill="none" opacity="0.72"/>
+  </g>
+
+  <g opacity="0.8">
+    <circle cx="272.54" cy="497.51" r="1.47" fill="#f06d88" opacity="0.27"/><circle cx="455.26" cy="950.52" r="1.82" fill="#7a2b45" opacity="0.36"/><circle cx="441.57" cy="117.92" r="1.49" fill="#f06d88" opacity="0.72"/><circle cx="567.41" cy="241.47" r="2.38" fill="#7a2b45" opacity="0.69"/><circle cx="510.39" cy="844.92" r="2.49" fill="#f06d88" opacity="0.45"/><circle cx="577.95" cy="82.69" r="3.29" fill="#7a2b45" opacity="0.73"/><circle cx="695.60" cy="942.46" r="4.38" fill="#f06d88" opacity="0.69"/><circle cx="44.14" cy="133.52" r="3.65" fill="#7a2b45" opacity="0.67"/><circle cx="552.37" cy="635.08" r="1.95" fill="#f06d88" opacity="0.26"/><circle cx="167.96" cy="164.43" r="1.44" fill="#7a2b45" opacity="0.44"/><circle cx="370.89" cy="548.23" r="4.98" fill="#f06d88" opacity="0.35"/><circle cx="506.22" cy="628.57" r="4.94" fill="#7a2b45" opacity="0.74"/><circle cx="591.96" cy="561.40" r="1.86" fill="#f06d88" opacity="0.50"/><circle cx="652.85" cy="709.17" r="4.81" fill="#7a2b45" opacity="0.40"/><circle cx="144.26" cy="440.95" r="4.66" fill="#f06d88" opacity="0.40"/><circle cx="588.96" cy="360.98" r="2.42" fill="#7a2b45" opacity="0.36"/><circle cx="115.34" cy="26.91" r="3.61" fill="#f06d88" opacity="0.40"/><circle cx="638.93" cy="369.43" r="2.52" fill="#7a2b45" opacity="0.38"/><circle cx="386.23" cy="421.39" r="4.71" fill="#f06d88" opacity="0.68"/><circle cx="281.01" cy="652.54" r="4.42" fill="#7a2b45" opacity="0.36"/><circle cx="245.38" cy="209.18" r="3.64" fill="#f06d88" opacity="0.55"/><circle cx="330.00" cy="289.04" r="3.78" fill="#7a2b45" opacity="0.41"/><circle cx="327.26" cy="860.00" r="1.56" fill="#f06d88" opacity="0.49"/><circle cx="605.56" cy="256.16" r="3.48" fill="#7a2b45" opacity="0.72"/><circle cx="680.32" cy="34.78" r="1.92" fill="#f06d88" opacity="0.69"/><circle cx="397.98" cy="410.03" r="4.93" fill="#7a2b45" opacity="0.42"/><circle cx="643.92" cy="97.54" r="4.69" fill="#f06d88" opacity="0.54"/><circle cx="245.33" cy="49.43" r="1.45" fill="#7a2b45" opacity="0.45"/>
+  </g>
+
+  <rect x="16" y="16" width="736" height="992" rx="24" stroke="url(#edge-abyss-revenant-c06)" stroke-width="2.5" opacity="0.85"/>
+  <rect x="22" y="22" width="724" height="980" rx="20" stroke="#8aa0c4" stroke-width="2" opacity="0.74"/>
+
+  <rect x="34" y="34" width="700" height="72" rx="14" fill="#070b14" fill-opacity="0.72" stroke="#8aa0c4" stroke-opacity="0.55"/>
+  <text x="54" y="80" fill="#EAF4FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="32" font-weight="700">Abyss Revenant</text>
+
+  <rect x="34" y="872" width="700" height="92" rx="14" fill="#070b14" fill-opacity="0.74" stroke="#8aa0c4" stroke-opacity="0.6"/>
+  <text x="54" y="924" fill="#D9E7FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="30" font-weight="600">Skirmisher</text>
+
+  <rect x="598" y="36" width="118" height="42" rx="10" fill="#8aa0c4" fill-opacity="0.2" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="612" y="65" fill="#8aa0c4" font-family="Exo 2, Segoe UI, sans-serif" font-size="20" font-weight="700">COMMON</text>
+
+  <circle cx="708" cy="954" r="26" fill="#080d18" stroke="#8aa0c4" stroke-opacity="0.8"/>
+  <text x="696" y="962" fill="#E7F2FF" font-family="Exo 2, Segoe UI, sans-serif" font-size="24" font-weight="700">06</text>
+</svg>

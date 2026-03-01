@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc --noEmit -p tsconfig.json && vite build",
     "preview": "vite preview",
+    "generate:card-art": "node scripts/generate-card-art.mjs",
+    "generate:card-art:png": "node scripts/generate-card-art-png.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "echo \"lint not configured yet\""
   },

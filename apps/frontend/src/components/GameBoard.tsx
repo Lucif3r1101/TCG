@@ -217,6 +217,7 @@ function renderTabletop(props: GameBoardProps) {
   const battle = currentRoom?.battle;
   const timer = battle?.turnDeadlineAt ?? activeMatchState?.turnDeadlineAt;
   const possibleTargets = (currentRoom?.players ?? []).filter((player) => player.health > 0);
+  const seatPositions = ["top", "top-right", "bottom-right", "bottom", "bottom-left", "top-left"] as const;
 
   return (
     <div className="grid">
@@ -232,7 +233,12 @@ function renderTabletop(props: GameBoardProps) {
           {currentRoom?.status === "open" ? <span className="muted">Waiting lobby: set ready and host starts</span> : null}
         </div>
 
-        <div className="tabletop-grid poker-seats">
+        <div className="tabletop-surface">
+          <div className="tabletop-core">
+            <p className="muted">Chronicles Table</p>
+            <strong>{battle?.activePlayerId ? `Active: ${battle.activePlayerId.slice(0, 8)}` : "Waiting to Start"}</strong>
+            <span className="muted">{currentRoom?.status === "in_game" ? "Battle in progress" : "Lobby setup phase"}</span>
+          </div>
           {Array.from({ length: currentRoom?.maxPlayers ?? 6 }, (_, index) => {
             const player = currentRoom?.players[index];
             const playerCharacter = CHARACTER_CLASSES.find((entry) => entry.id === player?.characterId);
@@ -241,7 +247,7 @@ function renderTabletop(props: GameBoardProps) {
             return (
               <article
                 key={`seat-${index}`}
-                className={`table-seat ${player?.ready ? "ready" : ""} ${isActive ? "active-turn" : ""}`}
+                className={`table-seat seat-${seatPositions[index] ?? "top"} ${player?.ready ? "ready" : ""} ${isActive ? "active-turn" : ""}`}
                 onMouseMove={onTilt}
                 onMouseLeave={onTiltReset}
               >
@@ -308,6 +314,15 @@ function renderTabletop(props: GameBoardProps) {
             {privateHand.length === 0 ? <p className="muted">No cards in hand.</p> : null}
             {privateHand.map((card) => (
               <article key={card.instanceId} className="hand-card" onMouseMove={onTilt} onMouseLeave={onTiltReset}>
+                <img
+                  className="hand-card-art"
+                  src={`/assets/cards/generated/png/2x/${card.slug}.png`}
+                  alt={card.name}
+                  loading="lazy"
+                  onError={(event) => {
+                    event.currentTarget.src = `/assets/cards/generated/${card.slug}.svg`;
+                  }}
+                />
                 <strong>{card.name}</strong>
                 <span className="muted">
                   {card.type} | {card.rarity}
