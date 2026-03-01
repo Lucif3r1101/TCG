@@ -1,4 +1,4 @@
-import { MouseEvent as ReactMouseEvent } from "react";
+import { MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import { CHARACTER_CLASSES } from "../constants/game";
 import { DeckSummary, MatchState, RoomCard, RoomState } from "../types/game";
 import { formatTimer } from "../lib/api";
@@ -13,6 +13,7 @@ type GameBoardProps = {
   roomCodeInput: string;
   roomMaxPlayers: number;
   hostMode: "play" | "manage";
+  animationPreset: "subtle" | "balanced" | "cinematic";
   tabletopMode: boolean;
   currentRoom: RoomState | null;
   privateHand: RoomCard[];
@@ -24,6 +25,7 @@ type GameBoardProps = {
   onRoomCodeInput: (value: string) => void;
   onRoomMaxPlayersChange: (value: number) => void;
   onHostModeChange: (value: "play" | "manage") => void;
+  onAnimationPresetChange: (value: "subtle" | "balanced" | "cinematic") => void;
   onCreateRoom: () => void;
   onJoinRoom: () => void;
   onLeaveRoom: () => void;
@@ -48,6 +50,7 @@ function renderLobby(props: GameBoardProps) {
     roomCodeInput,
     roomMaxPlayers,
     hostMode,
+    animationPreset,
     currentRoom,
     meReady,
     isRoomHost,
@@ -57,6 +60,7 @@ function renderLobby(props: GameBoardProps) {
     onRoomCodeInput,
     onRoomMaxPlayersChange,
     onHostModeChange,
+    onAnimationPresetChange,
     onCreateRoom,
     onJoinRoom,
     onLeaveRoom,
@@ -111,6 +115,18 @@ function renderLobby(props: GameBoardProps) {
             Host Only
           </button>
         </div>
+        <label className="label">
+          Table Animation
+          <select
+            className="select"
+            value={animationPreset}
+            onChange={(e) => onAnimationPresetChange(e.target.value as "subtle" | "balanced" | "cinematic")}
+          >
+            <option value="subtle">Subtle</option>
+            <option value="balanced">Balanced</option>
+            <option value="cinematic">Cinematic</option>
+          </select>
+        </label>
 
         <div className="row">
           <button className="button primary" type="button" onClick={onCreateRoom} disabled={!selectedDeckId || !socketConnected}>
@@ -197,7 +213,7 @@ function renderLobby(props: GameBoardProps) {
   );
 }
 
-function renderTabletop(props: GameBoardProps) {
+function TabletopBoard(props: GameBoardProps) {
   const {
     activeMatchState,
     currentRoom,
@@ -212,12 +228,36 @@ function renderTabletop(props: GameBoardProps) {
     onPlayCard,
     onConcede,
     onTilt,
-    onTiltReset
+    onTiltReset,
+    animationPreset
   } = props;
   const battle = currentRoom?.battle;
   const timer = battle?.turnDeadlineAt ?? activeMatchState?.turnDeadlineAt;
   const possibleTargets = (currentRoom?.players ?? []).filter((player) => player.health > 0);
   const seatPositions = ["top", "top-right", "bottom-right", "bottom", "bottom-left", "top-left"] as const;
+  const [turnShift, setTurnShift] = useState(false);
+  const lastTurnRef = useRef<number | null>(null);
+  const turnKey = battle?.turn ?? activeMatchState?.turn ?? null;
+  const activePlayerId = battle?.activePlayerId ?? activeMatchState?.activePlayerId;
+  const activeSeatIndex =
+    activePlayerId && currentRoom ? currentRoom.players.findIndex((player) => player.userId === activePlayerId) : -1;
+
+  useEffect(() => {
+    if (!turnKey) {
+      return;
+    }
+    if (lastTurnRef.current === null) {
+      lastTurnRef.current = turnKey;
+      return;
+    }
+    if (lastTurnRef.current !== turnKey) {
+      setTurnShift(true);
+      const id = window.setTimeout(() => setTurnShift(false), 640);
+      lastTurnRef.current = turnKey;
+      return () => window.clearTimeout(id);
+    }
+    return;
+  }, [turnKey]);
 
   return (
     <div className="grid">
@@ -233,7 +273,13 @@ function renderTabletop(props: GameBoardProps) {
           {currentRoom?.status === "open" ? <span className="muted">Waiting lobby: set ready and host starts</span> : null}
         </div>
 
-        <div className="tabletop-surface">
+        <div className={`tabletop-surface anim-${animationPreset} ${turnShift ? "turn-shift" : ""}`}>
+          <div className="turn-path-layer" aria-hidden="true">
+            {seatPositions.map((position, index) => (
+              <span key={`path-${position}`} className={`turn-path path-${position} ${activeSeatIndex === index ? "active" : ""}`} />
+            ))}
+            {activeSeatIndex >= 0 ? <span className={`turn-glow glow-${seatPositions[activeSeatIndex]}`} /> : null}
+          </div>
           <div className="tabletop-core">
             <p className="muted">Chronicles Table</p>
             <strong>{battle?.activePlayerId ? `Active: ${battle.activePlayerId.slice(0, 8)}` : "Waiting to Start"}</strong>
@@ -242,7 +288,6 @@ function renderTabletop(props: GameBoardProps) {
           {Array.from({ length: currentRoom?.maxPlayers ?? 6 }, (_, index) => {
             const player = currentRoom?.players[index];
             const playerCharacter = CHARACTER_CLASSES.find((entry) => entry.id === player?.characterId);
-            const activePlayerId = battle?.activePlayerId ?? activeMatchState?.activePlayerId;
             const isActive = activePlayerId && player?.userId === activePlayerId;
             return (
               <article
@@ -357,7 +402,7 @@ function renderTabletop(props: GameBoardProps) {
 
 export function GameBoard(props: GameBoardProps) {
   if (props.tabletopMode) {
-    return renderTabletop(props);
+    return <TabletopBoard {...props} />;
   }
   return renderLobby(props);
 }

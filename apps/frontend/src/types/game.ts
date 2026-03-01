@@ -86,6 +86,7 @@ export type RoomState = {
   maxPlayers: number;
   status: "open" | "in_game";
   createdAt: string;
+  expiresAt: string;
   battle: RoomBattleState | null;
   players: RoomPlayer[];
 };

@@ -88,11 +88,13 @@ type RoomState = {
   maxPlayers: number;
   status: "open" | "in_game";
   createdAt: string;
+  expiresAt: string;
   battle: RoomBattleState | null;
   players: RoomPlayer[];
 };
 
 const TURN_DURATION_MS = 60_000;
+const OPEN_ROOM_TTL_MS = 15 * 60_000;
 const QUEUE_ACTION_COOLDOWN_MS = 1_500;
 const MATCH_ACTION_COOLDOWN_MS = 250;
 const ROOM_ACTION_COOLDOWN_MS = 350;
@@ -254,6 +256,7 @@ function toRoomPublicState(room: RoomState) {
     maxPlayers: room.maxPlayers,
     status: room.status,
     createdAt: room.createdAt,
+    expiresAt: room.expiresAt,
     battle: room.battle,
     players: room.players.map((player) => ({
       userId: player.userId,
@@ -286,6 +289,10 @@ function toRoomPrivateState(room: RoomState, userId: string) {
 
 function makeCardInstanceId(slug: string, index: number): string {
   return `${slug}-${index}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function bumpRoomExpiry(room: RoomState): void {
+  room.expiresAt = new Date(Date.now() + OPEN_ROOM_TTL_MS).toISOString();
 }
 
 function shuffleCards<T>(input: T[]): T[] {
@@ -528,6 +535,10 @@ function removeUserFromAllRooms(io: Server, userId: string): void {
         room.hostUserId = room.players[0].userId;
         room.hostMode = "play";
       } else {
+        if (room.status === "open") {
+          bumpRoomExpiry(room);
+          continue;
+        }
         activeRooms.delete(code);
         continue;
       }
@@ -665,7 +676,12 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
   setInterval(async () => {
     const now = Date.now();
 
-    for (const room of activeRooms.values()) {
+    for (const [roomCode, room] of activeRooms.entries()) {
+      if (room.status === "open" && room.players.length === 0 && new Date(room.expiresAt).getTime() <= now) {
+        activeRooms.delete(roomCode);
+        continue;
+      }
+
       if (!room.battle || room.status !== "in_game") {
         continue;
       }
@@ -760,6 +776,7 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         maxPlayers,
         status: "open",
         createdAt: new Date().toISOString(),
+        expiresAt: new Date(Date.now() + OPEN_ROOM_TTL_MS).toISOString(),
         battle: null,
         players:
           hostMode === "play"
@@ -876,6 +893,12 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         joinedAt: new Date().toISOString()
       });
 
+      if (room.players.length === 1 && !room.players.some((player) => player.userId === room.hostUserId)) {
+        room.hostUserId = userId;
+        room.hostMode = "play";
+      }
+      bumpRoomExpiry(room);
+
       emitRoomState(io, room);
     });
 
@@ -911,7 +934,13 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         room.hostUserId = room.players[0].userId;
       }
 
-      if (room.players.length === 0 || (room.status === "in_game" && room.players.length < 2)) {
+      if (room.players.length === 0 && room.status === "open") {
+        bumpRoomExpiry(room);
+        socket.emit("room_left", { roomCode });
+        return;
+      }
+
+      if ((room.status === "in_game" && room.players.length < 2)) {
         activeRooms.delete(roomCode);
         socket.emit("room_left", { roomCode });
         return;

@@ -64,6 +64,7 @@ export function App() {
   const [roomCodeInput, setRoomCodeInput] = useState("");
   const [roomMaxPlayers, setRoomMaxPlayers] = useState(4);
   const [hostMode, setHostMode] = useState<"play" | "manage">("play");
+  const [animationPreset, setAnimationPreset] = useState<"subtle" | "balanced" | "cinematic">("balanced");
   const [selectedCharacterId, setSelectedCharacterId] = useState<string>(CHARACTER_CLASSES[0].id);
   const [currentRoom, setCurrentRoom] = useState<RoomState | null>(null);
   const [privateHand, setPrivateHand] = useState<RoomCard[]>([]);
@@ -548,6 +549,7 @@ export function App() {
               roomCodeInput={roomCodeInput}
               roomMaxPlayers={roomMaxPlayers}
               hostMode={hostMode}
+              animationPreset={animationPreset}
               selectedCharacterId={selectedCharacterId}
               tabletopMode={tabletopMode}
               currentRoom={currentRoom}
@@ -559,6 +561,7 @@ export function App() {
               onRoomCodeInput={(value) => setRoomCodeInput(value.toUpperCase())}
               onRoomMaxPlayersChange={setRoomMaxPlayers}
               onHostModeChange={setHostMode}
+              onAnimationPresetChange={setAnimationPreset}
               onCharacterChange={setSelectedCharacterId}
               onCreateRoom={handleCreateRoom}
               onJoinRoom={handleJoinRoom}
