@@ -67,5 +67,11 @@ export async function sendPasswordResetEmail(input: PasswordResetMailInput): Pro
     })
   });
 
+  if (!response.ok) {
+    const body = await response.text().catch(() => "");
+    console.error("Resend email API error:", response.status, body);
+    return false;
+  }
+
   return response.ok;
 }

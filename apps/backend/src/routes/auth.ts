@@ -145,6 +145,8 @@ export function buildAuthRouter(jwtSecret: string): Router {
 
     if (!sent && process.env.NODE_ENV === "production") {
       console.error("Password reset email could not be sent. Check RESEND_API_KEY/EMAIL_FROM config.");
+      res.status(503).json({ message: "Password reset email service is unavailable. Try again shortly." });
+      return;
     }
 
     if (process.env.NODE_ENV !== "production") {
