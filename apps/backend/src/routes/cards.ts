@@ -13,6 +13,7 @@ export function buildCardsRouter(): Router {
         slug: card.slug,
         name: card.name,
         description: card.description,
+        faction: card.faction,
         type: card.type,
         rarity: card.rarity,
         cost: card.cost,

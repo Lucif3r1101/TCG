@@ -38,6 +38,7 @@ If you have multiple frontend domains, set comma-separated origins:
 ## 3) Frontend (Vercel)
 - Import repo in Vercel.
 - Root Directory: `apps/frontend`
+- Project Name: `chronicles-of-the-rift` (recommended)
 - Framework: Vite
 - Build Command: `npm run build`
 - Output Directory: `dist`

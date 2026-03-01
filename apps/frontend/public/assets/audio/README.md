@@ -2,10 +2,10 @@
 
 Drop these files in this folder to enable ambient loop and SFX:
 
-- `ambient-loop.mp3`
-- `sfx-click.mp3`
-- `sfx-turn.mp3`
-- `sfx-error.mp3`
+- `ambient-loop.wav`
+- `sfx-click.wav`
+- `sfx-turn.wav`
+- `sfx-error.wav`
 
 Current frontend hook:
 

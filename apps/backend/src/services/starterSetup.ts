@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { STARTER_CARD_BLUEPRINTS } from "../data/starterCards.js";
+import { ALL_CARD_BLUEPRINTS, STARTER_CARD_BLUEPRINTS } from "../data/starterCards.js";
 import { CardModel } from "../models/Card.js";
 import { DeckModel } from "../models/Deck.js";
 import { UserCardModel } from "../models/UserCard.js";
@@ -7,7 +7,7 @@ import { UserCardModel } from "../models/UserCard.js";
 const STARTER_DECK_NAME = "Starter Deck";
 
 export async function seedBaseCards(): Promise<void> {
-  const operations = STARTER_CARD_BLUEPRINTS.map((card) => ({
+  const operations = ALL_CARD_BLUEPRINTS.map((card) => ({
     updateOne: {
       filter: { slug: card.slug },
       update: { $setOnInsert: card },

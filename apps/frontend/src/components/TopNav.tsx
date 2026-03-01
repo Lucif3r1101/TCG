@@ -10,7 +10,7 @@ export function TopNav({ soundEnabled, onOpenGuide, onToggleSound }: TopNavProps
       <div className="brand">
         <span className="brand-mark">CR</span>
         <div>
-          <strong>Chronicles of RIFT</strong>
+          <strong>Chronicles of the RIFT</strong>
           <p>Tabletop TCG Arena</p>
         </div>
       </div>

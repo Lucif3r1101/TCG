@@ -11,14 +11,14 @@ export function useAudioEngine(enabled: boolean) {
   });
 
   useEffect(() => {
-    ambientRef.current = new Audio("/assets/audio/ambient-loop.mp3");
+    ambientRef.current = new Audio("/assets/audio/ambient-loop.wav");
     ambientRef.current.loop = true;
     ambientRef.current.volume = 0.2;
 
     sfxRef.current = {
-      click: new Audio("/assets/audio/sfx-click.mp3"),
-      turn: new Audio("/assets/audio/sfx-turn.mp3"),
-      error: new Audio("/assets/audio/sfx-error.mp3")
+      click: new Audio("/assets/audio/sfx-click.wav"),
+      turn: new Audio("/assets/audio/sfx-turn.wav"),
+      error: new Audio("/assets/audio/sfx-error.wav")
     };
     sfxRef.current.click!.volume = 0.45;
     sfxRef.current.turn!.volume = 0.5;

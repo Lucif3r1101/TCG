@@ -2,6 +2,14 @@ import { Schema, model } from "mongoose";
 
 export const cardRarities = ["common", "rare", "epic", "legendary"] as const;
 export const cardTypes = ["unit", "spell"] as const;
+export const cardFactions = [
+  "riftforged-sentinel",
+  "void-ranger",
+  "ember-arcanist",
+  "ironbound-beastmaster",
+  "chronomancer",
+  "abyss-revenant"
+] as const;
 
 const cardSchema = new Schema(
   {
@@ -20,6 +28,11 @@ const cardSchema = new Schema(
     description: {
       type: String,
       default: ""
+    },
+    faction: {
+      type: String,
+      enum: cardFactions,
+      required: true
     },
     type: {
       type: String,

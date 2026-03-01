@@ -437,7 +437,7 @@ export function App() {
 
       <section className="hero">
         <div className="hero-content">
-          <h1>Chronicles of the Rift</h1>
+          <h1>Chronicles of the RIFT</h1>
           <p>
             First-time players get a guided lore and battle tutorial. Returning players can always reopen How to Play from the
             top bar.
@@ -511,7 +511,7 @@ export function App() {
               onTiltReset={resetTilt}
             />
           )}
-          <p className="muted footer-note">© 2026 Chronicles of the Rift. All rights reserved.</p>
+          <p className="muted footer-note">© 2026 Chronicles of the RIFT. All rights reserved.</p>
         </div>
       </section>
 

@@ -16,7 +16,7 @@ export function GuideModal({ open, section, onSectionChange, onClose }: GuideMod
     <div className="legal-overlay" role="dialog" aria-modal="true">
       <div className="guide-card">
         <div className="guide-head">
-          <h3>Chronicles of RIFT Briefing</h3>
+          <h3>Chronicles of the RIFT Briefing</h3>
           <button className="button" type="button" onClick={onClose}>
             Close
           </button>
