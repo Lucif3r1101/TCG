@@ -5,6 +5,22 @@ export const ONBOARDING_KEY = "tcg_intro_seen_v1";
 export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
 export const SOCKET_URL = import.meta.env.VITE_SOCKET_URL ?? API_URL;
 export const PASSWORD_RULE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,72}$/;
+export const DEFAULT_AVATAR_IDS = [
+  "avatar-01",
+  "avatar-02",
+  "avatar-03",
+  "avatar-04",
+  "avatar-05",
+  "avatar-06",
+  "avatar-07",
+  "avatar-08",
+  "avatar-09",
+  "avatar-10",
+  "avatar-11",
+  "avatar-12",
+  "avatar-13",
+  "avatar-14"
+] as const;
 
 export const CHARACTER_CLASSES: CharacterClass[] = [
   {

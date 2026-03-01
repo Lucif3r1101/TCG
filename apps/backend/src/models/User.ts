@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 export type UserDocument = {
   email: string;
   username: string;
+  avatarId: string;
   passwordHash: string;
   passwordResetTokenHash?: string | null;
   passwordResetExpiresAt?: Date | null;
@@ -26,6 +27,11 @@ const userSchema = new Schema<UserDocument>(
       trim: true,
       minlength: 3,
       maxlength: 24
+    },
+    avatarId: {
+      type: String,
+      required: true,
+      default: "avatar-01"
     },
     passwordHash: {
       type: String,

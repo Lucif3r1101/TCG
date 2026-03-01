@@ -26,7 +26,6 @@ type GameBoardProps = {
   onToggleReady: () => void;
   onStartRoom: () => void;
   onQueueJoin: () => void;
-  onLogout: () => void;
   onEndTurn: () => void;
   onConcede: () => void;
   onTilt: (event: ReactMouseEvent<HTMLElement>) => void;
@@ -55,7 +54,6 @@ function renderLobby(props: GameBoardProps) {
     onToggleReady,
     onStartRoom,
     onQueueJoin,
-    onLogout,
     onTilt,
     onTiltReset
   } = props;
@@ -110,9 +108,6 @@ function renderLobby(props: GameBoardProps) {
           </button>
           <button className="button" type="button" onClick={onQueueJoin} disabled={!socketConnected || !selectedDeckId}>
             Quick Queue
-          </button>
-          <button className="button" type="button" onClick={onLogout}>
-            Logout
           </button>
         </div>
 

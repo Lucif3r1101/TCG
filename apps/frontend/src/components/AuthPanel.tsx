@@ -10,6 +10,7 @@ type AuthPanelProps = {
   passwordVisible: boolean;
   confirmPasswordVisible: boolean;
   acceptedTerms: boolean;
+  selectedAvatarId: string;
   canSubmit: boolean;
   isLoading: boolean;
   errorMessage: string;
@@ -22,6 +23,7 @@ type AuthPanelProps = {
   onTogglePasswordVisible: () => void;
   onToggleConfirmPasswordVisible: () => void;
   onAcceptedTermsChange: (value: boolean) => void;
+  onAvatarChange: (value: string) => void;
   onOpenTerms: () => void;
   onOpenPrivacy: () => void;
   onOpenForgot: () => void;
@@ -38,6 +40,7 @@ export function AuthPanel(props: AuthPanelProps) {
     passwordVisible,
     confirmPasswordVisible,
     acceptedTerms,
+    selectedAvatarId,
     canSubmit,
     isLoading,
     errorMessage,
@@ -50,6 +53,7 @@ export function AuthPanel(props: AuthPanelProps) {
     onTogglePasswordVisible,
     onToggleConfirmPasswordVisible,
     onAcceptedTermsChange,
+    onAvatarChange,
     onOpenTerms,
     onOpenPrivacy,
     onOpenForgot,
@@ -125,6 +129,29 @@ export function AuthPanel(props: AuthPanelProps) {
                 </button>
               </div>
             </label>
+          ) : null}
+
+          {mode === "register" ? (
+            <div className="avatar-picker">
+              <p className="muted" style={{ margin: 0 }}>
+                Choose Profile Avatar
+              </p>
+              <div className="avatar-grid">
+                {Array.from({ length: 14 }, (_, i) => {
+                  const avatarId = `avatar-${String(i + 1).padStart(2, "0")}`;
+                  return (
+                    <button
+                      key={avatarId}
+                      type="button"
+                      className={`avatar-option ${selectedAvatarId === avatarId ? "active" : ""}`}
+                      onClick={() => onAvatarChange(avatarId)}
+                    >
+                      <img src={`/assets/avatars/${avatarId}.svg`} alt={avatarId} loading="lazy" />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           ) : null}
 
           {mode === "register" ? (

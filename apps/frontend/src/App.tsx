@@ -8,7 +8,7 @@ import { ForgotPasswordModal } from "./components/modals/ForgotPasswordModal";
 import { GuideModal } from "./components/modals/GuideModal";
 import { LegalModal } from "./components/modals/LegalModal";
 import { CHARACTER_CLASSES } from "./constants/game";
-import { ONBOARDING_KEY, PASSWORD_RULE, SOCKET_URL, TOKEN_KEY } from "./constants/game";
+import { DEFAULT_AVATAR_IDS, ONBOARDING_KEY, PASSWORD_RULE, SOCKET_URL, TOKEN_KEY } from "./constants/game";
 import { useAudioEngine } from "./hooks/useAudioEngine";
 import { callApi } from "./lib/api";
 import { ActiveMatchResponse, AuthMode, AuthResponse, AuthUser, DeckSummary, GuideSection, MatchFoundPayload, MatchState, RoomState } from "./types/game";
@@ -46,6 +46,7 @@ export function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [selectedAvatarId, setSelectedAvatarId] = useState<string>(DEFAULT_AVATAR_IDS[0]);
   const [legalView, setLegalView] = useState<"terms" | "privacy" | null>(null);
   const [socketConnected, setSocketConnected] = useState(false);
   const [activeMatchState, setActiveMatchState] = useState<MatchState | null>(null);
@@ -304,7 +305,12 @@ export function App() {
     setIsLoading(true);
     try {
       if (mode === "register") {
-        const response = await callApi<AuthResponse>("/auth/register", "POST", { email, username, password });
+        const response = await callApi<AuthResponse>("/auth/register", "POST", {
+          email,
+          username,
+          password,
+          avatarId: selectedAvatarId
+        });
         localStorage.setItem(TOKEN_KEY, response.token);
         setToken(response.token);
         setCurrentUser(response.user);
@@ -448,6 +454,7 @@ export function App() {
     <div className={`page ${impact ? "impact" : ""} ${tabletopMode ? "tabletop-page" : ""}`}>
       <TopNav
         soundEnabled={soundEnabled}
+        showLogout={Boolean(currentUser)}
         onOpenGuide={() => {
           playSfx("click");
           setGuideSection("how");
@@ -456,6 +463,7 @@ export function App() {
         onToggleSound={() => {
           setSoundEnabled((value) => !value);
         }}
+        onLogout={handleLogout}
       />
 
       {!currentUser || !tabletopMode ? (
@@ -482,6 +490,7 @@ export function App() {
               passwordVisible={passwordVisible}
               confirmPasswordVisible={confirmPasswordVisible}
               acceptedTerms={acceptedTerms}
+              selectedAvatarId={selectedAvatarId}
               canSubmit={canSubmit}
               isLoading={isLoading}
               errorMessage={errorMessage}
@@ -497,6 +506,7 @@ export function App() {
               onTogglePasswordVisible={() => setPasswordVisible((value) => !value)}
               onToggleConfirmPasswordVisible={() => setConfirmPasswordVisible((value) => !value)}
               onAcceptedTermsChange={setAcceptedTerms}
+              onAvatarChange={setSelectedAvatarId}
               onOpenTerms={() => setLegalView("terms")}
               onOpenPrivacy={() => setLegalView("privacy")}
               onOpenForgot={() => {
@@ -531,7 +541,6 @@ export function App() {
               onToggleReady={handleToggleReady}
               onStartRoom={handleStartRoom}
               onQueueJoin={handleQueueJoin}
-              onLogout={handleLogout}
               onEndTurn={() =>
                 currentRoom?.status === "in_game"
                   ? socketRef.current?.emit("room_end_turn", { roomCode: currentRoom.roomCode })

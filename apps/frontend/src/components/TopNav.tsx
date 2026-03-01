@@ -1,10 +1,12 @@
 type TopNavProps = {
   soundEnabled: boolean;
+  showLogout: boolean;
   onOpenGuide: () => void;
   onToggleSound: () => void;
+  onLogout: () => void;
 };
 
-export function TopNav({ soundEnabled, onOpenGuide, onToggleSound }: TopNavProps) {
+export function TopNav({ soundEnabled, showLogout, onOpenGuide, onToggleSound, onLogout }: TopNavProps) {
   return (
     <header className="top-nav">
       <div className="brand">
@@ -21,6 +23,11 @@ export function TopNav({ soundEnabled, onOpenGuide, onToggleSound }: TopNavProps
         <button className="button nav-btn" type="button" onClick={onToggleSound}>
           Sound: {soundEnabled ? "On" : "Off"}
         </button>
+        {showLogout ? (
+          <button className="button nav-btn" type="button" onClick={onLogout}>
+            Logout
+          </button>
+        ) : null}
       </nav>
     </header>
   );
