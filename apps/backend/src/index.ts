@@ -7,6 +7,7 @@ import { connectToDatabase } from "./db/mongo";
 import { buildAuthRouter } from "./routes/auth";
 import { buildCardsRouter } from "./routes/cards";
 import { buildDecksRouter } from "./routes/decks";
+import { buildMatchesRouter } from "./routes/matches";
 import { seedBaseCards } from "./services/starterSetup";
 import { registerRealtime } from "./services/realtime";
 
@@ -37,6 +38,7 @@ app.get("/health", (_req, res) => {
 app.use("/auth", buildAuthRouter(jwtSecret));
 app.use("/cards", buildCardsRouter());
 app.use("/decks", buildDecksRouter(jwtSecret));
+app.use("/matches", buildMatchesRouter(jwtSecret));
 
 const server = createServer(app);
 

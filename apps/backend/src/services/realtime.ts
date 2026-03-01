@@ -18,7 +18,14 @@ type ActiveMatchState = {
   turn: number;
   activePlayerId: string;
   winnerId: string | null;
+  player1Health: number;
+  player2Health: number;
+  player1Mana: number;
+  player2Mana: number;
+  turnDeadlineAt: string;
 };
+
+const TURN_DURATION_MS = 45_000;
 
 const queue: MatchmakingQueueEntry[] = [];
 const socketToUser = new Map<string, string>();
@@ -83,7 +90,37 @@ function emitToUser(io: Server, userId: string, eventName: string, payload: unkn
   }
 }
 
+function buildPublicMatchState(match: ActiveMatchState) {
+  return {
+    matchId: match.matchId,
+    turn: match.turn,
+    activePlayerId: match.activePlayerId,
+    winnerId: match.winnerId,
+    player1Health: match.player1Health,
+    player2Health: match.player2Health,
+    player1Mana: match.player1Mana,
+    player2Mana: match.player2Mana,
+    turnDeadlineAt: match.turnDeadlineAt
+  };
+}
+
 async function createMatch(io: Server, a: MatchmakingQueueEntry, b: MatchmakingQueueEntry): Promise<void> {
+  const turnDeadlineAt = new Date(Date.now() + TURN_DURATION_MS).toISOString();
+
+  const matchState: ActiveMatchState = {
+    matchId: "",
+    playerIds: [a.userId, b.userId],
+    deckIds: [a.deckId, b.deckId],
+    turn: 1,
+    activePlayerId: a.userId,
+    winnerId: null,
+    player1Health: 20,
+    player2Health: 20,
+    player1Mana: 1,
+    player2Mana: 0,
+    turnDeadlineAt
+  };
+
   const matchDoc = await MatchModel.create({
     player1Id: new Types.ObjectId(a.userId),
     player2Id: new Types.ObjectId(b.userId),
@@ -91,37 +128,32 @@ async function createMatch(io: Server, a: MatchmakingQueueEntry, b: MatchmakingQ
     player2DeckId: new Types.ObjectId(b.deckId),
     status: "active",
     state: {
-      turn: 1,
-      activePlayerId: a.userId,
-      winnerId: null
+      turn: matchState.turn,
+      activePlayerId: matchState.activePlayerId,
+      winnerId: matchState.winnerId,
+      player1Health: matchState.player1Health,
+      player2Health: matchState.player2Health,
+      player1Mana: matchState.player1Mana,
+      player2Mana: matchState.player2Mana,
+      turnDeadlineAt: matchState.turnDeadlineAt
     }
   });
 
-  const matchState: ActiveMatchState = {
-    matchId: matchDoc.id,
-    playerIds: [a.userId, b.userId],
-    deckIds: [a.deckId, b.deckId],
-    turn: 1,
-    activePlayerId: a.userId,
-    winnerId: null
-  };
-
+  matchState.matchId = matchDoc.id;
   activeMatches.set(matchDoc.id, matchState);
 
+  const publicState = buildPublicMatchState(matchState);
+
   emitToUser(io, a.userId, "match_found", {
-    matchId: matchState.matchId,
+    ...publicState,
     you: a.userId,
-    opponent: b.userId,
-    turn: matchState.turn,
-    activePlayerId: matchState.activePlayerId
+    opponent: b.userId
   });
 
   emitToUser(io, b.userId, "match_found", {
-    matchId: matchState.matchId,
+    ...publicState,
     you: b.userId,
-    opponent: a.userId,
-    turn: matchState.turn,
-    activePlayerId: matchState.activePlayerId
+    opponent: a.userId
   });
 }
 
@@ -156,6 +188,26 @@ function findActiveMatchByUser(userId: string): ActiveMatchState | null {
   }
 
   return null;
+}
+
+function hydrateActiveMatchState(matchDoc: any): ActiveMatchState {
+  const deadline = matchDoc.state.turnDeadlineAt
+    ? new Date(matchDoc.state.turnDeadlineAt).toISOString()
+    : new Date(Date.now() + TURN_DURATION_MS).toISOString();
+
+  return {
+    matchId: matchDoc.id,
+    playerIds: [String(matchDoc.player1Id), String(matchDoc.player2Id)],
+    deckIds: [String(matchDoc.player1DeckId), String(matchDoc.player2DeckId)],
+    turn: matchDoc.state.turn ?? 1,
+    activePlayerId: matchDoc.state.activePlayerId,
+    winnerId: matchDoc.state.winnerId ?? null,
+    player1Health: matchDoc.state.player1Health ?? 20,
+    player2Health: matchDoc.state.player2Health ?? 20,
+    player1Mana: matchDoc.state.player1Mana ?? 1,
+    player2Mana: matchDoc.state.player2Mana ?? 0,
+    turnDeadlineAt: deadline
+  };
 }
 
 export function registerRealtime(io: Server, jwtSecret: string): void {
@@ -218,6 +270,35 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       socket.emit("queue_left", { ok: true });
     });
 
+    socket.on("match_sync", async (payload: { matchId?: string }) => {
+      const matchId = payload?.matchId;
+      if (!matchId) {
+        socket.emit("match_error", { message: "matchId is required." });
+        return;
+      }
+
+      let match = activeMatches.get(matchId);
+      if (!match) {
+        const matchDoc = await MatchModel.findById(matchId);
+        if (!matchDoc) {
+          socket.emit("match_error", { message: "Match not found." });
+          return;
+        }
+
+        match = hydrateActiveMatchState(matchDoc);
+        if (match.winnerId === null) {
+          activeMatches.set(matchId, match);
+        }
+      }
+
+      if (!match.playerIds.includes(userId)) {
+        socket.emit("match_error", { message: "Not a player in this match." });
+        return;
+      }
+
+      socket.emit("match_state", buildPublicMatchState(match));
+    });
+
     socket.on("match_end_turn", async (payload: { matchId?: string }) => {
       const matchId = payload?.matchId;
       if (!matchId) {
@@ -244,25 +325,27 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       const nextPlayer = match.playerIds[0] === userId ? match.playerIds[1] : match.playerIds[0];
       match.turn += 1;
       match.activePlayerId = nextPlayer;
+      match.turnDeadlineAt = new Date(Date.now() + TURN_DURATION_MS).toISOString();
+
+      if (nextPlayer === match.playerIds[0]) {
+        match.player1Mana = Math.min(match.player1Mana + 1, 10);
+      } else {
+        match.player2Mana = Math.min(match.player2Mana + 1, 10);
+      }
 
       await MatchModel.findByIdAndUpdate(matchId, {
         $set: {
           "state.turn": match.turn,
-          "state.activePlayerId": nextPlayer
+          "state.activePlayerId": nextPlayer,
+          "state.player1Mana": match.player1Mana,
+          "state.player2Mana": match.player2Mana,
+          "state.turnDeadlineAt": match.turnDeadlineAt
         }
       });
 
-      emitToUser(io, match.playerIds[0], "match_state", {
-        matchId,
-        turn: match.turn,
-        activePlayerId: match.activePlayerId
-      });
-
-      emitToUser(io, match.playerIds[1], "match_state", {
-        matchId,
-        turn: match.turn,
-        activePlayerId: match.activePlayerId
-      });
+      const payloadState = buildPublicMatchState(match);
+      emitToUser(io, match.playerIds[0], "match_state", payloadState);
+      emitToUser(io, match.playerIds[1], "match_state", payloadState);
     });
 
     socket.on("match_concede", async (payload: { matchId?: string }) => {
@@ -293,8 +376,9 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         }
       });
 
-      emitToUser(io, match.playerIds[0], "match_completed", { matchId, winnerId });
-      emitToUser(io, match.playerIds[1], "match_completed", { matchId, winnerId });
+      const completion = { ...buildPublicMatchState(match), winnerId };
+      emitToUser(io, match.playerIds[0], "match_completed", completion);
+      emitToUser(io, match.playerIds[1], "match_completed", completion);
     });
 
     socket.on("disconnect", () => {

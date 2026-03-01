@@ -20,23 +20,40 @@ type DeckSummary = {
   isStarter: boolean;
 };
 
-type MatchFoundPayload = {
+type MatchState = {
   matchId: string;
+  turn: number;
+  activePlayerId: string;
+  winnerId: string | null;
+  player1Health: number;
+  player2Health: number;
+  player1Mana: number;
+  player2Mana: number;
+  turnDeadlineAt: string;
+};
+
+type ActiveMatchResponse = {
+  id: string;
+  status: "active" | "completed";
+  player1Id: string;
+  player2Id: string;
+  player1DeckId: string;
+  player2DeckId: string;
+  state: {
+    turn: number;
+    activePlayerId: string;
+    winnerId: string | null;
+    player1Health: number;
+    player2Health: number;
+    player1Mana: number;
+    player2Mana: number;
+    turnDeadlineAt: string;
+  };
+};
+
+type MatchFoundPayload = MatchState & {
   you: string;
   opponent: string;
-  turn: number;
-  activePlayerId: string;
-};
-
-type MatchStatePayload = {
-  matchId: string;
-  turn: number;
-  activePlayerId: string;
-};
-
-type MatchCompletedPayload = {
-  matchId: string;
-  winnerId: string;
 };
 
 const TOKEN_KEY = "tcg_auth_token";
@@ -63,6 +80,16 @@ async function callApi<T>(path: string, method: string, body?: unknown, token?: 
   return data as T;
 }
 
+function formatTimer(deadline?: string): string {
+  if (!deadline) {
+    return "--";
+  }
+
+  const remainingMs = new Date(deadline).getTime() - Date.now();
+  const seconds = Math.max(0, Math.floor(remainingMs / 1000));
+  return `${seconds}s`;
+}
+
 export function App() {
   const [mode, setMode] = useState<AuthMode>("register");
   const [email, setEmail] = useState("");
@@ -75,7 +102,7 @@ export function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [socketConnected, setSocketConnected] = useState(false);
-  const [activeMatchId, setActiveMatchId] = useState("");
+  const [activeMatchState, setActiveMatchState] = useState<MatchState | null>(null);
   const [eventLog, setEventLog] = useState<string[]>([]);
 
   const socketRef = useRef<Socket | null>(null);
@@ -104,11 +131,32 @@ export function App() {
     }
   }
 
+  async function loadActiveMatch(authToken: string): Promise<void> {
+    const response = await callApi<{ match: ActiveMatchResponse | null }>("/matches/active", "GET", undefined, authToken);
+    if (!response.match || response.match.status !== "active") {
+      setActiveMatchState(null);
+      return;
+    }
+
+    setActiveMatchState({
+      matchId: response.match.id,
+      turn: response.match.state.turn,
+      activePlayerId: response.match.state.activePlayerId,
+      winnerId: response.match.state.winnerId,
+      player1Health: response.match.state.player1Health,
+      player2Health: response.match.state.player2Health,
+      player1Mana: response.match.state.player1Mana,
+      player2Mana: response.match.state.player2Mana,
+      turnDeadlineAt: response.match.state.turnDeadlineAt
+    });
+  }
+
   useEffect(() => {
     if (!token) {
       setCurrentUser(null);
       setDecks([]);
       setSelectedDeckId("");
+      setActiveMatchState(null);
       return;
     }
 
@@ -117,6 +165,7 @@ export function App() {
         const me = await callApi<{ user: AuthUser }>("/auth/me", "GET", undefined, token);
         setCurrentUser(me.user);
         await loadDecks(token);
+        await loadActiveMatch(token);
       } catch {
         localStorage.removeItem(TOKEN_KEY);
         setToken("");
@@ -174,19 +223,28 @@ export function App() {
     });
 
     socket.on("match_found", (payload: MatchFoundPayload) => {
-      setActiveMatchId(payload.matchId);
+      setActiveMatchState({
+        matchId: payload.matchId,
+        turn: payload.turn,
+        activePlayerId: payload.activePlayerId,
+        winnerId: payload.winnerId,
+        player1Health: payload.player1Health,
+        player2Health: payload.player2Health,
+        player1Mana: payload.player1Mana,
+        player2Mana: payload.player2Mana,
+        turnDeadlineAt: payload.turnDeadlineAt
+      });
       appendLog(`match found: ${payload.matchId}`);
     });
 
-    socket.on("match_state", (payload: MatchStatePayload) => {
-      appendLog(`turn ${payload.turn}, active player ${payload.activePlayerId}`);
+    socket.on("match_state", (payload: MatchState) => {
+      setActiveMatchState(payload);
+      appendLog(`turn ${payload.turn}, active ${payload.activePlayerId}`);
     });
 
-    socket.on("match_completed", (payload: MatchCompletedPayload) => {
+    socket.on("match_completed", (payload: MatchState) => {
+      setActiveMatchState(payload);
       appendLog(`match completed, winner ${payload.winnerId}`);
-      if (payload.matchId === activeMatchId) {
-        setActiveMatchId("");
-      }
     });
 
     return () => {
@@ -195,6 +253,14 @@ export function App() {
       setSocketConnected(false);
     };
   }, [token, currentUser]);
+
+  useEffect(() => {
+    if (!activeMatchState?.matchId || !socketConnected) {
+      return;
+    }
+
+    socketRef.current?.emit("match_sync", { matchId: activeMatchState.matchId });
+  }, [activeMatchState?.matchId, socketConnected]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -231,7 +297,7 @@ export function App() {
     localStorage.removeItem(TOKEN_KEY);
     setToken("");
     setCurrentUser(null);
-    setActiveMatchId("");
+    setActiveMatchState(null);
     setEventLog([]);
   }
 
@@ -248,25 +314,25 @@ export function App() {
   }
 
   function handleEndTurn() {
-    if (!activeMatchId) {
+    if (!activeMatchState?.matchId) {
       return;
     }
 
-    socketRef.current?.emit("match_end_turn", { matchId: activeMatchId });
+    socketRef.current?.emit("match_end_turn", { matchId: activeMatchState.matchId });
   }
 
   function handleConcede() {
-    if (!activeMatchId) {
+    if (!activeMatchState?.matchId) {
       return;
     }
 
-    socketRef.current?.emit("match_concede", { matchId: activeMatchId });
+    socketRef.current?.emit("match_concede", { matchId: activeMatchState.matchId });
   }
 
   return (
-    <main style={{ fontFamily: "system-ui", padding: "2rem", maxWidth: "760px", margin: "0 auto" }}>
-      <h1>TCG Day 4 Test Console</h1>
-      <p>Auth + deck APIs + realtime matchmaking smoke UI.</p>
+    <main style={{ fontFamily: "system-ui", padding: "2rem", maxWidth: "820px", margin: "0 auto" }}>
+      <h1>TCG Day 5 Match Console</h1>
+      <p>Auth + queue + live match state + refresh rejoin.</p>
 
       {currentUser ? (
         <section style={{ display: "grid", gap: "1rem" }}>
@@ -316,13 +382,31 @@ export function App() {
           <div>
             <h2>Match</h2>
             <p>
-              <strong>Active Match ID:</strong> {activeMatchId || "none"}
+              <strong>Active Match ID:</strong> {activeMatchState?.matchId || "none"}
+            </p>
+            <p>
+              <strong>Turn:</strong> {activeMatchState?.turn ?? "--"}
+            </p>
+            <p>
+              <strong>Active Player:</strong> {activeMatchState?.activePlayerId ?? "--"}
+            </p>
+            <p>
+              <strong>Winner:</strong> {activeMatchState?.winnerId ?? "pending"}
+            </p>
+            <p>
+              <strong>P1 HP/Mana:</strong> {activeMatchState?.player1Health ?? "--"} / {activeMatchState?.player1Mana ?? "--"}
+            </p>
+            <p>
+              <strong>P2 HP/Mana:</strong> {activeMatchState?.player2Health ?? "--"} / {activeMatchState?.player2Mana ?? "--"}
+            </p>
+            <p>
+              <strong>Turn Timer:</strong> {formatTimer(activeMatchState?.turnDeadlineAt)}
             </p>
             <div style={{ display: "flex", gap: "0.75rem" }}>
-              <button type="button" onClick={handleEndTurn} disabled={!activeMatchId || !socketConnected}>
+              <button type="button" onClick={handleEndTurn} disabled={!activeMatchState?.matchId || !socketConnected}>
                 End Turn
               </button>
-              <button type="button" onClick={handleConcede} disabled={!activeMatchId || !socketConnected}>
+              <button type="button" onClick={handleConcede} disabled={!activeMatchState?.matchId || !socketConnected}>
                 Concede
               </button>
             </div>

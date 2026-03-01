@@ -1,6 +1,6 @@
 # TCG Monorepo
 
-Day 1 + Day 2 + Day 3 + Day 4 scaffold for a web-based TCG project.
+Day 1 + Day 2 + Day 3 + Day 4 + Day 5 scaffold for a web-based TCG project.
 
 ## Apps
 - `apps/frontend`: React + Vite TypeScript client
@@ -39,6 +39,16 @@ Deck rules in this MVP:
   - `match_found`
   - `match_end_turn` -> `match_state`
   - `match_concede` -> `match_completed`
+
+## Day 5 foundation (completed)
+- Match query APIs for rejoin:
+  - `GET /matches/active`
+  - `GET /matches/:matchId`
+- Richer match state persisted:
+  - player health, player mana, turn deadline
+- Frontend console upgraded:
+  - auto rejoin active match on refresh
+  - live match panel with turn, hp, mana, timer
 
 ## Quick start
 1. Use MongoDB Atlas and set backend env:

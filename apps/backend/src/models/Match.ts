@@ -4,7 +4,12 @@ const matchStateSchema = new Schema(
   {
     turn: { type: Number, required: true, default: 1 },
     activePlayerId: { type: String, required: true },
-    winnerId: { type: String, default: null }
+    winnerId: { type: String, default: null },
+    player1Health: { type: Number, required: true, default: 20 },
+    player2Health: { type: Number, required: true, default: 20 },
+    player1Mana: { type: Number, required: true, default: 1 },
+    player2Mana: { type: Number, required: true, default: 0 },
+    turnDeadlineAt: { type: Date, required: true }
   },
   { _id: false }
 );
