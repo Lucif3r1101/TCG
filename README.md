@@ -83,6 +83,12 @@ Deck rules in this MVP:
 - Added room payload validation in backend.
 - Frontend dashboard now includes create/join room controls with ready/start actions.
 
+## Card effect scripting
+- Explicit per-card effect scripts are stored in:
+  - `apps/backend/src/data/cardEffects.generated.json`
+- Backend realtime engine loads this file by card `slug` and executes scripted operations.
+- You can now manually tune individual cards (Pokemon-style balancing) by editing each slug entry.
+
 ## Quick start
 1. Use MongoDB Atlas and set backend env:
    - Copy `apps/backend/.env.example` to `apps/backend/.env`

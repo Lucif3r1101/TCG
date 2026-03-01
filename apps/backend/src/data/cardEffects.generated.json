@@ -1,0 +1,5557 @@
+{
+  "riftforged-sentinel-c01": {
+    "slug": "riftforged-sentinel-c01",
+    "targetMode": "all_opponents",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c02": {
+    "slug": "riftforged-sentinel-c02",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c03": {
+    "slug": "riftforged-sentinel-c03",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c04": {
+    "slug": "riftforged-sentinel-c04",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c05": {
+    "slug": "riftforged-sentinel-c05",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c06": {
+    "slug": "riftforged-sentinel-c06",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c07": {
+    "slug": "riftforged-sentinel-c07",
+    "targetMode": "all_opponents",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c08": {
+    "slug": "riftforged-sentinel-c08",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c09": {
+    "slug": "riftforged-sentinel-c09",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c10": {
+    "slug": "riftforged-sentinel-c10",
+    "targetMode": "single_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c11": {
+    "slug": "riftforged-sentinel-c11",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c12": {
+    "slug": "riftforged-sentinel-c12",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c13": {
+    "slug": "riftforged-sentinel-c13",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c14": {
+    "slug": "riftforged-sentinel-c14",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c15": {
+    "slug": "riftforged-sentinel-c15",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c16": {
+    "slug": "riftforged-sentinel-c16",
+    "targetMode": "single_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c17": {
+    "slug": "riftforged-sentinel-c17",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c18": {
+    "slug": "riftforged-sentinel-c18",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c19": {
+    "slug": "riftforged-sentinel-c19",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c20": {
+    "slug": "riftforged-sentinel-c20",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c21": {
+    "slug": "riftforged-sentinel-c21",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c22": {
+    "slug": "riftforged-sentinel-c22",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c23": {
+    "slug": "riftforged-sentinel-c23",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c24": {
+    "slug": "riftforged-sentinel-c24",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c25": {
+    "slug": "riftforged-sentinel-c25",
+    "targetMode": "self",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c26": {
+    "slug": "riftforged-sentinel-c26",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c27": {
+    "slug": "riftforged-sentinel-c27",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c28": {
+    "slug": "riftforged-sentinel-c28",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c29": {
+    "slug": "riftforged-sentinel-c29",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c30": {
+    "slug": "riftforged-sentinel-c30",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c31": {
+    "slug": "riftforged-sentinel-c31",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c32": {
+    "slug": "riftforged-sentinel-c32",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c33": {
+    "slug": "riftforged-sentinel-c33",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c34": {
+    "slug": "riftforged-sentinel-c34",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c35": {
+    "slug": "riftforged-sentinel-c35",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c36": {
+    "slug": "riftforged-sentinel-c36",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c37": {
+    "slug": "riftforged-sentinel-c37",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c38": {
+    "slug": "riftforged-sentinel-c38",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c39": {
+    "slug": "riftforged-sentinel-c39",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c40": {
+    "slug": "riftforged-sentinel-c40",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c41": {
+    "slug": "riftforged-sentinel-c41",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c42": {
+    "slug": "riftforged-sentinel-c42",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c43": {
+    "slug": "riftforged-sentinel-c43",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c44": {
+    "slug": "riftforged-sentinel-c44",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c45": {
+    "slug": "riftforged-sentinel-c45",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c46": {
+    "slug": "riftforged-sentinel-c46",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c47": {
+    "slug": "riftforged-sentinel-c47",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c48": {
+    "slug": "riftforged-sentinel-c48",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c49": {
+    "slug": "riftforged-sentinel-c49",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "riftforged-sentinel-c50": {
+    "slug": "riftforged-sentinel-c50",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c51": {
+    "slug": "riftforged-sentinel-c51",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "riftforged-sentinel-c52": {
+    "slug": "riftforged-sentinel-c52",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c01": {
+    "slug": "void-ranger-c01",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c02": {
+    "slug": "void-ranger-c02",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c03": {
+    "slug": "void-ranger-c03",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c04": {
+    "slug": "void-ranger-c04",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c05": {
+    "slug": "void-ranger-c05",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c06": {
+    "slug": "void-ranger-c06",
+    "targetMode": "random_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c07": {
+    "slug": "void-ranger-c07",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c08": {
+    "slug": "void-ranger-c08",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c09": {
+    "slug": "void-ranger-c09",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c10": {
+    "slug": "void-ranger-c10",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c11": {
+    "slug": "void-ranger-c11",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c12": {
+    "slug": "void-ranger-c12",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c13": {
+    "slug": "void-ranger-c13",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c14": {
+    "slug": "void-ranger-c14",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c15": {
+    "slug": "void-ranger-c15",
+    "targetMode": "all_opponents",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c16": {
+    "slug": "void-ranger-c16",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c17": {
+    "slug": "void-ranger-c17",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c18": {
+    "slug": "void-ranger-c18",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c19": {
+    "slug": "void-ranger-c19",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c20": {
+    "slug": "void-ranger-c20",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c21": {
+    "slug": "void-ranger-c21",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c22": {
+    "slug": "void-ranger-c22",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c23": {
+    "slug": "void-ranger-c23",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c24": {
+    "slug": "void-ranger-c24",
+    "targetMode": "single_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c25": {
+    "slug": "void-ranger-c25",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c26": {
+    "slug": "void-ranger-c26",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c27": {
+    "slug": "void-ranger-c27",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c28": {
+    "slug": "void-ranger-c28",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c29": {
+    "slug": "void-ranger-c29",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c30": {
+    "slug": "void-ranger-c30",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c31": {
+    "slug": "void-ranger-c31",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c32": {
+    "slug": "void-ranger-c32",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c33": {
+    "slug": "void-ranger-c33",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c34": {
+    "slug": "void-ranger-c34",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c35": {
+    "slug": "void-ranger-c35",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c36": {
+    "slug": "void-ranger-c36",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c37": {
+    "slug": "void-ranger-c37",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c38": {
+    "slug": "void-ranger-c38",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c39": {
+    "slug": "void-ranger-c39",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c40": {
+    "slug": "void-ranger-c40",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c41": {
+    "slug": "void-ranger-c41",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c42": {
+    "slug": "void-ranger-c42",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c43": {
+    "slug": "void-ranger-c43",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c44": {
+    "slug": "void-ranger-c44",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c45": {
+    "slug": "void-ranger-c45",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c46": {
+    "slug": "void-ranger-c46",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c47": {
+    "slug": "void-ranger-c47",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c48": {
+    "slug": "void-ranger-c48",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c49": {
+    "slug": "void-ranger-c49",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c50": {
+    "slug": "void-ranger-c50",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "void-ranger-c51": {
+    "slug": "void-ranger-c51",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "void-ranger-c52": {
+    "slug": "void-ranger-c52",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c01": {
+    "slug": "ember-arcanist-c01",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c02": {
+    "slug": "ember-arcanist-c02",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c03": {
+    "slug": "ember-arcanist-c03",
+    "targetMode": "self",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c04": {
+    "slug": "ember-arcanist-c04",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c05": {
+    "slug": "ember-arcanist-c05",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c06": {
+    "slug": "ember-arcanist-c06",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c07": {
+    "slug": "ember-arcanist-c07",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c08": {
+    "slug": "ember-arcanist-c08",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c09": {
+    "slug": "ember-arcanist-c09",
+    "targetMode": "self",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c10": {
+    "slug": "ember-arcanist-c10",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c11": {
+    "slug": "ember-arcanist-c11",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c12": {
+    "slug": "ember-arcanist-c12",
+    "targetMode": "random_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c13": {
+    "slug": "ember-arcanist-c13",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c14": {
+    "slug": "ember-arcanist-c14",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c15": {
+    "slug": "ember-arcanist-c15",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c16": {
+    "slug": "ember-arcanist-c16",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c17": {
+    "slug": "ember-arcanist-c17",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c18": {
+    "slug": "ember-arcanist-c18",
+    "targetMode": "random_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c19": {
+    "slug": "ember-arcanist-c19",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c20": {
+    "slug": "ember-arcanist-c20",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c21": {
+    "slug": "ember-arcanist-c21",
+    "targetMode": "all_opponents",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c22": {
+    "slug": "ember-arcanist-c22",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c23": {
+    "slug": "ember-arcanist-c23",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c24": {
+    "slug": "ember-arcanist-c24",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c25": {
+    "slug": "ember-arcanist-c25",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c26": {
+    "slug": "ember-arcanist-c26",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c27": {
+    "slug": "ember-arcanist-c27",
+    "targetMode": "all_opponents",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c28": {
+    "slug": "ember-arcanist-c28",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c29": {
+    "slug": "ember-arcanist-c29",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c30": {
+    "slug": "ember-arcanist-c30",
+    "targetMode": "single_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c31": {
+    "slug": "ember-arcanist-c31",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c32": {
+    "slug": "ember-arcanist-c32",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c33": {
+    "slug": "ember-arcanist-c33",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c34": {
+    "slug": "ember-arcanist-c34",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c35": {
+    "slug": "ember-arcanist-c35",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c36": {
+    "slug": "ember-arcanist-c36",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c37": {
+    "slug": "ember-arcanist-c37",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c38": {
+    "slug": "ember-arcanist-c38",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c39": {
+    "slug": "ember-arcanist-c39",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c40": {
+    "slug": "ember-arcanist-c40",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c41": {
+    "slug": "ember-arcanist-c41",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c42": {
+    "slug": "ember-arcanist-c42",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c43": {
+    "slug": "ember-arcanist-c43",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c44": {
+    "slug": "ember-arcanist-c44",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c45": {
+    "slug": "ember-arcanist-c45",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c46": {
+    "slug": "ember-arcanist-c46",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c47": {
+    "slug": "ember-arcanist-c47",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c48": {
+    "slug": "ember-arcanist-c48",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c49": {
+    "slug": "ember-arcanist-c49",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ember-arcanist-c50": {
+    "slug": "ember-arcanist-c50",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c51": {
+    "slug": "ember-arcanist-c51",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ember-arcanist-c52": {
+    "slug": "ember-arcanist-c52",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c01": {
+    "slug": "ironbound-beastmaster-c01",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c02": {
+    "slug": "ironbound-beastmaster-c02",
+    "targetMode": "random_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c03": {
+    "slug": "ironbound-beastmaster-c03",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c04": {
+    "slug": "ironbound-beastmaster-c04",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c05": {
+    "slug": "ironbound-beastmaster-c05",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c06": {
+    "slug": "ironbound-beastmaster-c06",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c07": {
+    "slug": "ironbound-beastmaster-c07",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c08": {
+    "slug": "ironbound-beastmaster-c08",
+    "targetMode": "random_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c09": {
+    "slug": "ironbound-beastmaster-c09",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c10": {
+    "slug": "ironbound-beastmaster-c10",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c11": {
+    "slug": "ironbound-beastmaster-c11",
+    "targetMode": "all_opponents",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c12": {
+    "slug": "ironbound-beastmaster-c12",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c13": {
+    "slug": "ironbound-beastmaster-c13",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c14": {
+    "slug": "ironbound-beastmaster-c14",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c15": {
+    "slug": "ironbound-beastmaster-c15",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c16": {
+    "slug": "ironbound-beastmaster-c16",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c17": {
+    "slug": "ironbound-beastmaster-c17",
+    "targetMode": "all_opponents",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c18": {
+    "slug": "ironbound-beastmaster-c18",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c19": {
+    "slug": "ironbound-beastmaster-c19",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c20": {
+    "slug": "ironbound-beastmaster-c20",
+    "targetMode": "single_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c21": {
+    "slug": "ironbound-beastmaster-c21",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c22": {
+    "slug": "ironbound-beastmaster-c22",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c23": {
+    "slug": "ironbound-beastmaster-c23",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c24": {
+    "slug": "ironbound-beastmaster-c24",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c25": {
+    "slug": "ironbound-beastmaster-c25",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c26": {
+    "slug": "ironbound-beastmaster-c26",
+    "targetMode": "single_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c27": {
+    "slug": "ironbound-beastmaster-c27",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c28": {
+    "slug": "ironbound-beastmaster-c28",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c29": {
+    "slug": "ironbound-beastmaster-c29",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c30": {
+    "slug": "ironbound-beastmaster-c30",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c31": {
+    "slug": "ironbound-beastmaster-c31",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c32": {
+    "slug": "ironbound-beastmaster-c32",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c33": {
+    "slug": "ironbound-beastmaster-c33",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c34": {
+    "slug": "ironbound-beastmaster-c34",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c35": {
+    "slug": "ironbound-beastmaster-c35",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c36": {
+    "slug": "ironbound-beastmaster-c36",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c37": {
+    "slug": "ironbound-beastmaster-c37",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c38": {
+    "slug": "ironbound-beastmaster-c38",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c39": {
+    "slug": "ironbound-beastmaster-c39",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c40": {
+    "slug": "ironbound-beastmaster-c40",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c41": {
+    "slug": "ironbound-beastmaster-c41",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c42": {
+    "slug": "ironbound-beastmaster-c42",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c43": {
+    "slug": "ironbound-beastmaster-c43",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c44": {
+    "slug": "ironbound-beastmaster-c44",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c45": {
+    "slug": "ironbound-beastmaster-c45",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c46": {
+    "slug": "ironbound-beastmaster-c46",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c47": {
+    "slug": "ironbound-beastmaster-c47",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c48": {
+    "slug": "ironbound-beastmaster-c48",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c49": {
+    "slug": "ironbound-beastmaster-c49",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "ironbound-beastmaster-c50": {
+    "slug": "ironbound-beastmaster-c50",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c51": {
+    "slug": "ironbound-beastmaster-c51",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "ironbound-beastmaster-c52": {
+    "slug": "ironbound-beastmaster-c52",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c01": {
+    "slug": "chronomancer-c01",
+    "targetMode": "self",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c02": {
+    "slug": "chronomancer-c02",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c03": {
+    "slug": "chronomancer-c03",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c04": {
+    "slug": "chronomancer-c04",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c05": {
+    "slug": "chronomancer-c05",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c06": {
+    "slug": "chronomancer-c06",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c07": {
+    "slug": "chronomancer-c07",
+    "targetMode": "self",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c08": {
+    "slug": "chronomancer-c08",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c09": {
+    "slug": "chronomancer-c09",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c10": {
+    "slug": "chronomancer-c10",
+    "targetMode": "random_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c11": {
+    "slug": "chronomancer-c11",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c12": {
+    "slug": "chronomancer-c12",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c13": {
+    "slug": "chronomancer-c13",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c14": {
+    "slug": "chronomancer-c14",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c15": {
+    "slug": "chronomancer-c15",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c16": {
+    "slug": "chronomancer-c16",
+    "targetMode": "random_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c17": {
+    "slug": "chronomancer-c17",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c18": {
+    "slug": "chronomancer-c18",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c19": {
+    "slug": "chronomancer-c19",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c20": {
+    "slug": "chronomancer-c20",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c21": {
+    "slug": "chronomancer-c21",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c22": {
+    "slug": "chronomancer-c22",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c23": {
+    "slug": "chronomancer-c23",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c24": {
+    "slug": "chronomancer-c24",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c25": {
+    "slug": "chronomancer-c25",
+    "targetMode": "all_opponents",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c26": {
+    "slug": "chronomancer-c26",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c27": {
+    "slug": "chronomancer-c27",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c28": {
+    "slug": "chronomancer-c28",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c29": {
+    "slug": "chronomancer-c29",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c30": {
+    "slug": "chronomancer-c30",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c31": {
+    "slug": "chronomancer-c31",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c32": {
+    "slug": "chronomancer-c32",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c33": {
+    "slug": "chronomancer-c33",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c34": {
+    "slug": "chronomancer-c34",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c35": {
+    "slug": "chronomancer-c35",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c36": {
+    "slug": "chronomancer-c36",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c37": {
+    "slug": "chronomancer-c37",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c38": {
+    "slug": "chronomancer-c38",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c39": {
+    "slug": "chronomancer-c39",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c40": {
+    "slug": "chronomancer-c40",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c41": {
+    "slug": "chronomancer-c41",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c42": {
+    "slug": "chronomancer-c42",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c43": {
+    "slug": "chronomancer-c43",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c44": {
+    "slug": "chronomancer-c44",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c45": {
+    "slug": "chronomancer-c45",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c46": {
+    "slug": "chronomancer-c46",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c47": {
+    "slug": "chronomancer-c47",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c48": {
+    "slug": "chronomancer-c48",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c49": {
+    "slug": "chronomancer-c49",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "chronomancer-c50": {
+    "slug": "chronomancer-c50",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c51": {
+    "slug": "chronomancer-c51",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "chronomancer-c52": {
+    "slug": "chronomancer-c52",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c01": {
+    "slug": "abyss-revenant-c01",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c02": {
+    "slug": "abyss-revenant-c02",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c03": {
+    "slug": "abyss-revenant-c03",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c04": {
+    "slug": "abyss-revenant-c04",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c05": {
+    "slug": "abyss-revenant-c05",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c06": {
+    "slug": "abyss-revenant-c06",
+    "targetMode": "single_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c07": {
+    "slug": "abyss-revenant-c07",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c08": {
+    "slug": "abyss-revenant-c08",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c09": {
+    "slug": "abyss-revenant-c09",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c10": {
+    "slug": "abyss-revenant-c10",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c11": {
+    "slug": "abyss-revenant-c11",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c12": {
+    "slug": "abyss-revenant-c12",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c13": {
+    "slug": "abyss-revenant-c13",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c14": {
+    "slug": "abyss-revenant-c14",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c15": {
+    "slug": "abyss-revenant-c15",
+    "targetMode": "self",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c16": {
+    "slug": "abyss-revenant-c16",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c17": {
+    "slug": "abyss-revenant-c17",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c18": {
+    "slug": "abyss-revenant-c18",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c19": {
+    "slug": "abyss-revenant-c19",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c20": {
+    "slug": "abyss-revenant-c20",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c21": {
+    "slug": "abyss-revenant-c21",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c22": {
+    "slug": "abyss-revenant-c22",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c23": {
+    "slug": "abyss-revenant-c23",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c24": {
+    "slug": "abyss-revenant-c24",
+    "targetMode": "random_opponent",
+    "operations": [],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c25": {
+    "slug": "abyss-revenant-c25",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c26": {
+    "slug": "abyss-revenant-c26",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c27": {
+    "slug": "abyss-revenant-c27",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c28": {
+    "slug": "abyss-revenant-c28",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c29": {
+    "slug": "abyss-revenant-c29",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c30": {
+    "slug": "abyss-revenant-c30",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c31": {
+    "slug": "abyss-revenant-c31",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c32": {
+    "slug": "abyss-revenant-c32",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "heal",
+        "amount": 2
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c33": {
+    "slug": "abyss-revenant-c33",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c34": {
+    "slug": "abyss-revenant-c34",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c35": {
+    "slug": "abyss-revenant-c35",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c36": {
+    "slug": "abyss-revenant-c36",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c37": {
+    "slug": "abyss-revenant-c37",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c38": {
+    "slug": "abyss-revenant-c38",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c39": {
+    "slug": "abyss-revenant-c39",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c40": {
+    "slug": "abyss-revenant-c40",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c41": {
+    "slug": "abyss-revenant-c41",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c42": {
+    "slug": "abyss-revenant-c42",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c43": {
+    "slug": "abyss-revenant-c43",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c44": {
+    "slug": "abyss-revenant-c44",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c45": {
+    "slug": "abyss-revenant-c45",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "modify_hand_cost",
+        "amount": -1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c46": {
+    "slug": "abyss-revenant-c46",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c47": {
+    "slug": "abyss-revenant-c47",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c48": {
+    "slug": "abyss-revenant-c48",
+    "targetMode": "single_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c49": {
+    "slug": "abyss-revenant-c49",
+    "targetMode": "random_opponent",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 1
+  },
+  "abyss-revenant-c50": {
+    "slug": "abyss-revenant-c50",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 2
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 2
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c51": {
+    "slug": "abyss-revenant-c51",
+    "targetMode": "self",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 3
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 0,
+    "unitBoardHealthBonus": 0
+  },
+  "abyss-revenant-c52": {
+    "slug": "abyss-revenant-c52",
+    "targetMode": "all_opponents",
+    "operations": [
+      {
+        "kind": "damage",
+        "amount": 4
+      },
+      {
+        "kind": "draw",
+        "amount": 1
+      },
+      {
+        "kind": "gain_mana",
+        "amount": 1
+      },
+      {
+        "kind": "reduce_opponent_mana",
+        "amount": 1
+      },
+      {
+        "kind": "heal",
+        "amount": 1
+      }
+    ],
+    "unitBoardAttackBonus": 1,
+    "unitBoardHealthBonus": 0
+  }
+}

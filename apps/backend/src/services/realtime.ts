@@ -4,6 +4,7 @@ import { verifyAuthToken } from "../utils.auth.js";
 import { DeckModel } from "../models/Deck.js";
 import { MatchModel } from "../models/Match.js";
 import { ALL_CARD_BLUEPRINTS } from "../data/starterCards.js";
+import cardEffectsGenerated from "../data/cardEffects.generated.json";
 import {
   matchActionPayloadSchema,
   queueJoinPayloadSchema,
@@ -361,65 +362,8 @@ type CardEffectScript = {
   unitBoardHealthBonus: number;
 };
 
-function hashSlug(slug: string): number {
-  let hash = 0;
-  for (let i = 0; i < slug.length; i += 1) {
-    hash = (hash * 31 + slug.charCodeAt(i)) >>> 0;
-  }
-  return hash;
-}
-
-function createCardEffectScript(card: (typeof ALL_CARD_BLUEPRINTS)[number], index: number): CardEffectScript {
-  const hash = hashSlug(card.slug);
-  const targetModeOptions: TargetMode[] = ["self", "single_opponent", "all_opponents", "random_opponent"];
-  const targetMode = targetModeOptions[(hash + index) % targetModeOptions.length];
-
-  const damage = 1 + (hash % 4);
-  const heal = hash % 3;
-  const draw = hash % 2;
-  const manaGain = hash % 2;
-  const manaReduce = (hash >> 1) % 2;
-  const costShift = ((hash >> 2) % 3) - 1;
-
-  const operations: EffectOp[] = [];
-  if (card.type === "spell") {
-    operations.push({ kind: "damage", amount: damage });
-    if (draw > 0) {
-      operations.push({ kind: "draw", amount: draw });
-    }
-    if (manaGain > 0) {
-      operations.push({ kind: "gain_mana", amount: manaGain });
-    }
-    if (manaReduce > 0) {
-      operations.push({ kind: "reduce_opponent_mana", amount: manaReduce });
-    }
-    if (costShift !== 0) {
-      operations.push({ kind: "modify_hand_cost", amount: costShift });
-    }
-    if (heal > 0) {
-      operations.push({ kind: "heal", amount: heal });
-    }
-  } else {
-    operations.push({ kind: "heal", amount: heal });
-    if (manaGain > 0) {
-      operations.push({ kind: "gain_mana", amount: manaGain });
-    }
-    if (draw > 0) {
-      operations.push({ kind: "draw", amount: draw });
-    }
-  }
-
-  return {
-    slug: card.slug,
-    targetMode,
-    operations,
-    unitBoardAttackBonus: hash % 2,
-    unitBoardHealthBonus: (hash >> 3) % 2
-  };
-}
-
 const CARD_EFFECTS_BY_SLUG = new Map<string, CardEffectScript>(
-  ALL_CARD_BLUEPRINTS.map((card, index) => [card.slug, createCardEffectScript(card, index)])
+  Object.entries(cardEffectsGenerated as Record<string, CardEffectScript>)
 );
 
 function selectTargets(room: RoomState, caster: RoomPlayer, targetMode: TargetMode, explicitTargetUserId?: string): RoomPlayer[] {
