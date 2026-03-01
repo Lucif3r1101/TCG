@@ -1,0 +1,13 @@
+{
+  "name": "Chronicles of RIFT Card Sprite Pack",
+  "version": "1.0.0",
+  "license": "Project-local placeholders; replace with final licensed sprites",
+  "sprites": [
+    { "id": "riftforged-sentinel", "file": "riftforged-sentinel.svg" },
+    { "id": "void-ranger", "file": "void-ranger.svg" },
+    { "id": "ember-arcanist", "file": "ember-arcanist.svg" },
+    { "id": "ironbound-beastmaster", "file": "ironbound-beastmaster.svg" },
+    { "id": "chronomancer", "file": "chronomancer.svg" },
+    { "id": "abyss-revenant", "file": "abyss-revenant.svg" }
+  ]
+}
