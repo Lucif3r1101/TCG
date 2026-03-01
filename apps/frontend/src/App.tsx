@@ -32,6 +32,9 @@ function validatePassword(password: string): string | null {
 }
 
 export function App() {
+  type ToastKind = "info" | "error" | "success";
+  type ToastItem = { id: string; message: string; kind: ToastKind };
+
   const [mode, setMode] = useState<AuthMode>("register");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -69,7 +72,7 @@ export function App() {
   const [currentRoom, setCurrentRoom] = useState<RoomState | null>(null);
   const [privateHand, setPrivateHand] = useState<RoomCard[]>([]);
   const [tabletopMode, setTabletopMode] = useState(false);
-  const [eventLog, setEventLog] = useState<string[]>([]);
+  const [toasts, setToasts] = useState<ToastItem[]>([]);
   const [guideOpen, setGuideOpen] = useState(false);
   const [guideSection, setGuideSection] = useState<GuideSection>("lore");
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -94,8 +97,12 @@ export function App() {
     return username.length > 0 && password.length > 0 && confirmPassword.length > 0 && acceptedTerms;
   }, [mode, email, username, password, confirmPassword, acceptedTerms]);
 
-  function appendLog(message: string): void {
-    setEventLog((prev) => [`${new Date().toLocaleTimeString()} ${message}`, ...prev].slice(0, 30));
+  function pushToast(message: string, kind: ToastKind = "info"): void {
+    const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    setToasts((prev) => [...prev.slice(-3), { id, message, kind }]);
+    window.setTimeout(() => {
+      setToasts((prev) => prev.filter((entry) => entry.id !== id));
+    }, 3600);
   }
 
   function clearMessages(): void {
@@ -208,30 +215,30 @@ export function App() {
 
     socket.on("connect", () => {
       setSocketConnected(true);
-      appendLog("socket connected");
+      pushToast("Realtime connected.", "success");
     });
     socket.on("disconnect", () => {
       setSocketConnected(false);
-      appendLog("socket disconnected");
+      pushToast("Realtime disconnected.");
     });
-    socket.on("realtime_ready", () => appendLog("realtime ready"));
-    socket.on("queue_joined", () => appendLog("joined queue"));
-    socket.on("queue_left", () => appendLog("left queue"));
+    socket.on("realtime_ready", () => pushToast("Realtime ready.", "success"));
+    socket.on("queue_joined", () => pushToast("Joined queue.", "success"));
+    socket.on("queue_left", () => pushToast("Left queue."));
     socket.on("queue_error", (payload: { message: string }) => {
       triggerImpact();
-      appendLog(`queue error: ${payload.message}`);
+      pushToast(payload.message, "error");
     });
     socket.on("room_error", (payload: { message: string }) => {
       triggerImpact();
-      appendLog(`room error: ${payload.message}`);
+      pushToast(payload.message, "error");
     });
     socket.on("match_error", (payload: { message: string }) => {
       triggerImpact();
-      appendLog(`match error: ${payload.message}`);
+      pushToast(payload.message, "error");
     });
     socket.on("match_found", (payload: MatchFoundPayload) => {
       setActiveMatchState(payload);
-      appendLog(`match found: ${payload.matchId}`);
+      pushToast("Match found.", "success");
     });
     socket.on("match_state", (payload: MatchState) => {
       setActiveMatchState(payload);
@@ -239,21 +246,20 @@ export function App() {
         playSfx("turn");
       }
       lastTurnRef.current = payload.turn;
-      appendLog(`turn ${payload.turn}, active ${payload.activePlayerId}`);
+      pushToast(`Turn ${payload.turn} started.`);
     });
     socket.on("match_completed", (payload: MatchState) => {
       setActiveMatchState(payload);
-      appendLog(`match completed, winner ${payload.winnerId}`);
+      pushToast("Match completed.", "success");
     });
     socket.on("room_created", (payload: { roomCode: string }) => {
       setRoomCodeInput(payload.roomCode);
-      appendLog(`room created: ${payload.roomCode}`);
+      pushToast(`Room created: ${payload.roomCode}`, "success");
     });
     socket.on("room_state", (payload: { room: RoomState }) => {
       setCurrentRoom(payload.room);
       setRoomCodeInput(payload.room.roomCode);
       setTabletopMode(true);
-      appendLog(`room state: ${payload.room.roomCode} (${payload.room.players.length}/${payload.room.maxPlayers})`);
     });
     socket.on("room_private_state", (payload: { hand: RoomCard[] }) => {
       setPrivateHand(payload.hand ?? []);
@@ -264,11 +270,11 @@ export function App() {
         setPrivateHand([]);
         setTabletopMode(false);
       }
-      appendLog(`room left: ${payload.roomCode}`);
+      pushToast("You left the room.");
     });
     socket.on("room_started", (payload: { roomCode: string; playerCount: number }) => {
       setTabletopMode(true);
-      appendLog(`room started: ${payload.roomCode} (${payload.playerCount} players)`);
+      pushToast(`Room started (${payload.playerCount} players).`, "success");
     });
 
     return () => {
@@ -334,14 +340,14 @@ export function App() {
         setToken(response.token);
         setCurrentUser(response.user);
         setSuccessMessage("Account created successfully.");
-        appendLog("register success");
+        pushToast("Register success.", "success");
       } else {
         const response = await callApi<AuthResponse>("/auth/login", "POST", { email, password });
         localStorage.setItem(TOKEN_KEY, response.token);
         setToken(response.token);
         setCurrentUser(response.user);
         setSuccessMessage("Welcome back.");
-        appendLog("login success");
+        pushToast("Login success.", "success");
       }
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Authentication failed.");
@@ -362,12 +368,17 @@ export function App() {
     setCurrentRoom(null);
     setPrivateHand([]);
     setTabletopMode(false);
-    setEventLog([]);
+    setToasts([]);
     clearMessages();
   }
 
   function handleQueueJoin() {
-    if (!socketRef.current || !selectedDeckId) {
+    if (!socketRef.current) {
+      pushToast("Realtime is not connected.", "error");
+      return;
+    }
+    if (!selectedDeckId) {
+      pushToast("Select a deck before joining queue.", "error");
       return;
     }
     playSfx("click");
@@ -375,7 +386,16 @@ export function App() {
   }
 
   function handleCreateRoom() {
-    if (!socketRef.current || !selectedDeckId) {
+    if (!socketRef.current) {
+      pushToast("Realtime is not connected.", "error");
+      return;
+    }
+    if (!selectedDeckId) {
+      pushToast("Deck is required to create a room.", "error");
+      return;
+    }
+    if (!selectedCharacterId) {
+      pushToast("Choose a character first.", "error");
       return;
     }
     playSfx("click");
@@ -388,7 +408,20 @@ export function App() {
   }
 
   function handleJoinRoom() {
-    if (!socketRef.current || !selectedDeckId || !roomCodeInput) {
+    if (!socketRef.current) {
+      pushToast("Realtime is not connected.", "error");
+      return;
+    }
+    if (!selectedDeckId) {
+      pushToast("Deck is required to join a room.", "error");
+      return;
+    }
+    if (!selectedCharacterId) {
+      pushToast("Choose a character before joining.", "error");
+      return;
+    }
+    if (!roomCodeInput) {
+      pushToast("Room code is required to join.", "error");
       return;
     }
     playSfx("click");
@@ -400,7 +433,20 @@ export function App() {
   }
 
   function handleJoinAsHostPlayer() {
-    if (!socketRef.current || !selectedDeckId || !currentRoom?.roomCode) {
+    if (!socketRef.current) {
+      pushToast("Realtime is not connected.", "error");
+      return;
+    }
+    if (!selectedDeckId) {
+      pushToast("Select a deck first.", "error");
+      return;
+    }
+    if (!selectedCharacterId) {
+      pushToast("Choose a character first.", "error");
+      return;
+    }
+    if (!currentRoom?.roomCode) {
+      pushToast("No active room found.", "error");
       return;
     }
     playSfx("click");
@@ -431,6 +477,15 @@ export function App() {
 
   function handleStartRoom() {
     if (!socketRef.current || !currentRoom?.roomCode) {
+      pushToast("No active room found.", "error");
+      return;
+    }
+    if (currentRoom.players.length < 2) {
+      pushToast("At least 2 players are required to start.", "error");
+      return;
+    }
+    if (!currentRoom.players.every((player) => player.ready)) {
+      pushToast("All players must be ready before start.", "error");
       return;
     }
     playSfx("click");
@@ -570,7 +625,6 @@ export function App() {
               meReady={Boolean(meInRoom?.ready)}
               isInRoom={Boolean(meInRoom)}
               isRoomHost={isRoomHost}
-              eventLog={eventLog}
               onDeckChange={setSelectedDeckId}
               onRoomCodeInput={(value) => setRoomCodeInput(value.toUpperCase())}
               onRoomMaxPlayersChange={setRoomMaxPlayers}
@@ -604,6 +658,13 @@ export function App() {
         </div>
       </section>
 
+      <div className="toast-stack" aria-live="polite" aria-atomic="true">
+        {toasts.map((toast) => (
+          <div key={toast.id} className={`toast toast-${toast.kind}`}>
+            {toast.message}
+          </div>
+        ))}
+      </div>
       <GuideModal open={guideOpen} section={guideSection} onSectionChange={setGuideSection} onClose={() => setGuideOpen(false)} />
       <LegalModal view={legalView} onClose={() => setLegalView(null)} />
       <ForgotPasswordModal

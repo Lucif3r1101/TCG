@@ -20,7 +20,6 @@ type GameBoardProps = {
   meReady: boolean;
   isInRoom: boolean;
   isRoomHost: boolean;
-  eventLog: string[];
   onDeckChange: (value: string) => void;
   onCharacterChange: (value: string) => void;
   onRoomCodeInput: (value: string) => void;
@@ -57,7 +56,6 @@ function renderLobby(props: GameBoardProps) {
     meReady,
     isInRoom,
     isRoomHost,
-    eventLog,
     onDeckChange,
     onCharacterChange,
     onRoomCodeInput,
@@ -207,12 +205,6 @@ function renderLobby(props: GameBoardProps) {
         </div>
       </section>
 
-      <div className="log">
-        {eventLog.length === 0 ? <p>No realtime events yet.</p> : null}
-        {eventLog.map((line) => (
-          <p key={line}>{line}</p>
-        ))}
-      </div>
     </div>
   );
 }
