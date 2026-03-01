@@ -4,7 +4,7 @@ services:
     env: node
     rootDir: .
     plan: free
-    buildCommand: npm install && npm run build -w @tcg/backend
+    buildCommand: npm install --include=dev && npm run build -w @tcg/backend
     startCommand: npm run start -w @tcg/backend
     healthCheckPath: /health
     envVars:
