@@ -106,6 +106,7 @@ export function App() {
   const [eventLog, setEventLog] = useState<string[]>([]);
 
   const socketRef = useRef<Socket | null>(null);
+  const currentUserId = currentUser?.id ?? "";
 
   const canSubmit = useMemo(() => {
     if (!email || !password) {
@@ -252,7 +253,7 @@ export function App() {
       socketRef.current = null;
       setSocketConnected(false);
     };
-  }, [token, currentUser]);
+  }, [token, currentUserId]);
 
   useEffect(() => {
     if (!activeMatchState?.matchId || !socketConnected) {

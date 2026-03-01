@@ -1,6 +1,6 @@
 # TCG Monorepo
 
-Day 1 + Day 2 + Day 3 + Day 4 + Day 5 scaffold for a web-based TCG project.
+Day 1 + Day 2 + Day 3 + Day 4 + Day 5 + Day 6 scaffold for a web-based TCG project.
 
 ## Apps
 - `apps/frontend`: React + Vite TypeScript client
@@ -49,6 +49,19 @@ Deck rules in this MVP:
 - Frontend console upgraded:
   - auto rejoin active match on refresh
   - live match panel with turn, hp, mana, timer
+
+## Day 6 hardening (completed)
+- API protection:
+  - global API rate limit
+  - stricter auth route rate limit
+- Realtime protection:
+  - zod validation for socket payloads
+  - per-user cooldowns for queue and match actions
+- Deck validation hardened:
+  - duplicate entries cannot bypass max copies per card
+- Backend tests:
+  - deck rules tests
+  - realtime payload schema tests
 
 ## Quick start
 1. Use MongoDB Atlas and set backend env:

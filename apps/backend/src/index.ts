@@ -10,6 +10,7 @@ import { buildDecksRouter } from "./routes/decks";
 import { buildMatchesRouter } from "./routes/matches";
 import { seedBaseCards } from "./services/starterSetup";
 import { registerRealtime } from "./services/realtime";
+import { authLimiter, globalApiLimiter } from "./middleware/rateLimit";
 
 const requiredEnv = ["MONGODB_URI", "JWT_SECRET"] as const;
 
@@ -28,14 +29,16 @@ await connectToDatabase(mongoUri);
 await seedBaseCards();
 
 const app = express();
+app.set("trust proxy", 1);
 app.use(cors({ origin: corsOrigin }));
 app.use(express.json());
+app.use(globalApiLimiter);
 
 app.get("/health", (_req, res) => {
   res.json({ ok: true, service: "backend", timestamp: new Date().toISOString() });
 });
 
-app.use("/auth", buildAuthRouter(jwtSecret));
+app.use("/auth", authLimiter, buildAuthRouter(jwtSecret));
 app.use("/cards", buildCardsRouter());
 app.use("/decks", buildDecksRouter(jwtSecret));
 app.use("/matches", buildMatchesRouter(jwtSecret));

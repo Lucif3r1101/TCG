@@ -6,6 +6,7 @@ import { CardModel } from "../models/Card";
 import { DeckModel } from "../models/Deck";
 import { UserCardModel } from "../models/UserCard";
 import { DECK_SIZE, MAX_COPIES_PER_CARD } from "../data/starterCards";
+import { validateDeckSize, validateMaxCopiesPerCard } from "../domain/deckRules";
 
 const deckCardInputSchema = z.object({
   cardId: z.string().min(1),
@@ -34,11 +35,6 @@ function serializeDeck(deck: any) {
     createdAt: deck.createdAt,
     updatedAt: deck.updatedAt
   };
-}
-
-function validateDeckSize(cards: Array<{ cardId: string; quantity: number }>): boolean {
-  const count = cards.reduce((sum, item) => sum + item.quantity, 0);
-  return count === DECK_SIZE;
 }
 
 async function validateCardsExist(cards: Array<{ cardId: string; quantity: number }>): Promise<boolean> {
@@ -102,8 +98,13 @@ export function buildDecksRouter(jwtSecret: string): Router {
 
     const payload = parsed.data;
 
-    if (!validateDeckSize(payload.cards)) {
+    if (!validateDeckSize(payload.cards, DECK_SIZE)) {
       res.status(400).json({ message: `Deck must contain exactly ${DECK_SIZE} cards.` });
+      return;
+    }
+
+    if (!validateMaxCopiesPerCard(payload.cards, MAX_COPIES_PER_CARD)) {
+      res.status(400).json({ message: `Max copies per card is ${MAX_COPIES_PER_CARD}.` });
       return;
     }
 
@@ -146,8 +147,13 @@ export function buildDecksRouter(jwtSecret: string): Router {
     const payload = parsed.data;
 
     if (payload.cards) {
-      if (!validateDeckSize(payload.cards)) {
+      if (!validateDeckSize(payload.cards, DECK_SIZE)) {
         res.status(400).json({ message: `Deck must contain exactly ${DECK_SIZE} cards.` });
+        return;
+      }
+
+      if (!validateMaxCopiesPerCard(payload.cards, MAX_COPIES_PER_CARD)) {
+        res.status(400).json({ message: `Max copies per card is ${MAX_COPIES_PER_CARD}.` });
         return;
       }
 

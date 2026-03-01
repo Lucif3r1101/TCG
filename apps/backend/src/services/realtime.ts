@@ -3,6 +3,7 @@ import type { Server, Socket } from "socket.io";
 import { verifyAuthToken } from "../utils.auth";
 import { DeckModel } from "../models/Deck";
 import { MatchModel } from "../models/Match";
+import { matchActionPayloadSchema, queueJoinPayloadSchema } from "./realtime.validation";
 
 type MatchmakingQueueEntry = {
   userId: string;
@@ -26,11 +27,27 @@ type ActiveMatchState = {
 };
 
 const TURN_DURATION_MS = 45_000;
+const QUEUE_ACTION_COOLDOWN_MS = 1_500;
+const MATCH_ACTION_COOLDOWN_MS = 250;
 
 const queue: MatchmakingQueueEntry[] = [];
 const socketToUser = new Map<string, string>();
 const userToSockets = new Map<string, Set<string>>();
 const activeMatches = new Map<string, ActiveMatchState>();
+const lastQueueActionAtByUser = new Map<string, number>();
+const lastMatchActionAtByUser = new Map<string, number>();
+
+function isOnCooldown(store: Map<string, number>, key: string, cooldownMs: number): boolean {
+  const now = Date.now();
+  const lastActionAt = store.get(key) ?? 0;
+
+  if (now - lastActionAt < cooldownMs) {
+    return true;
+  }
+
+  store.set(key, now);
+  return false;
+}
 
 function addUserSocket(userId: string, socketId: string): void {
   const set = userToSockets.get(userId) ?? new Set<string>();
@@ -235,11 +252,17 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
     socket.emit("realtime_ready", { userId });
 
     socket.on("queue_join", async (payload: { deckId?: string }) => {
-      const deckId = payload?.deckId;
-      if (!deckId) {
-        socket.emit("queue_error", { message: "deckId is required." });
+      if (isOnCooldown(lastQueueActionAtByUser, userId, QUEUE_ACTION_COOLDOWN_MS)) {
+        socket.emit("queue_error", { message: "Too many queue actions. Slow down." });
         return;
       }
+
+      const parsed = queueJoinPayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("queue_error", { message: "Invalid queue payload." });
+        return;
+      }
+      const deckId = parsed.data.deckId;
 
       const deckOk = await loadAndValidateDeck(userId, deckId);
       if (!deckOk) {
@@ -266,16 +289,22 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
     });
 
     socket.on("queue_leave", () => {
+      if (isOnCooldown(lastQueueActionAtByUser, userId, QUEUE_ACTION_COOLDOWN_MS)) {
+        socket.emit("queue_error", { message: "Too many queue actions. Slow down." });
+        return;
+      }
+
       removeFromQueueBySocket(socket.id);
       socket.emit("queue_left", { ok: true });
     });
 
     socket.on("match_sync", async (payload: { matchId?: string }) => {
-      const matchId = payload?.matchId;
-      if (!matchId) {
-        socket.emit("match_error", { message: "matchId is required." });
+      const parsed = matchActionPayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("match_error", { message: "Invalid match payload." });
         return;
       }
+      const matchId = parsed.data.matchId;
 
       let match = activeMatches.get(matchId);
       if (!match) {
@@ -300,11 +329,17 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
     });
 
     socket.on("match_end_turn", async (payload: { matchId?: string }) => {
-      const matchId = payload?.matchId;
-      if (!matchId) {
-        socket.emit("match_error", { message: "matchId is required." });
+      if (isOnCooldown(lastMatchActionAtByUser, userId, MATCH_ACTION_COOLDOWN_MS)) {
+        socket.emit("match_error", { message: "Too many match actions. Slow down." });
         return;
       }
+
+      const parsed = matchActionPayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("match_error", { message: "Invalid match payload." });
+        return;
+      }
+      const matchId = parsed.data.matchId;
 
       const match = activeMatches.get(matchId);
       if (!match || match.winnerId) {
@@ -349,11 +384,17 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
     });
 
     socket.on("match_concede", async (payload: { matchId?: string }) => {
-      const matchId = payload?.matchId;
-      if (!matchId) {
-        socket.emit("match_error", { message: "matchId is required." });
+      if (isOnCooldown(lastMatchActionAtByUser, userId, MATCH_ACTION_COOLDOWN_MS)) {
+        socket.emit("match_error", { message: "Too many match actions. Slow down." });
         return;
       }
+
+      const parsed = matchActionPayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("match_error", { message: "Invalid match payload." });
+        return;
+      }
+      const matchId = parsed.data.matchId;
 
       const match = activeMatches.get(matchId);
       if (!match || match.winnerId) {
@@ -384,6 +425,10 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
     socket.on("disconnect", () => {
       removeFromQueueBySocket(socket.id);
       removeUserSocket(socket.id);
+      if (getUserSockets(userId).length === 0) {
+        lastQueueActionAtByUser.delete(userId);
+        lastMatchActionAtByUser.delete(userId);
+      }
     });
   });
 }
