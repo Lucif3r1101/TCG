@@ -1,10 +1,12 @@
 import { Types } from "mongoose";
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { Server, Socket } from "socket.io";
 import { verifyAuthToken } from "../utils.auth.js";
 import { DeckModel } from "../models/Deck.js";
 import { MatchModel } from "../models/Match.js";
 import { ALL_CARD_BLUEPRINTS } from "../data/starterCards.js";
-import cardEffectsGenerated from "../data/cardEffects.generated.json";
 import {
   matchActionPayloadSchema,
   queueJoinPayloadSchema,
@@ -362,8 +364,29 @@ type CardEffectScript = {
   unitBoardHealthBonus: number;
 };
 
+function loadCardEffectsTable(): Record<string, CardEffectScript> {
+  const currentDir = dirname(fileURLToPath(import.meta.url));
+  const candidatePaths = [
+    resolve(currentDir, "../data/cardEffects.generated.json"),
+    resolve(currentDir, "../../src/data/cardEffects.generated.json"),
+    resolve(process.cwd(), "data/cardEffects.generated.json"),
+    resolve(process.cwd(), "src/data/cardEffects.generated.json")
+  ];
+
+  for (const candidate of candidatePaths) {
+    try {
+      const json = readFileSync(candidate, "utf-8");
+      return JSON.parse(json) as Record<string, CardEffectScript>;
+    } catch {
+      // try next path
+    }
+  }
+
+  throw new Error("cardEffects.generated.json could not be loaded in runtime.");
+}
+
 const CARD_EFFECTS_BY_SLUG = new Map<string, CardEffectScript>(
-  Object.entries(cardEffectsGenerated as Record<string, CardEffectScript>)
+  Object.entries(loadCardEffectsTable())
 );
 
 function selectTargets(room: RoomState, caster: RoomPlayer, targetMode: TargetMode, explicitTargetUserId?: string): RoomPlayer[] {
