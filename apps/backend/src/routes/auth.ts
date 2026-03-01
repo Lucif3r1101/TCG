@@ -2,10 +2,10 @@ import type { Request, Response } from "express";
 import { Router } from "express";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
-import { UserModel } from "../models/User";
-import { signAuthToken } from "../utils.auth";
-import { requireAuth } from "../middleware/auth";
-import { grantStarterSetForUser } from "../services/starterSetup";
+import { UserModel } from "../models/User.js";
+import { signAuthToken } from "../utils.auth.js";
+import { requireAuth } from "../middleware/auth.js";
+import { grantStarterSetForUser } from "../services/starterSetup.js";
 
 const registerSchema = z.object({
   email: z.string().email(),
@@ -115,3 +115,4 @@ export function buildAuthRouter(jwtSecret: string): Router {
 
   return router;
 }
+

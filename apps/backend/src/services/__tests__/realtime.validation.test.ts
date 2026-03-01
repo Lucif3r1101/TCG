@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchActionPayloadSchema, queueJoinPayloadSchema } from "../realtime.validation";
+import { matchActionPayloadSchema, queueJoinPayloadSchema } from "../realtime.validation.js";
 
 describe("realtime payload schemas", () => {
   it("accepts valid queue join payload", () => {
@@ -17,3 +17,4 @@ describe("realtime payload schemas", () => {
     expect(parsed.success).toBe(false);
   });
 });
+

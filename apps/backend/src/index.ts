@@ -3,15 +3,15 @@ import cors from "cors";
 import express from "express";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
-import { connectToDatabase } from "./db/mongo";
-import { buildAuthRouter } from "./routes/auth";
-import { buildCardsRouter } from "./routes/cards";
-import { buildDecksRouter } from "./routes/decks";
-import { buildMatchesRouter } from "./routes/matches";
-import { seedBaseCards } from "./services/starterSetup";
-import { registerRealtime } from "./services/realtime";
-import { authLimiter, globalApiLimiter } from "./middleware/rateLimit";
-import { isOriginAllowed, parseAllowedOrigins } from "./config/cors";
+import { connectToDatabase } from "./db/mongo.js";
+import { buildAuthRouter } from "./routes/auth.js";
+import { buildCardsRouter } from "./routes/cards.js";
+import { buildDecksRouter } from "./routes/decks.js";
+import { buildMatchesRouter } from "./routes/matches.js";
+import { seedBaseCards } from "./services/starterSetup.js";
+import { registerRealtime } from "./services/realtime.js";
+import { authLimiter, globalApiLimiter } from "./middleware/rateLimit.js";
+import { isOriginAllowed, parseAllowedOrigins } from "./config/cors.js";
 
 const requiredEnv = ["MONGODB_URI", "JWT_SECRET"] as const;
 
@@ -75,3 +75,4 @@ registerRealtime(io, jwtSecret);
 server.listen(port, () => {
   console.log(`backend listening on http://localhost:${port}`);
 });
+

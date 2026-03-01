@@ -1,9 +1,9 @@
 import { Types } from "mongoose";
 import type { Server, Socket } from "socket.io";
-import { verifyAuthToken } from "../utils.auth";
-import { DeckModel } from "../models/Deck";
-import { MatchModel } from "../models/Match";
-import { matchActionPayloadSchema, queueJoinPayloadSchema } from "./realtime.validation";
+import { verifyAuthToken } from "../utils.auth.js";
+import { DeckModel } from "../models/Deck.js";
+import { MatchModel } from "../models/Match.js";
+import { matchActionPayloadSchema, queueJoinPayloadSchema } from "./realtime.validation.js";
 
 type MatchmakingQueueEntry = {
   userId: string;
@@ -432,3 +432,4 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
     });
   });
 }
+

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { verifyAuthToken } from "../utils.auth";
+import { verifyAuthToken } from "../utils.auth.js";
 
 export function requireAuth(jwtSecret: string) {
   return (req: Request, res: Response, next: NextFunction) => {
@@ -21,3 +21,4 @@ export function requireAuth(jwtSecret: string) {
     }
   };
 }
+

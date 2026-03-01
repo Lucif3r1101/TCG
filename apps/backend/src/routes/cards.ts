@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CardModel } from "../models/Card";
+import { CardModel } from "../models/Card.js";
 
 export function buildCardsRouter(): Router {
   const router = Router();
@@ -24,3 +24,4 @@ export function buildCardsRouter(): Router {
 
   return router;
 }
+

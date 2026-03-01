@@ -1,8 +1,8 @@
 import { Types } from "mongoose";
-import { STARTER_CARD_BLUEPRINTS } from "../data/starterCards";
-import { CardModel } from "../models/Card";
-import { DeckModel } from "../models/Deck";
-import { UserCardModel } from "../models/UserCard";
+import { STARTER_CARD_BLUEPRINTS } from "../data/starterCards.js";
+import { CardModel } from "../models/Card.js";
+import { DeckModel } from "../models/Deck.js";
+import { UserCardModel } from "../models/UserCard.js";
 
 const STARTER_DECK_NAME = "Starter Deck";
 
@@ -78,3 +78,4 @@ export async function grantStarterSetForUser(userId: string): Promise<void> {
     cards: starterDeckCards
   });
 }
+

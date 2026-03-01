@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { Types } from "mongoose";
 import { z } from "zod";
-import { requireAuth } from "../middleware/auth";
-import { CardModel } from "../models/Card";
-import { DeckModel } from "../models/Deck";
-import { UserCardModel } from "../models/UserCard";
-import { DECK_SIZE, MAX_COPIES_PER_CARD } from "../data/starterCards";
-import { validateDeckSize, validateMaxCopiesPerCard } from "../domain/deckRules";
+import { requireAuth } from "../middleware/auth.js";
+import { CardModel } from "../models/Card.js";
+import { DeckModel } from "../models/Deck.js";
+import { UserCardModel } from "../models/UserCard.js";
+import { DECK_SIZE, MAX_COPIES_PER_CARD } from "../data/starterCards.js";
+import { validateDeckSize, validateMaxCopiesPerCard } from "../domain/deckRules.js";
 
 const deckCardInputSchema = z.object({
   cardId: z.string().min(1),
@@ -200,3 +200,4 @@ export function buildDecksRouter(jwtSecret: string): Router {
 
   return router;
 }
+

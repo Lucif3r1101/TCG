@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { Types } from "mongoose";
-import { requireAuth } from "../middleware/auth";
-import { MatchModel } from "../models/Match";
+import { requireAuth } from "../middleware/auth.js";
+import { MatchModel } from "../models/Match.js";
 
 function toMatchResponse(match: any) {
   const turnDeadlineAt = match.state.turnDeadlineAt
@@ -74,3 +74,4 @@ export function buildMatchesRouter(jwtSecret: string): Router {
 
   return router;
 }
+

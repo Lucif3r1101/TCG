@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { validateDeckSize, validateMaxCopiesPerCard } from "../deckRules";
+import { validateDeckSize, validateMaxCopiesPerCard } from "../deckRules.js";
 
 describe("deckRules", () => {
   it("validates exact deck size", () => {
@@ -27,3 +27,4 @@ describe("deckRules", () => {
     expect(validateMaxCopiesPerCard(validCards, 2)).toBe(true);
   });
 });
+
