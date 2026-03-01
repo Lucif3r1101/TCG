@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import "./App.css";
 
-type AuthMode = "register" | "login" | "forgot";
+type AuthMode = "register" | "login";
 
 type AuthUser = {
   id: string;
@@ -109,12 +109,8 @@ export function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [resetTokenInput, setResetTokenInput] = useState("");
-  const [forgotStep, setForgotStep] = useState<"request" | "reset">("request");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [legalView, setLegalView] = useState<"terms" | "privacy" | null>(null);
   const [token, setToken] = useState<string>(() => localStorage.getItem(TOKEN_KEY) ?? "");
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
   const [decks, setDecks] = useState<DeckSummary[]>([]);
@@ -122,6 +118,8 @@ export function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [legalView, setLegalView] = useState<"terms" | "privacy" | null>(null);
   const [socketConnected, setSocketConnected] = useState(false);
   const [activeMatchState, setActiveMatchState] = useState<MatchState | null>(null);
   const [roomCodeInput, setRoomCodeInput] = useState("");
@@ -134,7 +132,7 @@ export function App() {
   const meInRoom = currentRoom?.players.find((player) => player.userId === currentUserId) ?? null;
 
   const canSubmit = useMemo(() => {
-    if (!email) {
+    if (!/\S+@\S+\.\S+/.test(email)) {
       return false;
     }
 
@@ -142,28 +140,8 @@ export function App() {
       return password.length > 0;
     }
 
-    if (mode === "forgot" && forgotStep === "request") {
-      return true;
-    }
-
-    if (!password || !confirmPassword) {
-      return false;
-    }
-
-    if (mode === "forgot" && forgotStep === "reset" && !resetTokenInput) {
-      return false;
-    }
-
-    if (mode === "register" && !username) {
-      return false;
-    }
-
-    if (mode === "register" && !acceptedTerms) {
-      return false;
-    }
-
-    return true;
-  }, [mode, email, password, confirmPassword, username, resetTokenInput, forgotStep, acceptedTerms]);
+    return username.length > 0 && password.length > 0 && confirmPassword.length > 0 && acceptedTerms;
+  }, [mode, email, username, password, confirmPassword, acceptedTerms]);
 
   function appendLog(message: string): void {
     setEventLog((prev) => [`${new Date().toLocaleTimeString()} ${message}`, ...prev].slice(0, 30));
@@ -311,15 +289,10 @@ export function App() {
 
     clearMessages();
 
-    if (mode === "register" || (mode === "forgot" && forgotStep === "reset")) {
-      const validationError = validatePassword(password);
-      if (validationError) {
-        setErrorMessage(validationError);
-        return;
-      }
-
-      if (!/\S+@\S+\.\S+/.test(email)) {
-        setErrorMessage("Please enter a valid email address.");
+    if (mode === "register") {
+      const passwordError = validatePassword(password);
+      if (passwordError) {
+        setErrorMessage(passwordError);
         return;
       }
 
@@ -327,16 +300,11 @@ export function App() {
         setErrorMessage("Password and confirm password do not match.");
         return;
       }
-    }
 
-    if (mode === "login" && !/\S+@\S+\.\S+/.test(email)) {
-      setErrorMessage("Please enter a valid email address.");
-      return;
-    }
-
-    if (mode === "register" && !/^[a-zA-Z0-9_]{3,24}$/.test(username)) {
-      setErrorMessage("Username must be 3-24 chars and only letters, numbers, underscore.");
-      return;
+      if (!/^[a-zA-Z0-9_]{3,24}$/.test(username)) {
+        setErrorMessage("Username must be 3-24 chars and only letters, numbers, underscore.");
+        return;
+      }
     }
 
     setIsLoading(true);
@@ -347,31 +315,15 @@ export function App() {
         localStorage.setItem(TOKEN_KEY, response.token);
         setToken(response.token);
         setCurrentUser(response.user);
+        setSuccessMessage("Account created successfully.");
         appendLog("register success");
-      } else if (mode === "login") {
+      } else {
         const response = await callApi<AuthResponse>("/auth/login", "POST", { email, password });
         localStorage.setItem(TOKEN_KEY, response.token);
         setToken(response.token);
         setCurrentUser(response.user);
+        setSuccessMessage("Welcome back.");
         appendLog("login success");
-      } else if (mode === "forgot" && forgotStep === "request") {
-        const response = await callApi<{ message: string; resetToken?: string }>("/auth/forgot-password", "POST", { email });
-        setSuccessMessage(response.message);
-        if (response.resetToken) {
-          setResetTokenInput(response.resetToken);
-          setForgotStep("reset");
-          setSuccessMessage("Dev token generated. Paste/use it to reset password.");
-        }
-      } else {
-        const response = await callApi<{ message: string }>("/auth/reset-password", "POST", {
-          token: resetTokenInput,
-          password
-        });
-        setSuccessMessage(response.message);
-        setMode("login");
-        setForgotStep("request");
-        setPassword("");
-        setConfirmPassword("");
       }
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Authentication failed.");
@@ -440,10 +392,7 @@ export function App() {
       <section className="hero">
         <div className="hero-content">
           <h1>Chronicles of the Rift</h1>
-          <p>
-            Build your deck, forge alliances, and survive tactical battles across fractured realms. Now with room-based
-            multiplayer lobbies for 2-6 players.
-          </p>
+          <p>Sign in or create your account to enter ranked rooms, draft decks, and start multiplayer sessions.</p>
         </div>
       </section>
 
@@ -472,17 +421,6 @@ export function App() {
                 >
                   Login
                 </button>
-                <button
-                  className={`tab ${mode === "forgot" ? "active" : ""}`}
-                  type="button"
-                  onClick={() => {
-                    clearMessages();
-                    setMode("forgot");
-                    setForgotStep("request");
-                  }}
-                >
-                  Forgot / Reset
-                </button>
               </div>
 
               <form className="form" onSubmit={handleSubmit}>
@@ -498,32 +436,23 @@ export function App() {
                   </label>
                 ) : null}
 
-                {mode === "forgot" && forgotStep === "reset" ? (
-                  <label className="label">
-                    Reset Token
-                    <input className="input" type="text" value={resetTokenInput} onChange={(e) => setResetTokenInput(e.target.value)} required />
-                  </label>
-                ) : null}
+                <label className="label">
+                  Password
+                  <div className="input-wrap">
+                    <input
+                      className="input"
+                      type={passwordVisible ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                    <button className="peek" type="button" onClick={() => setPasswordVisible((v) => !v)}>
+                      {passwordVisible ? "Hide" : "Show"}
+                    </button>
+                  </div>
+                </label>
 
-                {mode !== "forgot" || forgotStep === "reset" ? (
-                  <label className="label">
-                    Password
-                    <div className="input-wrap">
-                      <input
-                        className="input"
-                        type={passwordVisible ? "text" : "password"}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                      />
-                      <button className="peek" type="button" onClick={() => setPasswordVisible((v) => !v)}>
-                        {passwordVisible ? "Hide" : "Show"}
-                      </button>
-                    </div>
-                  </label>
-                ) : null}
-
-                {mode === "register" || (mode === "forgot" && forgotStep === "reset") ? (
+                {mode === "register" ? (
                   <label className="label">
                     Confirm Password
                     <div className="input-wrap">
@@ -541,52 +470,32 @@ export function App() {
                   </label>
                 ) : null}
 
-                {mode === "register" || (mode === "forgot" && forgotStep === "reset") ? (
-                  <p className="muted">Password must include uppercase, lowercase, number, and symbol.</p>
-                ) : null}
-
                 {mode === "register" ? (
-                  <label className="muted checkbox">
-                    <input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />
-                    <span>
-                      I agree to the{" "}
-                      <button type="button" className="link" onClick={() => setLegalView("terms")}>
-                        Terms
-                      </button>{" "}
-                      and{" "}
-                      <button type="button" className="link" onClick={() => setLegalView("privacy")}>
-                        Privacy Policy
-                      </button>
-                      .
-                    </span>
-                  </label>
+                  <>
+                    <p className="muted">Password must include uppercase, lowercase, number, and symbol.</p>
+                    <label className="muted checkbox">
+                      <input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />
+                      <span>
+                        I agree to the{" "}
+                        <button type="button" className="link" onClick={() => setLegalView("terms")}>
+                          Terms
+                        </button>{" "}
+                        and{" "}
+                        <button type="button" className="link" onClick={() => setLegalView("privacy")}>
+                          Privacy Policy
+                        </button>
+                        .
+                      </span>
+                    </label>
+                  </>
                 ) : null}
 
                 {errorMessage ? <p className="error">{errorMessage}</p> : null}
                 {successMessage ? <p className="good">{successMessage}</p> : null}
 
                 <button className="button primary" type="submit" disabled={isLoading || !canSubmit}>
-                  {isLoading
-                    ? "Working..."
-                    : mode === "forgot" && forgotStep === "request"
-                    ? "Send Reset"
-                    : mode === "forgot" && forgotStep === "reset"
-                    ? "Reset Password"
-                    : mode === "register"
-                    ? "Create Account"
-                    : "Sign In"}
+                  {isLoading ? "Working..." : mode === "register" ? "Create Account" : "Sign In"}
                 </button>
-
-                {mode === "forgot" ? (
-                  <div className="row">
-                    <button className="button" type="button" onClick={() => setForgotStep("request")}>
-                      Request Token
-                    </button>
-                    <button className="button" type="button" onClick={() => setForgotStep("reset")}>
-                      Reset With Token
-                    </button>
-                  </div>
-                ) : null}
               </form>
             </>
           ) : (
@@ -696,7 +605,7 @@ export function App() {
             </div>
           )}
 
-          <p className="muted footer-note">Â© 2026 Chronicles of the Rift. All rights reserved.</p>
+          <p className="muted footer-note">© 2026 Chronicles of the Rift. All rights reserved.</p>
         </div>
       </section>
 
