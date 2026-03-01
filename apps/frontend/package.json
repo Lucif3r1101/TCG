@@ -1,24 +1,25 @@
 {
-    "name":  "@tcg/frontend",
-    "private":  true,
-    "version":  "0.1.0",
-    "type":  "module",
-    "scripts":  {
-                    "dev":  "vite",
-                    "build":  "tsc --noEmit -p tsconfig.json \u0026\u0026 vite build",
-                    "preview":  "vite preview",
-                    "typecheck":  "tsc --noEmit",
-                    "lint":  "echo \"lint not configured yet\""
-                },
-    "dependencies":  {
-                         "react":  "^18.3.1",
-                         "react-dom":  "^18.3.1"
-                     },
-    "devDependencies":  {
-                            "@types/react":  "^18.3.16",
-                            "@types/react-dom":  "^18.3.5",
-                            "@vitejs/plugin-react":  "^4.3.3",
-                            "typescript":  "^5.7.2",
-                            "vite":  "^5.4.11"
-                        }
+  "name": "@tcg/frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p tsconfig.json && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo \"lint not configured yet\""
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.16",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.3",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11"
+  }
 }
