@@ -52,6 +52,13 @@ body {
   gap: 0.65rem;
 }
 
+.brand-logo {
+  width: 142px;
+  height: 46px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
 .brand-mark {
   width: 34px;
   height: 34px;
@@ -159,6 +166,12 @@ body {
 
 .room-size {
   max-width: 136px;
+}
+
+.host-mode-toggle {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
 }
 
 .tabletop-grid {
@@ -288,6 +301,38 @@ body {
   border-radius: 50%;
   border: 1px solid var(--line);
   background: rgba(8, 14, 26, 0.8);
+}
+
+.seat-character {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 0.24rem;
+  background: rgba(7, 12, 23, 0.82);
+}
+
+.seat-character img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+}
+
+.seat-character-text {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.seat-character-text strong {
+  font-size: 0.76rem;
+  line-height: 1.2;
+}
+
+.seat-character-text span {
+  font-size: 0.72rem;
 }
 
 .impact .card {

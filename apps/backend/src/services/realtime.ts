@@ -84,6 +84,7 @@ type RoomBattleState = {
 type RoomState = {
   roomCode: string;
   hostUserId: string;
+  hostMode: "play" | "manage";
   maxPlayers: number;
   status: "open" | "in_game";
   createdAt: string;
@@ -249,6 +250,7 @@ function toRoomPublicState(room: RoomState) {
   return {
     roomCode: room.roomCode,
     hostUserId: room.hostUserId,
+    hostMode: room.hostMode,
     maxPlayers: room.maxPlayers,
     status: room.status,
     createdAt: room.createdAt,
@@ -489,20 +491,31 @@ function executeCardEffect(room: RoomState, caster: RoomPlayer, card: RoomCard, 
 
 function emitRoomState(io: Server, room: RoomState): void {
   const payload = { room: toRoomPublicState(room) };
+  const recipientUserIds = new Set(room.players.map((player) => player.userId));
+  recipientUserIds.add(room.hostUserId);
+
+  for (const recipientUserId of recipientUserIds) {
+    emitToUser(io, recipientUserId, "room_state", payload);
+  }
+
   for (const player of room.players) {
-    emitToUser(io, player.userId, "room_state", payload);
     emitToUser(io, player.userId, "room_private_state", toRoomPrivateState(room, player.userId));
   }
 }
 
 function removeUserFromAllRooms(io: Server, userId: string): void {
   for (const [code, room] of activeRooms.entries()) {
-    if (!room.players.some((player) => player.userId === userId)) {
+    const userIsPlayer = room.players.some((player) => player.userId === userId);
+    const userIsHost = room.hostUserId === userId;
+    if (!userIsPlayer && !userIsHost) {
       continue;
     }
 
-    room.players = room.players.filter((player) => player.userId !== userId);
-    if (room.battle) {
+    if (userIsPlayer) {
+      room.players = room.players.filter((player) => player.userId !== userId);
+    }
+
+    if (room.battle && userIsPlayer) {
       room.battle.playerOrder = room.battle.playerOrder.filter((id) => id !== userId);
       if (room.battle.activePlayerId === userId && room.battle.playerOrder.length > 0) {
         room.battle.activePlayerId = room.battle.playerOrder[0];
@@ -510,8 +523,14 @@ function removeUserFromAllRooms(io: Server, userId: string): void {
       }
     }
 
-    if (room.hostUserId === userId && room.players.length > 0) {
-      room.hostUserId = room.players[0].userId;
+    if (userIsHost) {
+      if (room.players.length > 0) {
+        room.hostUserId = room.players[0].userId;
+        room.hostMode = "play";
+      } else {
+        activeRooms.delete(code);
+        continue;
+      }
     }
 
     if (room.players.length === 0 || (room.status === "in_game" && room.players.length < 2)) {
@@ -717,7 +736,7 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         return;
       }
 
-      const { deckId, characterId, maxPlayers } = parsed.data;
+      const { deckId, characterId, hostMode, maxPlayers } = parsed.data;
 
       const deckOk = await loadAndValidateDeck(userId, deckId);
       if (!deckOk) {
@@ -737,31 +756,35 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       const room: RoomState = {
         roomCode,
         hostUserId: userId,
+        hostMode,
         maxPlayers,
         status: "open",
         createdAt: new Date().toISOString(),
         battle: null,
-        players: [
-          {
-            userId,
-            username: userSummary.username,
-            avatarId: userSummary.avatarId,
-            deckId,
-            characterId,
-            ready: true,
-            health: 20,
-            handCount: 0,
-            deckCount: 0,
-            discardCount: 0,
-            mana: 0,
-            maxMana: 0,
-            hand: [],
-            deck: [],
-            discard: [],
-            board: [],
-            joinedAt: new Date().toISOString()
-          }
-        ]
+        players:
+          hostMode === "play"
+            ? [
+                {
+                  userId,
+                  username: userSummary.username,
+                  avatarId: userSummary.avatarId,
+                  deckId,
+                  characterId,
+                  ready: true,
+                  health: 20,
+                  handCount: 0,
+                  deckCount: 0,
+                  discardCount: 0,
+                  mana: 0,
+                  maxMana: 0,
+                  hand: [],
+                  deck: [],
+                  discard: [],
+                  board: [],
+                  joinedAt: new Date().toISOString()
+                }
+              ]
+            : []
       };
 
       activeRooms.set(roomCode, room);

@@ -20,6 +20,7 @@ export const matchActionPayloadSchema = z.object({
 export const roomCreatePayloadSchema = z.object({
   deckId: z.string().min(1),
   characterId: z.enum(characterIds),
+  hostMode: z.enum(["play", "manage"]).default("play"),
   maxPlayers: z.number().int().min(2).max(6).default(6)
 });
 

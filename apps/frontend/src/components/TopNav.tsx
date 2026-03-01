@@ -10,7 +10,7 @@ export function TopNav({ soundEnabled, showLogout, onOpenGuide, onToggleSound, o
   return (
     <header className="top-nav">
       <div className="brand">
-        <span className="brand-mark">CR</span>
+        <img className="brand-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="Chronicles of the RIFT logo" />
         <div>
           <strong>Chronicles of the RIFT</strong>
           <p>Tabletop TCG Arena</p>

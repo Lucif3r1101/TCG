@@ -82,6 +82,7 @@ export type RoomBattleState = {
 export type RoomState = {
   roomCode: string;
   hostUserId: string;
+  hostMode: "play" | "manage";
   maxPlayers: number;
   status: "open" | "in_game";
   createdAt: string;

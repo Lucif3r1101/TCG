@@ -1,0 +1,23 @@
+<svg width="480" height="160" viewBox="0 0 480 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logo-bg" x1="24" y1="20" x2="136" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2EE6FF"/>
+      <stop offset="1" stop-color="#35F3B1"/>
+    </linearGradient>
+    <linearGradient id="logo-ring" x1="40" y1="36" x2="120" y2="124" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7FCFF"/>
+      <stop offset="1" stop-color="#B6FFF1"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="16" width="136" height="128" rx="24" fill="#081228"/>
+  <rect x="16" y="20" width="128" height="120" rx="20" fill="url(#logo-bg)"/>
+  <path d="M80 40C57.91 40 40 57.91 40 80C40 102.09 57.91 120 80 120C92.68 120 104.44 114.1 112 104.13L97.25 96.56C93.52 100.73 87.99 103.36 82 103.36C70.84 103.36 61.78 94.3 61.78 83.14C61.78 71.98 70.84 62.92 82 62.92C88.01 62.92 93.56 65.58 97.29 69.78L112.04 62.22C104.5 51.98 92.61 46 80 46V40Z" fill="#07203D"/>
+  <path d="M112 51L83 79L112 108L102.6 117.4L64.2 79L102.6 40.6L112 51Z" fill="url(#logo-ring)"/>
+  <path d="M80 66L93 79L80 92L67 79L80 66Z" fill="#07203D"/>
+  <text x="170" y="73" fill="#EDF4FF" font-family="Rajdhani, Exo 2, Segoe UI, sans-serif" font-size="40" font-weight="700" letter-spacing="1.2">
+    CHRONICLES
+  </text>
+  <text x="170" y="112" fill="#B7F8EF" font-family="Rajdhani, Exo 2, Segoe UI, sans-serif" font-size="32" font-weight="700" letter-spacing="3.8">
+    OF THE RIFT
+  </text>
+</svg>

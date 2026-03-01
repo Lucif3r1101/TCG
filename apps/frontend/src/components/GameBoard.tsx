@@ -12,6 +12,7 @@ type GameBoardProps = {
   selectedCharacterId: string;
   roomCodeInput: string;
   roomMaxPlayers: number;
+  hostMode: "play" | "manage";
   tabletopMode: boolean;
   currentRoom: RoomState | null;
   privateHand: RoomCard[];
@@ -22,6 +23,7 @@ type GameBoardProps = {
   onCharacterChange: (value: string) => void;
   onRoomCodeInput: (value: string) => void;
   onRoomMaxPlayersChange: (value: number) => void;
+  onHostModeChange: (value: "play" | "manage") => void;
   onCreateRoom: () => void;
   onJoinRoom: () => void;
   onLeaveRoom: () => void;
@@ -45,6 +47,7 @@ function renderLobby(props: GameBoardProps) {
     selectedCharacterId,
     roomCodeInput,
     roomMaxPlayers,
+    hostMode,
     currentRoom,
     meReady,
     isRoomHost,
@@ -53,6 +56,7 @@ function renderLobby(props: GameBoardProps) {
     onCharacterChange,
     onRoomCodeInput,
     onRoomMaxPlayersChange,
+    onHostModeChange,
     onCreateRoom,
     onJoinRoom,
     onLeaveRoom,
@@ -91,6 +95,22 @@ function renderLobby(props: GameBoardProps) {
             <option value={6}>6 Players</option>
           </select>
         </div>
+        <div className="host-mode-toggle" role="group" aria-label="Host mode">
+          <button
+            className={`button ${hostMode === "play" ? "primary" : ""}`}
+            type="button"
+            onClick={() => onHostModeChange("play")}
+          >
+            Host + Play
+          </button>
+          <button
+            className={`button ${hostMode === "manage" ? "primary" : ""}`}
+            type="button"
+            onClick={() => onHostModeChange("manage")}
+          >
+            Host Only
+          </button>
+        </div>
 
         <div className="row">
           <button className="button primary" type="button" onClick={onCreateRoom} disabled={!selectedDeckId || !socketConnected}>
@@ -119,6 +139,8 @@ function renderLobby(props: GameBoardProps) {
         {currentRoom ? (
           <p className="muted">
             Room <strong>{currentRoom.roomCode}</strong> | Players {currentRoom.players.length}/{currentRoom.maxPlayers}
+            <br />
+            Host mode: <strong>{currentRoom.hostMode === "manage" ? "Host Only" : "Host + Play"}</strong>
             <br />
             {currentRoom.players
               .map(
@@ -213,6 +235,7 @@ function renderTabletop(props: GameBoardProps) {
         <div className="tabletop-grid poker-seats">
           {Array.from({ length: currentRoom?.maxPlayers ?? 6 }, (_, index) => {
             const player = currentRoom?.players[index];
+            const playerCharacter = CHARACTER_CLASSES.find((entry) => entry.id === player?.characterId);
             const activePlayerId = battle?.activePlayerId ?? activeMatchState?.activePlayerId;
             const isActive = activePlayerId && player?.userId === activePlayerId;
             return (
@@ -231,7 +254,17 @@ function renderTabletop(props: GameBoardProps) {
                 ) : (
                   <strong>Open Slot</strong>
                 )}
-                <span>{player ? player.characterId : "Waiting"}</span>
+                {player && playerCharacter ? (
+                  <div className="seat-character">
+                    <img src={playerCharacter.sprite} alt={playerCharacter.name} loading="lazy" />
+                    <div className="seat-character-text">
+                      <strong>{playerCharacter.name}</strong>
+                      <span>{playerCharacter.tag}</span>
+                    </div>
+                  </div>
+                ) : (
+                  <span>{player ? player.characterId : "Waiting"}</span>
+                )}
                 <span>Cards: {player ? player.handCount : 0} | Deck: {player ? player.deckCount : 0}</span>
                 <span>
                   Mana: {player ? player.mana : 0}/{player ? player.maxMana : 0}

@@ -63,6 +63,7 @@ export function App() {
   const [activeMatchState, setActiveMatchState] = useState<MatchState | null>(null);
   const [roomCodeInput, setRoomCodeInput] = useState("");
   const [roomMaxPlayers, setRoomMaxPlayers] = useState(4);
+  const [hostMode, setHostMode] = useState<"play" | "manage">("play");
   const [selectedCharacterId, setSelectedCharacterId] = useState<string>(CHARACTER_CLASSES[0].id);
   const [currentRoom, setCurrentRoom] = useState<RoomState | null>(null);
   const [privateHand, setPrivateHand] = useState<RoomCard[]>([]);
@@ -380,6 +381,7 @@ export function App() {
     socketRef.current.emit("room_create", {
       deckId: selectedDeckId,
       characterId: selectedCharacterId,
+      hostMode,
       maxPlayers: roomMaxPlayers
     });
   }
@@ -545,6 +547,7 @@ export function App() {
               selectedDeckId={selectedDeckId}
               roomCodeInput={roomCodeInput}
               roomMaxPlayers={roomMaxPlayers}
+              hostMode={hostMode}
               selectedCharacterId={selectedCharacterId}
               tabletopMode={tabletopMode}
               currentRoom={currentRoom}
@@ -555,6 +558,7 @@ export function App() {
               onDeckChange={setSelectedDeckId}
               onRoomCodeInput={(value) => setRoomCodeInput(value.toUpperCase())}
               onRoomMaxPlayersChange={setRoomMaxPlayers}
+              onHostModeChange={setHostMode}
               onCharacterChange={setSelectedCharacterId}
               onCreateRoom={handleCreateRoom}
               onJoinRoom={handleJoinRoom}
