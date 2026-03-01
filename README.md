@@ -76,6 +76,13 @@ Deck rules in this MVP:
 - Strong password policy enforced in backend and frontend for register/reset:
   - 8+ chars, uppercase, lowercase, number, symbol.
 
+## Phase 2 multiplayer rooms (completed)
+- Added realtime room lobby flow for `2-6` players:
+  - `room_create`, `room_join`, `room_leave`, `room_ready`, `room_start`
+  - room lifecycle events: `room_created`, `room_state`, `room_started`, `room_left`
+- Added room payload validation in backend.
+- Frontend dashboard now includes create/join room controls with ready/start actions.
+
 ## Quick start
 1. Use MongoDB Atlas and set backend env:
    - Copy `apps/backend/.env.example` to `apps/backend/.env`

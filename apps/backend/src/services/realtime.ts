@@ -3,7 +3,14 @@ import type { Server, Socket } from "socket.io";
 import { verifyAuthToken } from "../utils.auth.js";
 import { DeckModel } from "../models/Deck.js";
 import { MatchModel } from "../models/Match.js";
-import { matchActionPayloadSchema, queueJoinPayloadSchema } from "./realtime.validation.js";
+import {
+  matchActionPayloadSchema,
+  queueJoinPayloadSchema,
+  roomCodePayloadSchema,
+  roomCreatePayloadSchema,
+  roomJoinPayloadSchema,
+  roomReadyPayloadSchema
+} from "./realtime.validation.js";
 
 type MatchmakingQueueEntry = {
   userId: string;
@@ -26,16 +33,35 @@ type ActiveMatchState = {
   turnDeadlineAt: string;
 };
 
+type RoomPlayer = {
+  userId: string;
+  deckId: string;
+  ready: boolean;
+  joinedAt: string;
+};
+
+type RoomState = {
+  roomCode: string;
+  hostUserId: string;
+  maxPlayers: number;
+  status: "open" | "in_game";
+  createdAt: string;
+  players: RoomPlayer[];
+};
+
 const TURN_DURATION_MS = 45_000;
 const QUEUE_ACTION_COOLDOWN_MS = 1_500;
 const MATCH_ACTION_COOLDOWN_MS = 250;
+const ROOM_ACTION_COOLDOWN_MS = 350;
 
 const queue: MatchmakingQueueEntry[] = [];
 const socketToUser = new Map<string, string>();
 const userToSockets = new Map<string, Set<string>>();
 const activeMatches = new Map<string, ActiveMatchState>();
+const activeRooms = new Map<string, RoomState>();
 const lastQueueActionAtByUser = new Map<string, number>();
 const lastMatchActionAtByUser = new Map<string, number>();
+const lastRoomActionAtByUser = new Map<string, number>();
 
 function isOnCooldown(store: Map<string, number>, key: string, cooldownMs: number): boolean {
   const now = Date.now();
@@ -119,6 +145,78 @@ function buildPublicMatchState(match: ActiveMatchState) {
     player2Mana: match.player2Mana,
     turnDeadlineAt: match.turnDeadlineAt
   };
+}
+
+function normalizeRoomCode(value: string): string {
+  return value.trim().toUpperCase();
+}
+
+function makeRoomCode(): string {
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let code = "";
+  for (let i = 0; i < 6; i += 1) {
+    code += alphabet[Math.floor(Math.random() * alphabet.length)];
+  }
+  return code;
+}
+
+function generateUniqueRoomCode(): string {
+  for (let i = 0; i < 15; i += 1) {
+    const code = makeRoomCode();
+    if (!activeRooms.has(code)) {
+      return code;
+    }
+  }
+
+  throw new Error("Unable to allocate room code");
+}
+
+function findRoomByUserId(userId: string): RoomState | null {
+  for (const room of activeRooms.values()) {
+    if (room.players.some((player) => player.userId === userId)) {
+      return room;
+    }
+  }
+  return null;
+}
+
+function toRoomPublicState(room: RoomState) {
+  return {
+    roomCode: room.roomCode,
+    hostUserId: room.hostUserId,
+    maxPlayers: room.maxPlayers,
+    status: room.status,
+    createdAt: room.createdAt,
+    players: room.players
+  };
+}
+
+function emitRoomState(io: Server, room: RoomState): void {
+  const payload = { room: toRoomPublicState(room) };
+  for (const player of room.players) {
+    emitToUser(io, player.userId, "room_state", payload);
+  }
+}
+
+function removeUserFromAllRooms(io: Server, userId: string): void {
+  for (const [code, room] of activeRooms.entries()) {
+    if (!room.players.some((player) => player.userId === userId)) {
+      continue;
+    }
+
+    room.players = room.players.filter((player) => player.userId !== userId);
+
+    if (room.hostUserId === userId && room.players.length > 0) {
+      room.hostUserId = room.players[0].userId;
+    }
+
+    if (room.players.length === 0) {
+      activeRooms.delete(code);
+      continue;
+    }
+
+    emitRoomState(io, room);
+  }
 }
 
 async function createMatch(io: Server, a: MatchmakingQueueEntry, b: MatchmakingQueueEntry): Promise<void> {
@@ -250,6 +348,219 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
     addUserSocket(userId, socket.id);
 
     socket.emit("realtime_ready", { userId });
+
+    socket.on("room_create", async (payload: unknown) => {
+      if (isOnCooldown(lastRoomActionAtByUser, userId, ROOM_ACTION_COOLDOWN_MS)) {
+        socket.emit("room_error", { message: "Too many room actions. Slow down." });
+        return;
+      }
+
+      const parsed = roomCreatePayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("room_error", { message: "Invalid room create payload." });
+        return;
+      }
+
+      const { deckId, maxPlayers } = parsed.data;
+
+      const deckOk = await loadAndValidateDeck(userId, deckId);
+      if (!deckOk) {
+        socket.emit("room_error", { message: "Deck not found for this user." });
+        return;
+      }
+
+      removeUserFromAllRooms(io, userId);
+
+      const roomCode = generateUniqueRoomCode();
+      const room: RoomState = {
+        roomCode,
+        hostUserId: userId,
+        maxPlayers,
+        status: "open",
+        createdAt: new Date().toISOString(),
+        players: [
+          {
+            userId,
+            deckId,
+            ready: true,
+            joinedAt: new Date().toISOString()
+          }
+        ]
+      };
+
+      activeRooms.set(roomCode, room);
+      emitRoomState(io, room);
+      socket.emit("room_created", { roomCode });
+    });
+
+    socket.on("room_join", async (payload: unknown) => {
+      if (isOnCooldown(lastRoomActionAtByUser, userId, ROOM_ACTION_COOLDOWN_MS)) {
+        socket.emit("room_error", { message: "Too many room actions. Slow down." });
+        return;
+      }
+
+      const parsed = roomJoinPayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("room_error", { message: "Invalid room join payload." });
+        return;
+      }
+
+      const roomCode = normalizeRoomCode(parsed.data.roomCode);
+      const { deckId } = parsed.data;
+      const room = activeRooms.get(roomCode);
+
+      if (!room) {
+        socket.emit("room_error", { message: "Room not found." });
+        return;
+      }
+
+      if (room.status !== "open") {
+        socket.emit("room_error", { message: "Room is already in game." });
+        return;
+      }
+
+      const deckOk = await loadAndValidateDeck(userId, deckId);
+      if (!deckOk) {
+        socket.emit("room_error", { message: "Deck not found for this user." });
+        return;
+      }
+
+      const existing = room.players.find((player) => player.userId === userId);
+      if (existing) {
+        existing.deckId = deckId;
+        existing.ready = true;
+        emitRoomState(io, room);
+        return;
+      }
+
+      if (room.players.length >= room.maxPlayers) {
+        socket.emit("room_error", { message: "Room is full." });
+        return;
+      }
+
+      removeUserFromAllRooms(io, userId);
+
+      room.players.push({
+        userId,
+        deckId,
+        ready: false,
+        joinedAt: new Date().toISOString()
+      });
+
+      emitRoomState(io, room);
+    });
+
+    socket.on("room_leave", (payload: unknown) => {
+      if (isOnCooldown(lastRoomActionAtByUser, userId, ROOM_ACTION_COOLDOWN_MS)) {
+        socket.emit("room_error", { message: "Too many room actions. Slow down." });
+        return;
+      }
+
+      const parsed = roomCodePayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("room_error", { message: "Invalid room leave payload." });
+        return;
+      }
+
+      const roomCode = normalizeRoomCode(parsed.data.roomCode);
+      const room = activeRooms.get(roomCode);
+      if (!room) {
+        socket.emit("room_error", { message: "Room not found." });
+        return;
+      }
+
+      room.players = room.players.filter((player) => player.userId !== userId);
+
+      if (room.hostUserId === userId && room.players.length > 0) {
+        room.hostUserId = room.players[0].userId;
+      }
+
+      if (room.players.length === 0) {
+        activeRooms.delete(roomCode);
+        socket.emit("room_left", { roomCode });
+        return;
+      }
+
+      emitRoomState(io, room);
+      socket.emit("room_left", { roomCode });
+    });
+
+    socket.on("room_ready", (payload: unknown) => {
+      if (isOnCooldown(lastRoomActionAtByUser, userId, ROOM_ACTION_COOLDOWN_MS)) {
+        socket.emit("room_error", { message: "Too many room actions. Slow down." });
+        return;
+      }
+
+      const parsed = roomReadyPayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("room_error", { message: "Invalid room ready payload." });
+        return;
+      }
+
+      const roomCode = normalizeRoomCode(parsed.data.roomCode);
+      const room = activeRooms.get(roomCode);
+      if (!room) {
+        socket.emit("room_error", { message: "Room not found." });
+        return;
+      }
+
+      const player = room.players.find((entry) => entry.userId === userId);
+      if (!player) {
+        socket.emit("room_error", { message: "User is not in this room." });
+        return;
+      }
+
+      player.ready = parsed.data.ready;
+      emitRoomState(io, room);
+    });
+
+    socket.on("room_start", (payload: unknown) => {
+      if (isOnCooldown(lastRoomActionAtByUser, userId, ROOM_ACTION_COOLDOWN_MS)) {
+        socket.emit("room_error", { message: "Too many room actions. Slow down." });
+        return;
+      }
+
+      const parsed = roomCodePayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("room_error", { message: "Invalid room start payload." });
+        return;
+      }
+
+      const roomCode = normalizeRoomCode(parsed.data.roomCode);
+      const room = activeRooms.get(roomCode);
+      if (!room) {
+        socket.emit("room_error", { message: "Room not found." });
+        return;
+      }
+
+      if (room.hostUserId !== userId) {
+        socket.emit("room_error", { message: "Only host can start the room." });
+        return;
+      }
+
+      if (room.players.length < 2) {
+        socket.emit("room_error", { message: "At least 2 players are required." });
+        return;
+      }
+
+      if (!room.players.every((player) => player.ready)) {
+        socket.emit("room_error", { message: "All players must be ready." });
+        return;
+      }
+
+      room.status = "in_game";
+      const order = [...room.players].sort(() => Math.random() - 0.5).map((player) => player.userId);
+
+      for (const player of room.players) {
+        emitToUser(io, player.userId, "room_started", {
+          roomCode,
+          playerOrder: order,
+          playerCount: room.players.length
+        });
+      }
+
+      emitRoomState(io, room);
+    });
 
     socket.on("queue_join", async (payload: { deckId?: string }) => {
       if (isOnCooldown(lastQueueActionAtByUser, userId, QUEUE_ACTION_COOLDOWN_MS)) {
@@ -426,10 +737,11 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       removeFromQueueBySocket(socket.id);
       removeUserSocket(socket.id);
       if (getUserSockets(userId).length === 0) {
+        removeUserFromAllRooms(io, userId);
         lastQueueActionAtByUser.delete(userId);
         lastMatchActionAtByUser.delete(userId);
+        lastRoomActionAtByUser.delete(userId);
       }
     });
   });
 }
-

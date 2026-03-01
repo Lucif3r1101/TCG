@@ -44,6 +44,22 @@ type MatchFoundPayload = MatchState & {
   opponent: string;
 };
 
+type RoomPlayer = {
+  userId: string;
+  deckId: string;
+  ready: boolean;
+  joinedAt: string;
+};
+
+type RoomState = {
+  roomCode: string;
+  hostUserId: string;
+  maxPlayers: number;
+  status: "open" | "in_game";
+  createdAt: string;
+  players: RoomPlayer[];
+};
+
 const TOKEN_KEY = "tcg_auth_token";
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL ?? API_URL;
@@ -103,10 +119,14 @@ export function App() {
   const [successMessage, setSuccessMessage] = useState("");
   const [socketConnected, setSocketConnected] = useState(false);
   const [activeMatchState, setActiveMatchState] = useState<MatchState | null>(null);
+  const [roomCodeInput, setRoomCodeInput] = useState("");
+  const [roomMaxPlayers, setRoomMaxPlayers] = useState(4);
+  const [currentRoom, setCurrentRoom] = useState<RoomState | null>(null);
   const [eventLog, setEventLog] = useState<string[]>([]);
 
   const socketRef = useRef<Socket | null>(null);
   const currentUserId = currentUser?.id ?? "";
+  const meInRoom = currentRoom?.players.find((player) => player.userId === currentUserId) ?? null;
 
   const canSubmit = useMemo(() => {
     if (!email) {
@@ -137,7 +157,7 @@ export function App() {
   }, [mode, email, password, confirmPassword, username, resetTokenInput]);
 
   function appendLog(message: string): void {
-    setEventLog((prev) => [`${new Date().toLocaleTimeString()} ${message}`, ...prev].slice(0, 24));
+    setEventLog((prev) => [`${new Date().toLocaleTimeString()} ${message}`, ...prev].slice(0, 30));
   }
 
   function clearMessages(): void {
@@ -169,6 +189,7 @@ export function App() {
       setDecks([]);
       setSelectedDeckId("");
       setActiveMatchState(null);
+      setCurrentRoom(null);
       return;
     }
 
@@ -218,6 +239,7 @@ export function App() {
     socket.on("queue_joined", () => appendLog("joined queue"));
     socket.on("queue_left", () => appendLog("left queue"));
     socket.on("queue_error", (payload: { message: string }) => appendLog(`queue error: ${payload.message}`));
+    socket.on("room_error", (payload: { message: string }) => appendLog(`room error: ${payload.message}`));
     socket.on("match_error", (payload: { message: string }) => appendLog(`match error: ${payload.message}`));
 
     socket.on("match_found", (payload: MatchFoundPayload) => {
@@ -235,12 +257,34 @@ export function App() {
       appendLog(`match completed, winner ${payload.winnerId}`);
     });
 
+    socket.on("room_created", (payload: { roomCode: string }) => {
+      setRoomCodeInput(payload.roomCode);
+      appendLog(`room created: ${payload.roomCode}`);
+    });
+
+    socket.on("room_state", (payload: { room: RoomState }) => {
+      setCurrentRoom(payload.room);
+      setRoomCodeInput(payload.room.roomCode);
+      appendLog(`room state: ${payload.room.roomCode} (${payload.room.players.length}/${payload.room.maxPlayers})`);
+    });
+
+    socket.on("room_left", (payload: { roomCode: string }) => {
+      if (currentRoom?.roomCode === payload.roomCode) {
+        setCurrentRoom(null);
+      }
+      appendLog(`room left: ${payload.roomCode}`);
+    });
+
+    socket.on("room_started", (payload: { roomCode: string; playerCount: number }) => {
+      appendLog(`room started: ${payload.roomCode} (${payload.playerCount} players)`);
+    });
+
     return () => {
       socket.disconnect();
       socketRef.current = null;
       setSocketConnected(false);
     };
-  }, [token, currentUserId]);
+  }, [token, currentUserId, currentRoom?.roomCode]);
 
   useEffect(() => {
     if (!activeMatchState?.matchId || !socketConnected) {
@@ -318,6 +362,7 @@ export function App() {
     setToken("");
     setCurrentUser(null);
     setActiveMatchState(null);
+    setCurrentRoom(null);
     setEventLog([]);
     clearMessages();
   }
@@ -330,14 +375,49 @@ export function App() {
     socketRef.current.emit("queue_join", { deckId: selectedDeckId });
   }
 
+  function handleCreateRoom() {
+    if (!socketRef.current || !selectedDeckId) {
+      return;
+    }
+    socketRef.current.emit("room_create", { deckId: selectedDeckId, maxPlayers: roomMaxPlayers });
+  }
+
+  function handleJoinRoom() {
+    if (!socketRef.current || !selectedDeckId || !roomCodeInput) {
+      return;
+    }
+    socketRef.current.emit("room_join", { roomCode: roomCodeInput, deckId: selectedDeckId });
+  }
+
+  function handleLeaveRoom() {
+    if (!socketRef.current || !currentRoom?.roomCode) {
+      return;
+    }
+    socketRef.current.emit("room_leave", { roomCode: currentRoom.roomCode });
+  }
+
+  function handleToggleReady() {
+    if (!socketRef.current || !currentRoom?.roomCode || !meInRoom) {
+      return;
+    }
+    socketRef.current.emit("room_ready", { roomCode: currentRoom.roomCode, ready: !meInRoom.ready });
+  }
+
+  function handleStartRoom() {
+    if (!socketRef.current || !currentRoom?.roomCode) {
+      return;
+    }
+    socketRef.current.emit("room_start", { roomCode: currentRoom.roomCode });
+  }
+
   return (
     <div className="page">
       <section className="hero">
         <div className="hero-content">
           <h1>Chronicles of the Rift</h1>
           <p>
-            Build your deck, forge alliances, and survive tactical battles across fractured realms. Phase 1 now includes
-            complete auth recovery flow and stricter password rules.
+            Build your deck, forge alliances, and survive tactical battles across fractured realms. Now with room-based
+            multiplayer lobbies for 2-6 players.
           </p>
         </div>
       </section>
@@ -347,16 +427,44 @@ export function App() {
           {!currentUser ? (
             <>
               <div className="tabs">
-                <button className={`tab ${mode === "register" ? "active" : ""}`} type="button" onClick={() => { clearMessages(); setMode("register"); }}>
+                <button
+                  className={`tab ${mode === "register" ? "active" : ""}`}
+                  type="button"
+                  onClick={() => {
+                    clearMessages();
+                    setMode("register");
+                  }}
+                >
                   Register
                 </button>
-                <button className={`tab ${mode === "login" ? "active" : ""}`} type="button" onClick={() => { clearMessages(); setMode("login"); }}>
+                <button
+                  className={`tab ${mode === "login" ? "active" : ""}`}
+                  type="button"
+                  onClick={() => {
+                    clearMessages();
+                    setMode("login");
+                  }}
+                >
                   Login
                 </button>
-                <button className={`tab ${mode === "forgot" ? "active" : ""}`} type="button" onClick={() => { clearMessages(); setMode("forgot"); }}>
+                <button
+                  className={`tab ${mode === "forgot" ? "active" : ""}`}
+                  type="button"
+                  onClick={() => {
+                    clearMessages();
+                    setMode("forgot");
+                  }}
+                >
                   Forgot
                 </button>
-                <button className={`tab ${mode === "reset" ? "active" : ""}`} type="button" onClick={() => { clearMessages(); setMode("reset"); }}>
+                <button
+                  className={`tab ${mode === "reset" ? "active" : ""}`}
+                  type="button"
+                  onClick={() => {
+                    clearMessages();
+                    setMode("reset");
+                  }}
+                >
                   Reset
                 </button>
               </div>
@@ -391,13 +499,7 @@ export function App() {
                 {mode === "register" || mode === "reset" ? (
                   <label className="label">
                     Confirm Password
-                    <input
-                      className="input"
-                      type="password"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      required
-                    />
+                    <input className="input" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
                   </label>
                 ) : null}
 
@@ -409,7 +511,15 @@ export function App() {
                 {successMessage ? <p className="good">{successMessage}</p> : null}
 
                 <button className="button primary" type="submit" disabled={isLoading || !canSubmit}>
-                  {isLoading ? "Working..." : mode === "forgot" ? "Send Reset" : mode === "reset" ? "Reset Password" : mode === "register" ? "Create Account" : "Sign In"}
+                  {isLoading
+                    ? "Working..."
+                    : mode === "forgot"
+                    ? "Send Reset"
+                    : mode === "reset"
+                    ? "Reset Password"
+                    : mode === "register"
+                    ? "Create Account"
+                    : "Sign In"}
                 </button>
               </form>
             </>
@@ -458,6 +568,57 @@ export function App() {
                 <button className="button" type="button" onClick={handleLogout}>
                   Logout
                 </button>
+              </div>
+
+              <div className="grid">
+                <h3 style={{ margin: 0 }}>Rooms (2-6 players)</h3>
+                <div className="row">
+                  <input
+                    className="input"
+                    placeholder="Room Code"
+                    value={roomCodeInput}
+                    onChange={(e) => setRoomCodeInput(e.target.value.toUpperCase())}
+                  />
+                  <select className="select" value={roomMaxPlayers} onChange={(e) => setRoomMaxPlayers(Number(e.target.value))}>
+                    <option value={2}>2 Players</option>
+                    <option value={3}>3 Players</option>
+                    <option value={4}>4 Players</option>
+                    <option value={5}>5 Players</option>
+                    <option value={6}>6 Players</option>
+                  </select>
+                </div>
+                <div className="row">
+                  <button className="button primary" type="button" onClick={handleCreateRoom} disabled={!selectedDeckId || !socketConnected}>
+                    Create Room
+                  </button>
+                  <button className="button" type="button" onClick={handleJoinRoom} disabled={!selectedDeckId || !roomCodeInput || !socketConnected}>
+                    Join Room
+                  </button>
+                  <button className="button" type="button" onClick={handleLeaveRoom} disabled={!currentRoom}>
+                    Leave Room
+                  </button>
+                  <button className="button" type="button" onClick={handleToggleReady} disabled={!currentRoom || !meInRoom}>
+                    {meInRoom?.ready ? "Unready" : "Ready"}
+                  </button>
+                  <button
+                    className="button"
+                    type="button"
+                    onClick={handleStartRoom}
+                    disabled={!currentRoom || currentRoom.hostUserId !== currentUserId}
+                  >
+                    Start Room
+                  </button>
+                </div>
+                {currentRoom ? (
+                  <p className="muted">
+                    Room <strong>{currentRoom.roomCode}</strong> | Host {currentRoom.hostUserId} | Players {currentRoom.players.length}/
+                    {currentRoom.maxPlayers}
+                    <br />
+                    {currentRoom.players.map((player) => `${player.userId}${player.ready ? " (ready)" : " (not ready)"}`).join(" | ")}
+                  </p>
+                ) : (
+                  <p className="muted">No active room.</p>
+                )}
               </div>
 
               <div className="log">
