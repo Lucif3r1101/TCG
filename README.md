@@ -1,20 +1,54 @@
 # TCG Monorepo
 
-Day 1 scaffold for a web-based TCG project.
+Day 1 + Day 2 + Day 3 scaffold for a web-based TCG project.
 
 ## Apps
 - `apps/frontend`: React + Vite TypeScript client
 - `apps/backend`: Express + Socket.IO TypeScript server
 - `packages/shared`: Shared types/utilities
 
+## Day 2 scope (completed)
+- MongoDB connection with Mongoose
+- Auth API endpoints
+  - `POST /auth/register`
+  - `POST /auth/login`
+  - `GET /auth/me` (Bearer token)
+- JWT auth middleware
+- Frontend register/login screen
+
+## Day 3 scope (completed)
+- Base card seed on backend startup
+- Starter card collection + starter deck on new user registration
+- Public cards API
+  - `GET /cards`
+- Protected deck APIs
+  - `GET /decks`
+  - `GET /decks/:deckId`
+  - `POST /decks`
+  - `PUT /decks/:deckId`
+
+Deck rules in this MVP:
+- Deck size: exactly 20 cards
+- Max copies per card: 2
+
 ## Quick start
-1. Install dependencies
+1. Use MongoDB Atlas and set backend env:
+   - Copy `apps/backend/.env.example` to `apps/backend/.env`
+   - Fill `MONGODB_URI` and `JWT_SECRET`
+2. Set frontend env:
+   - Copy `apps/frontend/.env.example` to `apps/frontend/.env`
+3. Install dependencies:
    - `npm install`
-2. Run both frontend and backend
+4. Run both apps:
    - `npm run dev`
 
-## Next steps (Day 2+)
-- Add auth (Supabase or JWT + DB)
-- Add card/deck schema and persistence
-- Add real-time match state
-- Add deployment config
+## Quick API test flow
+1. Register user: `POST /auth/register`
+2. Copy token from response
+3. List cards: `GET /cards`
+4. List your decks: `GET /decks` with `Authorization: Bearer <token>`
+
+## Notes
+- Backend default URL: `http://localhost:4000`
+- Frontend default URL: `http://localhost:5173`
+- Auth token expiration: 7 days

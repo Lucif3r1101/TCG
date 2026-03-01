@@ -1,4 +1,1 @@
-export type UserProfile = {
-  id: string;
-  username: string;
-};
+export * from "./auth";
