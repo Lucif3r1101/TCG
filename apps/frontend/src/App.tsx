@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+﻿import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import "./App.css";
 
@@ -399,105 +399,116 @@ export function App() {
       <section className="panel">
         <div className="card">
           {!currentUser ? (
-            <>
-              <div className="tabs">
-                <button
-                  className={`tab ${mode === "register" ? "active" : ""}`}
-                  type="button"
-                  onClick={() => {
-                    clearMessages();
-                    setMode("register");
-                  }}
-                >
-                  Register
-                </button>
-                <button
-                  className={`tab ${mode === "login" ? "active" : ""}`}
-                  type="button"
-                  onClick={() => {
-                    clearMessages();
-                    setMode("login");
-                  }}
-                >
-                  Login
-                </button>
-              </div>
+            <div className="auth-shell">
+              <aside className="auth-showcase">
+                <p className="auth-kicker">RIFT SEASON 2026</p>
+                <h2>{mode === "register" ? "Create Your Battler ID" : "Welcome Back, Challenger"}</h2>
+                <p>
+                  Enter the arena, assemble your cards, and battle through tactical multiplayer rooms with live turn-based
+                  action.
+                </p>
+              </aside>
 
-              <form className="form" onSubmit={handleSubmit}>
-                <label className="label">
-                  Email
-                  <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </label>
+              <section className="auth-panel">
+                <div className="tabs">
+                  <button
+                    className={`tab ${mode === "register" ? "active" : ""}`}
+                    type="button"
+                    onClick={() => {
+                      clearMessages();
+                      setMode("register");
+                    }}
+                  >
+                    Sign Up
+                  </button>
+                  <button
+                    className={`tab ${mode === "login" ? "active" : ""}`}
+                    type="button"
+                    onClick={() => {
+                      clearMessages();
+                      setMode("login");
+                    }}
+                  >
+                    Sign In
+                  </button>
+                </div>
 
-                {mode === "register" ? (
+                <form className="form" onSubmit={handleSubmit}>
                   <label className="label">
-                    Username
-                    <input className="input" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                    Email
+                    <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                   </label>
-                ) : null}
 
-                <label className="label">
-                  Password
-                  <div className="input-wrap">
-                    <input
-                      className="input"
-                      type={passwordVisible ? "text" : "password"}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                    <button className="peek" type="button" onClick={() => setPasswordVisible((v) => !v)}>
-                      {passwordVisible ? "Hide" : "Show"}
-                    </button>
-                  </div>
-                </label>
+                  {mode === "register" ? (
+                    <label className="label">
+                      Username
+                      <input className="input" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                    </label>
+                  ) : null}
 
-                {mode === "register" ? (
                   <label className="label">
-                    Confirm Password
+                    Password
                     <div className="input-wrap">
                       <input
                         className="input"
-                        type={confirmPasswordVisible ? "text" : "password"}
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        type={passwordVisible ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                       />
-                      <button className="peek" type="button" onClick={() => setConfirmPasswordVisible((v) => !v)}>
-                        {confirmPasswordVisible ? "Hide" : "Show"}
+                      <button className="peek" type="button" onClick={() => setPasswordVisible((v) => !v)}>
+                        {passwordVisible ? "Hide" : "Show"}
                       </button>
                     </div>
                   </label>
-                ) : null}
 
-                {mode === "register" ? (
-                  <>
-                    <p className="muted">Password must include uppercase, lowercase, number, and symbol.</p>
-                    <label className="muted checkbox">
-                      <input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />
-                      <span>
-                        I agree to the{" "}
-                        <button type="button" className="link" onClick={() => setLegalView("terms")}>
-                          Terms
-                        </button>{" "}
-                        and{" "}
-                        <button type="button" className="link" onClick={() => setLegalView("privacy")}>
-                          Privacy Policy
+                  {mode === "register" ? (
+                    <label className="label">
+                      Confirm Password
+                      <div className="input-wrap">
+                        <input
+                          className="input"
+                          type={confirmPasswordVisible ? "text" : "password"}
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          required
+                        />
+                        <button className="peek" type="button" onClick={() => setConfirmPasswordVisible((v) => !v)}>
+                          {confirmPasswordVisible ? "Hide" : "Show"}
                         </button>
-                        .
-                      </span>
+                      </div>
                     </label>
-                  </>
-                ) : null}
+                  ) : null}
 
-                {errorMessage ? <p className="error">{errorMessage}</p> : null}
-                {successMessage ? <p className="good">{successMessage}</p> : null}
+                  {mode === "register" ? (
+                    <>
+                      <p className="muted">Password must include uppercase, lowercase, number, and symbol.</p>
+                      <label className="muted checkbox">
+                        <input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />
+                        <span>
+                          I agree to the{" "}
+                          <button type="button" className="link" onClick={() => setLegalView("terms")}>
+                            Terms
+                          </button>{" "}
+                          and{" "}
+                          <button type="button" className="link" onClick={() => setLegalView("privacy")}>
+                            Privacy Policy
+                          </button>
+                          .
+                        </span>
+                      </label>
+                    </>
+                  ) : null}
 
-                <button className="button primary" type="submit" disabled={isLoading || !canSubmit}>
-                  {isLoading ? "Working..." : mode === "register" ? "Create Account" : "Sign In"}
-                </button>
-              </form>
-            </>
+                  {errorMessage ? <p className="error">{errorMessage}</p> : null}
+                  {successMessage ? <p className="good">{successMessage}</p> : null}
+
+                  <button className="button primary" type="submit" disabled={isLoading || !canSubmit}>
+                    {isLoading ? "Working..." : mode === "register" ? "Create Account" : "Sign In"}
+                  </button>
+                </form>
+              </section>
+            </div>
           ) : (
             <div className="grid">
               <div className="meta">
@@ -605,7 +616,7 @@ export function App() {
             </div>
           )}
 
-          <p className="muted footer-note">� 2026 Chronicles of the Rift. All rights reserved.</p>
+          <p className="muted footer-note">© 2026 Chronicles of the Rift. All rights reserved.</p>
         </div>
       </section>
 
@@ -633,3 +644,4 @@ export function App() {
     </div>
   );
 }
+
