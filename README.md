@@ -70,6 +70,12 @@ Deck rules in this MVP:
   - `docs/deploy.md` with Render + Vercel launch steps
 - Env templates updated for production-like setup.
 
+## Phase 1 UX/Auth upgrade (completed)
+- Redesigned frontend auth/dashboard shell with improved responsive UI.
+- Added `POST /auth/forgot-password` and `POST /auth/reset-password`.
+- Strong password policy enforced in backend and frontend for register/reset:
+  - 8+ chars, uppercase, lowercase, number, symbol.
+
 ## Quick start
 1. Use MongoDB Atlas and set backend env:
    - Copy `apps/backend/.env.example` to `apps/backend/.env`

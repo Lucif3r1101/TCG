@@ -1,21 +1,33 @@
 import type { Request, Response } from "express";
 import { Router } from "express";
 import bcrypt from "bcryptjs";
+import crypto from "node:crypto";
 import { z } from "zod";
 import { UserModel } from "../models/User.js";
 import { signAuthToken } from "../utils.auth.js";
 import { requireAuth } from "../middleware/auth.js";
 import { grantStarterSetForUser } from "../services/starterSetup.js";
 
+const PASSWORD_RULE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,72}$/;
+
 const registerSchema = z.object({
   email: z.string().email(),
   username: z.string().min(3).max(24).regex(/^[a-zA-Z0-9_]+$/),
-  password: z.string().min(8).max(72)
+  password: z.string().regex(PASSWORD_RULE)
 });
 
 const loginSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8).max(72)
+});
+
+const forgotPasswordSchema = z.object({
+  email: z.string().email()
+});
+
+const resetPasswordSchema = z.object({
+  token: z.string().min(20),
+  password: z.string().regex(PASSWORD_RULE)
 });
 
 export function buildAuthRouter(jwtSecret: string): Router {
@@ -94,6 +106,68 @@ export function buildAuthRouter(jwtSecret: string): Router {
         username: user.username
       }
     });
+  });
+
+  router.post("/forgot-password", async (req: Request, res: Response) => {
+    const parsed = forgotPasswordSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res.status(400).json({ message: "Invalid forgot password payload." });
+      return;
+    }
+
+    const { email } = parsed.data;
+    const user = await UserModel.findOne({ email: email.toLowerCase() });
+
+    if (!user) {
+      res.json({ message: "If the email is registered, a reset link has been generated." });
+      return;
+    }
+
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const tokenHash = crypto.createHash("sha256").update(resetToken).digest("hex");
+    const expiresAt = new Date(Date.now() + 1000 * 60 * 30);
+
+    user.passwordResetTokenHash = tokenHash;
+    user.passwordResetExpiresAt = expiresAt;
+    await user.save();
+
+    const response: Record<string, string> = {
+      message: "If the email is registered, a reset link has been generated."
+    };
+
+    if (process.env.NODE_ENV !== "production") {
+      response.resetToken = resetToken;
+    }
+
+    res.json(response);
+  });
+
+  router.post("/reset-password", async (req: Request, res: Response) => {
+    const parsed = resetPasswordSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res.status(400).json({ message: "Invalid reset password payload." });
+      return;
+    }
+
+    const { token, password } = parsed.data;
+    const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
+
+    const user = await UserModel.findOne({
+      passwordResetTokenHash: tokenHash,
+      passwordResetExpiresAt: { $gt: new Date() }
+    });
+
+    if (!user) {
+      res.status(400).json({ message: "Reset token is invalid or expired." });
+      return;
+    }
+
+    user.passwordHash = await bcrypt.hash(password, 10);
+    user.passwordResetTokenHash = null;
+    user.passwordResetExpiresAt = null;
+    await user.save();
+
+    res.json({ message: "Password updated successfully." });
   });
 
   router.get("/me", requireAuth(jwtSecret), async (req: Request, res: Response) => {
