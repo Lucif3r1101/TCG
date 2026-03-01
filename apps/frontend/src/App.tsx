@@ -399,6 +399,18 @@ export function App() {
     });
   }
 
+  function handleJoinAsHostPlayer() {
+    if (!socketRef.current || !selectedDeckId || !currentRoom?.roomCode) {
+      return;
+    }
+    playSfx("click");
+    socketRef.current.emit("room_join", {
+      roomCode: currentRoom.roomCode,
+      deckId: selectedDeckId,
+      characterId: selectedCharacterId
+    });
+  }
+
   function handleLeaveRoom() {
     if (!socketRef.current || !currentRoom?.roomCode) {
       return;
@@ -477,6 +489,7 @@ export function App() {
       <TopNav
         soundEnabled={soundEnabled}
         showLogout={Boolean(currentUser)}
+        username={currentUser?.username}
         onOpenGuide={() => {
           playSfx("click");
           setGuideSection("how");
@@ -555,6 +568,7 @@ export function App() {
               currentRoom={currentRoom}
               privateHand={privateHand}
               meReady={Boolean(meInRoom?.ready)}
+              isInRoom={Boolean(meInRoom)}
               isRoomHost={isRoomHost}
               eventLog={eventLog}
               onDeckChange={setSelectedDeckId}
@@ -565,6 +579,7 @@ export function App() {
               onCharacterChange={setSelectedCharacterId}
               onCreateRoom={handleCreateRoom}
               onJoinRoom={handleJoinRoom}
+              onJoinAsHostPlayer={handleJoinAsHostPlayer}
               onLeaveRoom={handleLeaveRoom}
               onToggleReady={handleToggleReady}
               onStartRoom={handleStartRoom}

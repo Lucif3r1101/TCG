@@ -18,6 +18,7 @@ type GameBoardProps = {
   currentRoom: RoomState | null;
   privateHand: RoomCard[];
   meReady: boolean;
+  isInRoom: boolean;
   isRoomHost: boolean;
   eventLog: string[];
   onDeckChange: (value: string) => void;
@@ -28,6 +29,7 @@ type GameBoardProps = {
   onAnimationPresetChange: (value: "subtle" | "balanced" | "cinematic") => void;
   onCreateRoom: () => void;
   onJoinRoom: () => void;
+  onJoinAsHostPlayer: () => void;
   onLeaveRoom: () => void;
   onToggleReady: () => void;
   onStartRoom: () => void;
@@ -53,6 +55,7 @@ function renderLobby(props: GameBoardProps) {
     animationPreset,
     currentRoom,
     meReady,
+    isInRoom,
     isRoomHost,
     eventLog,
     onDeckChange,
@@ -63,6 +66,7 @@ function renderLobby(props: GameBoardProps) {
     onAnimationPresetChange,
     onCreateRoom,
     onJoinRoom,
+    onJoinAsHostPlayer,
     onLeaveRoom,
     onToggleReady,
     onStartRoom,
@@ -219,8 +223,10 @@ function TabletopBoard(props: GameBoardProps) {
     currentRoom,
     privateHand,
     meReady,
+    isInRoom,
     isRoomHost,
     onToggleReady,
+    onJoinAsHostPlayer,
     onStartRoom,
     onLeaveRoom,
     onEndTurn,
@@ -351,9 +357,15 @@ function TabletopBoard(props: GameBoardProps) {
         <div className="row">
           {currentRoom?.status === "open" ? (
             <>
-              <button className="button primary" type="button" onClick={onToggleReady}>
-                {meReady ? "Unready" : "Ready"}
-              </button>
+              {isInRoom ? (
+                <button className="button primary" type="button" onClick={onToggleReady}>
+                  {meReady ? "Unready" : "Ready"}
+                </button>
+              ) : (
+                <button className="button primary" type="button" onClick={onJoinAsHostPlayer}>
+                  Join as Player
+                </button>
+              )}
               <button className="button" type="button" onClick={onStartRoom} disabled={!isRoomHost}>
                 Start Room (Host)
               </button>
