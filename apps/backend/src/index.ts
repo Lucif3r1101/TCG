@@ -39,7 +39,7 @@ app.use(
         return;
       }
 
-      callback(new Error("CORS origin not allowed"));
+      callback(null, false);
     }
   })
 );
@@ -65,7 +65,7 @@ const io = new Server(server, {
         return;
       }
 
-      callback(new Error("Socket CORS origin not allowed"));
+      callback(null, false);
     }
   }
 });
