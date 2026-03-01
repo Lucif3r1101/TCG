@@ -11,7 +11,18 @@ import { CHARACTER_CLASSES } from "./constants/game";
 import { DEFAULT_AVATAR_IDS, ONBOARDING_KEY, PASSWORD_RULE, SOCKET_URL, TOKEN_KEY } from "./constants/game";
 import { useAudioEngine } from "./hooks/useAudioEngine";
 import { callApi } from "./lib/api";
-import { ActiveMatchResponse, AuthMode, AuthResponse, AuthUser, DeckSummary, GuideSection, MatchFoundPayload, MatchState, RoomState } from "./types/game";
+import {
+  ActiveMatchResponse,
+  AuthMode,
+  AuthResponse,
+  AuthUser,
+  DeckSummary,
+  GuideSection,
+  MatchFoundPayload,
+  MatchState,
+  RoomCard,
+  RoomState
+} from "./types/game";
 
 function validatePassword(password: string): string | null {
   if (!PASSWORD_RULE.test(password)) {
@@ -54,6 +65,7 @@ export function App() {
   const [roomMaxPlayers, setRoomMaxPlayers] = useState(4);
   const [selectedCharacterId, setSelectedCharacterId] = useState<string>(CHARACTER_CLASSES[0].id);
   const [currentRoom, setCurrentRoom] = useState<RoomState | null>(null);
+  const [privateHand, setPrivateHand] = useState<RoomCard[]>([]);
   const [tabletopMode, setTabletopMode] = useState(false);
   const [eventLog, setEventLog] = useState<string[]>([]);
   const [guideOpen, setGuideOpen] = useState(false);
@@ -144,6 +156,7 @@ export function App() {
       setSelectedDeckId("");
       setActiveMatchState(null);
       setCurrentRoom(null);
+      setPrivateHand([]);
       setTabletopMode(false);
       return;
     }
@@ -240,9 +253,13 @@ export function App() {
       setTabletopMode(payload.room.status === "in_game");
       appendLog(`room state: ${payload.room.roomCode} (${payload.room.players.length}/${payload.room.maxPlayers})`);
     });
+    socket.on("room_private_state", (payload: { hand: RoomCard[] }) => {
+      setPrivateHand(payload.hand ?? []);
+    });
     socket.on("room_left", (payload: { roomCode: string }) => {
       if (currentRoom?.roomCode === payload.roomCode) {
         setCurrentRoom(null);
+        setPrivateHand([]);
         setTabletopMode(false);
       }
       appendLog(`room left: ${payload.roomCode}`);
@@ -341,6 +358,7 @@ export function App() {
     setCurrentUser(null);
     setActiveMatchState(null);
     setCurrentRoom(null);
+    setPrivateHand([]);
     setTabletopMode(false);
     setEventLog([]);
     clearMessages();
@@ -384,6 +402,7 @@ export function App() {
     }
     playSfx("click");
     socketRef.current.emit("room_leave", { roomCode: currentRoom.roomCode });
+    setPrivateHand([]);
     setTabletopMode(false);
   }
 
@@ -528,6 +547,7 @@ export function App() {
               selectedCharacterId={selectedCharacterId}
               tabletopMode={tabletopMode}
               currentRoom={currentRoom}
+              privateHand={privateHand}
               meReady={Boolean(meInRoom?.ready)}
               isRoomHost={isRoomHost}
               eventLog={eventLog}
@@ -545,6 +565,12 @@ export function App() {
                 currentRoom?.status === "in_game"
                   ? socketRef.current?.emit("room_end_turn", { roomCode: currentRoom.roomCode })
                   : socketRef.current?.emit("match_end_turn", { matchId: activeMatchState?.matchId })
+              }
+              onDrawCard={() => (currentRoom ? socketRef.current?.emit("room_draw_card", { roomCode: currentRoom.roomCode }) : undefined)}
+              onPlayCard={(cardInstanceId, targetUserId) =>
+                currentRoom
+                  ? socketRef.current?.emit("room_play_card", { roomCode: currentRoom.roomCode, cardInstanceId, targetUserId })
+                  : undefined
               }
               onConcede={() => socketRef.current?.emit("match_concede", { matchId: activeMatchState?.matchId })}
               onTilt={applyTilt}

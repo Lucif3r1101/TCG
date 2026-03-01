@@ -1,6 +1,6 @@
 import { MouseEvent as ReactMouseEvent } from "react";
 import { CHARACTER_CLASSES } from "../constants/game";
-import { DeckSummary, MatchState, RoomState } from "../types/game";
+import { DeckSummary, MatchState, RoomCard, RoomState } from "../types/game";
 import { formatTimer } from "../lib/api";
 
 type GameBoardProps = {
@@ -13,6 +13,7 @@ type GameBoardProps = {
   roomMaxPlayers: number;
   tabletopMode: boolean;
   currentRoom: RoomState | null;
+  privateHand: RoomCard[];
   meReady: boolean;
   isRoomHost: boolean;
   eventLog: string[];
@@ -27,6 +28,8 @@ type GameBoardProps = {
   onStartRoom: () => void;
   onQueueJoin: () => void;
   onEndTurn: () => void;
+  onDrawCard: () => void;
+  onPlayCard: (cardInstanceId: string, targetUserId?: string) => void;
   onConcede: () => void;
   onTilt: (event: ReactMouseEvent<HTMLElement>) => void;
   onTiltReset: (event: ReactMouseEvent<HTMLElement>) => void;
@@ -159,9 +162,10 @@ function renderLobby(props: GameBoardProps) {
 }
 
 function renderTabletop(props: GameBoardProps) {
-  const { activeMatchState, currentRoom, onEndTurn, onConcede, onTilt, onTiltReset } = props;
+  const { activeMatchState, currentRoom, privateHand, onEndTurn, onDrawCard, onPlayCard, onConcede, onTilt, onTiltReset } = props;
   const battle = currentRoom?.battle;
   const timer = battle?.turnDeadlineAt ?? activeMatchState?.turnDeadlineAt;
+  const possibleTargets = (currentRoom?.players ?? []).filter((player) => player.health > 0);
 
   return (
     <div className="grid">
@@ -201,10 +205,47 @@ function renderTabletop(props: GameBoardProps) {
           <button className="button primary" type="button" onClick={onEndTurn}>
             End Turn
           </button>
+          <button className="button" type="button" onClick={onDrawCard}>
+            Draw Card
+          </button>
           <button className="button" type="button" onClick={onConcede} disabled={!activeMatchState?.matchId}>
             Concede 1v1 Match
           </button>
         </div>
+
+        <section className="grid">
+          <h4 style={{ margin: 0 }}>Your Hand</h4>
+          <div className="hand-zone">
+            {privateHand.length === 0 ? <p className="muted">No cards in hand.</p> : null}
+            {privateHand.map((card) => (
+              <article key={card.instanceId} className="hand-card" onMouseMove={onTilt} onMouseLeave={onTiltReset}>
+                <strong>{card.name}</strong>
+                <span className="muted">
+                  {card.type} | {card.rarity}
+                </span>
+                <span className="muted">Cost {card.cost}</span>
+                <p className="muted">{card.description}</p>
+                <div className="row">
+                  <button className="button" type="button" onClick={() => onPlayCard(card.instanceId)}>
+                    Play
+                  </button>
+                  {card.type === "spell"
+                    ? possibleTargets.map((target) => (
+                        <button
+                          key={`${card.instanceId}-${target.userId}`}
+                          className="button"
+                          type="button"
+                          onClick={() => onPlayCard(card.instanceId, target.userId)}
+                        >
+                          Cast on {target.userId.slice(0, 6)}
+                        </button>
+                      ))
+                    : null}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </section>
     </div>
   );

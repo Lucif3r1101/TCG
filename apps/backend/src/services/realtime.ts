@@ -3,12 +3,15 @@ import type { Server, Socket } from "socket.io";
 import { verifyAuthToken } from "../utils.auth.js";
 import { DeckModel } from "../models/Deck.js";
 import { MatchModel } from "../models/Match.js";
+import { ALL_CARD_BLUEPRINTS } from "../data/starterCards.js";
 import {
   matchActionPayloadSchema,
   queueJoinPayloadSchema,
   roomCodePayloadSchema,
   roomCreatePayloadSchema,
+  roomDrawCardPayloadSchema,
   roomJoinPayloadSchema,
+  roomPlayCardPayloadSchema,
   roomReadyPayloadSchema
 } from "./realtime.validation.js";
 
@@ -38,11 +41,30 @@ type RoomPlayer = {
   deckId: string;
   characterId: string;
   ready: boolean;
+  health: number;
   handCount: number;
   deckCount: number;
+  discardCount: number;
   mana: number;
   maxMana: number;
+  hand: RoomCard[];
+  deck: RoomCard[];
+  discard: RoomCard[];
+  board: RoomCard[];
   joinedAt: string;
+};
+
+type RoomCard = {
+  instanceId: string;
+  slug: string;
+  name: string;
+  description: string;
+  faction: string;
+  type: "unit" | "spell";
+  rarity: "common" | "rare" | "epic" | "legendary";
+  cost: number;
+  attack: number;
+  health: number;
 };
 
 type RoomBattleState = {
@@ -50,6 +72,7 @@ type RoomBattleState = {
   activePlayerId: string;
   playerOrder: string[];
   turnDeadlineAt: string;
+  winnerId: string | null;
 };
 
 type RoomState = {
@@ -201,8 +224,75 @@ function toRoomPublicState(room: RoomState) {
     status: room.status,
     createdAt: room.createdAt,
     battle: room.battle,
-    players: room.players
+    players: room.players.map((player) => ({
+      userId: player.userId,
+      deckId: player.deckId,
+      characterId: player.characterId,
+      ready: player.ready,
+      health: player.health,
+      handCount: player.handCount,
+      deckCount: player.deckCount,
+      discardCount: player.discardCount,
+      mana: player.mana,
+      maxMana: player.maxMana,
+      board: player.board
+    }))
   };
+}
+
+function toRoomPrivateState(room: RoomState, userId: string) {
+  const player = room.players.find((entry) => entry.userId === userId);
+  return {
+    roomCode: room.roomCode,
+    hand: player?.hand ?? [],
+    deckCount: player?.deckCount ?? 0,
+    discardCount: player?.discardCount ?? 0,
+    board: player?.board ?? []
+  };
+}
+
+function makeCardInstanceId(slug: string, index: number): string {
+  return `${slug}-${index}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function shuffleCards<T>(input: T[]): T[] {
+  const items = [...input];
+  for (let i = items.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  return items;
+}
+
+function buildFactionDeck(factionId: string): RoomCard[] {
+  const cards = ALL_CARD_BLUEPRINTS.filter((card) => card.faction === factionId).map((card, index) => ({
+    instanceId: makeCardInstanceId(card.slug, index + 1),
+    slug: card.slug,
+    name: card.name,
+    description: card.description,
+    faction: card.faction,
+    type: card.type,
+    rarity: card.rarity,
+    cost: card.cost,
+    attack: card.attack,
+    health: card.health
+  }));
+
+  return shuffleCards(cards);
+}
+
+function drawCardsForPlayer(player: RoomPlayer, count: number): void {
+  for (let i = 0; i < count; i += 1) {
+    const next = player.deck.shift();
+    if (!next) {
+      break;
+    }
+    player.hand.push(next);
+  }
+
+  player.handCount = player.hand.length;
+  player.deckCount = player.deck.length;
+  player.discardCount = player.discard.length;
 }
 
 function findRoomByCodeForActivePlayer(roomCode: string): RoomState | null {
@@ -230,10 +320,61 @@ function advanceRoomTurn(room: RoomState): void {
   if (nextPlayer) {
     nextPlayer.maxMana = Math.min(nextPlayer.maxMana + 1, 10);
     nextPlayer.mana = nextPlayer.maxMana;
-    if (nextPlayer.deckCount > 0) {
-      nextPlayer.deckCount -= 1;
-      nextPlayer.handCount += 1;
+    drawCardsForPlayer(nextPlayer, 1);
+  }
+}
+
+function setRoomWinnerIfResolved(room: RoomState): void {
+  if (!room.battle) {
+    return;
+  }
+
+  const alive = room.players.filter((player) => player.health > 0);
+  if (alive.length === 1) {
+    room.battle.winnerId = alive[0].userId;
+    room.status = "open";
+  }
+}
+
+function applySpellEffect(room: RoomState, caster: RoomPlayer, card: RoomCard, targetUserId?: string): void {
+  const opponents = room.players.filter((player) => player.userId !== caster.userId && player.health > 0);
+  const target =
+    (targetUserId ? room.players.find((player) => player.userId === targetUserId && player.health > 0) : null) ??
+    opponents[0] ??
+    null;
+
+  if (card.rarity === "common") {
+    if (target) {
+      target.health = Math.max(0, target.health - 2);
     }
+    return;
+  }
+
+  if (card.rarity === "rare") {
+    for (const player of opponents) {
+      player.mana = Math.max(0, player.mana - 1);
+      // Rare spell: reduce mana and increase card costs in opponent hand by 1 for this turn pressure.
+      player.hand = player.hand.map((entry) => ({ ...entry, cost: Math.min(10, entry.cost + 1) }));
+    }
+    return;
+  }
+
+  if (card.rarity === "epic") {
+    drawCardsForPlayer(caster, 2);
+    return;
+  }
+
+  if (target) {
+    target.health = Math.max(0, target.health - 4);
+  }
+  drawCardsForPlayer(caster, 1);
+}
+
+function applyUnitEffect(caster: RoomPlayer, card: RoomCard): void {
+  caster.board.push({ ...card });
+
+  if (card.rarity === "rare") {
+    caster.hand = caster.hand.map((entry, index) => (index === 0 ? { ...entry, cost: Math.max(0, entry.cost - 1) } : entry));
   }
 }
 
@@ -241,6 +382,7 @@ function emitRoomState(io: Server, room: RoomState): void {
   const payload = { room: toRoomPublicState(room) };
   for (const player of room.players) {
     emitToUser(io, player.userId, "room_state", payload);
+    emitToUser(io, player.userId, "room_private_state", toRoomPrivateState(room, player.userId));
   }
 }
 
@@ -489,10 +631,16 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
             deckId,
             characterId,
             ready: true,
+            health: 20,
             handCount: 0,
             deckCount: 0,
+            discardCount: 0,
             mana: 0,
             maxMana: 0,
+            hand: [],
+            deck: [],
+            discard: [],
+            board: [],
             joinedAt: new Date().toISOString()
           }
         ]
@@ -556,10 +704,16 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         deckId,
         characterId,
         ready: false,
+        health: 20,
         handCount: 0,
         deckCount: 0,
+        discardCount: 0,
         mana: 0,
         maxMana: 0,
+        hand: [],
+        deck: [],
+        discard: [],
+        board: [],
         joinedAt: new Date().toISOString()
       });
 
@@ -679,17 +833,29 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         turn: 1,
         activePlayerId,
         playerOrder: order,
-        turnDeadlineAt
+        turnDeadlineAt,
+        winnerId: null
       };
 
       room.players = room.players.map((player) => {
         const isActive = player.userId === activePlayerId;
-        return {
+        const deck = buildFactionDeck(player.characterId);
+        const nextPlayer: RoomPlayer = {
           ...player,
-          handCount: 5,
-          deckCount: 47,
+          health: 20,
+          hand: [],
+          deck,
+          discard: [],
+          board: [],
+          handCount: 0,
+          deckCount: deck.length,
+          discardCount: 0,
           maxMana: 1,
           mana: isActive ? 1 : 0
+        };
+        drawCardsForPlayer(nextPlayer, 5);
+        return {
+          ...nextPlayer
         };
       });
 
@@ -732,6 +898,105 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       }
 
       advanceRoomTurn(room);
+      setRoomWinnerIfResolved(room);
+      emitRoomState(io, room);
+    });
+
+    socket.on("room_draw_card", (payload: unknown) => {
+      if (isOnCooldown(lastRoomActionAtByUser, userId, ROOM_ACTION_COOLDOWN_MS)) {
+        socket.emit("room_error", { message: "Too many room actions. Slow down." });
+        return;
+      }
+
+      const parsed = roomDrawCardPayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("room_error", { message: "Invalid draw payload." });
+        return;
+      }
+
+      const roomCode = normalizeRoomCode(parsed.data.roomCode);
+      const room = findRoomByCodeForActivePlayer(roomCode);
+      if (!room || !room.battle) {
+        socket.emit("room_error", { message: "Active room game not found." });
+        return;
+      }
+
+      if (room.battle.activePlayerId !== userId) {
+        socket.emit("room_error", { message: "Not your turn." });
+        return;
+      }
+
+      const player = room.players.find((entry) => entry.userId === userId);
+      if (!player) {
+        socket.emit("room_error", { message: "Player not found in room." });
+        return;
+      }
+
+      if (player.deck.length === 0) {
+        socket.emit("room_error", { message: "No cards left to draw." });
+        return;
+      }
+
+      drawCardsForPlayer(player, 1);
+      emitRoomState(io, room);
+    });
+
+    socket.on("room_play_card", (payload: unknown) => {
+      if (isOnCooldown(lastRoomActionAtByUser, userId, ROOM_ACTION_COOLDOWN_MS)) {
+        socket.emit("room_error", { message: "Too many room actions. Slow down." });
+        return;
+      }
+
+      const parsed = roomPlayCardPayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("room_error", { message: "Invalid play payload." });
+        return;
+      }
+
+      const roomCode = normalizeRoomCode(parsed.data.roomCode);
+      const room = findRoomByCodeForActivePlayer(roomCode);
+      if (!room || !room.battle) {
+        socket.emit("room_error", { message: "Active room game not found." });
+        return;
+      }
+
+      if (room.battle.activePlayerId !== userId) {
+        socket.emit("room_error", { message: "Not your turn." });
+        return;
+      }
+
+      const player = room.players.find((entry) => entry.userId === userId);
+      if (!player) {
+        socket.emit("room_error", { message: "Player not found in room." });
+        return;
+      }
+
+      const cardIndex = player.hand.findIndex((card) => card.instanceId === parsed.data.cardInstanceId);
+      if (cardIndex < 0) {
+        socket.emit("room_error", { message: "Card not found in hand." });
+        return;
+      }
+
+      const card = player.hand[cardIndex];
+      if (card.cost > player.mana) {
+        socket.emit("room_error", { message: "Not enough mana." });
+        return;
+      }
+
+      player.mana -= card.cost;
+      player.hand.splice(cardIndex, 1);
+
+      if (card.type === "unit") {
+        applyUnitEffect(player, card);
+      } else {
+        applySpellEffect(room, player, card, parsed.data.targetUserId);
+        player.discard.push(card);
+      }
+      player.handCount = player.hand.length;
+      player.deckCount = player.deck.length;
+      player.discardCount = player.discard.length;
+
+      setRoomWinnerIfResolved(room);
       emitRoomState(io, room);
     });
 

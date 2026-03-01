@@ -42,16 +42,31 @@ export type MatchFoundPayload = MatchState & {
   opponent: string;
 };
 
+export type RoomCard = {
+  instanceId: string;
+  slug: string;
+  name: string;
+  description: string;
+  faction: string;
+  type: "unit" | "spell";
+  rarity: "common" | "rare" | "epic" | "legendary";
+  cost: number;
+  attack: number;
+  health: number;
+};
+
 export type RoomPlayer = {
   userId: string;
   deckId: string;
   characterId: string;
   ready: boolean;
+  health: number;
   handCount: number;
   deckCount: number;
+  discardCount: number;
   mana: number;
   maxMana: number;
-  joinedAt: string;
+  board: RoomCard[];
 };
 
 export type RoomBattleState = {
@@ -59,6 +74,7 @@ export type RoomBattleState = {
   activePlayerId: string;
   playerOrder: string[];
   turnDeadlineAt: string;
+  winnerId: string | null;
 };
 
 export type RoomState = {
