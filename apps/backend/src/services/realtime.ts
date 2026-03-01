@@ -98,6 +98,7 @@ const activeRooms = new Map<string, RoomState>();
 const lastQueueActionAtByUser = new Map<string, number>();
 const lastMatchActionAtByUser = new Map<string, number>();
 const lastRoomActionAtByUser = new Map<string, number>();
+const disconnectCleanupTimers = new Map<string, NodeJS.Timeout>();
 
 function isOnCooldown(store: Map<string, number>, key: string, cooldownMs: number): boolean {
   const now = Date.now();
@@ -112,6 +113,12 @@ function isOnCooldown(store: Map<string, number>, key: string, cooldownMs: numbe
 }
 
 function addUserSocket(userId: string, socketId: string): void {
+  const cleanupTimer = disconnectCleanupTimers.get(userId);
+  if (cleanupTimer) {
+    clearTimeout(cleanupTimer);
+    disconnectCleanupTimers.delete(userId);
+  }
+
   const set = userToSockets.get(userId) ?? new Set<string>();
   set.add(socketId);
   userToSockets.set(userId, set);
@@ -1166,10 +1173,16 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       removeFromQueueBySocket(socket.id);
       removeUserSocket(socket.id);
       if (getUserSockets(userId).length === 0) {
-        removeUserFromAllRooms(io, userId);
-        lastQueueActionAtByUser.delete(userId);
-        lastMatchActionAtByUser.delete(userId);
-        lastRoomActionAtByUser.delete(userId);
+        const timer = setTimeout(() => {
+          if (getUserSockets(userId).length === 0) {
+            removeUserFromAllRooms(io, userId);
+            lastQueueActionAtByUser.delete(userId);
+            lastMatchActionAtByUser.delete(userId);
+            lastRoomActionAtByUser.delete(userId);
+          }
+          disconnectCleanupTimers.delete(userId);
+        }, 12_000);
+        disconnectCleanupTimers.set(userId, timer);
       }
     });
   });

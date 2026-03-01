@@ -250,7 +250,7 @@ export function App() {
     socket.on("room_state", (payload: { room: RoomState }) => {
       setCurrentRoom(payload.room);
       setRoomCodeInput(payload.room.roomCode);
-      setTabletopMode(payload.room.status === "in_game");
+      setTabletopMode(true);
       appendLog(`room state: ${payload.room.roomCode} (${payload.room.players.length}/${payload.room.maxPlayers})`);
     });
     socket.on("room_private_state", (payload: { hand: RoomCard[] }) => {
@@ -274,7 +274,7 @@ export function App() {
       socketRef.current = null;
       setSocketConnected(false);
     };
-  }, [token, currentUserId, currentRoom?.roomCode, playSfx]);
+  }, [token, currentUserId, playSfx]);
 
   useEffect(() => {
     if (!activeMatchState?.matchId || !socketConnected) {

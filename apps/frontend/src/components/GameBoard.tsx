@@ -162,7 +162,22 @@ function renderLobby(props: GameBoardProps) {
 }
 
 function renderTabletop(props: GameBoardProps) {
-  const { activeMatchState, currentRoom, privateHand, onEndTurn, onDrawCard, onPlayCard, onConcede, onTilt, onTiltReset } = props;
+  const {
+    activeMatchState,
+    currentRoom,
+    privateHand,
+    meReady,
+    isRoomHost,
+    onToggleReady,
+    onStartRoom,
+    onLeaveRoom,
+    onEndTurn,
+    onDrawCard,
+    onPlayCard,
+    onConcede,
+    onTilt,
+    onTiltReset
+  } = props;
   const battle = currentRoom?.battle;
   const timer = battle?.turnDeadlineAt ?? activeMatchState?.turnDeadlineAt;
   const possibleTargets = (currentRoom?.players ?? []).filter((player) => player.health > 0);
@@ -175,6 +190,10 @@ function renderTabletop(props: GameBoardProps) {
           <div className={`turn-orb ${battle || activeMatchState ? "active" : ""}`} />
           <p>Turn {battle?.turn ?? activeMatchState?.turn ?? "--"}</p>
           <span>Timer: {formatTimer(timer)}</span>
+        </div>
+        <div className="row">
+          <strong>Room: {currentRoom?.roomCode ?? "--"}</strong>
+          {currentRoom?.status === "open" ? <span className="muted">Waiting lobby: set ready and host starts</span> : null}
         </div>
 
         <div className="tabletop-grid poker-seats">
@@ -202,12 +221,28 @@ function renderTabletop(props: GameBoardProps) {
         </div>
 
         <div className="row">
-          <button className="button primary" type="button" onClick={onEndTurn}>
-            End Turn
-          </button>
-          <button className="button" type="button" onClick={onDrawCard}>
-            Draw Card
-          </button>
+          {currentRoom?.status === "open" ? (
+            <>
+              <button className="button primary" type="button" onClick={onToggleReady}>
+                {meReady ? "Unready" : "Ready"}
+              </button>
+              <button className="button" type="button" onClick={onStartRoom} disabled={!isRoomHost}>
+                Start Room (Host)
+              </button>
+              <button className="button" type="button" onClick={onLeaveRoom}>
+                Leave Room
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="button primary" type="button" onClick={onEndTurn}>
+                End Turn
+              </button>
+              <button className="button" type="button" onClick={onDrawCard}>
+                Draw Card
+              </button>
+            </>
+          )}
           <button className="button" type="button" onClick={onConcede} disabled={!activeMatchState?.matchId}>
             Concede 1v1 Match
           </button>
