@@ -8,6 +8,7 @@ import { buildAuthRouter } from "./routes/auth";
 import { buildCardsRouter } from "./routes/cards";
 import { buildDecksRouter } from "./routes/decks";
 import { seedBaseCards } from "./services/starterSetup";
+import { registerRealtime } from "./services/realtime";
 
 const requiredEnv = ["MONGODB_URI", "JWT_SECRET"] as const;
 
@@ -45,13 +46,7 @@ const io = new Server(server, {
   }
 });
 
-io.on("connection", (socket) => {
-  console.log(`socket connected: ${socket.id}`);
-
-  socket.on("disconnect", () => {
-    console.log(`socket disconnected: ${socket.id}`);
-  });
-});
+registerRealtime(io, jwtSecret);
 
 server.listen(port, () => {
   console.log(`backend listening on http://localhost:${port}`);

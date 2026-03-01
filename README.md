@@ -1,6 +1,6 @@
 # TCG Monorepo
 
-Day 1 + Day 2 + Day 3 scaffold for a web-based TCG project.
+Day 1 + Day 2 + Day 3 + Day 4 scaffold for a web-based TCG project.
 
 ## Apps
 - `apps/frontend`: React + Vite TypeScript client
@@ -30,6 +30,15 @@ Day 1 + Day 2 + Day 3 scaffold for a web-based TCG project.
 Deck rules in this MVP:
 - Deck size: exactly 20 cards
 - Max copies per card: 2
+
+## Day 4 foundation (completed)
+- Socket auth via JWT (`socket.handshake.auth.token`)
+- Queue matchmaking (`queue_join`, `queue_leave`)
+- Match creation persisted in Mongo (`Match` model)
+- Basic match state flow
+  - `match_found`
+  - `match_end_turn` -> `match_state`
+  - `match_concede` -> `match_completed`
 
 ## Quick start
 1. Use MongoDB Atlas and set backend env:
