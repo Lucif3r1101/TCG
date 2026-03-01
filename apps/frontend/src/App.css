@@ -271,6 +271,25 @@ body {
     0 12px 26px rgba(53, 243, 177, 0.18);
 }
 
+.character-locked {
+  opacity: 0.6;
+  filter: grayscale(0.35);
+}
+
+.seat-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.seat-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(8, 14, 26, 0.8);
+}
+
 .impact .card {
   animation: impactShake 220ms linear 1;
 }

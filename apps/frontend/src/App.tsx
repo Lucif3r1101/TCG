@@ -538,6 +538,7 @@ export function App() {
             />
           ) : (
             <GameBoard
+              currentUserId={currentUser.id}
               socketConnected={socketConnected}
               activeMatchState={activeMatchState}
               decks={decks}

@@ -57,6 +57,8 @@ export type RoomCard = {
 
 export type RoomPlayer = {
   userId: string;
+  username: string;
+  avatarId: string;
   deckId: string;
   characterId: string;
   ready: boolean;

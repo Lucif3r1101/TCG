@@ -4,6 +4,7 @@ import { DeckSummary, MatchState, RoomCard, RoomState } from "../types/game";
 import { formatTimer } from "../lib/api";
 
 type GameBoardProps = {
+  currentUserId: string;
   socketConnected: boolean;
   activeMatchState: MatchState | null;
   decks: DeckSummary[];
@@ -37,6 +38,7 @@ type GameBoardProps = {
 
 function renderLobby(props: GameBoardProps) {
   const {
+    currentUserId,
     socketConnected,
     decks,
     selectedDeckId,
@@ -134,10 +136,19 @@ function renderLobby(props: GameBoardProps) {
         <h3 style={{ margin: 0 }}>Choose Character (1 of 6)</h3>
         <div className="class-grid">
           {CHARACTER_CLASSES.map((character) => (
+            (() => {
+              const takenByOther = (currentRoom?.players ?? []).some(
+                (player) => player.userId !== currentUserId && player.characterId === character.id
+              );
+              return (
             <article
               key={character.id}
-              className={`class-card ${selectedCharacterId === character.id ? "selected-character" : ""}`}
-              onClick={() => onCharacterChange(character.id)}
+              className={`class-card ${selectedCharacterId === character.id ? "selected-character" : ""} ${takenByOther ? "character-locked" : ""}`}
+              onClick={() => {
+                if (!takenByOther) {
+                  onCharacterChange(character.id);
+                }
+              }}
               onMouseMove={onTilt}
               onMouseLeave={onTiltReset}
             >
@@ -145,8 +156,11 @@ function renderLobby(props: GameBoardProps) {
               <span className="chip">{character.tag}</span>
               <strong>{character.name}</strong>
               <p>{character.deckStyle}</p>
+              {takenByOther ? <small className="error">Taken by another player</small> : null}
               <small>{character.ability}</small>
             </article>
+              );
+            })()
           ))}
         </div>
       </section>
@@ -209,7 +223,14 @@ function renderTabletop(props: GameBoardProps) {
                 onMouseLeave={onTiltReset}
               >
                 <p>Seat {index + 1}</p>
-                <strong>{player?.userId ?? "Open Slot"}</strong>
+                {player ? (
+                  <div className="seat-head">
+                    <img className="seat-avatar" src={`/assets/avatars/${player.avatarId}.svg`} alt={player.username} />
+                    <strong>{player.username}</strong>
+                  </div>
+                ) : (
+                  <strong>Open Slot</strong>
+                )}
                 <span>{player ? player.characterId : "Waiting"}</span>
                 <span>Cards: {player ? player.handCount : 0} | Deck: {player ? player.deckCount : 0}</span>
                 <span>

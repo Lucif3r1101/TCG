@@ -6,6 +6,7 @@ import type { Server, Socket } from "socket.io";
 import { verifyAuthToken } from "../utils.auth.js";
 import { DeckModel } from "../models/Deck.js";
 import { MatchModel } from "../models/Match.js";
+import { UserModel } from "../models/User.js";
 import { ALL_CARD_BLUEPRINTS } from "../data/starterCards.js";
 import {
   matchActionPayloadSchema,
@@ -41,6 +42,8 @@ type ActiveMatchState = {
 
 type RoomPlayer = {
   userId: string;
+  username: string;
+  avatarId: string;
   deckId: string;
   characterId: string;
   ready: boolean;
@@ -172,6 +175,22 @@ async function loadAndValidateDeck(userId: string, deckId: string): Promise<bool
   return Boolean(deck);
 }
 
+async function loadUserSummary(userId: string): Promise<{ username: string; avatarId: string } | null> {
+  if (!Types.ObjectId.isValid(userId)) {
+    return null;
+  }
+
+  const user = await UserModel.findById(new Types.ObjectId(userId)).select({ username: 1, avatarId: 1 });
+  if (!user) {
+    return null;
+  }
+
+  return {
+    username: user.username,
+    avatarId: user.avatarId
+  };
+}
+
 function emitToUser(io: Server, userId: string, eventName: string, payload: unknown): void {
   const sockets = getUserSockets(userId);
   for (const socketId of sockets) {
@@ -236,6 +255,8 @@ function toRoomPublicState(room: RoomState) {
     battle: room.battle,
     players: room.players.map((player) => ({
       userId: player.userId,
+      username: player.username,
+      avatarId: player.avatarId,
       deckId: player.deckId,
       characterId: player.characterId,
       ready: player.ready,
@@ -704,6 +725,12 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         return;
       }
 
+      const userSummary = await loadUserSummary(userId);
+      if (!userSummary) {
+        socket.emit("room_error", { message: "User profile not found." });
+        return;
+      }
+
       removeUserFromAllRooms(io, userId);
 
       const roomCode = generateUniqueRoomCode();
@@ -717,6 +744,8 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         players: [
           {
             userId,
+            username: userSummary.username,
+            avatarId: userSummary.avatarId,
             deckId,
             characterId,
             ready: true,
@@ -772,10 +801,26 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         return;
       }
 
+      const userSummary = await loadUserSummary(userId);
+      if (!userSummary) {
+        socket.emit("room_error", { message: "User profile not found." });
+        return;
+      }
+
+      const isCharacterTaken = room.players.some(
+        (player) => player.userId !== userId && player.characterId === characterId
+      );
+      if (isCharacterTaken) {
+        socket.emit("room_error", { message: "Character already selected in this room." });
+        return;
+      }
+
       const existing = room.players.find((player) => player.userId === userId);
       if (existing) {
         existing.deckId = deckId;
         existing.characterId = characterId;
+        existing.username = userSummary.username;
+        existing.avatarId = userSummary.avatarId;
         existing.ready = true;
         emitRoomState(io, room);
         return;
@@ -790,6 +835,8 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
 
       room.players.push({
         userId,
+        username: userSummary.username,
+        avatarId: userSummary.avatarId,
         deckId,
         characterId,
         ready: false,
