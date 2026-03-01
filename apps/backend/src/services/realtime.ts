@@ -343,45 +343,159 @@ function setRoomWinnerIfResolved(room: RoomState): void {
   }
 }
 
-function applySpellEffect(room: RoomState, caster: RoomPlayer, card: RoomCard, targetUserId?: string): void {
-  const opponents = room.players.filter((player) => player.userId !== caster.userId && player.health > 0);
-  const target =
-    (targetUserId ? room.players.find((player) => player.userId === targetUserId && player.health > 0) : null) ??
-    opponents[0] ??
-    null;
+type TargetMode = "self" | "single_opponent" | "all_opponents" | "random_opponent";
 
-  if (card.rarity === "common") {
-    if (target) {
-      target.health = Math.max(0, target.health - 2);
-    }
-    return;
-  }
+type EffectOp =
+  | { kind: "damage"; amount: number }
+  | { kind: "heal"; amount: number }
+  | { kind: "draw"; amount: number }
+  | { kind: "gain_mana"; amount: number }
+  | { kind: "reduce_opponent_mana"; amount: number }
+  | { kind: "modify_hand_cost"; amount: number };
 
-  if (card.rarity === "rare") {
-    for (const player of opponents) {
-      player.mana = Math.max(0, player.mana - 1);
-      // Rare spell: reduce mana and increase card costs in opponent hand by 1 for this turn pressure.
-      player.hand = player.hand.map((entry) => ({ ...entry, cost: Math.min(10, entry.cost + 1) }));
-    }
-    return;
-  }
+type CardEffectScript = {
+  slug: string;
+  targetMode: TargetMode;
+  operations: EffectOp[];
+  unitBoardAttackBonus: number;
+  unitBoardHealthBonus: number;
+};
 
-  if (card.rarity === "epic") {
-    drawCardsForPlayer(caster, 2);
-    return;
+function hashSlug(slug: string): number {
+  let hash = 0;
+  for (let i = 0; i < slug.length; i += 1) {
+    hash = (hash * 31 + slug.charCodeAt(i)) >>> 0;
   }
-
-  if (target) {
-    target.health = Math.max(0, target.health - 4);
-  }
-  drawCardsForPlayer(caster, 1);
+  return hash;
 }
 
-function applyUnitEffect(caster: RoomPlayer, card: RoomCard): void {
-  caster.board.push({ ...card });
+function createCardEffectScript(card: (typeof ALL_CARD_BLUEPRINTS)[number], index: number): CardEffectScript {
+  const hash = hashSlug(card.slug);
+  const targetModeOptions: TargetMode[] = ["self", "single_opponent", "all_opponents", "random_opponent"];
+  const targetMode = targetModeOptions[(hash + index) % targetModeOptions.length];
 
-  if (card.rarity === "rare") {
-    caster.hand = caster.hand.map((entry, index) => (index === 0 ? { ...entry, cost: Math.max(0, entry.cost - 1) } : entry));
+  const damage = 1 + (hash % 4);
+  const heal = hash % 3;
+  const draw = hash % 2;
+  const manaGain = hash % 2;
+  const manaReduce = (hash >> 1) % 2;
+  const costShift = ((hash >> 2) % 3) - 1;
+
+  const operations: EffectOp[] = [];
+  if (card.type === "spell") {
+    operations.push({ kind: "damage", amount: damage });
+    if (draw > 0) {
+      operations.push({ kind: "draw", amount: draw });
+    }
+    if (manaGain > 0) {
+      operations.push({ kind: "gain_mana", amount: manaGain });
+    }
+    if (manaReduce > 0) {
+      operations.push({ kind: "reduce_opponent_mana", amount: manaReduce });
+    }
+    if (costShift !== 0) {
+      operations.push({ kind: "modify_hand_cost", amount: costShift });
+    }
+    if (heal > 0) {
+      operations.push({ kind: "heal", amount: heal });
+    }
+  } else {
+    operations.push({ kind: "heal", amount: heal });
+    if (manaGain > 0) {
+      operations.push({ kind: "gain_mana", amount: manaGain });
+    }
+    if (draw > 0) {
+      operations.push({ kind: "draw", amount: draw });
+    }
+  }
+
+  return {
+    slug: card.slug,
+    targetMode,
+    operations,
+    unitBoardAttackBonus: hash % 2,
+    unitBoardHealthBonus: (hash >> 3) % 2
+  };
+}
+
+const CARD_EFFECTS_BY_SLUG = new Map<string, CardEffectScript>(
+  ALL_CARD_BLUEPRINTS.map((card, index) => [card.slug, createCardEffectScript(card, index)])
+);
+
+function selectTargets(room: RoomState, caster: RoomPlayer, targetMode: TargetMode, explicitTargetUserId?: string): RoomPlayer[] {
+  const opponents = room.players.filter((player) => player.userId !== caster.userId && player.health > 0);
+  if (targetMode === "self") {
+    return [caster];
+  }
+  if (targetMode === "single_opponent") {
+    const explicit = explicitTargetUserId ? opponents.find((player) => player.userId === explicitTargetUserId) : null;
+    return explicit ? [explicit] : opponents.slice(0, 1);
+  }
+  if (targetMode === "all_opponents") {
+    return opponents;
+  }
+  if (opponents.length === 0) {
+    return [];
+  }
+  const randomIndex = Math.floor(Math.random() * opponents.length);
+  return [opponents[randomIndex]];
+}
+
+function executeCardEffect(room: RoomState, caster: RoomPlayer, card: RoomCard, targetUserId?: string): void {
+  const script = CARD_EFFECTS_BY_SLUG.get(card.slug);
+  if (!script) {
+    return;
+  }
+
+  const targets = selectTargets(room, caster, script.targetMode, targetUserId);
+
+  if (card.type === "unit") {
+    const unitCard: RoomCard = {
+      ...card,
+      attack: card.attack + script.unitBoardAttackBonus,
+      health: card.health + script.unitBoardHealthBonus
+    };
+    caster.board.push(unitCard);
+  }
+
+  for (const op of script.operations) {
+    if (op.kind === "damage") {
+      for (const target of targets) {
+        target.health = Math.max(0, target.health - op.amount);
+      }
+      continue;
+    }
+
+    if (op.kind === "heal") {
+      caster.health = Math.min(30, caster.health + op.amount);
+      continue;
+    }
+
+    if (op.kind === "draw") {
+      drawCardsForPlayer(caster, op.amount);
+      continue;
+    }
+
+    if (op.kind === "gain_mana") {
+      caster.mana = Math.min(10, caster.mana + op.amount);
+      caster.maxMana = Math.min(10, Math.max(caster.maxMana, caster.mana));
+      continue;
+    }
+
+    if (op.kind === "reduce_opponent_mana") {
+      for (const target of targets) {
+        target.mana = Math.max(0, target.mana - op.amount);
+      }
+      continue;
+    }
+
+    // modify_hand_cost
+    for (const target of targets) {
+      target.hand = target.hand.map((entry) => ({
+        ...entry,
+        cost: Math.max(0, Math.min(10, entry.cost + op.amount))
+      }));
+    }
   }
 }
 
@@ -551,6 +665,7 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
 
       if (new Date(room.battle.turnDeadlineAt).getTime() <= now) {
         advanceRoomTurn(room);
+        setRoomWinnerIfResolved(room);
         emitRoomState(io, room);
       }
     }
@@ -993,10 +1108,8 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       player.mana -= card.cost;
       player.hand.splice(cardIndex, 1);
 
-      if (card.type === "unit") {
-        applyUnitEffect(player, card);
-      } else {
-        applySpellEffect(room, player, card, parsed.data.targetUserId);
+      executeCardEffect(room, player, card, parsed.data.targetUserId);
+      if (card.type === "spell") {
         player.discard.push(card);
       }
       player.handCount = player.hand.length;
