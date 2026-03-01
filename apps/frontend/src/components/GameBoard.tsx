@@ -280,11 +280,34 @@ function TabletopBoard(props: GameBoardProps) {
             ))}
             {activeSeatIndex >= 0 ? <span className={`turn-glow glow-${seatPositions[activeSeatIndex]}`} /> : null}
           </div>
-          <div className="tabletop-core">
-            <p className="muted">Chronicles Table</p>
-            <strong>{battle?.activePlayerId ? `Active: ${battle.activePlayerId.slice(0, 8)}` : "Waiting to Start"}</strong>
-            <span className="muted">{currentRoom?.status === "in_game" ? "Battle in progress" : "Lobby setup phase"}</span>
+
+          <div className="zone-strip zone-top" aria-hidden="true">
+            <span className="zone-cell">Deck</span>
+            <span className="zone-cell">Power Pool</span>
+            <span className="zone-cell">Buff/Spell</span>
           </div>
+
+          <div className="rift-board-frame">
+            <div className="tabletop-core">
+              <p className="muted">Chronicles Table</p>
+              <strong>{battle?.activePlayerId ? `Active: ${battle.activePlayerId.slice(0, 8)}` : "Waiting to Start"}</strong>
+              <span className="muted">{currentRoom?.status === "in_game" ? "Battle in progress" : "Lobby setup phase"}</span>
+            </div>
+          </div>
+
+          <div className="zone-strip zone-bottom" aria-hidden="true">
+            <span className="zone-cell">Deck</span>
+            <span className="zone-cell">Power Pool</span>
+            <span className="zone-cell">Buff/Spell</span>
+          </div>
+
+          <span className="table-banner banner-left-top" aria-hidden="true" />
+          <span className="table-banner banner-left-mid" aria-hidden="true" />
+          <span className="table-banner banner-left-bottom" aria-hidden="true" />
+          <span className="table-banner banner-right-top" aria-hidden="true" />
+          <span className="table-banner banner-right-mid" aria-hidden="true" />
+          <span className="table-banner banner-right-bottom" aria-hidden="true" />
+
           {Array.from({ length: currentRoom?.maxPlayers ?? 6 }, (_, index) => {
             const player = currentRoom?.players[index];
             const playerCharacter = CHARACTER_CLASSES.find((entry) => entry.id === player?.characterId);
