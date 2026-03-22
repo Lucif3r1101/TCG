@@ -59,6 +59,38 @@ function getCardArtSources(slug: string) {
     };
   }
 
+  if (slug.startsWith("ironbound-beastmaster-")) {
+    return {
+      primary: `/assets/cards/custom/ironbound-beastmaster/${slug}.png`,
+      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
+      finalFallback: `/assets/cards/generated/${slug}.svg`
+    };
+  }
+
+  if (slug.startsWith("abyss-revenant-")) {
+    return {
+      primary: `/assets/cards/custom/abyss-revenant/${slug}.png`,
+      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
+      finalFallback: `/assets/cards/generated/${slug}.svg`
+    };
+  }
+
+  if (slug.startsWith("ember-arcanist-")) {
+    return {
+      primary: `/assets/cards/custom/ember-arcanist/${slug}.png`,
+      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
+      finalFallback: `/assets/cards/generated/${slug}.svg`
+    };
+  }
+
+  if (slug.startsWith("chronomancer-")) {
+    return {
+      primary: `/assets/cards/custom/chronomancer/${slug}.png`,
+      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
+      finalFallback: `/assets/cards/generated/${slug}.svg`
+    };
+  }
+
   return {
     primary: `/assets/cards/generated/png/2x/${slug}.png`,
     fallback: `/assets/cards/generated/${slug}.svg`,
