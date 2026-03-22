@@ -49,6 +49,20 @@ type GameBoardProps = {
   onTiltReset: (event: ReactMouseEvent<HTMLElement>) => void;
 };
 
+type SeatLayout = {
+  left: string;
+  top: string;
+  transform: string;
+};
+
+const TABLE_ANGLES: Record<number, number[]> = {
+  2: [-90, 90],
+  3: [-90, 30, 150],
+  4: [-90, 0, 90, 180],
+  5: [-90, -24, 34, 146, 204],
+  6: [-90, -34, 22, 90, 158, 214]
+};
+
 function getCardArtSources(slug: string) {
   if (slug.startsWith("riftforged-sentinel-")) {
     return {
@@ -132,6 +146,26 @@ function handleAvatarError(event: SyntheticEvent<HTMLImageElement, Event>, avata
 
   image.dataset.fallbackApplied = "true";
   image.src = getAvatarFallbackPath(avatarId);
+}
+
+function getSeatLayouts(seatCount: number): SeatLayout[] {
+  const count = Math.max(2, seatCount);
+  const centerX = 50;
+  const centerY = 50;
+  const radiusX = count === 2 ? 0 : count === 3 ? 34 : count === 4 ? 38 : count === 5 ? 40 : 42;
+  const radiusY = count === 2 ? 39 : count === 3 ? 34 : count === 4 ? 35 : count === 5 ? 37 : 39;
+  const angles = TABLE_ANGLES[count] ?? TABLE_ANGLES[6];
+
+  return angles.map((degree) => {
+    const angle = degree * (Math.PI / 180);
+    const x = centerX + radiusX * Math.cos(angle);
+    const y = centerY + radiusY * Math.sin(angle);
+    return {
+      left: `${x}%`,
+      top: `${y}%`,
+      transform: "translate(-50%, -50%)"
+    };
+  });
 }
 
 function renderLobby(props: GameBoardProps) {
@@ -325,7 +359,6 @@ function TabletopBoard(props: GameBoardProps) {
     onStartRoom,
     onLeaveRoom,
     onEndTurn,
-    onDrawCard,
     onPlayCard,
     onConcede,
     onTilt,
@@ -342,11 +375,15 @@ function TabletopBoard(props: GameBoardProps) {
   const lastTurnRef = useRef<number | null>(null);
   const turnKey = battle?.turn ?? activeMatchState?.turn ?? null;
   const activePlayerId = battle?.activePlayerId ?? activeMatchState?.activePlayerId;
+  const seatLayouts = getSeatLayouts(currentRoom?.maxPlayers ?? 6);
   const activeSeatIndex =
     activePlayerId && currentRoom ? currentRoom.players.findIndex((player) => player.userId === activePlayerId) : -1;
   const me = currentRoom?.players.find((player) => player.userId === props.currentUserId) ?? null;
   const opponents = (currentRoom?.players ?? []).filter((player) => player.userId !== props.currentUserId);
   const possibleTargets = opponents.filter((player) => player.health > 0);
+  const activePlayerName = activePlayerId
+    ? currentRoom?.players.find((player) => player.userId === activePlayerId)?.username ?? "Player"
+    : null;
   const actorPlayer = roomAction ? currentRoom?.players.find((player) => player.userId === roomAction.actorUserId) ?? null : null;
   const actorSeatIndex =
     roomAction && currentRoom ? currentRoom.players.findIndex((player) => player.userId === roomAction.actorUserId) : -1;
@@ -380,7 +417,7 @@ function TabletopBoard(props: GameBoardProps) {
     ? roomAction.actionType === "draw"
       ? `${roomAction.actorUsername} drew ${roomAction.card?.name ?? "a card"}`
       : roomAction.actionType === "play"
-        ? `${roomAction.actorUsername} played ${roomAction.card?.name ?? "a card"}${targetPlayer ? ` on ${targetPlayer.username}` : ""}`
+        ? `${roomAction.actorUsername} used ${roomAction.card?.name ?? "a card"}${targetPlayer ? ` on ${targetPlayer.username}` : ""}`
         : `${roomAction.actorUsername} ended the turn`
     : currentRoom?.status === "in_game"
       ? "Battle live. Watch the board state update in real time."
@@ -478,7 +515,7 @@ function TabletopBoard(props: GameBoardProps) {
                     {card.type === "unit" ? (
                       <button className="button" type="button" onClick={() => onPlayCard(card.instanceId)}>
                         <img className="button-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" />
-                        Play
+                        Play Unit
                       </button>
                     ) : null}
                     {card.type === "spell" && possibleTargets.length <= 1 ? (
@@ -488,7 +525,7 @@ function TabletopBoard(props: GameBoardProps) {
                         onClick={() => onPlayCard(card.instanceId, possibleTargets[0]?.userId)}
                       >
                         <img className="button-icon" src={getIconAssetPath("icon-spell")} alt="" aria-hidden="true" />
-                        {possibleTargets[0] ? `Cast on ${possibleTargets[0].username}` : "Cast"}
+                        {possibleTargets[0] ? `Use Spell on ${possibleTargets[0].username}` : "Use Spell"}
                       </button>
                     ) : null}
                     {card.type === "spell" && possibleTargets.length > 1
@@ -500,7 +537,7 @@ function TabletopBoard(props: GameBoardProps) {
                             onClick={() => onPlayCard(card.instanceId, target.userId)}
                           >
                             <img className="button-icon" src={getIconAssetPath("icon-attack")} alt="" aria-hidden="true" />
-                            Cast on {target.username}
+                            Use Spell on {target.username}
                           </button>
                         ))
                       : null}
@@ -573,6 +610,11 @@ function TabletopBoard(props: GameBoardProps) {
                       Mana {player.mana}/{player.maxMana}
                     </span>
                   </header>
+                  <div className="lane-slots" aria-hidden="true">
+                    {Array.from({ length: 5 }, (_, slotIndex) => (
+                      <span key={`${player.userId}-slot-${slotIndex}`} className="lane-slot" />
+                    ))}
+                  </div>
                   <div className="lane-card-row">
                     {player.board.length === 0 ? <span className="lane-empty">No cards in play</span> : null}
                     {player.board.slice(0, 4).map((card) => (
@@ -591,7 +633,7 @@ function TabletopBoard(props: GameBoardProps) {
             </div>
             <div className="tabletop-core">
               <p className="muted">Chronicles Table</p>
-              <strong>{battle?.activePlayerId ? `Active: ${battle.activePlayerId.slice(0, 8)}` : "Waiting to Start"}</strong>
+              <strong>{activePlayerName ? `Active: ${activePlayerName}` : "Waiting to Start"}</strong>
               <span className="muted">{currentRoom?.status === "in_game" ? "Battle in progress" : "Lobby setup phase"}</span>
             </div>
             <div className={`table-action-card ${roomAction ? "visible" : ""} ${roomAction ? `table-action-${roomAction.actionType.replace("_", "-")}` : ""}`}>
@@ -600,7 +642,7 @@ function TabletopBoard(props: GameBoardProps) {
                   <img src={getCardArtSources(roomAction.card.slug).primary} alt={roomAction.card.name} onError={(event) => handleCardArtError(event, roomAction.card!.slug)} />
                   <div className="table-action-copy">
                     <strong>{roomAction.card.name}</strong>
-                    <span>{roomAction.actorUsername} {roomAction.actionType === "play" ? "played" : "drew"} this card</span>
+                    <span>{roomAction.actorUsername} {roomAction.actionType === "play" ? "used" : "drew"} this card</span>
                     <p>{roomAction.card.description}</p>
                     {targetPlayer ? <small>Targeting {targetPlayer.username}</small> : null}
                   </div>
@@ -620,6 +662,11 @@ function TabletopBoard(props: GameBoardProps) {
                     Mana {me ? `${me.mana}/${me.maxMana}` : "--"}
                   </span>
                 </header>
+                <div className="lane-slots" aria-hidden="true">
+                  {Array.from({ length: 5 }, (_, slotIndex) => (
+                    <span key={`self-slot-${slotIndex}`} className="lane-slot" />
+                  ))}
+                </div>
                 <div className="lane-card-row">
                   {me?.board.length ? null : <span className="lane-empty">Play units and spells to build your field.</span>}
                   {me?.board.slice(0, 5).map((card) => (
@@ -662,7 +709,8 @@ function TabletopBoard(props: GameBoardProps) {
             return (
               <article
                 key={`seat-${index}`}
-                className={`table-seat seat-${seatPositions[index] ?? "top"} ${player?.ready ? "ready" : ""} ${isActive ? "active-turn" : ""}`}
+                className={`table-seat ${player?.ready ? "ready" : ""} ${isActive ? "active-turn" : ""}`}
+                style={seatLayouts[index]}
                 onMouseMove={onTilt}
                 onMouseLeave={onTiltReset}
               >
@@ -723,6 +771,19 @@ function TabletopBoard(props: GameBoardProps) {
               </div>
             </div>
             <div className="status-list">
+              <article className="how-to-panel">
+                <strong>How This Turn Works</strong>
+                <ol className="how-to-list">
+                  <li>Your draw happens automatically at the start of your turn.</li>
+                  <li><strong>Play Unit</strong> puts that card onto your board.</li>
+                  <li><strong>Use Spell</strong> triggers the effect immediately on the shown target.</li>
+                  <li>Watch mana before using a card.</li>
+                  <li>When you are done, click <strong>End Turn</strong>.</li>
+                </ol>
+                <small className="muted">
+                  Units stay on the table. Spells resolve right away and usually do not stay in play.
+                </small>
+              </article>
               {(currentRoom?.players ?? []).map((player) => (
                 <article key={player.userId} className={`status-card ${player.userId === activePlayerId ? "status-active" : ""}`}>
                   <div className="seat-head">
@@ -791,7 +852,7 @@ function TabletopBoard(props: GameBoardProps) {
                       {entry.actionType === "draw"
                         ? `drew ${entry.card?.name ?? "a card"}`
                         : entry.actionType === "play"
-                          ? `played ${entry.card?.name ?? "a card"}`
+                          ? `used ${entry.card?.name ?? "a card"}`
                           : "ended the turn"}
                     </span>
                     {entry.card?.description ? <small>{entry.card.description}</small> : null}
@@ -831,10 +892,7 @@ function TabletopBoard(props: GameBoardProps) {
                 <img className="button-icon" src={getIconAssetPath("icon-timer")} alt="" aria-hidden="true" />
                 End Turn
               </button>
-              <button className="button" type="button" onClick={onDrawCard}>
-                <img className="button-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" />
-                Draw Card
-              </button>
+              <span className="muted">Cards draw automatically at turn start or through card effects.</span>
             </>
           )}
           <button className="button" type="button" onClick={onConcede} disabled={!activeMatchState?.matchId}>

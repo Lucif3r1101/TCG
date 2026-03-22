@@ -79,6 +79,7 @@ type RoomBattleState = {
   playerOrder: string[];
   turnDeadlineAt: string;
   winnerId: string | null;
+  manualDrawUsed: boolean;
 };
 
 type RoomState = {
@@ -376,6 +377,7 @@ function advanceRoomTurn(room: RoomState): void {
   room.battle.turn += 1;
   room.battle.activePlayerId = nextPlayerId;
   room.battle.turnDeadlineAt = new Date(Date.now() + TURN_DURATION_MS).toISOString();
+  room.battle.manualDrawUsed = false;
 
   if (nextPlayer) {
     nextPlayer.maxMana = Math.min(nextPlayer.maxMana + 1, 10);
@@ -1062,7 +1064,8 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         activePlayerId,
         playerOrder: order,
         turnDeadlineAt,
-        winnerId: null
+        winnerId: null,
+        manualDrawUsed: false
       };
 
       room.players = room.players.map((player) => {
@@ -1162,40 +1165,8 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         return;
       }
 
-      const player = room.players.find((entry) => entry.userId === userId);
-      if (!player) {
-        socket.emit("room_error", { message: "Player not found in room." });
-        return;
-      }
-
-      if (player.deck.length === 0) {
-        socket.emit("room_error", { message: "No cards left to draw." });
-        return;
-      }
-
-      const nextCard = player.deck[0];
-      drawCardsForPlayer(player, 1);
-      if (nextCard) {
-        emitRoomAction(io, room, {
-          roomCode,
-          actionType: "draw",
-          actorUserId: userId,
-          actorUsername: player.username,
-          card: {
-            slug: nextCard.slug,
-            name: nextCard.name,
-            description: nextCard.description,
-            type: nextCard.type,
-            rarity: nextCard.rarity,
-            cost: nextCard.cost,
-            attack: nextCard.attack,
-            health: nextCard.health
-          },
-          turn: room.battle?.turn ?? 1,
-          timestamp: new Date().toISOString()
-        });
-      }
-      emitRoomState(io, room);
+      socket.emit("room_error", { message: "Cards draw automatically at turn start or through card effects." });
+      return;
     });
 
     socket.on("room_play_card", (payload: unknown) => {

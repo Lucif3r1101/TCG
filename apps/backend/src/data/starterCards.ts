@@ -33,6 +33,97 @@ const FACTION_NAMES: Record<CardFaction, string> = {
   "abyss-revenant": "Abyss Revenant"
 };
 
+const FACTION_PREFIXES: Record<CardFaction, string> = {
+  "riftforged-sentinel": "Aegis",
+  "void-ranger": "Phase",
+  "ember-arcanist": "Ember",
+  "ironbound-beastmaster": "Pack",
+  chronomancer: "Chrono",
+  "abyss-revenant": "Soul"
+};
+
+const UNIT_TITLES = [
+  "Vanguard",
+  "Scout",
+  "Shieldbearer",
+  "Duelist",
+  "Engineer",
+  "Skirmisher",
+  "Medic",
+  "Elite Guard",
+  "Bruiser",
+  "Disruptor",
+  "Captain",
+  "Hazard Smith",
+  "Ambusher",
+  "Siegebreaker",
+  "Bannerlord",
+  "Companion",
+  "Enforcer",
+  "Phasewalker",
+  "Sentinel",
+  "Champion",
+  "Commander",
+  "Trapmaster",
+  "Sniper",
+  "Construct",
+  "Executioner",
+  "Warden",
+  "Bodyguard",
+  "Finisher",
+  "Frontliner",
+  "Specialist",
+  "Twinblade",
+  "Lieutenant"
+] as const;
+
+const SPELL_TITLES = [
+  "Surge",
+  "Bolt",
+  "Insight",
+  "Reserve",
+  "Hex",
+  "Shift",
+  "Ward",
+  "Pulse",
+  "Recall",
+  "Swing",
+  "Doctrine",
+  "Cataclysm",
+  "Avatar",
+  "Counterseal",
+  "Storm",
+  "Reset",
+  "Ritual",
+  "Formation",
+  "Catalyst",
+  "Finale"
+] as const;
+
+function makeCardName(faction: CardFaction, idx: number, type: CardBlueprint["type"]): string {
+  const prefix = FACTION_PREFIXES[faction];
+  const title = type === "unit" ? UNIT_TITLES[idx - 1] : SPELL_TITLES[idx - 33];
+  return `${prefix} ${title}`;
+}
+
+function makeCardDescription(factionName: string, name: string, type: CardBlueprint["type"], rarity: CardBlueprint["rarity"]): string {
+  const roleLine =
+    type === "unit"
+      ? `${name} is a frontline ${factionName} unit built for board pressure and tactical trades.`
+      : `${name} is a ${factionName} spell built for tempo swings and battlefield control.`;
+
+  const rarityLine =
+    rarity === "legendary"
+      ? "This is a legendary signature card with a high-impact effect."
+      : rarity === "epic"
+        ? "This is an epic card with a dramatic swing effect."
+        : rarity === "rare"
+          ? "This is a rare card with a sharper tactical payoff."
+          : "This is a core card used to build stable turn patterns.";
+
+  return `${roleLine} ${rarityLine}`;
+}
+
 function rarityForIndex(index: number): CardBlueprint["rarity"] {
   if (index >= 51) {
     return "legendary";
@@ -57,14 +148,12 @@ function makeFactionCards(faction: CardFaction): CardBlueprint[] {
     const attack = type === "unit" ? Math.max(1, cost + (idx % 3) - 1) : 0;
     const health = type === "unit" ? Math.max(1, cost + ((idx + 1) % 4) - 1) : 0;
     const cardNumber = String(idx).padStart(2, "0");
+    const name = makeCardName(faction, idx, type);
 
     return {
       slug: `${faction}-c${cardNumber}`,
-      name: `${factionName} Card ${cardNumber}`,
-      description:
-        type === "unit"
-          ? `Unit card ${cardNumber} of ${factionName}, tuned for tabletop skirmish tempo.`
-          : `Spell card ${cardNumber} of ${factionName}, built for tactical swing turns.`,
+      name,
+      description: makeCardDescription(factionName, name, type, rarity),
       faction,
       type,
       rarity,
