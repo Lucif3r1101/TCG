@@ -56,6 +56,12 @@ type SeatLayout = {
   transform: string;
 };
 
+type DefeatedSignal = {
+  id: string;
+  playerUserId: string;
+  cardName: string;
+};
+
 const TABLE_ANGLES: Record<number, number[]> = {
   2: [-90, 90],
   3: [-90, 30, 150],
@@ -374,7 +380,9 @@ function TabletopBoard(props: GameBoardProps) {
   const [selectedBoardCardId, setSelectedBoardCardId] = useState<string | null>(null);
   const [hoveredTargetPlayerId, setHoveredTargetPlayerId] = useState<string | null>(null);
   const [actionHistory, setActionHistory] = useState<RoomActionEvent[]>([]);
+  const [defeatedSignals, setDefeatedSignals] = useState<DefeatedSignal[]>([]);
   const lastTurnRef = useRef<number | null>(null);
+  const previousBoardsRef = useRef<Record<string, RoomCard[]>>({});
   const turnKey = battle?.turn ?? activeMatchState?.turn ?? null;
   const activePlayerId = battle?.activePlayerId ?? activeMatchState?.activePlayerId;
   const seatLayouts = getSeatLayouts(currentRoom?.maxPlayers ?? 6);
@@ -455,6 +463,44 @@ function TabletopBoard(props: GameBoardProps) {
     setActionHistory((previous) => [roomAction, ...previous].slice(0, 6));
   }, [roomAction]);
 
+  useEffect(() => {
+    if (!currentRoom) {
+      previousBoardsRef.current = {};
+      setDefeatedSignals([]);
+      return;
+    }
+
+    const nextBoards = Object.fromEntries(currentRoom.players.map((player) => [player.userId, player.board]));
+    const removed: DefeatedSignal[] = [];
+
+    for (const player of currentRoom.players) {
+      const previousBoard = previousBoardsRef.current[player.userId] ?? [];
+      const currentIds = new Set(player.board.map((card) => card.instanceId));
+      for (const previousCard of previousBoard) {
+        if (!currentIds.has(previousCard.instanceId)) {
+          removed.push({
+            id: `${player.userId}-${previousCard.instanceId}-${Date.now()}`,
+            playerUserId: player.userId,
+            cardName: previousCard.name
+          });
+        }
+      }
+    }
+
+    previousBoardsRef.current = nextBoards;
+
+    if (removed.length === 0) {
+      return;
+    }
+
+    setDefeatedSignals((previous) => [...removed, ...previous].slice(0, 6));
+    const timeoutId = window.setTimeout(() => {
+      setDefeatedSignals((previous) => previous.filter((signal) => !removed.some((entry) => entry.id === signal.id)));
+    }, 1600);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [currentRoom]);
+
   return (
     <div className="grid">
       <section className="grid table-panel tabletop-only duel-layout">
@@ -467,6 +513,10 @@ function TabletopBoard(props: GameBoardProps) {
         <div className="row">
           <strong>Room: {currentRoom?.roomCode ?? "--"}</strong>
           {currentRoom?.status === "open" ? <span className="muted">Waiting lobby: set ready and host starts</span> : null}
+        </div>
+        <div className="combat-hint-banner">
+          <strong>How To Attack</strong>
+          <span>Select one of your units on <strong>Your Field</strong>, then use the attack buttons in the selected card panel.</span>
         </div>
 
         <div className="duel-shell">
@@ -567,12 +617,6 @@ function TabletopBoard(props: GameBoardProps) {
             {activeSeatIndex >= 0 ? <span className={`turn-glow glow-${seatPositions[activeSeatIndex]}`} /> : null}
           </div>
 
-          <div className="zone-strip zone-top" aria-hidden="true">
-            <span className="zone-cell">Deck</span>
-            <span className="zone-cell">Power Pool</span>
-            <span className="zone-cell">Buff/Spell</span>
-          </div>
-
           <div className="rift-board-frame">
             <div className="table-deck-stack deck-stack-top" aria-hidden="true">
               <img className="deck-back-art" src={CARD_BACK_ASSET_PATH} alt="" />
@@ -642,12 +686,20 @@ function TabletopBoard(props: GameBoardProps) {
                       Mana {player.mana}/{player.maxMana}
                     </span>
                   </header>
+                  <div className="field-label">Enemy Field</div>
                   <div className="lane-slots" aria-hidden="true">
                     {Array.from({ length: 5 }, (_, slotIndex) => (
                       <span key={`${player.userId}-slot-${slotIndex}`} className="lane-slot" />
                     ))}
                   </div>
                   <div className="lane-card-row">
+                    {defeatedSignals
+                      .filter((signal) => signal.playerUserId === player.userId)
+                      .map((signal) => (
+                        <div key={signal.id} className="defeated-card-signal">
+                          {signal.cardName} defeated
+                        </div>
+                      ))}
                     {player.board.length === 0 ? <span className="lane-empty">No cards in play</span> : null}
                     {player.board.slice(0, 4).map((card) => (
                       <article
@@ -701,12 +753,20 @@ function TabletopBoard(props: GameBoardProps) {
                     Mana {me ? `${me.mana}/${me.maxMana}` : "--"}
                   </span>
                 </header>
+                <div className="field-label">Your Field</div>
                 <div className="lane-slots" aria-hidden="true">
                   {Array.from({ length: 5 }, (_, slotIndex) => (
                     <span key={`self-slot-${slotIndex}`} className="lane-slot" />
                   ))}
                 </div>
                 <div className="lane-card-row">
+                  {defeatedSignals
+                    .filter((signal) => signal.playerUserId === me?.userId)
+                    .map((signal) => (
+                      <div key={signal.id} className="defeated-card-signal">
+                        {signal.cardName} defeated
+                      </div>
+                    ))}
                   {me?.board.length ? null : <span className="lane-empty">Play units and spells to build your field.</span>}
                   {me?.board.slice(0, 5).map((card) => (
                       <article
@@ -728,19 +788,6 @@ function TabletopBoard(props: GameBoardProps) {
               {targetPlayer ? <span className="muted">Target: {targetPlayer.username}</span> : null}
             </div>
           </div>
-
-          <div className="zone-strip zone-bottom" aria-hidden="true">
-            <span className="zone-cell">Deck</span>
-            <span className="zone-cell">Power Pool</span>
-            <span className="zone-cell">Buff/Spell</span>
-          </div>
-
-          <span className="table-banner banner-left-top" aria-hidden="true" />
-          <span className="table-banner banner-left-mid" aria-hidden="true" />
-          <span className="table-banner banner-left-bottom" aria-hidden="true" />
-          <span className="table-banner banner-right-top" aria-hidden="true" />
-          <span className="table-banner banner-right-mid" aria-hidden="true" />
-          <span className="table-banner banner-right-bottom" aria-hidden="true" />
 
           {Array.from({ length: currentRoom?.maxPlayers ?? 6 }, (_, index) => {
             const player = currentRoom?.players[index];
@@ -886,6 +933,7 @@ function TabletopBoard(props: GameBoardProps) {
                 </small>
                 {battle?.activePlayerId === props.currentUserId && selectedOwnBoardCard?.canAttack ? (
                   <div className="action-stack">
+                    <small className="muted action-helper">Attack controls for this unit:</small>
                     {opponents.filter((player) => player.health > 0).map((target) => (
                       <div key={`attack-group-${selectedOwnBoardCard!.instanceId}-${target.userId}`} className="attack-option-group">
                         <button

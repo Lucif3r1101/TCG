@@ -716,6 +716,21 @@ body {
   gap: 0.95rem;
 }
 
+.combat-hint-banner {
+  border: 1px solid rgba(125, 169, 231, 0.22);
+  border-radius: 12px;
+  background: rgba(10, 16, 29, 0.82);
+  padding: 0.55rem 0.75rem;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.combat-hint-banner span {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
 .duel-shell {
   display: grid;
   grid-template-columns: minmax(250px, 310px) minmax(0, 1fr) minmax(240px, 290px);
@@ -878,6 +893,10 @@ body {
 .action-stack {
   display: grid;
   gap: 0.45rem;
+}
+
+.action-helper {
+  margin: 0;
 }
 
 .attack-option-group {
@@ -1370,6 +1389,14 @@ body {
   font-size: 0.8rem;
 }
 
+.field-label {
+  margin-bottom: 0.45rem;
+  color: #f1d7a4;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .lane-card-row {
   display: flex;
   flex-wrap: wrap;
@@ -1378,6 +1405,17 @@ body {
   margin-top: -5.1rem;
   position: relative;
   z-index: 1;
+}
+
+.defeated-card-signal {
+  padding: 0.26rem 0.52rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 122, 122, 0.3);
+  background: rgba(58, 12, 19, 0.9);
+  color: #ffd2d2;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  animation: defeatedSignal 1.4s ease-out 1;
 }
 
 .lane-slots {
@@ -1769,7 +1807,12 @@ body {
   backdrop-filter: blur(4px);
   z-index: 2;
   border-color: rgba(106, 147, 214, 0.45);
-  background: linear-gradient(180deg, rgba(12, 22, 41, 0.92), rgba(9, 16, 31, 0.92));
+  background:
+    linear-gradient(180deg, rgba(18, 29, 51, 0.95), rgba(9, 16, 31, 0.94)),
+    rgba(10, 16, 30, 0.94);
+  box-shadow:
+    0 18px 26px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(196, 224, 255, 0.08);
 }
 
 .tabletop-surface .seat-top {
@@ -2281,6 +2324,21 @@ body {
   100% {
     transform: scale(1);
     filter: brightness(1);
+  }
+}
+
+@keyframes defeatedSignal {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.92);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
   }
 }
 
