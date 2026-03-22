@@ -394,6 +394,7 @@ function TabletopBoard(props: GameBoardProps) {
   const targetPlayer = roomAction?.targetUserId
     ? currentRoom?.players.find((player) => player.userId === roomAction.targetUserId) ?? null
     : null;
+  const boardTopSummary = targetPlayer ?? opponents[0] ?? null;
   const targetSeatIndex =
     targetPlayer && currentRoom ? currentRoom.players.findIndex((player) => player.userId === targetPlayer.userId) : -1;
   const targetSeatPosition = targetSeatIndex >= 0 ? seatPositions[targetSeatIndex] ?? "top" : null;
@@ -581,6 +582,30 @@ function TabletopBoard(props: GameBoardProps) {
               <img className="deck-back-art" src={DECK_BACK_ASSET_PATH} alt="" />
               <span>Your Deck</span>
             </div>
+            <div className="table-resource-cluster resource-cluster-top" aria-hidden="true">
+              <div className="resource-chip">
+                <img className="status-icon" src={getIconAssetPath("icon-room")} alt="" />
+                <strong>{boardTopSummary?.deckCount ?? 0}</strong>
+                <span>Deck</span>
+              </div>
+              <div className="resource-chip">
+                <img className="status-icon" src={getIconAssetPath("icon-mana")} alt="" />
+                <strong>{boardTopSummary ? `${boardTopSummary.mana}/${boardTopSummary.maxMana}` : "--"}</strong>
+                <span>Mana</span>
+              </div>
+            </div>
+            <div className="table-resource-cluster resource-cluster-bottom" aria-hidden="true">
+              <div className="resource-chip">
+                <img className="status-icon" src={getIconAssetPath("icon-room")} alt="" />
+                <strong>{me?.deckCount ?? 0}</strong>
+                <span>Deck</span>
+              </div>
+              <div className="resource-chip">
+                <img className="status-icon" src={getIconAssetPath("icon-mana")} alt="" />
+                <strong>{me ? `${me.mana}/${me.maxMana}` : "--"}</strong>
+                <span>Mana</span>
+              </div>
+            </div>
             {roomAction ? (
               <div
                 className={`table-travel-card action-${roomAction.actionType.replace("_", "-")} from-${actorSeatPosition} ${actionDestinationClass}`}
@@ -607,7 +632,7 @@ function TabletopBoard(props: GameBoardProps) {
               {opponents.map((player) => (
                 <section
                   key={player.userId}
-                  className={`lane-player lane-player-opponent ${hoveredTargetPlayerId === player.userId ? "lane-targeted" : ""}`}
+                  className={`lane-player lane-player-opponent ${hoveredTargetPlayerId === player.userId ? "lane-targeted" : ""} ${roomAction?.actionType === "attack" && roomAction.targetUserId === player.userId ? "lane-under-attack" : ""}`}
                   onMouseEnter={() => setHoveredTargetPlayerId(player.userId)}
                   onMouseLeave={() => setHoveredTargetPlayerId((current) => (current === player.userId ? null : current))}
                 >
