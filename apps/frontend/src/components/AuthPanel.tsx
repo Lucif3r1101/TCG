@@ -1,4 +1,5 @@
-import { FormEvent } from "react";
+import { FormEvent, SyntheticEvent } from "react";
+import { getAvatarAssetPath, getAvatarFallbackPath } from "../constants/game";
 import { AuthMode } from "../types/game";
 
 type AuthPanelProps = {
@@ -59,6 +60,17 @@ export function AuthPanel(props: AuthPanelProps) {
     onOpenForgot,
     onSubmit
   } = props;
+
+  const handleAvatarError = (event: SyntheticEvent<HTMLImageElement, Event>, avatarId: string) => {
+    const image = event.currentTarget;
+
+    if (image.dataset.fallbackApplied === "true") {
+      return;
+    }
+
+    image.dataset.fallbackApplied = "true";
+    image.src = getAvatarFallbackPath(avatarId);
+  };
 
   return (
     <div className="auth-shell">
@@ -146,7 +158,12 @@ export function AuthPanel(props: AuthPanelProps) {
                       className={`avatar-option ${selectedAvatarId === avatarId ? "active" : ""}`}
                       onClick={() => onAvatarChange(avatarId)}
                     >
-                      <img src={`/assets/avatars/${avatarId}.svg`} alt={avatarId} loading="lazy" />
+                      <img
+                        src={getAvatarAssetPath(avatarId)}
+                        alt={avatarId}
+                        loading="lazy"
+                        onError={(event) => handleAvatarError(event, avatarId)}
+                      />
                     </button>
                   );
                 })}

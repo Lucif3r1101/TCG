@@ -1,5 +1,12 @@
 import { MouseEvent as ReactMouseEvent, SyntheticEvent, useEffect, useRef, useState } from "react";
-import { CHARACTER_CLASSES } from "../constants/game";
+import {
+  CARD_BACK_ASSET_PATH,
+  CHARACTER_CLASSES,
+  DECK_BACK_ASSET_PATH,
+  getAvatarAssetPath,
+  getAvatarFallbackPath,
+  getIconAssetPath
+} from "../constants/game";
 import { DeckSummary, MatchState, RoomActionEvent, RoomCard, RoomState } from "../types/game";
 import { formatTimer } from "../lib/api";
 
@@ -114,6 +121,17 @@ function handleCardArtError(event: SyntheticEvent<HTMLImageElement, Event>, slug
 
   image.dataset.fallbackStage = "fallback";
   image.src = fallback;
+}
+
+function handleAvatarError(event: SyntheticEvent<HTMLImageElement, Event>, avatarId: string) {
+  const image = event.currentTarget;
+
+  if (image.dataset.fallbackApplied === "true") {
+    return;
+  }
+
+  image.dataset.fallbackApplied = "true";
+  image.src = getAvatarFallbackPath(avatarId);
 }
 
 function renderLobby(props: GameBoardProps) {
@@ -267,8 +285,11 @@ function renderLobby(props: GameBoardProps) {
               onMouseMove={onTilt}
               onMouseLeave={onTiltReset}
             >
+              <div className="class-card-head">
+                <img className="crest-icon" src={character.crest} alt="" aria-hidden="true" />
+                <span className="chip">{character.tag}</span>
+              </div>
               <img className="class-sprite" src={character.sprite} alt={`${character.name} card sprite`} loading="lazy" />
-              <span className="chip">{character.tag}</span>
               <strong>{character.name}</strong>
               <p>{character.deckStyle}</p>
               {takenByOther ? <small className="error">Taken by another player</small> : null}
@@ -448,9 +469,11 @@ function TabletopBoard(props: GameBoardProps) {
 
           <div className="rift-board-frame">
             <div className="table-deck-stack deck-stack-top" aria-hidden="true">
+              <img className="deck-back-art" src={CARD_BACK_ASSET_PATH} alt="" />
               <span>Enemy Deck</span>
             </div>
             <div className="table-deck-stack deck-stack-bottom" aria-hidden="true">
+              <img className="deck-back-art" src={DECK_BACK_ASSET_PATH} alt="" />
               <span>Your Deck</span>
             </div>
             {roomAction ? (
@@ -561,7 +584,12 @@ function TabletopBoard(props: GameBoardProps) {
                 <p>Seat {index + 1}</p>
                 {player ? (
                   <div className="seat-head">
-                    <img className="seat-avatar" src={`/assets/avatars/${player.avatarId}.svg`} alt={player.username} />
+                    <img
+                      className="seat-avatar"
+                      src={getAvatarAssetPath(player.avatarId)}
+                      alt={player.username}
+                      onError={(event) => handleAvatarError(event, player.avatarId)}
+                    />
                     <strong>{player.username}</strong>
                   </div>
                 ) : (
@@ -571,7 +599,10 @@ function TabletopBoard(props: GameBoardProps) {
                   <div className="seat-character">
                     <img src={playerCharacter.sprite} alt={playerCharacter.name} loading="lazy" />
                     <div className="seat-character-text">
-                      <strong>{playerCharacter.name}</strong>
+                      <strong>
+                        <img className="crest-icon crest-inline" src={playerCharacter.crest} alt="" aria-hidden="true" />
+                        {playerCharacter.name}
+                      </strong>
                       <span>{playerCharacter.tag}</span>
                     </div>
                   </div>
@@ -610,13 +641,36 @@ function TabletopBoard(props: GameBoardProps) {
               {(currentRoom?.players ?? []).map((player) => (
                 <article key={player.userId} className={`status-card ${player.userId === activePlayerId ? "status-active" : ""}`}>
                   <div className="seat-head">
-                    <img className="seat-avatar" src={`/assets/avatars/${player.avatarId}.svg`} alt={player.username} />
+                    <img
+                      className="seat-avatar"
+                      src={getAvatarAssetPath(player.avatarId)}
+                      alt={player.username}
+                      onError={(event) => handleAvatarError(event, player.avatarId)}
+                    />
                     <strong>{player.username}</strong>
                   </div>
-                  <span>HP {player.health}</span>
-                  <span>Mana {player.mana}/{player.maxMana}</span>
-                  <span>Hand {player.handCount} | Deck {player.deckCount}</span>
-                  <span>Board {player.board.length}</span>
+                  <div className="status-meta">
+                    <span className="status-pill">
+                      <img className="status-icon" src={getIconAssetPath("icon-health")} alt="" aria-hidden="true" />
+                      HP {player.health}
+                    </span>
+                    <span className="status-pill">
+                      <img className="status-icon" src={getIconAssetPath("icon-mana")} alt="" aria-hidden="true" />
+                      Mana {player.mana}/{player.maxMana}
+                    </span>
+                    <span className="status-pill">
+                      <img className="status-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" />
+                      Hand {player.handCount}
+                    </span>
+                    <span className="status-pill">
+                      <img className="status-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" />
+                      Deck {player.deckCount}
+                    </span>
+                    <span className="status-pill">
+                      <img className="status-icon" src={getIconAssetPath("icon-spell")} alt="" aria-hidden="true" />
+                      Board {player.board.length}
+                    </span>
+                  </div>
                 </article>
               ))}
             </div>

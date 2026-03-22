@@ -22,6 +22,21 @@ export const DEFAULT_AVATAR_IDS = [
   "avatar-14"
 ] as const;
 
+export function getAvatarAssetPath(avatarId: string) {
+  return `/assets/avatars/${avatarId}.png`;
+}
+
+export function getAvatarFallbackPath(avatarId: string) {
+  return `/assets/avatars/${avatarId}.svg`;
+}
+
+export function getIconAssetPath(iconId: string) {
+  return `/assets/icons/${iconId}.png`;
+}
+
+export const CARD_BACK_ASSET_PATH = "/assets/cards/card-back.png";
+export const DECK_BACK_ASSET_PATH = "/assets/cards/deck-back.png";
+
 export const CHARACTER_CLASSES: CharacterClass[] = [
   {
     id: "riftforged-sentinel",
@@ -29,7 +44,8 @@ export const CHARACTER_CLASSES: CharacterClass[] = [
     deckStyle: "Fortress control, shields, and counterplay.",
     ability: "Aegis Echo: negate first hostile spell each round.",
     tag: "Control",
-    sprite: "/assets/cards/riftforged-sentinel.svg"
+    sprite: "/assets/characters/riftforged-sentinel.png",
+    crest: "/assets/icons/crests/riftforged-sentinel-crest.png"
   },
   {
     id: "void-ranger",
@@ -37,7 +53,8 @@ export const CHARACTER_CLASSES: CharacterClass[] = [
     deckStyle: "Burst tempo deck with traps and fast turns.",
     ability: "Phase Shot: bonus damage if opponent spent mana.",
     tag: "Tempo",
-    sprite: "/assets/cards/void-ranger.svg"
+    sprite: "/assets/characters/void-ranger.png",
+    crest: "/assets/icons/crests/void-ranger-crest.png"
   },
   {
     id: "ember-arcanist",
@@ -45,7 +62,8 @@ export const CHARACTER_CLASSES: CharacterClass[] = [
     deckStyle: "Spell chains and scaling combos.",
     ability: "Ignition Loop: first spell each turn costs 1 less.",
     tag: "Combo",
-    sprite: "/assets/cards/ember-arcanist.svg"
+    sprite: "/assets/characters/ember-arcanist.png",
+    crest: "/assets/icons/crests/ember-arcanist-crest.png"
   },
   {
     id: "ironbound-beastmaster",
@@ -53,7 +71,8 @@ export const CHARACTER_CLASSES: CharacterClass[] = [
     deckStyle: "Swarm summons and board pressure.",
     ability: "Pack Command: summoned units enter with haste.",
     tag: "Swarm",
-    sprite: "/assets/cards/ironbound-beastmaster.svg"
+    sprite: "/assets/characters/ironbound-beastmaster.png",
+    crest: "/assets/icons/crests/ironbound-beastmaster-crest.png"
   },
   {
     id: "chronomancer",
@@ -61,7 +80,8 @@ export const CHARACTER_CLASSES: CharacterClass[] = [
     deckStyle: "Turn control, stuns, and timing tricks.",
     ability: "Time Fold: once per game replay your last action.",
     tag: "Utility",
-    sprite: "/assets/cards/chronomancer.svg"
+    sprite: "/assets/characters/chronomancer.png",
+    crest: "/assets/icons/crests/chronomancer-crest.png"
   },
   {
     id: "abyss-revenant",
@@ -69,6 +89,7 @@ export const CHARACTER_CLASSES: CharacterClass[] = [
     deckStyle: "Drain life and grave recursion.",
     ability: "Soul Tax: enemy card draws cost 1 health.",
     tag: "Drain",
-    sprite: "/assets/cards/abyss-revenant.svg"
+    sprite: "/assets/characters/abyss-revenant.png",
+    crest: "/assets/icons/crests/abyss-revenant-crest.png"
   }
 ];

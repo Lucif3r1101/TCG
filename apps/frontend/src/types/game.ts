@@ -117,4 +117,5 @@ export type CharacterClass = {
   ability: string;
   tag: string;
   sprite: string;
+  crest: string;
 };

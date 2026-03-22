@@ -85,6 +85,15 @@ body {
 .nav-btn {
   padding: 0.48rem 0.72rem;
   font-size: 0.83rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.nav-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 .page {
@@ -298,6 +307,20 @@ body {
   letter-spacing: 0.05em;
 }
 
+.class-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.crest-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
 .class-card:hover,
 .table-seat:hover {
   border-color: rgba(46, 230, 255, 0.48);
@@ -356,12 +379,20 @@ body {
 }
 
 .seat-character-text strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-size: 0.76rem;
   line-height: 1.2;
 }
 
 .seat-character-text span {
   font-size: 0.72rem;
+}
+
+.crest-inline {
+  width: 16px;
+  height: 16px;
 }
 
 .impact .card {
@@ -767,6 +798,30 @@ body {
   font-size: 0.82rem;
 }
 
+.status-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 157, 212, 0.22);
+  background: rgba(8, 13, 25, 0.7);
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.status-icon {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+}
+
 .status-active {
   border-color: rgba(46, 230, 255, 0.62);
   box-shadow:
@@ -1018,6 +1073,17 @@ body {
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   color: #ffe2b6;
+}
+
+.deck-back-art {
+  position: absolute;
+  inset: 8px 8px 26px;
+  width: calc(100% - 16px);
+  height: calc(100% - 34px);
+  object-fit: cover;
+  border-radius: 10px;
+  opacity: 0.92;
+  border: 1px solid rgba(148, 181, 235, 0.22);
 }
 
 .deck-stack-top {
