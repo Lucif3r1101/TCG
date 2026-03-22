@@ -334,9 +334,11 @@ function TabletopBoard(props: GameBoardProps) {
   } = props;
   const battle = currentRoom?.battle;
   const timer = battle?.turnDeadlineAt ?? activeMatchState?.turnDeadlineAt;
-  const possibleTargets = (currentRoom?.players ?? []).filter((player) => player.health > 0);
   const seatPositions = ["top", "top-right", "bottom-right", "bottom", "bottom-left", "top-left"] as const;
   const [turnShift, setTurnShift] = useState(false);
+  const [selectedBoardCardId, setSelectedBoardCardId] = useState<string | null>(null);
+  const [hoveredTargetPlayerId, setHoveredTargetPlayerId] = useState<string | null>(null);
+  const [actionHistory, setActionHistory] = useState<RoomActionEvent[]>([]);
   const lastTurnRef = useRef<number | null>(null);
   const turnKey = battle?.turn ?? activeMatchState?.turn ?? null;
   const activePlayerId = battle?.activePlayerId ?? activeMatchState?.activePlayerId;
@@ -344,13 +346,36 @@ function TabletopBoard(props: GameBoardProps) {
     activePlayerId && currentRoom ? currentRoom.players.findIndex((player) => player.userId === activePlayerId) : -1;
   const me = currentRoom?.players.find((player) => player.userId === props.currentUserId) ?? null;
   const opponents = (currentRoom?.players ?? []).filter((player) => player.userId !== props.currentUserId);
+  const possibleTargets = opponents.filter((player) => player.health > 0);
   const actorPlayer = roomAction ? currentRoom?.players.find((player) => player.userId === roomAction.actorUserId) ?? null : null;
   const actorSeatIndex =
     roomAction && currentRoom ? currentRoom.players.findIndex((player) => player.userId === roomAction.actorUserId) : -1;
   const actorSeatPosition = actorSeatIndex >= 0 ? seatPositions[actorSeatIndex] ?? "top" : "top";
+  const actorIsMe = Boolean(roomAction?.actorUserId && roomAction.actorUserId === props.currentUserId);
   const targetPlayer = roomAction?.targetUserId
     ? currentRoom?.players.find((player) => player.userId === roomAction.targetUserId) ?? null
     : null;
+  const targetSeatIndex =
+    targetPlayer && currentRoom ? currentRoom.players.findIndex((player) => player.userId === targetPlayer.userId) : -1;
+  const targetSeatPosition = targetSeatIndex >= 0 ? seatPositions[targetSeatIndex] ?? "top" : null;
+  const actionDestinationClass = roomAction
+    ? roomAction.actionType === "draw"
+      ? actorIsMe
+        ? "to-self-hand"
+        : "to-opponent-lane"
+      : roomAction.actionType === "play"
+        ? actorIsMe
+          ? "to-self-lane"
+          : "to-opponent-lane"
+        : "to-center"
+    : "to-center";
+  const selectedOwnBoardCard = me?.board.find((card) => card.instanceId === selectedBoardCardId) ?? null;
+  const hoveredTargetPlayer = hoveredTargetPlayerId
+    ? currentRoom?.players.find((player) => player.userId === hoveredTargetPlayerId) ?? null
+    : null;
+  const hoveredTargetSeatIndex =
+    hoveredTargetPlayer && currentRoom ? currentRoom.players.findIndex((player) => player.userId === hoveredTargetPlayer.userId) : -1;
+  const hoveredTargetSeatPosition = hoveredTargetSeatIndex >= 0 ? seatPositions[hoveredTargetSeatIndex] ?? null : null;
   const latestActionLabel = roomAction
     ? roomAction.actionType === "draw"
       ? `${roomAction.actorUsername} drew ${roomAction.card?.name ?? "a card"}`
@@ -377,6 +402,13 @@ function TabletopBoard(props: GameBoardProps) {
     }
     return;
   }, [turnKey]);
+
+  useEffect(() => {
+    if (!roomAction) {
+      return;
+    }
+    setActionHistory((previous) => [roomAction, ...previous].slice(0, 6));
+  }, [roomAction]);
 
   return (
     <div className="grid">
@@ -433,12 +465,33 @@ function TabletopBoard(props: GameBoardProps) {
                     {card.type} | {card.rarity}
                   </span>
                   <span className="muted">Cost {card.cost}</span>
+                  <div className="card-hover-detail" aria-hidden="true">
+                    <strong>{card.name}</strong>
+                    <span>{card.description}</span>
+                    <div className="card-hover-stats">
+                      <small>Cost {card.cost}</small>
+                      <small>{card.type}</small>
+                      <small>{card.attack}/{card.health}</small>
+                    </div>
+                  </div>
                   <div className="row">
-                    <button className="button" type="button" onClick={() => onPlayCard(card.instanceId)}>
-                      <img className="button-icon" src={getIconAssetPath(card.type === "spell" ? "icon-spell" : "icon-unit")} alt="" aria-hidden="true" />
-                      Play
-                    </button>
-                    {card.type === "spell"
+                    {card.type === "unit" ? (
+                      <button className="button" type="button" onClick={() => onPlayCard(card.instanceId)}>
+                        <img className="button-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" />
+                        Play
+                      </button>
+                    ) : null}
+                    {card.type === "spell" && possibleTargets.length <= 1 ? (
+                      <button
+                        className="button"
+                        type="button"
+                        onClick={() => onPlayCard(card.instanceId, possibleTargets[0]?.userId)}
+                      >
+                        <img className="button-icon" src={getIconAssetPath("icon-spell")} alt="" aria-hidden="true" />
+                        {possibleTargets[0] ? `Cast on ${possibleTargets[0].username}` : "Cast"}
+                      </button>
+                    ) : null}
+                    {card.type === "spell" && possibleTargets.length > 1
                       ? possibleTargets.map((target) => (
                           <button
                             key={`${card.instanceId}-${target.userId}`}
@@ -447,7 +500,7 @@ function TabletopBoard(props: GameBoardProps) {
                             onClick={() => onPlayCard(card.instanceId, target.userId)}
                           >
                             <img className="button-icon" src={getIconAssetPath("icon-attack")} alt="" aria-hidden="true" />
-                            Cast
+                            Cast on {target.username}
                           </button>
                         ))
                       : null}
@@ -486,7 +539,7 @@ function TabletopBoard(props: GameBoardProps) {
             </div>
             {roomAction ? (
               <div
-                className={`table-travel-card action-${roomAction.actionType.replace("_", "-")} from-${actorSeatPosition}`}
+                className={`table-travel-card action-${roomAction.actionType.replace("_", "-")} from-${actorSeatPosition} ${actionDestinationClass}`}
                 aria-hidden="true"
               >
                 {roomAction.card ? (
@@ -496,10 +549,24 @@ function TabletopBoard(props: GameBoardProps) {
                 )}
               </div>
             ) : null}
+            {roomAction?.actionType === "draw" && roomAction.card ? (
+              <div className={`draw-trail ${actorIsMe ? "draw-trail-self" : "draw-trail-opponent"}`} aria-hidden="true" />
+            ) : null}
+            {roomAction?.actionType === "play" && roomAction.card && targetSeatPosition ? (
+              <div className={`target-beam beam-to-${targetSeatPosition}`} aria-hidden="true" />
+            ) : null}
+            {selectedOwnBoardCard && hoveredTargetSeatPosition ? (
+              <div className={`target-beam preview-beam beam-to-${hoveredTargetSeatPosition}`} aria-hidden="true" />
+            ) : null}
             <div className="battle-lane battle-lane-top">
               {opponents.length === 0 ? <p className="muted">Opponent field will appear here.</p> : null}
               {opponents.map((player) => (
-                <section key={player.userId} className="lane-player lane-player-opponent">
+                <section
+                  key={player.userId}
+                  className={`lane-player lane-player-opponent ${hoveredTargetPlayerId === player.userId ? "lane-targeted" : ""}`}
+                  onMouseEnter={() => setHoveredTargetPlayerId(player.userId)}
+                  onMouseLeave={() => setHoveredTargetPlayerId((current) => (current === player.userId ? null : current))}
+                >
                   <header className="lane-player-head">
                     <strong>{player.username}</strong>
                     <span>
@@ -509,7 +576,11 @@ function TabletopBoard(props: GameBoardProps) {
                   <div className="lane-card-row">
                     {player.board.length === 0 ? <span className="lane-empty">No cards in play</span> : null}
                     {player.board.slice(0, 4).map((card) => (
-                      <article key={`${player.userId}-${card.instanceId}`} className="board-card board-card-opponent">
+                      <article
+                        key={`${player.userId}-${card.instanceId}`}
+                        className={`board-card board-card-opponent ${selectedBoardCardId === card.instanceId ? "board-card-selected" : ""}`}
+                        onClick={() => setSelectedBoardCardId((current) => (current === card.instanceId ? null : card.instanceId))}
+                      >
                         <img src={getCardArtSources(card.slug).primary} alt={card.name} onError={(event) => handleCardArtError(event, card.slug)} />
                         <span>{card.attack}/{card.health}</span>
                       </article>
@@ -530,6 +601,8 @@ function TabletopBoard(props: GameBoardProps) {
                   <div className="table-action-copy">
                     <strong>{roomAction.card.name}</strong>
                     <span>{roomAction.actorUsername} {roomAction.actionType === "play" ? "played" : "drew"} this card</span>
+                    <p>{roomAction.card.description}</p>
+                    {targetPlayer ? <small>Targeting {targetPlayer.username}</small> : null}
                   </div>
                 </>
               ) : roomAction ? (
@@ -550,7 +623,11 @@ function TabletopBoard(props: GameBoardProps) {
                 <div className="lane-card-row">
                   {me?.board.length ? null : <span className="lane-empty">Play units and spells to build your field.</span>}
                   {me?.board.slice(0, 5).map((card) => (
-                    <article key={card.instanceId} className="board-card">
+                    <article
+                      key={card.instanceId}
+                      className={`board-card ${selectedBoardCardId === card.instanceId ? "board-card-selected" : ""}`}
+                      onClick={() => setSelectedBoardCardId((current) => (current === card.instanceId ? null : card.instanceId))}
+                    >
                       <img src={getCardArtSources(card.slug).primary} alt={card.name} onError={(event) => handleCardArtError(event, card.slug)} />
                       <span>{card.attack}/{card.health}</span>
                     </article>
@@ -682,6 +759,46 @@ function TabletopBoard(props: GameBoardProps) {
                 </article>
               ))}
             </div>
+            {selectedOwnBoardCard ? (
+              <article className="inspect-card">
+                <strong>Selected Card</strong>
+                <img
+                  className="inspect-card-art"
+                  src={getCardArtSources(selectedOwnBoardCard.slug).primary}
+                  alt={selectedOwnBoardCard.name}
+                  onError={(event) => handleCardArtError(event, selectedOwnBoardCard.slug)}
+                />
+                <strong>{selectedOwnBoardCard.name}</strong>
+                <span>{selectedOwnBoardCard.description}</span>
+                <div className="status-meta">
+                  <span className="status-pill">ATK {selectedOwnBoardCard.attack}</span>
+                  <span className="status-pill">HP {selectedOwnBoardCard.health}</span>
+                  <span className="status-pill">Cost {selectedOwnBoardCard.cost}</span>
+                </div>
+                <small className="muted">
+                  {hoveredTargetPlayer ? `Preview targeting ${hoveredTargetPlayer.username}` : "Select an enemy lane to preview direction."}
+                </small>
+              </article>
+            ) : null}
+            <article className="history-panel">
+              <strong>Battle History</strong>
+              <div className="history-list">
+                {actionHistory.length === 0 ? <span className="muted">Recent turns and card plays will appear here.</span> : null}
+                {actionHistory.map((entry, index) => (
+                  <div key={`${entry.timestamp}-${index}`} className="history-item">
+                    <strong>{entry.actorUsername}</strong>
+                    <span>
+                      {entry.actionType === "draw"
+                        ? `drew ${entry.card?.name ?? "a card"}`
+                        : entry.actionType === "play"
+                          ? `played ${entry.card?.name ?? "a card"}`
+                          : "ended the turn"}
+                    </span>
+                    {entry.card?.description ? <small>{entry.card.description}</small> : null}
+                  </div>
+                ))}
+              </div>
+            </article>
           </aside>
         </div>
 

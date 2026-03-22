@@ -100,6 +100,7 @@ export type RoomActionEvent = {
   card?: {
     slug: string;
     name: string;
+    description: string;
     type: "unit" | "spell";
     rarity: "common" | "rare" | "epic" | "legendary";
     cost: number;

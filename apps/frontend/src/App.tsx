@@ -320,7 +320,7 @@ export function App() {
     if (!roomAction) {
       return;
     }
-    const id = window.setTimeout(() => setRoomAction(null), 1800);
+    const id = window.setTimeout(() => setRoomAction(null), 3200);
     return () => window.clearTimeout(id);
   }, [roomAction]);
 
@@ -676,7 +676,7 @@ export function App() {
               onTiltReset={resetTilt}
             />
           )}
-          <p className={`muted footer-note ${tabletopMode ? "footer-note-tabletop" : ""}`}>© 2026 Chronicles of the RIFT. All rights reserved.</p>
+          <p className={`muted footer-note ${tabletopMode ? "footer-note-tabletop" : ""}`}>ï¿½ 2026 Chronicles of the RIFT. All rights reserved.</p>
         </div>
       </section>
 

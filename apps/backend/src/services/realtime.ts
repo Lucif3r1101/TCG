@@ -102,6 +102,7 @@ type RoomActionPayload = {
   card?: {
     slug: string;
     name: string;
+    description: string;
     type: "unit" | "spell";
     rarity: "common" | "rare" | "epic" | "legendary";
     cost: number;
@@ -1183,6 +1184,7 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
           card: {
             slug: nextCard.slug,
             name: nextCard.name,
+            description: nextCard.description,
             type: nextCard.type,
             rarity: nextCard.rarity,
             cost: nextCard.cost,
@@ -1258,6 +1260,7 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         card: {
           slug: card.slug,
           name: card.name,
+          description: card.description,
           type: card.type,
           rarity: card.rarity,
           cost: card.cost,
