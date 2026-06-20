@@ -54,7 +54,7 @@ export function TopNav({
   return (
     <header className="top-nav">
       <div className="brand">
-        <img className="brand-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="Chronicles of the RIFT logo" />
+        <img className="brand-logo" src="/assets/branding/chronicles-rift-logo.png" alt="Chronicles of the RIFT logo" />
         <div>
           <strong>Chronicles of the RIFT</strong>
           <p>Tabletop TCG Arena</p>

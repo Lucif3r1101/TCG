@@ -637,7 +637,7 @@ export function App() {
               <Suspense fallback={null}>
                 <RiftOrb className="hero-orb" />
               </Suspense>
-              <img className="hero-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="" aria-hidden="true" />
+              <img className="hero-logo" src="/assets/branding/chronicles-rift-logo.png" alt="" aria-hidden="true" />
             </div>
             <span className="hero-kicker">Sci-Fantasy Trading Card Game</span>
             <h1>Chronicles of the RIFT</h1>

@@ -76,7 +76,7 @@ export function AuthPanel(props: AuthPanelProps) {
     <div className={`auth ${embedded ? "auth-embedded" : ""}`}>
       {embedded ? null : (
         <aside className="auth-hero">
-          <img className="auth-hero-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="Chronicles of the RIFT" />
+          <img className="auth-hero-logo" src="/assets/branding/chronicles-rift-logo.png" alt="Chronicles of the RIFT" />
           <span className="auth-hero-kicker">Rift · Season 2026</span>
           <h2>{isRegister ? "Create your Battler ID" : "Welcome back, Challenger"}</h2>
           <p>Assemble your deck, enter tactical multiplayer rooms, and battle through live turn-based duels.</p>
