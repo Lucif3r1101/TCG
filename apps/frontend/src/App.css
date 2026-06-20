@@ -3266,3 +3266,186 @@ body {
   color: #cfddf7;
   line-height: 1.5;
 }
+/* ===== Lobby / room screen ===== */
+.lobby {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+.lobby-controls {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(13, 20, 38, 0.9), rgba(9, 15, 29, 0.9));
+  padding: 1.1rem;
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+}
+
+.lobby-head h3 {
+  margin: 0;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.05;
+}
+
+.lobby-head p {
+  margin: 0.25rem 0 0;
+  font-size: 0.86rem;
+}
+
+.lobby-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 0.7rem;
+}
+
+.host-mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.host-mode-toggle .button {
+  padding: 0.55rem 0.4rem;
+  font-size: 0.85rem;
+}
+
+.lobby-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.lobby-cta {
+  width: 100%;
+  padding: 0.8rem;
+}
+
+.lobby-join {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lobby-join .input {
+  flex: 1;
+}
+
+.lobby-leave {
+  width: 100%;
+  color: #ff9bb0;
+  border-color: rgba(255, 111, 140, 0.3);
+}
+
+.lobby-advanced {
+  margin-top: 0.2rem;
+  opacity: 0.85;
+}
+
+.room-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  border: 1px solid rgba(46, 230, 255, 0.3);
+  border-radius: 14px;
+  background: rgba(46, 230, 255, 0.06);
+  padding: 0.75rem 0.9rem;
+}
+
+.room-banner-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.room-code {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.18em;
+  color: #8ce8ff;
+}
+
+.room-banner-meta {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.roster {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.roster-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(10, 17, 33, 0.6);
+  padding: 0.5rem 0.7rem;
+}
+
+.roster-row.is-ready {
+  border-color: rgba(53, 243, 177, 0.45);
+}
+
+.roster-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  flex: 0 0 auto;
+}
+
+.roster-info {
+  display: grid;
+  gap: 0.05rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.roster-info strong {
+  font-size: 0.92rem;
+}
+
+.roster-info .muted {
+  font-size: 0.76rem;
+}
+
+.roster-badge {
+  flex: 0 0 auto;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.roster-badge.ready {
+  color: #07111f;
+  background: linear-gradient(130deg, var(--accent-2), var(--accent));
+  border-color: transparent;
+}
+
+.lobby-characters {
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+}
+
+@media (min-width: 900px) {
+  .lobby {
+    grid-template-columns: 0.85fr 1.15fr;
+    align-items: start;
+  }
+}

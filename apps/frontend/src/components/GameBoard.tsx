@@ -137,51 +137,124 @@ function renderLobby(props: GameBoardProps) {
     onTiltReset
   } = props;
 
+  const inRoom = Boolean(currentRoom);
+
   return (
-    <div className="grid">
-      <section className="grid room-panel">
-        <h3 style={{ margin: 0 }}>Room Lobby</h3>
-        <p className="muted">Create a room or join with room code, then choose players and ready up.</p>
+    <div className="lobby">
+      <section className="lobby-controls">
+        <header className="lobby-head">
+          <h3>{inRoom ? "Room Lobby" : "Play"}</h3>
+          <p className="muted">
+            {inRoom ? "Pick your champion, ready up, and wait for the host to start." : "Create a room, join with a code, or jump into quick matchmaking."}
+          </p>
+        </header>
 
         <label className="label">
-          Deck
+          Your Deck
           <select className="select" value={selectedDeckId} onChange={(e) => onDeckChange(e.target.value)}>
             <option value="">Select a deck</option>
             {decks.map((deck) => (
-              <option key={deck.id} value={deck.id}>
-                {deck.name}
-              </option>
+              <option key={deck.id} value={deck.id}>{deck.name}</option>
             ))}
           </select>
         </label>
 
-        <div className="row">
-          <input className="input" placeholder="Room Code" value={roomCodeInput} onChange={(e) => onRoomCodeInput(e.target.value)} />
-          <select className="select room-size" value={roomMaxPlayers} onChange={(e) => onRoomMaxPlayersChange(Number(e.target.value))}>
-            <option value={2}>2 Players</option>
-            <option value={3}>3 Players</option>
-            <option value={4}>4 Players</option>
-            <option value={5}>5 Players</option>
-            <option value={6}>6 Players</option>
-          </select>
-        </div>
-        <div className="host-mode-toggle" role="group" aria-label="Host mode">
-          <button
-            className={`button ${hostMode === "play" ? "primary" : ""}`}
-            type="button"
-            onClick={() => onHostModeChange("play")}
-          >
-            Host + Play
-          </button>
-          <button
-            className={`button ${hostMode === "manage" ? "primary" : ""}`}
-            type="button"
-            onClick={() => onHostModeChange("manage")}
-          >
-            Host Only
-          </button>
-        </div>
-        <label className="label">
+        {!inRoom ? (
+          <>
+            <div className="lobby-field-row">
+              <label className="label">
+                Players
+                <select className="select" value={roomMaxPlayers} onChange={(e) => onRoomMaxPlayersChange(Number(e.target.value))}>
+                  {[2, 3, 4, 5, 6].map((n) => (
+                    <option key={n} value={n}>{n} Players</option>
+                  ))}
+                </select>
+              </label>
+              <div className="label">
+                Host Mode
+                <div className="host-mode-toggle" role="group" aria-label="Host mode">
+                  <button className={`button ${hostMode === "play" ? "primary" : ""}`} type="button" onClick={() => onHostModeChange("play")}>
+                    Host + Play
+                  </button>
+                  <button className={`button ${hostMode === "manage" ? "primary" : ""}`} type="button" onClick={() => onHostModeChange("manage")}>
+                    Host Only
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="lobby-actions">
+              <button className="button primary lobby-cta" type="button" onClick={onCreateRoom} disabled={!selectedDeckId || !socketConnected}>
+                <img className="button-icon" src={getIconAssetPath("icon-host")} alt="" aria-hidden="true" />
+                Create Room
+              </button>
+              <button className="button lobby-cta" type="button" onClick={onQueueJoin} disabled={!socketConnected || !selectedDeckId}>
+                <img className="button-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" />
+                Quick Queue
+              </button>
+            </div>
+
+            <div className="lobby-join">
+              <input className="input" placeholder="Enter room code" value={roomCodeInput} onChange={(e) => onRoomCodeInput(e.target.value)} />
+              <button className="button" type="button" onClick={onJoinRoom} disabled={!selectedDeckId || !roomCodeInput || !socketConnected}>
+                Join
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="room-banner">
+              <div>
+                <span className="muted room-banner-label">Room Code</span>
+                <strong className="room-code">{currentRoom?.roomCode}</strong>
+              </div>
+              <div className="room-banner-meta">
+                <span className="status-pill">{currentRoom?.players.length}/{currentRoom?.maxPlayers} players</span>
+                <span className="status-pill">{currentRoom?.hostMode === "manage" ? "Host Only" : "Host + Play"}</span>
+              </div>
+            </div>
+
+            <div className="roster">
+              {currentRoom?.players.map((player) => {
+                const character = CHARACTER_CLASSES.find((c) => c.id === player.characterId);
+                return (
+                  <div key={player.userId} className={`roster-row ${player.ready ? "is-ready" : ""}`}>
+                    <img
+                      className="roster-avatar"
+                      src={getAvatarAssetPath(player.avatarId)}
+                      alt=""
+                      onError={(e) => handleAvatarError(e, player.avatarId)}
+                    />
+                    <div className="roster-info">
+                      <strong>{player.username}{player.userId === currentUserId ? " (you)" : ""}</strong>
+                      <span className="muted">{character?.name ?? "Choosing…"}</span>
+                    </div>
+                    <span className={`roster-badge ${player.ready ? "ready" : ""}`}>{player.ready ? "Ready" : "Not ready"}</span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="lobby-actions">
+              <button className="button primary lobby-cta" type="button" onClick={onToggleReady}>
+                <img className="button-icon" src={getIconAssetPath("icon-shield")} alt="" aria-hidden="true" />
+                {meReady ? "Unready" : "Ready Up"}
+              </button>
+              {isRoomHost ? (
+                <button className="button lobby-cta" type="button" onClick={onStartRoom}>
+                  <img className="button-icon" src={getIconAssetPath("icon-host")} alt="" aria-hidden="true" />
+                  Start Duel
+                </button>
+              ) : null}
+            </div>
+            <button className="button lobby-leave" type="button" onClick={onLeaveRoom}>
+              <img className="button-icon" src={getIconAssetPath("icon-logout")} alt="" aria-hidden="true" />
+              Leave Room
+            </button>
+          </>
+        )}
+
+        <label className="label lobby-advanced">
           Table Animation
           <select
             className="select"
@@ -193,91 +266,44 @@ function renderLobby(props: GameBoardProps) {
             <option value="cinematic">Cinematic</option>
           </select>
         </label>
-
-        <div className="row">
-          <button className="button primary" type="button" onClick={onCreateRoom} disabled={!selectedDeckId || !socketConnected}>
-            <img className="button-icon" src={getIconAssetPath("icon-host")} alt="" aria-hidden="true" />
-            Create Room
-          </button>
-          <button className="button" type="button" onClick={onJoinRoom} disabled={!selectedDeckId || !roomCodeInput || !socketConnected}>
-            <img className="button-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" />
-            Join Room
-          </button>
-          <button className="button" type="button" onClick={onLeaveRoom} disabled={!currentRoom}>
-            <img className="button-icon" src={getIconAssetPath("icon-logout")} alt="" aria-hidden="true" />
-            Leave Room
-          </button>
-        </div>
-
-        <div className="row">
-          <button className="button" type="button" onClick={onToggleReady} disabled={!currentRoom}>
-            <img className="button-icon" src={getIconAssetPath("icon-shield")} alt="" aria-hidden="true" />
-            {meReady ? "Unready" : "Ready"}
-          </button>
-          <button className="button" type="button" onClick={onStartRoom} disabled={!currentRoom || !isRoomHost}>
-            <img className="button-icon" src={getIconAssetPath("icon-host")} alt="" aria-hidden="true" />
-            Start Room (Host)
-          </button>
-          <button className="button" type="button" onClick={onQueueJoin} disabled={!socketConnected || !selectedDeckId}>
-            <img className="button-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" />
-            Quick Queue
-          </button>
-        </div>
-
-        {currentRoom ? (
-          <p className="muted">
-            Room <strong>{currentRoom.roomCode}</strong> | Players {currentRoom.players.length}/{currentRoom.maxPlayers}
-            <br />
-            Host mode: <strong>{currentRoom.hostMode === "manage" ? "Host Only" : "Host + Play"}</strong>
-            <br />
-            {currentRoom.players
-              .map(
-                (player) =>
-                  `${player.userId} [${player.characterId}]${player.ready ? " (ready)" : " (not ready)"}`
-              )
-              .join(" | ")}
-          </p>
-        ) : (
-          <p className="muted">No active room.</p>
-        )}
       </section>
 
-      <section className="grid">
-        <h3 style={{ margin: 0 }}>Choose Character (1 of 6)</h3>
+      <section className="lobby-characters">
+        <header className="lobby-head">
+          <h3>Choose your champion</h3>
+          <p className="muted">Each realm plays differently. {selectedCharacterId ? "" : "Tap one to select."}</p>
+        </header>
         <div className="class-grid">
-          {CHARACTER_CLASSES.map((character) => (
-            (() => {
-              const takenByOther = (currentRoom?.players ?? []).some(
-                (player) => player.userId !== currentUserId && player.characterId === character.id
-              );
-              return (
-            <article
-              key={character.id}
-              className={`class-card ${selectedCharacterId === character.id ? "selected-character" : ""} ${takenByOther ? "character-locked" : ""}`}
-              onClick={() => {
-                if (!takenByOther) {
-                  onCharacterChange(character.id);
-                }
-              }}
-              onMouseMove={onTilt}
-              onMouseLeave={onTiltReset}
-            >
-              <div className="class-card-head">
-                <img className="crest-icon" src={character.crest} alt="" aria-hidden="true" />
-                <span className="chip">{character.tag}</span>
-              </div>
-              <img className="class-sprite" src={character.sprite} alt={`${character.name} card sprite`} loading="lazy" />
-              <strong>{character.name}</strong>
-              <p>{character.deckStyle}</p>
-              {takenByOther ? <small className="error">Taken by another player</small> : null}
-              <small>{character.ability}</small>
-            </article>
-              );
-            })()
-          ))}
+          {CHARACTER_CLASSES.map((character) => {
+            const takenByOther = (currentRoom?.players ?? []).some(
+              (player) => player.userId !== currentUserId && player.characterId === character.id
+            );
+            return (
+              <article
+                key={character.id}
+                className={`class-card ${selectedCharacterId === character.id ? "selected-character" : ""} ${takenByOther ? "character-locked" : ""}`}
+                onClick={() => {
+                  if (!takenByOther) {
+                    onCharacterChange(character.id);
+                  }
+                }}
+                onMouseMove={onTilt}
+                onMouseLeave={onTiltReset}
+              >
+                <div className="class-card-head">
+                  <img className="crest-icon" src={character.crest} alt="" aria-hidden="true" />
+                  <span className="chip">{character.tag}</span>
+                </div>
+                <img className="class-sprite" src={character.sprite} alt={`${character.name} card sprite`} loading="lazy" />
+                <strong>{character.name}</strong>
+                <p>{character.deckStyle}</p>
+                {takenByOther ? <small className="error">Taken by another player</small> : null}
+                <small>{character.ability}</small>
+              </article>
+            );
+          })}
         </div>
       </section>
-
     </div>
   );
 }
