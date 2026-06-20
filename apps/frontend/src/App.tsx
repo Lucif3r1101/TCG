@@ -690,7 +690,7 @@ export function App() {
         </section>
       ) : (
         <section className={`panel ${tabletopMode ? "panel-tabletop" : ""}`}>
-          <div className={`card ${tabletopMode ? "card-tabletop" : ""}`}>
+          <div className={`card ${tabletopMode ? "card-tabletop" : "card-lobby"}`}>
             <GameBoard
               currentUserId={currentUser.id}
               socketConnected={socketConnected}
