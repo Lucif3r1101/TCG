@@ -5,6 +5,7 @@ import { AuthPanel } from "./components/AuthPanel";
 import { GameBoard } from "./components/GameBoard";
 import { TopNav } from "./components/TopNav";
 import { CardLibrary } from "./components/CardLibrary";
+import { RiftBackground } from "./components/RiftBackground";
 import { ForgotPasswordModal } from "./components/modals/ForgotPasswordModal";
 import { GuideModal } from "./components/modals/GuideModal";
 import { LegalModal } from "./components/modals/LegalModal";
@@ -580,6 +581,7 @@ export function App() {
 
   return (
     <div className={`page ${impact ? "impact" : ""} ${tabletopMode ? "tabletop-page" : ""}`}>
+      {!tabletopMode ? <RiftBackground /> : null}
       <TopNav
         soundEnabled={soundEnabled}
         showLogout={Boolean(currentUser)}

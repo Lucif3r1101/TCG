@@ -3085,3 +3085,74 @@ body {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ===== Animated rift background + motion ===== */
+.rift-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Keep app content above the canvas */
+.page > *:not(.rift-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(46, 230, 255, 0.25)); }
+  50% { filter: drop-shadow(0 0 22px rgba(53, 243, 177, 0.45)); }
+}
+
+.hero-logo {
+  animation: floatLogo 5s ease-in-out infinite, glowPulse 4s ease-in-out infinite;
+}
+
+.hero-content > * {
+  animation: riseIn 0.6s cubic-bezier(0.2, 0.82, 0.2, 1) both;
+}
+.hero-content > *:nth-child(1) { animation-delay: 0.02s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.08s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.14s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.20s; }
+.hero-content > *:nth-child(5) { animation-delay: 0.26s; }
+.hero-content > *:nth-child(6) { animation-delay: 0.32s; }
+
+.landing-copy-card {
+  animation: riseIn 0.5s cubic-bezier(0.2, 0.82, 0.2, 1) both;
+}
+.landing-copy-card:nth-child(1) { animation-delay: 0.04s; }
+.landing-copy-card:nth-child(2) { animation-delay: 0.10s; }
+.landing-copy-card:nth-child(3) { animation-delay: 0.16s; }
+.landing-copy-card:nth-child(4) { animation-delay: 0.22s; }
+.landing-copy-card:nth-child(5) { animation-delay: 0.28s; }
+.landing-copy-card:nth-child(6) { animation-delay: 0.34s; }
+
+.hero-chip {
+  transition: transform 0.16s ease, border-color 0.16s ease;
+}
+.hero-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(46, 230, 255, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo,
+  .hero-content > *,
+  .landing-copy-card {
+    animation: none;
+  }
+}
