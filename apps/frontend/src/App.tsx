@@ -601,49 +601,44 @@ export function App() {
 
       {libraryOpen ? <CardLibrary onClose={() => setLibraryOpen(false)} /> : null}
 
-      {!currentUser || !tabletopMode ? (
+      {!currentUser ? (
         <section className="hero">
           <div className="hero-content">
+            <img className="hero-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="" aria-hidden="true" />
+            <span className="hero-kicker">Sci-Fantasy Trading Card Game</span>
             <h1>Chronicles of the RIFT</h1>
             <p>
-              First-time players get a guided lore and battle tutorial. Returning players can always reopen How to Play from
-              the top bar.
+              Build a board, spend mana, and outplay opponents in live multiplayer duels across six rival factions.
+              Free to play, right in your browser.
             </p>
+            <div className="hero-chips">
+              <span className="hero-chip">⚔ 6 factions</span>
+              <span className="hero-chip">🃏 300+ cards</span>
+              <span className="hero-chip">⚡ Live rooms</span>
+            </div>
+            <div className="hero-cta">
+              <button className="button primary" type="button" onClick={() => setLibraryOpen(true)}>
+                Browse Cards
+              </button>
+              <button
+                className="button"
+                type="button"
+                onClick={() => {
+                  playSfx("click");
+                  setGuideSection("how");
+                  setGuideOpen(true);
+                }}
+              >
+                How to Play
+              </button>
+            </div>
           </div>
         </section>
-      ) : null}
-
-      {!currentUser ? (
-        <section className="landing-content" aria-label="Chronicles of the RIFT overview">
-          <div className="landing-copy-grid">
-            <article className="landing-copy-card">
-              <span className="landing-section-kicker">World</span>
-              <h2>The Rift Is Splitting Reality</h2>
-              <p>
-                Six champions battle across unstable dimensions where citadels, void corridors, ember sanctums, iron wilds,
-                broken timelines, and abyss trenches all collide. Every deck is tied to one hero fantasy and asks you to
-                play with a different rhythm.
-              </p>
-            </article>
-
-            <article className="landing-copy-card">
-              <span className="landing-section-kicker">How To Play</span>
-              <h2>Build A Board, Spend Mana, Pressure Opponents</h2>
-              <p>
-                Create or join a room, choose one of the six predefined characters, draw your opening hand, play units to
-                your field, use spells for instant effects, and attack enemy players or their units once your board is ready.
-              </p>
-            </article>
-
-            <article className="landing-copy-card">
-              <span className="landing-section-kicker">Deck Identity</span>
-              <h2>Six Characters, Six Styles</h2>
-              <p>
-                Riftforged Sentinel controls the board, Void Ranger pressures with tempo, Ember Arcanist chains explosive
-                combos, Ironbound Beastmaster swarms, Chronomancer bends turn order, and Abyss Revenant drains value from
-                every exchange.
-              </p>
-            </article>
+      ) : !tabletopMode ? (
+        <section className="hero hero-compact">
+          <div className="hero-content">
+            <h1>Chronicles of the RIFT</h1>
+            <p>Jump into a room or matchmaking below. Reopen How to Play anytime from the top bar.</p>
           </div>
         </section>
       ) : null}
@@ -745,9 +740,39 @@ export function App() {
               onTiltReset={resetTilt}
             />
           )}
-          <p className={`muted footer-note ${tabletopMode ? "footer-note-tabletop" : ""}`}>� 2026 Chronicles of the RIFT. All rights reserved.</p>
+          <p className={`muted footer-note ${tabletopMode ? "footer-note-tabletop" : ""}`}>© 2026 Chronicles of the RIFT. All rights reserved.</p>
         </div>
       </section>
+
+      {!currentUser ? (
+        <section className="landing-content" aria-label="Chronicles of the RIFT overview">
+          <div className="landing-head">
+            <span className="landing-section-kicker">The Six Factions</span>
+            <h2>Pick a hero fantasy, master its rhythm</h2>
+          </div>
+          <div className="landing-copy-grid">
+            {[
+              { emoji: "🛡️", name: "Riftforged Sentinel", blurb: "Control the board with hard-light shields and fortress tech." },
+              { emoji: "🏹", name: "Void Ranger", blurb: "Pressure with tempo, phase strikes, and dimensional trails." },
+              { emoji: "🔥", name: "Ember Arcanist", blurb: "Chain explosive runic combos and burn through defenses." },
+              { emoji: "🐺", name: "Ironbound Beastmaster", blurb: "Swarm the field with engineered beasts and primal power." },
+              { emoji: "⏳", name: "Chronomancer", blurb: "Bend turn order and freeze foes with temporal magic." },
+              { emoji: "💀", name: "Abyss Revenant", blurb: "Drain value from every exchange and outlast your rivals." }
+            ].map((f) => (
+              <article className="landing-copy-card" key={f.name}>
+                <span className="faction-emoji" aria-hidden="true">{f.emoji}</span>
+                <h3>{f.name}</h3>
+                <p>{f.blurb}</p>
+              </article>
+            ))}
+          </div>
+          <div className="landing-how">
+            <div className="landing-how-step"><span>1</span> Create or join a room and pick a character.</div>
+            <div className="landing-how-step"><span>2</span> Draw your hand, spend mana, and play units &amp; spells.</div>
+            <div className="landing-how-step"><span>3</span> Attack enemies and their units to win the duel.</div>
+          </div>
+        </section>
+      ) : null}
 
       <div className="toast-stack" aria-live="polite" aria-atomic="true">
         {toasts.map((toast) => (
