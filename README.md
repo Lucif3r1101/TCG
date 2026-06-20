@@ -1,4 +1,4 @@
-# TCG 
+# RIFT
 
 ## Quick start
 1. Use MongoDB Atlas and set backend env:
