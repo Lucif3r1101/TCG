@@ -4576,3 +4576,69 @@ body {
   color: #8ce8ff;
   letter-spacing: 0.2em;
 }
+
+/* ===== Draw / discard motion + graveyard ===== */
+/* New hand cards slide in from the deck side when drawn */
+.hand-row .hand-card {
+  animation: drawIn 0.34s cubic-bezier(0.2, 0.82, 0.2, 1);
+}
+@keyframes drawIn {
+  0% { opacity: 0; transform: translateX(-40px) translateY(10px) scale(0.85); }
+  100% { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+}
+
+/* A card-back lifts off the deck when you draw */
+.pile-flyer {
+  position: absolute;
+  inset: 0.3rem;
+  width: calc(100% - 0.6rem);
+  border-radius: 7px;
+  pointer-events: none;
+  animation: deckLift 0.5s ease-out forwards;
+  z-index: 2;
+}
+@keyframes deckLift {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-46px) scale(0.7) rotate(-8deg); opacity: 0; }
+}
+
+.pile-count-pop { animation: hpPop 0.4s ease; }
+
+.pile-discard { cursor: pointer; }
+.pile-discard:hover { border-color: var(--accent); }
+
+/* Graveyard viewer */
+.grave-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 0.6rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.grave-card {
+  display: grid;
+  gap: 0.2rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(8, 13, 24, 0.7);
+  padding-bottom: 0.3rem;
+}
+.grave-card.rarity-rare { border-color: #60adff; }
+.grave-card.rarity-epic { border-color: #c182ff; }
+.grave-card.rarity-legendary { border-color: #ffc454; }
+.grave-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.grave-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.grave-stats { font-size: 0.66rem; color: var(--muted); text-align: center; }

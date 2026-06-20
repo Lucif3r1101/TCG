@@ -351,6 +351,8 @@ function TabletopBoard(props: GameBoardProps) {
   const [defeatedSignals, setDefeatedSignals] = useState<DefeatedSignal[]>([]);
   const [fx, setFx] = useState<{ id: string; kind: "slash" | "shield" } | null>(null);
   const [shake, setShake] = useState(false);
+  const [drawFly, setDrawFly] = useState(false);
+  const [graveyardOpen, setGraveyardOpen] = useState(false);
   const [showCoach, setShowCoach] = useState(() => {
     if (typeof window === "undefined") return false;
     return localStorage.getItem("tcg-board-coach-v1") !== "seen";
@@ -529,6 +531,33 @@ function TabletopBoard(props: GameBoardProps) {
         <Suspense fallback={null}>
           <VictoryOverlay won={iWon} winnerName={winnerName} onExit={props.onLeaveRoom} />
         </Suspense>
+      ) : null}
+
+      {graveyardOpen ? (
+        <div className="legal-overlay" role="dialog" aria-modal="true" onClick={() => setGraveyardOpen(false)}>
+          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="auth-modal-head">
+              <div>
+                <span className="auth-hero-kicker">Graveyard</span>
+                <h3>Your discard pile</h3>
+              </div>
+              <button className="icon-close" type="button" onClick={() => setGraveyardOpen(false)} aria-label="Close">×</button>
+            </div>
+            {(me?.discard?.length ?? 0) === 0 ? (
+              <p className="auth-hint">No cards here yet. Destroyed units and used spells go here.</p>
+            ) : (
+              <div className="grave-grid">
+                {me?.discard?.map((card, i) => (
+                  <article key={`${card.instanceId}-${i}`} className={`grave-card rarity-${card.rarity}`}>
+                    <img src={getCardArtSources(card.slug).primary} alt={card.name} loading="lazy" onError={(e) => handleCardArtError(e, card.slug)} />
+                    <span className="grave-name">{card.name}</span>
+                    <span className="grave-stats">{card.type === "unit" ? `⚔ ${card.attack} · 🛡 ${card.health}` : "Spell"}</span>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       ) : null}
 
       {showCoach ? (
@@ -725,18 +754,28 @@ function TabletopBoard(props: GameBoardProps) {
                 className={`pile pile-deck ${isMyTurn && !battle?.manualDrawUsed ? "pile-draw" : ""}`}
                 type="button"
                 disabled={!isMyTurn || Boolean(battle?.manualDrawUsed)}
-                onClick={onDrawCard}
+                onClick={() => {
+                  setDrawFly(true);
+                  window.setTimeout(() => setDrawFly(false), 520);
+                  onDrawCard();
+                }}
                 title="Draw a card"
               >
                 <img className="pile-art" src={DECK_BACK_ASSET_PATH} alt="" aria-hidden="true" />
+                {drawFly ? <img className="pile-flyer" src={DECK_BACK_ASSET_PATH} alt="" aria-hidden="true" /> : null}
                 <span className="pile-count">{me?.deckCount ?? 0}</span>
                 <span className="pile-label">{isMyTurn && !battle?.manualDrawUsed ? "Draw" : "Deck"}</span>
               </button>
-              <div className="pile pile-discard">
+              <button
+                className="pile pile-discard"
+                type="button"
+                onClick={() => setGraveyardOpen(true)}
+                title="View graveyard"
+              >
                 <img className="pile-art" src={CARD_BACK_ASSET_PATH} alt="" aria-hidden="true" />
-                <span className="pile-count">{me?.discardCount ?? 0}</span>
-                <span className="pile-label">Discard</span>
-              </div>
+                <span key={`disc-${me?.discardCount ?? 0}`} className="pile-count pile-count-pop">{me?.discardCount ?? 0}</span>
+                <span className="pile-label">Graveyard</span>
+              </button>
             </div>
 
             <div className="your-hand">

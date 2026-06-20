@@ -69,6 +69,7 @@ export type RoomPlayer = {
   handCount: number;
   deckCount: number;
   discardCount: number;
+  discard?: RoomCard[];
   mana: number;
   maxMana: number;
   board: RoomCard[];

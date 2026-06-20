@@ -302,6 +302,7 @@ function toRoomPublicState(room: RoomState) {
       handCount: player.handCount,
       deckCount: player.deckCount,
       discardCount: player.discardCount,
+      discard: player.discard,
       mana: player.mana,
       maxMana: player.maxMana,
       board: player.board
