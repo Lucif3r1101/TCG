@@ -15,6 +15,18 @@ export function factionFromSlug(slug: string): string {
   return FACTIONS.find((f) => slug.startsWith(`${f}-`)) ?? "";
 }
 
+// Faction crest emblem for a card slug (used as a watermark on the card frame).
+export function getCrestSource(slug: string): string {
+  const faction = factionFromSlug(slug);
+  return faction ? `/assets/icons/crests/${faction}-crest.png` : "";
+}
+
+// Faction realm backdrop image for a card slug (used behind the battlefield).
+export function getRealmSource(slug: string): string {
+  const faction = factionFromSlug(slug);
+  return faction ? `/assets/realms/${faction}.jpg` : "";
+}
+
 // Resolve the art source chain for a card slug: a custom hand-picked image when
 // available, then the generated PNG, then the generated SVG as a last resort.
 export function getCardArtSources(slug: string) {

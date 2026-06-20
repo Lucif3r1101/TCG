@@ -9,7 +9,7 @@ import {
 } from "../constants/game";
 import { DeckSummary, MatchState, RoomActionEvent, RoomCard, RoomState } from "../types/game";
 import { formatTimer } from "../lib/api";
-import { getCardArtSources, handleCardArtError } from "../lib/cardArt";
+import { getCardArtSources, handleCardArtError, getCrestSource, getRealmSource } from "../lib/cardArt";
 import { CardDetailModal, DetailCard } from "./CardDetailModal";
 
 // Lottie is heavy; load the victory overlay only when a match actually ends.
@@ -387,6 +387,10 @@ function TabletopBoard(props: GameBoardProps) {
   const me = currentRoom?.players.find((player) => player.userId === props.currentUserId) ?? null;
   const isMyTurn = Boolean(activePlayerId) && activePlayerId === props.currentUserId;
   const opponents = (currentRoom?.players ?? []).filter((player) => player.userId !== props.currentUserId);
+  // Backdrop the battlefield with the local player's realm art (derived from
+  // any of their cards' slugs), falling back to neutral arena key art.
+  const realmSlug = privateHand[0]?.slug ?? me?.board[0]?.slug ?? "";
+  const realmBg = getRealmSource(realmSlug) || "/assets/branding/hero-key-art.jpg";
   const possibleTargets = opponents.filter((player) => player.health > 0);
   const activePlayerName = activePlayerId
     ? currentRoom?.players.find((player) => player.userId === activePlayerId)?.username ?? "Player"
@@ -819,7 +823,10 @@ function TabletopBoard(props: GameBoardProps) {
               })}
             </div>
 
-            <div className={`battlefield ${attacker ? "bf-attacking" : ""} ${shake ? "bf-shake" : ""} ${isMyTurn ? "bf-myturn" : ""}`}>
+            <div
+              className={`battlefield ${attacker ? "bf-attacking" : ""} ${shake ? "bf-shake" : ""} ${isMyTurn ? "bf-myturn" : ""}`}
+              style={{ ["--realm-bg" as string]: `url(${realmBg})` }}
+            >
               <div className="bf-center-fx" aria-hidden="true">
                 {attackInfo ? (
                   <span className="attack-info">⚔ <strong>{attackInfo.attacker}</strong> attacks <strong>{attackInfo.target}</strong></span>
@@ -857,6 +864,8 @@ function TabletopBoard(props: GameBoardProps) {
                             title={`${unit.name} — ${owner.username}`}
                           >
                             <img className="tcg-art" src={getCardArtSources(unit.slug).primary} alt={unit.name} loading="lazy" onError={(e) => handleCardArtError(e, unit.slug)} />
+                            {getCrestSource(unit.slug) ? <img className="tcg-crest" src={getCrestSource(unit.slug)} alt="" aria-hidden="true" /> : null}
+                            <span className="tcg-frame" aria-hidden="true" />
                             <span className="tcg-name">{unit.name}</span>
                             <span className="tcg-atk">{unit.attack}</span>
                             <span className="tcg-def">{unit.health}</span>
@@ -897,6 +906,8 @@ function TabletopBoard(props: GameBoardProps) {
                             title={`${unit.name} · ${inDef ? "Defense" : "Attack"}`}
                           >
                             <img className="tcg-art" src={getCardArtSources(unit.slug).primary} alt={unit.name} loading="lazy" onError={(e) => handleCardArtError(e, unit.slug)} />
+                            {getCrestSource(unit.slug) ? <img className="tcg-crest" src={getCrestSource(unit.slug)} alt="" aria-hidden="true" /> : null}
+                            <span className="tcg-frame" aria-hidden="true" />
                             <span className="tcg-name">{unit.name}</span>
                             <span className="tcg-atk">{unit.attack}</span>
                             <span className="tcg-def">{unit.health}</span>

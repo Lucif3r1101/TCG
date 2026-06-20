@@ -1,5 +1,5 @@
 export type AuthMode = "register" | "login";
-export type GuideSection = "lore" | "how" | "journey";
+export type GuideSection = "lore" | "how" | "journey" | "about";
 
 export type AuthUser = {
   id: string;

@@ -8,6 +8,7 @@ type TopNavProps = {
   onOpenLore: () => void;
   onOpenHow: () => void;
   onOpenJourney: () => void;
+  onOpenAbout: () => void;
   onOpenLibrary: () => void;
   onOpenProfile: () => void;
   onToggleSound: () => void;
@@ -21,6 +22,7 @@ export function TopNav({
   onOpenLore,
   onOpenHow,
   onOpenJourney,
+  onOpenAbout,
   onOpenLibrary,
   onOpenProfile,
   onToggleSound,
@@ -102,6 +104,10 @@ export function TopNav({
                 <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenLibrary)}>
                   <span className="nav-ico-chip"><img className="nav-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" /></span>
                   <span className="nav-label">Card Library</span>
+                </button>
+                <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenAbout)}>
+                  <span className="nav-ico-chip"><img className="nav-icon" src={getIconAssetPath("icon-shield")} alt="" aria-hidden="true" /></span>
+                  <span className="nav-label">About the Dev</span>
                 </button>
                 <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onToggleSound)}>
                   <span className="nav-ico-chip"><img className="nav-icon" src={getIconAssetPath("icon-audio")} alt="" aria-hidden="true" /></span>

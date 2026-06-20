@@ -607,6 +607,11 @@ export function App() {
           setGuideSection("journey");
           setGuideOpen(true);
         }}
+        onOpenAbout={() => {
+          playSfx("click");
+          setGuideSection("about");
+          setGuideOpen(true);
+        }}
         onOpenLibrary={() => {
           playSfx("click");
           setLibraryOpen(true);
