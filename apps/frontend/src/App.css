@@ -3340,3 +3340,101 @@ body {
   padding-left: 1.1rem;
   line-height: 1.5;
 }
+
+/* ===== Sign-in stage: marketing + form side by side, no scroll ===== */
+.auth-stage {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  align-content: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem) clamp(0.9rem, 3vw, 1.6rem) 2rem;
+}
+
+.auth-stage-pitch {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 0.55rem;
+  align-content: center;
+}
+
+.auth-stage-pitch h1 {
+  margin: 0;
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(1.9rem, 6vw, 3.2rem);
+  line-height: 1;
+  background: linear-gradient(120deg, #ffffff, #8ce8ff 55%, #35f3b1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.auth-stage-pitch p {
+  margin: 0;
+  max-width: 42ch;
+  color: #cdddf6;
+  font-size: clamp(0.92rem, 2.3vw, 1.04rem);
+  line-height: 1.55;
+}
+
+.pitch-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.pitch-link {
+  border: 1px solid var(--line);
+  background: rgba(12, 20, 37, 0.6);
+  color: #dbe7fb;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease;
+}
+
+.pitch-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(46, 230, 255, 0.5);
+}
+
+.auth-stage-form {
+  display: grid;
+  align-content: center;
+}
+
+/* Embedded auth = single-column form card (page provides the marketing side) */
+.auth.auth-embedded {
+  grid-template-columns: 1fr;
+  max-width: 460px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .auth-stage {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    min-height: calc(100dvh - 62px);
+    gap: 2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .auth-stage-pitch {
+    text-align: left;
+    justify-items: start;
+  }
+
+  .pitch-links {
+    justify-content: flex-start;
+  }
+}

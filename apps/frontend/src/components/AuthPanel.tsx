@@ -3,6 +3,7 @@ import { getAvatarAssetPath, getAvatarFallbackPath } from "../constants/game";
 import { AuthMode } from "../types/game";
 
 type AuthPanelProps = {
+  embedded?: boolean;
   mode: AuthMode;
   email: string;
   username: string;
@@ -33,6 +34,7 @@ type AuthPanelProps = {
 
 export function AuthPanel(props: AuthPanelProps) {
   const {
+    embedded = false,
     mode,
     email,
     username,
@@ -71,18 +73,20 @@ export function AuthPanel(props: AuthPanelProps) {
   };
 
   return (
-    <div className="auth">
-      <aside className="auth-hero">
-        <img className="auth-hero-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="Chronicles of the RIFT" />
-        <span className="auth-hero-kicker">Rift · Season 2026</span>
-        <h2>{isRegister ? "Create your Battler ID" : "Welcome back, Challenger"}</h2>
-        <p>Assemble your deck, enter tactical multiplayer rooms, and battle through live turn-based duels.</p>
-        <ul className="auth-hero-points">
-          <li>Six factions, 300+ cards</li>
-          <li>Real-time rooms &amp; matchmaking</li>
-          <li>Free to play</li>
-        </ul>
-      </aside>
+    <div className={`auth ${embedded ? "auth-embedded" : ""}`}>
+      {embedded ? null : (
+        <aside className="auth-hero">
+          <img className="auth-hero-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="Chronicles of the RIFT" />
+          <span className="auth-hero-kicker">Rift · Season 2026</span>
+          <h2>{isRegister ? "Create your Battler ID" : "Welcome back, Challenger"}</h2>
+          <p>Assemble your deck, enter tactical multiplayer rooms, and battle through live turn-based duels.</p>
+          <ul className="auth-hero-points">
+            <li>Six factions, 300+ cards</li>
+            <li>Real-time rooms &amp; matchmaking</li>
+            <li>Free to play</li>
+          </ul>
+        </aside>
+      )}
 
       <section className="auth-form-col">
         <div className="auth-tabs" role="tablist" aria-label="Authentication mode">

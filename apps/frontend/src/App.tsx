@@ -6,8 +6,6 @@ import { GameBoard } from "./components/GameBoard";
 import { TopNav } from "./components/TopNav";
 import { CardLibrary } from "./components/CardLibrary";
 import { RiftBackground } from "./components/RiftBackground";
-import { LORE_TAGLINE, LORE_INTRO, LORE_PILLARS, FACTIONS } from "./constants/lore";
-
 // Lottie is heavy (~250KB); load it only when the hero actually renders.
 const RiftOrb = lazy(() => import("./components/RiftOrb").then((m) => ({ default: m.RiftOrb })));
 import { ForgotPasswordModal } from "./components/modals/ForgotPasswordModal";
@@ -607,45 +605,7 @@ export function App() {
 
       {libraryOpen ? <CardLibrary onClose={() => setLibraryOpen(false)} /> : null}
 
-      {!currentUser ? (
-        <section className="hero">
-          <div className="hero-content">
-            <div className="hero-emblem">
-              <Suspense fallback={null}>
-                <RiftOrb className="hero-orb" />
-              </Suspense>
-              <img className="hero-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="" aria-hidden="true" />
-            </div>
-            <span className="hero-kicker">Sci-Fantasy Trading Card Game</span>
-            <h1>Chronicles of the RIFT</h1>
-            <p>
-              Build a board, spend mana, and outplay opponents in live multiplayer duels across six rival factions.
-              Free to play, right in your browser.
-            </p>
-            <div className="hero-chips">
-              <span className="hero-chip">⚔ 6 factions</span>
-              <span className="hero-chip">🃏 300+ cards</span>
-              <span className="hero-chip">⚡ Live rooms</span>
-            </div>
-            <div className="hero-cta">
-              <button className="button primary" type="button" onClick={() => setLibraryOpen(true)}>
-                Browse Cards
-              </button>
-              <button
-                className="button"
-                type="button"
-                onClick={() => {
-                  playSfx("click");
-                  setGuideSection("how");
-                  setGuideOpen(true);
-                }}
-              >
-                How to Play
-              </button>
-            </div>
-          </div>
-        </section>
-      ) : !tabletopMode ? (
+      {currentUser && !tabletopMode ? (
         <section className="hero hero-compact">
           <div className="hero-content">
             <h1>Chronicles of the RIFT</h1>
@@ -654,10 +614,32 @@ export function App() {
         </section>
       ) : null}
 
-      <section className={`panel ${tabletopMode ? "panel-tabletop" : ""}`}>
-        <div className={`card ${tabletopMode ? "card-tabletop" : ""}`}>
-          {!currentUser ? (
+      {!currentUser ? (
+        <section className="auth-stage">
+          <aside className="auth-stage-pitch">
+            <div className="hero-emblem">
+              <Suspense fallback={null}>
+                <RiftOrb className="hero-orb" />
+              </Suspense>
+              <img className="hero-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="" aria-hidden="true" />
+            </div>
+            <span className="hero-kicker">Sci-Fantasy Trading Card Game</span>
+            <h1>Chronicles of the RIFT</h1>
+            <p>Build a board, spend mana, and outplay opponents in live multiplayer duels across six rival realms. Free to play.</p>
+            <div className="hero-chips">
+              <span className="hero-chip">⚔ 6 realms</span>
+              <span className="hero-chip">🃏 300+ cards</span>
+              <span className="hero-chip">⚡ Live rooms</span>
+            </div>
+            <div className="pitch-links">
+              <button type="button" className="pitch-link" onClick={() => { playSfx("click"); setGuideSection("lore"); setGuideOpen(true); }}>📖 Lore</button>
+              <button type="button" className="pitch-link" onClick={() => { playSfx("click"); setGuideSection("how"); setGuideOpen(true); }}>🎮 How to Play</button>
+              <button type="button" className="pitch-link" onClick={() => setLibraryOpen(true)}>🃏 Cards</button>
+            </div>
+          </aside>
+          <div className="auth-stage-form">
             <AuthPanel
+              embedded
               mode={mode}
               email={email}
               username={username}
@@ -693,7 +675,11 @@ export function App() {
               }}
               onSubmit={handleSubmit}
             />
-          ) : (
+          </div>
+        </section>
+      ) : (
+        <section className={`panel ${tabletopMode ? "panel-tabletop" : ""}`}>
+          <div className={`card ${tabletopMode ? "card-tabletop" : ""}`}>
             <GameBoard
               currentUserId={currentUser.id}
               socketConnected={socketConnected}
@@ -750,53 +736,10 @@ export function App() {
               onTilt={applyTilt}
               onTiltReset={resetTilt}
             />
-          )}
-          <p className={`muted footer-note ${tabletopMode ? "footer-note-tabletop" : ""}`}>© 2026 Chronicles of the RIFT. All rights reserved.</p>
-        </div>
-      </section>
-
-      {!currentUser ? (
-        <section className="landing-content" aria-label="Chronicles of the RIFT overview">
-          <article className="lore-panel">
-            <span className="landing-section-kicker">The World</span>
-            <h2 className="lore-title">What is Chronicles of the RIFT?</h2>
-            <p className="lore-tagline">{LORE_TAGLINE}</p>
-            <div className="lore-prose">
-              {LORE_INTRO.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-            <div className="lore-pillars">
-              {LORE_PILLARS.map((pillar) => (
-                <div className="lore-pillar" key={pillar.title}>
-                  <h4>{pillar.title}</h4>
-                  <p>{pillar.text}</p>
-                </div>
-              ))}
-            </div>
-          </article>
-
-          <div className="landing-head">
-            <span className="landing-section-kicker">The Six Realms</span>
-            <h2>Pick a realm, master its rhythm</h2>
-          </div>
-          <div className="landing-copy-grid">
-            {FACTIONS.map((f) => (
-              <article className="landing-copy-card" key={f.id}>
-                <span className="faction-emoji" aria-hidden="true">{f.emoji}</span>
-                <h3>{f.name}</h3>
-                <span className="faction-realm">{f.realm}</span>
-                <p>{f.lore}</p>
-              </article>
-            ))}
-          </div>
-          <div className="landing-how">
-            <div className="landing-how-step"><span>1</span> Create or join a room and pick your realm's champion.</div>
-            <div className="landing-how-step"><span>2</span> Draw your hand, spend mana, and play units &amp; spells.</div>
-            <div className="landing-how-step"><span>3</span> Claim the Rift Core — defeat your rivals to win the duel.</div>
+            <p className={`muted footer-note ${tabletopMode ? "footer-note-tabletop" : ""}`}>© 2026 Chronicles of the RIFT. All rights reserved.</p>
           </div>
         </section>
-      ) : null}
+      )}
 
       <div className="toast-stack" aria-live="polite" aria-atomic="true">
         {toasts.map((toast) => (
