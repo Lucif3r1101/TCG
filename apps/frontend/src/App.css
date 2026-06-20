@@ -3438,3 +3438,65 @@ body {
     justify-content: flex-start;
   }
 }
+
+/* ===== Info screens (Lore / How to Play / Card Journey) — own full screen ===== */
+.info-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 75;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(3, 7, 18, 0.82);
+  backdrop-filter: blur(6px);
+  overflow-y: auto;
+}
+
+.info-screen {
+  width: min(720px, 100%);
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(46, 230, 255, 0.1), transparent 45%),
+    linear-gradient(165deg, rgba(13, 20, 38, 0.98), rgba(8, 13, 26, 0.98));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  display: grid;
+  gap: 1rem;
+  animation: cardIn 240ms ease;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.info-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.info-head h2 {
+  margin: 0.2rem 0 0;
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  line-height: 1.05;
+}
+
+.info-body {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.info-body .guide-lore p {
+  color: #cfddf7;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.info-body .guide-steps {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.1rem;
+  color: #cfddf7;
+  line-height: 1.5;
+}

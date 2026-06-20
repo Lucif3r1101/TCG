@@ -588,9 +588,19 @@ export function App() {
         soundEnabled={soundEnabled}
         showLogout={Boolean(currentUser)}
         username={currentUser?.username}
-        onOpenGuide={() => {
+        onOpenLore={() => {
+          playSfx("click");
+          setGuideSection("lore");
+          setGuideOpen(true);
+        }}
+        onOpenHow={() => {
           playSfx("click");
           setGuideSection("how");
+          setGuideOpen(true);
+        }}
+        onOpenJourney={() => {
+          playSfx("click");
+          setGuideSection("journey");
           setGuideOpen(true);
         }}
         onOpenLibrary={() => {
@@ -630,11 +640,6 @@ export function App() {
               <span className="hero-chip">⚔ 6 realms</span>
               <span className="hero-chip">🃏 300+ cards</span>
               <span className="hero-chip">⚡ Live rooms</span>
-            </div>
-            <div className="pitch-links">
-              <button type="button" className="pitch-link" onClick={() => { playSfx("click"); setGuideSection("lore"); setGuideOpen(true); }}>📖 Lore</button>
-              <button type="button" className="pitch-link" onClick={() => { playSfx("click"); setGuideSection("how"); setGuideOpen(true); }}>🎮 How to Play</button>
-              <button type="button" className="pitch-link" onClick={() => setLibraryOpen(true)}>🃏 Cards</button>
             </div>
           </aside>
           <div className="auth-stage-form">
@@ -748,7 +753,7 @@ export function App() {
           </div>
         ))}
       </div>
-      <GuideModal open={guideOpen} section={guideSection} onSectionChange={setGuideSection} onClose={() => setGuideOpen(false)} />
+      <GuideModal open={guideOpen} section={guideSection} onClose={() => setGuideOpen(false)} />
       <LegalModal view={legalView} onClose={() => setLegalView(null)} />
       <ForgotPasswordModal
         open={forgotOpen}

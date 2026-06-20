@@ -4,13 +4,25 @@ type TopNavProps = {
   soundEnabled: boolean;
   showLogout: boolean;
   username?: string;
-  onOpenGuide: () => void;
+  onOpenLore: () => void;
+  onOpenHow: () => void;
+  onOpenJourney: () => void;
   onOpenLibrary: () => void;
   onToggleSound: () => void;
   onLogout: () => void;
 };
 
-export function TopNav({ soundEnabled, showLogout, username, onOpenGuide, onOpenLibrary, onToggleSound, onLogout }: TopNavProps) {
+export function TopNav({
+  soundEnabled,
+  showLogout,
+  username,
+  onOpenLore,
+  onOpenHow,
+  onOpenJourney,
+  onOpenLibrary,
+  onToggleSound,
+  onLogout
+}: TopNavProps) {
   return (
     <header className="top-nav">
       <div className="brand">
@@ -21,9 +33,17 @@ export function TopNav({ soundEnabled, showLogout, username, onOpenGuide, onOpen
         </div>
       </div>
       <nav className="top-actions">
-        <button className="button nav-btn" type="button" onClick={onOpenGuide}>
+        <button className="button nav-btn" type="button" onClick={onOpenLore}>
+          <img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" />
+          Lore
+        </button>
+        <button className="button nav-btn" type="button" onClick={onOpenHow}>
           <img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" />
           How to Play
+        </button>
+        <button className="button nav-btn" type="button" onClick={onOpenJourney}>
+          <img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" />
+          Card Journey
         </button>
         <button className="button nav-btn" type="button" onClick={onOpenLibrary}>
           <img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" />
