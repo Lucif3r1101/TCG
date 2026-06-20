@@ -13,7 +13,14 @@ type MailMessage = {
   html: string;
 };
 
-type MailProvider = "resend" | "smtp";
+type MailProvider = "resend" | "brevo" | "smtp";
+
+// Parse "Name <email@host>" or a bare "email@host" into Brevo's sender shape.
+function parseSender(from: string): { email: string; name?: string } {
+  const match = from.match(/^\s*(.*?)\s*<([^>]+)>\s*$/);
+  if (match) return { name: match[1] || undefined, email: match[2].trim() };
+  return { email: from.trim() };
+}
 
 function buildResetUrl(baseUrl: string | undefined, token: string): string | null {
   if (!baseUrl) {
@@ -60,16 +67,53 @@ function buildResetMessage(input: PasswordResetMailInput): MailMessage {
 }
 
 // Decide which provider to use. `MAIL_PROVIDER` forces a choice; otherwise we
-// auto-detect: Resend stays primary when its key is set, with SMTP (e.g. Gmail)
-// as the fallback for early/no-custom-domain testing.
+// auto-detect. Brevo and Resend both send over HTTPS (work on Render); Brevo
+// needs only a verified single sender (no domain), Resend needs a verified
+// domain to reach arbitrary recipients. SMTP (e.g. Gmail) is for local dev.
 function resolveProvider(): MailProvider | null {
   const explicit = (process.env.MAIL_PROVIDER || "").trim().toLowerCase();
   if (explicit === "resend") return "resend";
+  if (explicit === "brevo") return "brevo";
   if (explicit === "smtp") return "smtp";
 
+  if (process.env.BREVO_API_KEY && process.env.EMAIL_FROM) return "brevo";
   if (process.env.RESEND_API_KEY && process.env.EMAIL_FROM) return "resend";
   if (process.env.SMTP_HOST) return "smtp";
   return null;
+}
+
+// Brevo (HTTP API). Free tier 300/day; verify a single sender email (no domain)
+// and you can send to any recipient.
+async function sendViaBrevo(to: string, msg: MailMessage): Promise<boolean> {
+  const apiKey = process.env.BREVO_API_KEY;
+  const from = process.env.EMAIL_FROM;
+  if (!apiKey || !from) {
+    console.error("Brevo not configured (BREVO_API_KEY / EMAIL_FROM missing).");
+    return false;
+  }
+
+  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "api-key": apiKey,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      sender: parseSender(from),
+      to: [{ email: to }],
+      subject: msg.subject,
+      textContent: msg.text,
+      htmlContent: msg.html
+    })
+  });
+
+  if (!response.ok) {
+    const body = await response.text().catch(() => "");
+    console.error("Brevo email API error:", response.status, body);
+    return false;
+  }
+  return true;
 }
 
 async function sendViaResend(to: string, msg: MailMessage): Promise<boolean> {
@@ -148,5 +192,7 @@ export async function sendPasswordResetEmail(input: PasswordResetMailInput): Pro
   }
 
   const message = buildResetMessage(input);
-  return provider === "resend" ? sendViaResend(input.to, message) : sendViaSmtp(input.to, message);
+  if (provider === "resend") return sendViaResend(input.to, message);
+  if (provider === "brevo") return sendViaBrevo(input.to, message);
+  return sendViaSmtp(input.to, message);
 }

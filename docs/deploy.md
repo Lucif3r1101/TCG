@@ -33,10 +33,21 @@ If you have multiple frontend domains, set comma-separated origins:
 ### Password reset email
 - In production, the reset token is not returned in the API response — it is emailed.
 - `RESET_PASSWORD_URL` builds the reset link included in emails.
-- The backend supports two providers via `MAIL_PROVIDER` (`resend` | `smtp`). If
-  `MAIL_PROVIDER` is blank it auto-detects: **Resend** when `RESEND_API_KEY` is set,
-  otherwise **SMTP** when `SMTP_HOST` is set. If neither is configured, reset emails
-  are skipped (the request still succeeds, nothing is sent).
+- The backend supports three providers via `MAIL_PROVIDER` (`brevo` | `resend` | `smtp`).
+  If blank it auto-detects: **Brevo** (BREVO_API_KEY) → **Resend** (RESEND_API_KEY) →
+  **SMTP** (SMTP_HOST). If none configured, reset emails are skipped (request still succeeds).
+- **On Render, use Brevo or Resend** (HTTPS APIs). Render blocks outbound SMTP, so Gmail
+  SMTP only works in local dev / hosts that allow SMTP.
+
+**Option A — Brevo (recommended free: 300/day, NO domain needed):**
+- Sign up at app.brevo.com → **Senders, Domains & Dedicated IPs → Senders** → add and
+  verify a single sender email (click the confirmation link). No DNS/domain required.
+- Create an API key: **SMTP & API → API Keys**.
+- Set on Render:
+  - `MAIL_PROVIDER=brevo`
+  - `BREVO_API_KEY=<key>`
+  - `EMAIL_FROM=Chronicles of the Rift <your-verified-sender@gmail.com>`
+- Sends to **any** recipient once the sender is verified.
 
 **Option A — Resend (primary, needs a verified domain):**
 - `MAIL_PROVIDER=resend`
