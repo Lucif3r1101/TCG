@@ -48,6 +48,16 @@ const resetPasswordSchema = z.object({
   password: z.string().regex(PASSWORD_RULE)
 });
 
+const updateProfileSchema = z.object({
+  username: z.string().min(3).max(24).regex(/^[a-zA-Z0-9_]+$/).optional(),
+  avatarId: z.enum(avatarIds).optional()
+});
+
+const changePasswordSchema = z.object({
+  currentPassword: z.string().min(8).max(72),
+  newPassword: z.string().regex(PASSWORD_RULE)
+});
+
 export function buildAuthRouter(jwtSecret: string): Router {
   const router = Router();
 
@@ -220,6 +230,66 @@ export function buildAuthRouter(jwtSecret: string): Router {
         avatarId: user.avatarId
       }
     });
+  });
+
+  // Update profile (username and/or avatar).
+  router.patch("/profile", requireAuth(jwtSecret), async (req: Request, res: Response) => {
+    const parsed = updateProfileSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res.status(400).json({ message: "Invalid profile payload." });
+      return;
+    }
+
+    const user = await UserModel.findById(req.authUserId);
+    if (!user) {
+      res.status(404).json({ message: "User not found." });
+      return;
+    }
+
+    const { username, avatarId } = parsed.data;
+
+    if (username && username !== user.username) {
+      const taken = await UserModel.findOne({ username, _id: { $ne: user._id } });
+      if (taken) {
+        res.status(409).json({ message: "That username is already taken." });
+        return;
+      }
+      user.username = username;
+    }
+    if (avatarId) {
+      user.avatarId = avatarId;
+    }
+    await user.save();
+
+    res.json({
+      user: { id: user.id, email: user.email, username: user.username, avatarId: user.avatarId }
+    });
+  });
+
+  // Change password (requires the current password).
+  router.post("/change-password", requireAuth(jwtSecret), async (req: Request, res: Response) => {
+    const parsed = changePasswordSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res.status(400).json({ message: "Invalid password payload. New password needs upper, lower, number, and symbol." });
+      return;
+    }
+
+    const user = await UserModel.findById(req.authUserId);
+    if (!user) {
+      res.status(404).json({ message: "User not found." });
+      return;
+    }
+
+    const matches = await bcrypt.compare(parsed.data.currentPassword, user.passwordHash);
+    if (!matches) {
+      res.status(403).json({ message: "Current password is incorrect." });
+      return;
+    }
+
+    user.passwordHash = await bcrypt.hash(parsed.data.newPassword, 10);
+    await user.save();
+
+    res.json({ message: "Password updated successfully." });
   });
 
   return router;

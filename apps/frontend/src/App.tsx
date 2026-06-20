@@ -5,6 +5,7 @@ import { AuthPanel } from "./components/AuthPanel";
 import { GameBoard } from "./components/GameBoard";
 import { TopNav } from "./components/TopNav";
 import { CardLibrary } from "./components/CardLibrary";
+import { ProfileModal } from "./components/modals/ProfileModal";
 import { RiftBackground } from "./components/RiftBackground";
 // Lottie is heavy (~250KB); load it only when the hero actually renders.
 const RiftOrb = lazy(() => import("./components/RiftOrb").then((m) => ({ default: m.RiftOrb })));
@@ -81,6 +82,7 @@ export function App() {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
   const [guideOpen, setGuideOpen] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [guideSection, setGuideSection] = useState<GuideSection>("lore");
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [impact, setImpact] = useState(false);
@@ -607,6 +609,10 @@ export function App() {
           playSfx("click");
           setLibraryOpen(true);
         }}
+        onOpenProfile={() => {
+          playSfx("click");
+          setProfileOpen(true);
+        }}
         onToggleSound={() => {
           setSoundEnabled((value) => !value);
         }}
@@ -754,6 +760,15 @@ export function App() {
         ))}
       </div>
       <GuideModal open={guideOpen} section={guideSection} onClose={() => setGuideOpen(false)} />
+      {currentUser ? (
+        <ProfileModal
+          open={profileOpen}
+          token={token}
+          user={currentUser}
+          onClose={() => setProfileOpen(false)}
+          onUpdated={(updated) => setCurrentUser(updated)}
+        />
+      ) : null}
       <LegalModal view={legalView} onClose={() => setLegalView(null)} />
       <ForgotPasswordModal
         open={forgotOpen}
