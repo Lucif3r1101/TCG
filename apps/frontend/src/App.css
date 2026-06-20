@@ -3105,19 +3105,15 @@ body {
 }
 
 /* ===== Animated rift background + motion ===== */
+/* z-index:-1 keeps the canvas behind all app content (and overlays) without
+   having to override every sibling's position/z-index. */
 .rift-bg {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
-}
-
-/* Keep app content above the canvas (but never override the fixed top nav) */
-.page > *:not(.rift-bg):not(.top-nav) {
-  position: relative;
-  z-index: 1;
 }
 
 @keyframes riseIn {
