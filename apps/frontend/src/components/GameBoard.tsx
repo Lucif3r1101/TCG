@@ -1,4 +1,4 @@
-import { MouseEvent as ReactMouseEvent, SyntheticEvent, useEffect, useRef, useState } from "react";
+import { MouseEvent as ReactMouseEvent, Suspense, SyntheticEvent, lazy, useEffect, useRef, useState } from "react";
 import {
   CARD_BACK_ASSET_PATH,
   CHARACTER_CLASSES,
@@ -10,7 +10,9 @@ import {
 import { DeckSummary, MatchState, RoomActionEvent, RoomCard, RoomState } from "../types/game";
 import { formatTimer } from "../lib/api";
 import { getCardArtSources, handleCardArtError } from "../lib/cardArt";
-import { VictoryOverlay } from "./VictoryOverlay";
+
+// Lottie is heavy; load the victory overlay only when a match actually ends.
+const VictoryOverlay = lazy(() => import("./VictoryOverlay").then((m) => ({ default: m.VictoryOverlay })));
 
 type GameBoardProps = {
   currentUserId: string;
@@ -434,7 +436,11 @@ function TabletopBoard(props: GameBoardProps) {
 
   return (
     <div className="grid">
-      {winnerId ? <VictoryOverlay won={iWon} winnerName={winnerName} onExit={props.onLeaveRoom} /> : null}
+      {winnerId ? (
+        <Suspense fallback={null}>
+          <VictoryOverlay won={iWon} winnerName={winnerName} onExit={props.onLeaveRoom} />
+        </Suspense>
+      ) : null}
       <section className="grid table-panel tabletop-only duel-layout">
         <h3 style={{ margin: 0 }}>Tabletop Arena</h3>
         <div className="turn-banner">

@@ -1,4 +1,4 @@
-import { FormEvent, MouseEvent as ReactMouseEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, MouseEvent as ReactMouseEvent, Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import "./App.css";
 import { AuthPanel } from "./components/AuthPanel";
@@ -6,7 +6,10 @@ import { GameBoard } from "./components/GameBoard";
 import { TopNav } from "./components/TopNav";
 import { CardLibrary } from "./components/CardLibrary";
 import { RiftBackground } from "./components/RiftBackground";
-import { RiftOrb } from "./components/RiftOrb";
+import { LORE_TAGLINE, LORE_INTRO, LORE_PILLARS, FACTIONS } from "./constants/lore";
+
+// Lottie is heavy (~250KB); load it only when the hero actually renders.
+const RiftOrb = lazy(() => import("./components/RiftOrb").then((m) => ({ default: m.RiftOrb })));
 import { ForgotPasswordModal } from "./components/modals/ForgotPasswordModal";
 import { GuideModal } from "./components/modals/GuideModal";
 import { LegalModal } from "./components/modals/LegalModal";
@@ -608,7 +611,9 @@ export function App() {
         <section className="hero">
           <div className="hero-content">
             <div className="hero-emblem">
-              <RiftOrb className="hero-orb" />
+              <Suspense fallback={null}>
+                <RiftOrb className="hero-orb" />
+              </Suspense>
               <img className="hero-logo" src="/assets/branding/chronicles-rift-logo.svg" alt="" aria-hidden="true" />
             </div>
             <span className="hero-kicker">Sci-Fantasy Trading Card Game</span>
@@ -752,30 +757,43 @@ export function App() {
 
       {!currentUser ? (
         <section className="landing-content" aria-label="Chronicles of the RIFT overview">
+          <article className="lore-panel">
+            <span className="landing-section-kicker">The World</span>
+            <h2 className="lore-title">What is Chronicles of the RIFT?</h2>
+            <p className="lore-tagline">{LORE_TAGLINE}</p>
+            <div className="lore-prose">
+              {LORE_INTRO.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+            <div className="lore-pillars">
+              {LORE_PILLARS.map((pillar) => (
+                <div className="lore-pillar" key={pillar.title}>
+                  <h4>{pillar.title}</h4>
+                  <p>{pillar.text}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+
           <div className="landing-head">
-            <span className="landing-section-kicker">The Six Factions</span>
-            <h2>Pick a hero fantasy, master its rhythm</h2>
+            <span className="landing-section-kicker">The Six Realms</span>
+            <h2>Pick a realm, master its rhythm</h2>
           </div>
           <div className="landing-copy-grid">
-            {[
-              { emoji: "🛡️", name: "Riftforged Sentinel", blurb: "Control the board with hard-light shields and fortress tech." },
-              { emoji: "🏹", name: "Void Ranger", blurb: "Pressure with tempo, phase strikes, and dimensional trails." },
-              { emoji: "🔥", name: "Ember Arcanist", blurb: "Chain explosive runic combos and burn through defenses." },
-              { emoji: "🐺", name: "Ironbound Beastmaster", blurb: "Swarm the field with engineered beasts and primal power." },
-              { emoji: "⏳", name: "Chronomancer", blurb: "Bend turn order and freeze foes with temporal magic." },
-              { emoji: "💀", name: "Abyss Revenant", blurb: "Drain value from every exchange and outlast your rivals." }
-            ].map((f) => (
-              <article className="landing-copy-card" key={f.name}>
+            {FACTIONS.map((f) => (
+              <article className="landing-copy-card" key={f.id}>
                 <span className="faction-emoji" aria-hidden="true">{f.emoji}</span>
                 <h3>{f.name}</h3>
-                <p>{f.blurb}</p>
+                <span className="faction-realm">{f.realm}</span>
+                <p>{f.lore}</p>
               </article>
             ))}
           </div>
           <div className="landing-how">
-            <div className="landing-how-step"><span>1</span> Create or join a room and pick a character.</div>
+            <div className="landing-how-step"><span>1</span> Create or join a room and pick your realm's champion.</div>
             <div className="landing-how-step"><span>2</span> Draw your hand, spend mana, and play units &amp; spells.</div>
-            <div className="landing-how-step"><span>3</span> Attack enemies and their units to win the duel.</div>
+            <div className="landing-how-step"><span>3</span> Claim the Rift Core — defeat your rivals to win the duel.</div>
           </div>
         </section>
       ) : null}

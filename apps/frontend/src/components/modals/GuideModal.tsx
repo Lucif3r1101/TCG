@@ -1,4 +1,5 @@
 import { GuideSection } from "../../types/game";
+import { LORE_INTRO, LORE_PILLARS } from "../../constants/lore";
 
 type GuideModalProps = {
   open: boolean;
@@ -34,43 +35,38 @@ export function GuideModal({ open, section, onSectionChange, onClose }: GuideMod
         </div>
 
         {section === "lore" ? (
-          <div className="guide-grid">
-            <img
-              src="https://images.unsplash.com/photo-1511882150382-421056c89033?auto=format&fit=crop&w=1200&q=80"
-              alt="Rift battlefield"
-            />
-            <p className="muted">
-              In 2026, the Rift opened six fractured realms and each realm forged a class-based deck identity. Commanders duel
-              to stabilize timelines, control energy lanes, and claim dominion over unstable worlds.
-            </p>
+          <div className="guide-lore">
+            {LORE_INTRO.map((para, i) => (
+              <p className="muted" key={i}>{para}</p>
+            ))}
+            <div className="lore-pillars">
+              {LORE_PILLARS.map((pillar) => (
+                <div className="lore-pillar" key={pillar.title}>
+                  <h4>{pillar.title}</h4>
+                  <p>{pillar.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         ) : null}
 
         {section === "how" ? (
-          <div className="guide-grid">
-            <img
-              src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWh4b2s2NWI4M3k5MW9iOWRwY2tjbW41bWR0aWwycmV6eW9xemM4dSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26AHONQ79FdWZhAI0/giphy.gif"
-              alt="Card game animation"
-            />
-            <ol className="muted">
-              <li>Login and choose a deck.</li>
-              <li>Create a room (2-6 players) or join with code.</li>
-              <li>Ready up, then host starts the room.</li>
-              <li>Take turns, use mana, activate abilities, and end turn.</li>
-              <li>Eliminate opponents or complete objective conditions.</li>
+          <div className="guide-lore">
+            <ol className="muted guide-steps">
+              <li>Sign in and choose your realm's deck.</li>
+              <li>Create a room (2-6 players) or join with a code.</li>
+              <li>Ready up, then the host starts the duel.</li>
+              <li>Each turn: draw, spend mana, play units &amp; spells, then attack.</li>
+              <li>Reduce every rival to 0 health to claim the Rift Core and win.</li>
             </ol>
           </div>
         ) : null}
 
         {section === "journey" ? (
-          <div className="guide-grid">
-            <img
-              src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80"
-              alt="Card collection setup"
-            />
+          <div className="guide-lore">
             <p className="muted">
-              Every character deck evolves from starter core cards to synergy branches. Build one primary win condition, one
-              backup route, and disruption tools for tabletop consistency.
+              Every realm's deck evolves from starter core cards into synergy branches. Build one primary win condition, one
+              backup route, and disruption tools so your timeline holds under pressure.
             </p>
           </div>
         ) : null}
