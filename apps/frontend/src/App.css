@@ -4439,3 +4439,56 @@ body {
   animation: turnPulse 1.8s ease-in-out infinite;
 }
 .pile-draw .pile-label { color: var(--accent-2); font-weight: 700; }
+
+/* ===== Battle mat zones + eligibility ===== */
+.bf-row {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
+}
+
+.bf-zone-label {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9fb4d8;
+  text-align: center;
+}
+.bf-enemy .bf-zone-label { color: #ff9bb0; }
+.bf-you .bf-zone-label { color: #8ce8ff; }
+
+.bf-zones {
+  display: flex;
+  gap: 0.55rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.bf-zone {
+  width: 96px;
+  min-height: 130px;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.25rem;
+}
+.bf-enemy .bf-zone { width: 84px; min-height: 116px; }
+
+.bf-zone-empty {
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  border-radius: 11px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 6px, transparent 6px 12px);
+}
+.bf-enemy .bf-zone-empty { min-height: 116px; }
+
+/* Eligibility: while choosing a target, make enemy zones pop and dim your side */
+.bf-attacking .bf-enemy .bf-zone-empty { border-color: rgba(255, 111, 140, 0.3); }
+.bf-attacking .bf-you { opacity: 0.85; }
+
+/* Ready attackers pulse so you know what can attack */
+.tcg-canact {
+  box-shadow: 0 0 0 2px rgba(53, 243, 177, 0.55);
+  animation: turnPulse 1.8s ease-in-out infinite;
+}
