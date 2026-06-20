@@ -4134,3 +4134,197 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* ===== TCG battlefield (perspective felt + card frames) ===== */
+.opp-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.plate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(10, 17, 33, 0.8);
+  color: var(--text);
+  padding: 0.3rem 0.7rem 0.3rem 0.3rem;
+  cursor: default;
+}
+
+.plate-turn {
+  border-color: rgba(255, 209, 102, 0.6);
+  box-shadow: 0 0 0 1px rgba(255, 209, 102, 0.35);
+}
+
+.plate-target {
+  cursor: crosshair;
+  border-color: rgba(255, 111, 140, 0.7);
+}
+.plate-target:hover { background: rgba(255, 111, 140, 0.16); }
+
+.plate-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+.plate-name { font-weight: 700; font-size: 0.85rem; }
+.plate-stats { font-size: 0.78rem; color: var(--muted); }
+.plate-hp { color: #ff8da3; }
+
+.battlefield {
+  perspective: 1300px;
+  border-radius: 18px;
+  padding: clamp(0.8rem, 3vw, 1.6rem) 0.8rem;
+  border: 1px solid rgba(221, 178, 105, 0.35);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(58, 119, 255, 0.16), transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(53, 243, 177, 0.12), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(13, 32, 26, 0.9), rgba(6, 12, 22, 0.96) 70%),
+    linear-gradient(165deg, #0a1320, #070d18);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.bf-plane {
+  transform: rotateX(15deg);
+  transform-style: preserve-3d;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.bf-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 150px;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 14px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 64px),
+    rgba(255, 255, 255, 0.015);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.bf-enemy { background-color: rgba(255, 80, 120, 0.04); }
+.bf-you { background-color: rgba(53, 243, 177, 0.05); }
+
+.bf-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(140, 232, 255, 0.5), transparent);
+}
+.bf-line span {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: #8ce8ff;
+  background: #0a1320;
+  padding: 0 0.6rem;
+}
+
+.bf-empty {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* TCG card */
+.tcg-card {
+  position: relative;
+  width: 96px;
+  height: 130px;
+  border-radius: 11px;
+  border: 2px solid var(--line);
+  background: #0a0e1a;
+  overflow: hidden;
+  padding: 0;
+  cursor: default;
+  transform: rotateX(-15deg);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.bf-enemy .tcg-card { width: 84px; height: 116px; }
+
+.tcg-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tcg-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3px 20px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(transparent, rgba(3, 6, 14, 0.92) 40%);
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tcg-atk,
+.tcg-hp {
+  position: absolute;
+  bottom: 2px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #0a0e1a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.tcg-atk { left: 2px; background: linear-gradient(140deg, #ffd166, #ff9f1a); }
+.tcg-hp { right: 2px; background: linear-gradient(140deg, #ff9bb0, #ff4d6d); color: #fff; }
+
+.tcg-ready {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  color: #35f3b1;
+  font-size: 0.7rem;
+  text-shadow: 0 0 6px rgba(53, 243, 177, 0.9);
+}
+
+.tcg-card.rarity-rare { border-color: #60adff; }
+.tcg-card.rarity-epic { border-color: #c182ff; }
+.tcg-card.rarity-legendary { border-color: #ffc454; box-shadow: 0 0 12px rgba(255, 196, 84, 0.4); }
+
+.tcg-canact { cursor: pointer; }
+.tcg-canact:hover { transform: rotateX(-15deg) translateY(-8px) scale(1.04); }
+.tcg-selected {
+  box-shadow: 0 0 0 3px rgba(53, 243, 177, 0.8), 0 10px 24px rgba(0, 0, 0, 0.5);
+  transform: rotateX(-15deg) translateY(-8px) scale(1.04);
+}
+
+.tcg-target { cursor: crosshair; }
+.tcg-target:hover { box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.8); }
+
+@media (max-width: 560px) {
+  .tcg-card { width: 76px; height: 104px; }
+  .bf-enemy .tcg-card { width: 68px; height: 94px; }
+  .bf-plane { transform: rotateX(10deg); }
+  .tcg-card { transform: rotateX(-10deg); }
+  .tcg-canact:hover, .tcg-selected { transform: rotateX(-10deg) translateY(-6px); }
+}

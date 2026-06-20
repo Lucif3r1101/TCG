@@ -579,75 +579,76 @@ function TabletopBoard(props: GameBoardProps) {
               </div>
             ) : null}
 
-            <div className="opp-row">
-              {opponents.length === 0 ? <p className="muted">Waiting for opponents…</p> : null}
+            <div className="opp-strip">
+              {opponents.length === 0 ? <span className="muted">Waiting for opponents…</span> : null}
               {opponents.map((player) => {
-                const character = CHARACTER_CLASSES.find((c) => c.id === player.characterId);
                 const targetable = Boolean(attacker) && player.health > 0;
                 const isTurn = player.userId === activePlayerId;
                 return (
-                  <div key={player.userId} className={`opp-card ${isTurn ? "opp-turn" : ""} ${targetable ? "opp-targetable" : ""}`}>
-                    <div className="opp-head" onClick={() => strikePlayer(player.userId, player.health)}>
-                      <img className="opp-avatar" src={getAvatarAssetPath(player.avatarId)} alt="" onError={(e) => handleAvatarError(e, player.avatarId)} />
-                      <div className="opp-meta">
-                        <strong>{player.username}</strong>
-                        <span className="muted">{character?.name ?? ""}</span>
-                      </div>
-                      <span className="opp-hp">❤ {player.health}</span>
-                    </div>
-                    <div className="opp-substats">
-                      <span>◆ {player.mana}/{player.maxMana}</span>
-                      <span>🃏 {player.handCount}</span>
-                      <span>▦ {player.deckCount}</span>
-                    </div>
-                    <div className="opp-units">
-                      {player.board.length === 0 ? <span className="opp-empty">No units</span> : null}
-                      {player.board.map((unit) => (
-                        <button
-                          key={unit.instanceId}
-                          className={`mini-unit ${attacker ? "mini-targetable" : ""}`}
-                          type="button"
-                          disabled={!attacker}
-                          onClick={() => strikeUnit(player.userId, unit.instanceId)}
-                          title={unit.name}
-                        >
-                          <span className="mini-name">{unit.name}</span>
-                          <span className="mini-stats">⚔{unit.attack} ❤{unit.health}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                  <button
+                    key={player.userId}
+                    className={`plate ${isTurn ? "plate-turn" : ""} ${targetable ? "plate-target" : ""}`}
+                    type="button"
+                    disabled={!targetable}
+                    onClick={() => strikePlayer(player.userId, player.health)}
+                    title={targetable ? `Attack ${player.username}` : player.username}
+                  >
+                    <img className="plate-avatar" src={getAvatarAssetPath(player.avatarId)} alt="" onError={(e) => handleAvatarError(e, player.avatarId)} />
+                    <span className="plate-name">{player.username}</span>
+                    <span className="plate-stats"><b className="plate-hp">❤ {player.health}</b> ◆ {player.mana}/{player.maxMana}</span>
+                  </button>
                 );
               })}
             </div>
 
-            <div className="your-field">
-              <header className="field-head">
-                <strong>Your Field</strong>
-                <span className="muted">{me?.board.length ?? 0} unit(s){isMyTurn ? " · tap a unit to attack" : ""}</span>
-              </header>
-              <div className="field-units">
-                {(me?.board.length ?? 0) === 0 ? <p className="muted">Play units from your hand to fill your field.</p> : null}
-                {me?.board.map((unit) => {
-                  const canAct = isMyTurn && unit.canAttack;
-                  const selected = unit.instanceId === selectedBoardCardId;
-                  return (
-                    <button
-                      key={unit.instanceId}
-                      className={`field-unit ${selected ? "field-selected" : ""} ${canAct ? "field-canact" : ""}`}
-                      type="button"
-                      onClick={() => setSelectedBoardCardId(selected ? null : canAct ? unit.instanceId : null)}
-                      disabled={!canAct}
-                      onMouseMove={onTilt}
-                      onMouseLeave={onTiltReset}
-                    >
-                      <img className="field-unit-art" src={getCardArtSources(unit.slug).primary} alt={unit.name} loading="lazy" onError={(e) => handleCardArtError(e, unit.slug)} />
-                      <span className="field-unit-name">{unit.name}</span>
-                      <span className="field-unit-stats">⚔ {unit.attack} &nbsp; ❤ {unit.health}</span>
-                      <span className={`field-unit-flag ${canAct ? "ready" : ""}`}>{canAct ? "Ready" : "Resting"}</span>
-                    </button>
-                  );
-                })}
+            <div className="battlefield">
+              <div className="bf-plane">
+                <div className="bf-row bf-enemy">
+                  {opponents.every((p) => p.board.length === 0) ? <span className="bf-empty">No enemy units on the field</span> : null}
+                  {opponents.flatMap((player) =>
+                    player.board.map((unit) => (
+                      <button
+                        key={unit.instanceId}
+                        className={`tcg-card tcg-enemy rarity-${unit.rarity} ${attacker ? "tcg-target" : ""}`}
+                        type="button"
+                        disabled={!attacker}
+                        onClick={() => strikeUnit(player.userId, unit.instanceId)}
+                        title={`${unit.name} — ${player.username}`}
+                      >
+                        <img className="tcg-art" src={getCardArtSources(unit.slug).primary} alt={unit.name} loading="lazy" onError={(e) => handleCardArtError(e, unit.slug)} />
+                        <span className="tcg-name">{unit.name}</span>
+                        <span className="tcg-atk">{unit.attack}</span>
+                        <span className="tcg-hp">{unit.health}</span>
+                      </button>
+                    ))
+                  )}
+                </div>
+
+                <div className="bf-line"><span>RIFT</span></div>
+
+                <div className="bf-row bf-you">
+                  {(me?.board.length ?? 0) === 0 ? <span className="bf-empty">Play units from your hand to fill your field</span> : null}
+                  {me?.board.map((unit) => {
+                    const canAct = isMyTurn && unit.canAttack;
+                    const selected = unit.instanceId === selectedBoardCardId;
+                    return (
+                      <button
+                        key={unit.instanceId}
+                        className={`tcg-card tcg-mine rarity-${unit.rarity} ${selected ? "tcg-selected" : ""} ${canAct ? "tcg-canact" : ""}`}
+                        type="button"
+                        onClick={() => setSelectedBoardCardId(selected ? null : canAct ? unit.instanceId : null)}
+                        disabled={!canAct}
+                        title={unit.name}
+                      >
+                        <img className="tcg-art" src={getCardArtSources(unit.slug).primary} alt={unit.name} loading="lazy" onError={(e) => handleCardArtError(e, unit.slug)} />
+                        <span className="tcg-name">{unit.name}</span>
+                        <span className="tcg-atk">{unit.attack}</span>
+                        <span className="tcg-hp">{unit.health}</span>
+                        {canAct ? <span className="tcg-ready">●</span> : null}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
