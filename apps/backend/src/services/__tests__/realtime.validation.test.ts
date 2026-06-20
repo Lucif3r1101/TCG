@@ -25,8 +25,8 @@ describe("realtime payload schemas", () => {
   });
 
   it("accepts valid room payloads", () => {
-    expect(roomCreatePayloadSchema.safeParse({ deckId: "d1", maxPlayers: 4 }).success).toBe(true);
-    expect(roomJoinPayloadSchema.safeParse({ roomCode: "ABCD12", deckId: "d1" }).success).toBe(true);
+    expect(roomCreatePayloadSchema.safeParse({ deckId: "d1", characterId: "riftforged-sentinel", maxPlayers: 4 }).success).toBe(true);
+    expect(roomJoinPayloadSchema.safeParse({ roomCode: "ABCD12", deckId: "d1", characterId: "void-ranger" }).success).toBe(true);
     expect(roomCodePayloadSchema.safeParse({ roomCode: "ROOM1" }).success).toBe(true);
     expect(roomReadyPayloadSchema.safeParse({ roomCode: "ROOM1", ready: true }).success).toBe(true);
   });
