@@ -357,6 +357,10 @@ function TabletopBoard(props: GameBoardProps) {
   const [drawFly, setDrawFly] = useState(false);
   const [graveyardOwner, setGraveyardOwner] = useState<string | null>(null);
   const [detailCard, setDetailCard] = useState<DetailCard | null>(null);
+  const [lungeId, setLungeId] = useState<string | null>(null);
+  const [flipId, setFlipId] = useState<string | null>(null);
+  const [turnBanner, setTurnBanner] = useState<{ text: string; mine: boolean } | null>(null);
+  const lastActiveRef = useRef<string | null>(null);
   const [showCoach, setShowCoach] = useState(() => {
     if (typeof window === "undefined") return false;
     return localStorage.getItem("tcg-board-coach-v1") !== "seen";
@@ -521,17 +525,34 @@ function TabletopBoard(props: GameBoardProps) {
     return () => window.clearTimeout(t);
   }, [currentRoom, props.currentUserId]);
 
+  // Turn-change banner sweep when the active player changes.
+  useEffect(() => {
+    if (!battle || currentRoom?.status !== "in_game" || !activePlayerId) return;
+    if (lastActiveRef.current === activePlayerId) return;
+    const first = lastActiveRef.current === null;
+    lastActiveRef.current = activePlayerId;
+    if (first) return; // don't sweep on initial mount
+    const mine = activePlayerId === props.currentUserId;
+    setTurnBanner({ text: mine ? "Your Turn" : `${activePlayerName ?? "Opponent"}'s Turn`, mine });
+    const t = window.setTimeout(() => setTurnBanner(null), 1500);
+    return () => window.clearTimeout(t);
+  }, [activePlayerId, battle, currentRoom?.status, activePlayerName, props.currentUserId]);
+
   const attacker = isMyTurn && selectedOwnBoardCard?.canAttack && selectedOwnBoardCard.position !== "defense" ? selectedOwnBoardCard : null;
   const enemyUnits = opponents.flatMap((player) => player.board.map((unit) => ({ owner: player, unit })));
   const ZONES = 5;
   const enemyZoneCount = Math.max(ZONES, enemyUnits.length);
   const myZoneCount = Math.max(ZONES, me?.board.length ?? 0);
   const fireFx = (id: string, kind: "slash" | "shield") => {
-    setFx({ id, kind });
-    // shake a touch after the strike connects, not instantly
-    window.setTimeout(() => setShake(true), 160);
-    window.setTimeout(() => setShake(false), 540);
-    window.setTimeout(() => setFx(null), 900);
+    if (attacker) {
+      setLungeId(attacker.instanceId);
+      window.setTimeout(() => setLungeId(null), 360);
+    }
+    // FX lands a beat after the lunge connects
+    window.setTimeout(() => setFx({ id, kind }), 240);
+    window.setTimeout(() => setShake(true), 300);
+    window.setTimeout(() => setShake(false), 640);
+    window.setTimeout(() => setFx(null), 1050);
   };
   const strikePlayer = (targetUserId: string, health: number) => {
     if (attacker && health > 0) {
@@ -563,6 +584,12 @@ function TabletopBoard(props: GameBoardProps) {
         <Suspense fallback={null}>
           <VictoryOverlay won={iWon} winnerName={winnerName} onExit={props.onLeaveRoom} />
         </Suspense>
+      ) : null}
+
+      {turnBanner ? (
+        <div className={`turn-sweep ${turnBanner.mine ? "turn-sweep-mine" : "turn-sweep-foe"}`} aria-hidden="true">
+          <span>{turnBanner.text}</span>
+        </div>
       ) : null}
 
       {detailCard ? <CardDetailModal card={detailCard} onClose={() => setDetailCard(null)} /> : null}
@@ -789,7 +816,7 @@ function TabletopBoard(props: GameBoardProps) {
                       return (
                         <div key={unit.instanceId} className="bf-zone tcg-slot">
                           <div
-                            className={`tcg-card tcg-mine rarity-${unit.rarity} ${inDef ? "tcg-defense stance-defense" : "stance-attack"} ${selected ? "tcg-selected" : ""} ${canAct ? "tcg-canact" : ""} ${fxClass}`}
+                            className={`tcg-card tcg-mine rarity-${unit.rarity} ${inDef ? "tcg-defense stance-defense" : "stance-attack"} ${selected ? "tcg-selected" : ""} ${canAct ? "tcg-canact" : ""} ${fxClass} ${unit.instanceId === lungeId ? "tcg-lunge" : ""} ${unit.instanceId === flipId ? "tcg-flip" : ""}`}
                             role="button"
                             tabIndex={0}
                             onClick={() => {
@@ -807,7 +834,7 @@ function TabletopBoard(props: GameBoardProps) {
                             {fxClass ? <span className="fx-overlay" aria-hidden="true" /> : null}
                           </div>
                           {canFlip ? (
-                            <button className={`flip-btn ${inDef ? "to-attack" : "to-defend"}`} type="button" onClick={() => onSetPosition(unit.instanceId, inDef ? "attack" : "defense")} title="Change battle position (once per turn)">
+                            <button className={`flip-btn ${inDef ? "to-attack" : "to-defend"}`} type="button" onClick={() => { setFlipId(unit.instanceId); window.setTimeout(() => setFlipId(null), 450); onSetPosition(unit.instanceId, inDef ? "attack" : "defense"); }} title="Change battle position (once per turn)">
                               ⟳ {inDef ? "To Attack" : "To Defense"}
                             </button>
                           ) : null}

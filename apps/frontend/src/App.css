@@ -4966,3 +4966,53 @@ body {
 .bf-myturn .bf-you {
   background-color: rgba(53, 243, 177, 0.09);
 }
+
+/* ===== Attacker lunge ===== */
+.tcg-lunge { animation: lunge 0.34s ease-in-out !important; z-index: 8; }
+@keyframes lunge {
+  0% { transform: rotateX(-15deg) translateY(0); }
+  45% { transform: rotateX(-15deg) translateY(-34px) scale(1.08); }
+  100% { transform: rotateX(-15deg) translateY(0); }
+}
+
+/* ===== Stance flip ===== */
+.tcg-flip { animation: flipCard 0.45s ease !important; }
+@keyframes flipCard {
+  0% { transform: rotateX(-15deg) rotateY(0); }
+  50% { transform: rotateX(-15deg) rotateY(90deg) scale(0.9); }
+  100% { transform: rotateX(-15deg) rotateY(0); }
+}
+
+/* ===== Turn-change banner sweep ===== */
+.turn-sweep {
+  position: fixed;
+  inset: 0;
+  z-index: 82;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.turn-sweep span {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  letter-spacing: 0.08em;
+  padding: 0.4rem 2.5rem;
+  color: #fff;
+  white-space: nowrap;
+  animation: sweepIn 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.turn-sweep-mine span {
+  background: linear-gradient(90deg, transparent, rgba(53, 243, 177, 0.25), transparent);
+  text-shadow: 0 0 24px rgba(53, 243, 177, 0.8);
+}
+.turn-sweep-foe span {
+  background: linear-gradient(90deg, transparent, rgba(255, 111, 140, 0.22), transparent);
+  text-shadow: 0 0 24px rgba(255, 111, 140, 0.7);
+}
+@keyframes sweepIn {
+  0% { transform: translateX(-60vw) skewX(-12deg); opacity: 0; }
+  25% { transform: translateX(0) skewX(0); opacity: 1; }
+  70% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(60vw) skewX(12deg); opacity: 0; }
+}
