@@ -716,7 +716,7 @@ function TabletopBoard(props: GameBoardProps) {
               })}
             </div>
 
-            <div className={`battlefield ${attacker ? "bf-attacking" : ""} ${shake ? "bf-shake" : ""}`}>
+            <div className={`battlefield ${attacker ? "bf-attacking" : ""} ${shake ? "bf-shake" : ""} ${isMyTurn ? "bf-myturn" : ""}`}>
               <div className="bf-center-fx" aria-hidden="true">
                 {floatDmg.map((d) => (
                   <span key={d.id} className={`float-dmg ${d.mine ? "dmg-self" : "dmg-enemy"}`}>-{d.amount}</span>
