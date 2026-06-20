@@ -113,7 +113,12 @@ function getSmtpTransport(): Transporter | null {
     secure: process.env.SMTP_SECURE === "true" || port === 465,
     auth: process.env.SMTP_USER
       ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
-      : undefined
+      : undefined,
+    // Fail fast instead of hanging if the SMTP port is blocked (e.g. Render
+    // blocks outbound SMTP — use MAIL_PROVIDER=resend there instead).
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 15_000
   });
   return cachedTransport;
 }
