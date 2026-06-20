@@ -5,6 +5,7 @@ import { AuthPanel } from "./components/AuthPanel";
 import { GameBoard } from "./components/GameBoard";
 import { TopNav } from "./components/TopNav";
 import { CardLibrary } from "./components/CardLibrary";
+import { PracticeBoard } from "./components/PracticeBoard";
 import { ProfileModal } from "./components/modals/ProfileModal";
 import { RiftBackground } from "./components/RiftBackground";
 // Lottie is heavy (~250KB); load it only when the hero actually renders.
@@ -83,6 +84,7 @@ export function App() {
   const [guideOpen, setGuideOpen] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [practiceMode, setPracticeMode] = useState(false);
   const [guideSection, setGuideSection] = useState<GuideSection>("lore");
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [impact, setImpact] = useState(false);
@@ -688,6 +690,12 @@ export function App() {
             />
           </div>
         </section>
+      ) : practiceMode ? (
+        <section className="panel panel-tabletop">
+          <div className="card card-tabletop">
+            <PracticeBoard onExit={() => setPracticeMode(false)} />
+          </div>
+        </section>
       ) : (
         <section className={`panel ${tabletopMode ? "panel-tabletop" : ""}`}>
           <div className={`card ${tabletopMode ? "card-tabletop" : "card-lobby"}`}>
@@ -722,6 +730,7 @@ export function App() {
               onToggleReady={handleToggleReady}
               onStartRoom={handleStartRoom}
               onQueueJoin={handleQueueJoin}
+              onPractice={() => setPracticeMode(true)}
               onEndTurn={() =>
                 currentRoom?.status === "in_game"
                   ? socketRef.current?.emit("room_end_turn", { roomCode: currentRoom.roomCode })

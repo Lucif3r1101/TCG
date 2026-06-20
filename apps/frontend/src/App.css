@@ -4492,3 +4492,12 @@ body {
   box-shadow: 0 0 0 2px rgba(53, 243, 177, 0.55);
   animation: turnPulse 1.8s ease-in-out infinite;
 }
+
+.practice-loading {
+  display: grid;
+  place-items: center;
+  min-height: 50vh;
+  color: var(--muted);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.1rem;
+}

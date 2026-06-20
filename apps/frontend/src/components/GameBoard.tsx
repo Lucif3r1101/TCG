@@ -45,6 +45,7 @@ type GameBoardProps = {
   onToggleReady: () => void;
   onStartRoom: () => void;
   onQueueJoin: () => void;
+  onPractice: () => void;
   onEndTurn: () => void;
   onDrawCard: () => void;
   onPlayCard: (cardInstanceId: string, targetUserId?: string, position?: "attack" | "defense") => void;
@@ -134,6 +135,7 @@ function renderLobby(props: GameBoardProps) {
     onToggleReady,
     onStartRoom,
     onQueueJoin,
+    onPractice,
     onTilt,
     onTiltReset
   } = props;
@@ -192,6 +194,10 @@ function renderLobby(props: GameBoardProps) {
               <button className="button lobby-cta" type="button" onClick={onQueueJoin} disabled={!socketConnected || !selectedDeckId}>
                 <img className="button-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" />
                 Quick Queue
+              </button>
+              <button className="button lobby-cta" type="button" onClick={onPractice}>
+                <img className="button-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" />
+                Practice vs Bot
               </button>
             </div>
 
