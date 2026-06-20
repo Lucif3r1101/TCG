@@ -128,9 +128,7 @@ export function GuideModal({ open, section, onClose }: GuideModalProps) {
                 </p>
                 <div className="about-dev-links">
                   <a className="button nav-btn" href="mailto:rishav_raj11@outlook.com">✉ Email</a>
-                  <a className="button nav-btn" href="https://github.com/Lucif3r1101" target="_blank" rel="noreferrer">GitHub</a>
                   <a className="button nav-btn" href="https://www.linkedin.com/in/raj-rishav11/" target="_blank" rel="noreferrer">LinkedIn</a>
-                  <a className="button nav-btn" href="https://why-rishav.medium.com/" target="_blank" rel="noreferrer">Medium</a>
                 </div>
               </div>
 
