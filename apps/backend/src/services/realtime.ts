@@ -519,10 +519,15 @@ function executeCardEffect(
   }
 
   const targets = selectTargets(room, caster, script.targetMode, targetUserId);
+  // Offensive ops (damage, mana burn) ALWAYS hit opponents — never the caster,
+  // even for self-targeted spells. Beneficial ops (heal/draw/mana) hit the caster.
+  const opponents = room.players.filter((player) => player.userId !== caster.userId && player.health > 0);
+  const victimsFromTargets = targets.filter((player) => player.userId !== caster.userId);
+  const victims = victimsFromTargets.length > 0 ? victimsFromTargets : opponents;
 
   for (const op of script.operations) {
     if (op.kind === "damage") {
-      for (const target of targets) {
+      for (const target of victims) {
         target.health = Math.max(0, target.health - op.amount);
       }
       continue;
@@ -545,13 +550,14 @@ function executeCardEffect(
     }
 
     if (op.kind === "reduce_opponent_mana") {
-      for (const target of targets) {
+      for (const target of victims) {
         target.mana = Math.max(0, target.mana - op.amount);
       }
       continue;
     }
 
-    // modify_hand_cost
+    // modify_hand_cost — applies to whoever the spell legitimately targets
+    // (self-buff discounts the caster's hand; offensive raises opponents' costs).
     for (const target of targets) {
       target.hand = target.hand.map((entry) => ({
         ...entry,
