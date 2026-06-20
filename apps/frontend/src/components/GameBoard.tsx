@@ -282,6 +282,9 @@ function renderLobby(props: GameBoardProps) {
               <article
                 key={character.id}
                 className={`class-card ${selectedCharacterId === character.id ? "selected-character" : ""} ${takenByOther ? "character-locked" : ""}`}
+                style={{
+                  backgroundImage: `linear-gradient(to bottom, rgba(8,14,27,0.58), rgba(8,14,27,0.93)), url(/assets/realms/${character.id}.jpg)`
+                }}
                 onClick={() => {
                   if (!takenByOther) {
                     onCharacterChange(character.id);

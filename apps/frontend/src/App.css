@@ -346,6 +346,8 @@ body {
   border: 1px solid var(--line);
   border-radius: 14px;
   background: rgba(8, 14, 27, 0.88);
+  background-size: cover;
+  background-position: center;
   padding: 0.85rem;
   display: grid;
   gap: 0.4rem;
@@ -3158,6 +3160,14 @@ body {
   text-align: center;
   gap: 0.55rem;
   align-content: center;
+  position: relative;
+  padding: clamp(1.4rem, 4vw, 2.4rem);
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(165deg, rgba(6, 10, 21, 0.74), rgba(6, 10, 21, 0.9)),
+    url("/assets/branding/hero-key-art.jpg") center/cover no-repeat;
+  overflow: hidden;
 }
 
 .auth-stage-pitch h1 {
