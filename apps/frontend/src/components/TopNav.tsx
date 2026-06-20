@@ -73,33 +73,43 @@ export function TopNav({
         </button>
 
         {open ? (
-          <div className="nav-menu" role="menu">
-            {showLogout ? (
-              <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenProfile)}>
-                <img className="nav-icon" src={getIconAssetPath("icon-shield")} alt="" aria-hidden="true" />
-                Profile{username ? ` · ${username}` : ""}
-              </button>
-            ) : null}
-            <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenLore)}>
-              <img className="nav-icon" src={getIconAssetPath("icon-spell")} alt="" aria-hidden="true" /> Lore
-            </button>
-            <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenHow)}>
-              <img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" /> How to Play
-            </button>
-            <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenJourney)}>
-              <img className="nav-icon" src={getIconAssetPath("icon-timer")} alt="" aria-hidden="true" /> Card Journey
-            </button>
-            <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenLibrary)}>
-              <img className="nav-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" /> Card Library
-            </button>
-            <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onToggleSound)}>
-              <img className="nav-icon" src={getIconAssetPath("icon-audio")} alt="" aria-hidden="true" /> Sound: {soundEnabled ? "On" : "Off"}
-            </button>
-            {showLogout ? (
-              <button className="nav-menu-item nav-menu-danger" type="button" role="menuitem" onClick={run(onLogout)}>
-                <img className="nav-icon" src={getIconAssetPath("icon-logout")} alt="" aria-hidden="true" /> Logout
-              </button>
-            ) : null}
+          <div className="drawer-overlay" onClick={() => setOpen(false)}>
+            <aside className="drawer" role="menu" onClick={(e) => e.stopPropagation()}>
+              <div className="drawer-head">
+                <strong>Menu</strong>
+                <button className="icon-close" type="button" onClick={() => setOpen(false)} aria-label="Close">×</button>
+              </div>
+
+              <nav className="drawer-items">
+                {showLogout ? (
+                  <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenProfile)}>
+                    <img className="nav-icon" src={getIconAssetPath("icon-shield")} alt="" aria-hidden="true" />
+                    Profile{username ? ` · ${username}` : ""}
+                  </button>
+                ) : null}
+                <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenLore)}>
+                  <img className="nav-icon" src={getIconAssetPath("icon-spell")} alt="" aria-hidden="true" /> Lore
+                </button>
+                <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenHow)}>
+                  <img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" /> How to Play
+                </button>
+                <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenJourney)}>
+                  <img className="nav-icon" src={getIconAssetPath("icon-timer")} alt="" aria-hidden="true" /> Card Journey
+                </button>
+                <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenLibrary)}>
+                  <img className="nav-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" /> Card Library
+                </button>
+                <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onToggleSound)}>
+                  <img className="nav-icon" src={getIconAssetPath("icon-audio")} alt="" aria-hidden="true" /> Sound: {soundEnabled ? "On" : "Off"}
+                </button>
+              </nav>
+
+              {showLogout ? (
+                <button className="drawer-logout" type="button" role="menuitem" onClick={run(onLogout)}>
+                  <img className="nav-icon" src={getIconAssetPath("icon-logout")} alt="" aria-hidden="true" /> Logout
+                </button>
+              ) : null}
+            </aside>
           </div>
         ) : null}
       </div>
