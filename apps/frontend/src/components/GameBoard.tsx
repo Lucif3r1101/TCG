@@ -352,7 +352,7 @@ function TabletopBoard(props: GameBoardProps) {
   const [fx, setFx] = useState<{ id: string; kind: "slash" | "shield" } | null>(null);
   const [shake, setShake] = useState(false);
   const [drawFly, setDrawFly] = useState(false);
-  const [graveyardOpen, setGraveyardOpen] = useState(false);
+  const [graveyardOwner, setGraveyardOwner] = useState<string | null>(null);
   const [showCoach, setShowCoach] = useState(() => {
     if (typeof window === "undefined") return false;
     return localStorage.getItem("tcg-board-coach-v1") !== "seen";
@@ -533,32 +533,48 @@ function TabletopBoard(props: GameBoardProps) {
         </Suspense>
       ) : null}
 
-      {graveyardOpen ? (
-        <div className="legal-overlay" role="dialog" aria-modal="true" onClick={() => setGraveyardOpen(false)}>
-          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="auth-modal-head">
-              <div>
-                <span className="auth-hero-kicker">Graveyard</span>
-                <h3>Your discard pile</h3>
+      {graveyardOwner ? (() => {
+        const gravePlayer = currentRoom?.players.find((p) => p.userId === graveyardOwner) ?? null;
+        const cards = gravePlayer?.discard ?? [];
+        return (
+          <div className="legal-overlay" role="dialog" aria-modal="true" onClick={() => setGraveyardOwner(null)}>
+            <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="auth-modal-head">
+                <div>
+                  <span className="auth-hero-kicker">Graveyard</span>
+                  <h3>{gravePlayer?.userId === props.currentUserId ? "Your graveyard" : `${gravePlayer?.username ?? "Player"}'s graveyard`}</h3>
+                </div>
+                <button className="icon-close" type="button" onClick={() => setGraveyardOwner(null)} aria-label="Close">×</button>
               </div>
-              <button className="icon-close" type="button" onClick={() => setGraveyardOpen(false)} aria-label="Close">×</button>
-            </div>
-            {(me?.discard?.length ?? 0) === 0 ? (
-              <p className="auth-hint">No cards here yet. Destroyed units and used spells go here.</p>
-            ) : (
-              <div className="grave-grid">
-                {me?.discard?.map((card, i) => (
-                  <article key={`${card.instanceId}-${i}`} className={`grave-card rarity-${card.rarity}`}>
-                    <img src={getCardArtSources(card.slug).primary} alt={card.name} loading="lazy" onError={(e) => handleCardArtError(e, card.slug)} />
-                    <span className="grave-name">{card.name}</span>
-                    <span className="grave-stats">{card.type === "unit" ? `⚔ ${card.attack} · 🛡 ${card.health}` : "Spell"}</span>
-                  </article>
+              <div className="grave-tabs">
+                {currentRoom?.players.map((p) => (
+                  <button
+                    key={p.userId}
+                    type="button"
+                    className={`grave-tab ${p.userId === graveyardOwner ? "active" : ""}`}
+                    onClick={() => setGraveyardOwner(p.userId)}
+                  >
+                    {p.userId === props.currentUserId ? "You" : p.username} ({p.discardCount})
+                  </button>
                 ))}
               </div>
-            )}
+              {cards.length === 0 ? (
+                <p className="auth-hint">No cards here yet. Destroyed units and used spells go here.</p>
+              ) : (
+                <div className="grave-grid">
+                  {cards.map((card, i) => (
+                    <article key={`${card.instanceId}-${i}`} className={`grave-card rarity-${card.rarity}`}>
+                      <img src={getCardArtSources(card.slug).primary} alt={card.name} loading="lazy" onError={(e) => handleCardArtError(e, card.slug)} />
+                      <span className="grave-name">{card.name}</span>
+                      <span className="grave-stats">{card.type === "unit" ? `⚔ ${card.attack} · 🛡 ${card.health}` : "Spell"}</span>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      ) : null}
+        );
+      })() : null}
 
       {showCoach ? (
         <div className="coach-overlay" role="dialog" aria-modal="true" onClick={dismissCoach}>
@@ -639,19 +655,23 @@ function TabletopBoard(props: GameBoardProps) {
                 const targetable = Boolean(attacker) && player.health > 0;
                 const isTurn = player.userId === activePlayerId;
                 return (
-                  <button
-                    key={player.userId}
-                    className={`plate ${isTurn ? "plate-turn" : ""} ${targetable ? "plate-target" : ""} ${fx?.id === `player-${player.userId}` ? "fx-slash" : ""}`}
-                    type="button"
-                    disabled={!targetable}
-                    onClick={() => strikePlayer(player.userId, player.health)}
-                    title={targetable ? `Attack ${player.username}` : player.username}
-                  >
-                    <img className="plate-avatar" src={getAvatarAssetPath(player.avatarId)} alt="" onError={(e) => handleAvatarError(e, player.avatarId)} />
-                    <span className="plate-name">{player.username}</span>
-                    <span className="plate-stats"><b key={`hp-${player.health}`} className="plate-hp hp-pop">❤ {player.health}</b> ◆ {player.mana}/{player.maxMana}</span>
-                    {fx?.id === `player-${player.userId}` ? <span className="fx-overlay" aria-hidden="true" /> : null}
-                  </button>
+                  <div key={player.userId} className="plate-wrap">
+                    <button
+                      className={`plate ${isTurn ? "plate-turn" : ""} ${targetable ? "plate-target" : ""} ${fx?.id === `player-${player.userId}` ? "fx-slash" : ""}`}
+                      type="button"
+                      disabled={!targetable}
+                      onClick={() => strikePlayer(player.userId, player.health)}
+                      title={targetable ? `Attack ${player.username}` : player.username}
+                    >
+                      <img className="plate-avatar" src={getAvatarAssetPath(player.avatarId)} alt="" onError={(e) => handleAvatarError(e, player.avatarId)} />
+                      <span className="plate-name">{player.username}</span>
+                      <span className="plate-stats"><b key={`hp-${player.health}`} className="plate-hp hp-pop">❤ {player.health}</b> ◆ {player.mana}/{player.maxMana}</span>
+                      {fx?.id === `player-${player.userId}` ? <span className="fx-overlay" aria-hidden="true" /> : null}
+                    </button>
+                    <button className="grave-chip" type="button" onClick={() => setGraveyardOwner(player.userId)} title={`View ${player.username}'s graveyard`}>
+                      🪦 {player.discardCount}
+                    </button>
+                  </div>
                 );
               })}
             </div>
@@ -769,7 +789,7 @@ function TabletopBoard(props: GameBoardProps) {
               <button
                 className="pile pile-discard"
                 type="button"
-                onClick={() => setGraveyardOpen(true)}
+                onClick={() => setGraveyardOwner(props.currentUserId)}
                 title="View graveyard"
               >
                 <img className="pile-art" src={CARD_BACK_ASSET_PATH} alt="" aria-hidden="true" />
