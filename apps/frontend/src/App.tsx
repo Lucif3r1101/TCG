@@ -161,6 +161,22 @@ export function App() {
     setActiveMatchState(response.match.state);
   }
 
+  // If the page was opened from a password-reset email link (?token=...),
+  // open the reset form with the token pre-filled, then strip it from the URL.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const resetToken = params.get("token");
+    if (!resetToken) return;
+
+    setForgotToken(resetToken);
+    setForgotStep("reset");
+    setForgotOpen(true);
+
+    params.delete("token");
+    const cleaned = window.location.pathname + (params.toString() ? `?${params}` : "");
+    window.history.replaceState({}, "", cleaned);
+  }, []);
+
   useEffect(() => {
     if (!token) {
       setCurrentUser(null);
