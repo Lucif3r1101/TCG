@@ -81,13 +81,13 @@ export function TopNav({
               </button>
             ) : null}
             <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenLore)}>
-              <img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" /> Lore
+              <img className="nav-icon" src={getIconAssetPath("icon-spell")} alt="" aria-hidden="true" /> Lore
             </button>
             <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenHow)}>
               <img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" /> How to Play
             </button>
             <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenJourney)}>
-              <img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" /> Card Journey
+              <img className="nav-icon" src={getIconAssetPath("icon-timer")} alt="" aria-hidden="true" /> Card Journey
             </button>
             <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenLibrary)}>
               <img className="nav-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" /> Card Library
