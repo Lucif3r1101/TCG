@@ -9,6 +9,7 @@ import {
 } from "../constants/game";
 import { DeckSummary, MatchState, RoomActionEvent, RoomCard, RoomState } from "../types/game";
 import { formatTimer } from "../lib/api";
+import { getCardArtSources, handleCardArtError } from "../lib/cardArt";
 
 type GameBoardProps = {
   currentUserId: string;
@@ -69,80 +70,6 @@ const TABLE_ANGLES: Record<number, number[]> = {
   5: [-90, -24, 34, 146, 204],
   6: [-90, -34, 22, 90, 158, 214]
 };
-
-function getCardArtSources(slug: string) {
-  if (slug.startsWith("riftforged-sentinel-")) {
-    return {
-      primary: `/assets/cards/custom/riftforged-sentinel/${slug}.png`,
-      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
-      finalFallback: `/assets/cards/generated/${slug}.svg`
-    };
-  }
-
-  if (slug.startsWith("void-ranger-")) {
-    return {
-      primary: `/assets/cards/custom/void-ranger/${slug}.png`,
-      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
-      finalFallback: `/assets/cards/generated/${slug}.svg`
-    };
-  }
-
-  if (slug.startsWith("ironbound-beastmaster-")) {
-    return {
-      primary: `/assets/cards/custom/ironbound-beastmaster/${slug}.png`,
-      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
-      finalFallback: `/assets/cards/generated/${slug}.svg`
-    };
-  }
-
-  if (slug.startsWith("abyss-revenant-")) {
-    return {
-      primary: `/assets/cards/custom/abyss-revenant/${slug}.png`,
-      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
-      finalFallback: `/assets/cards/generated/${slug}.svg`
-    };
-  }
-
-  if (slug.startsWith("ember-arcanist-")) {
-    return {
-      primary: `/assets/cards/custom/ember-arcanist/${slug}.png`,
-      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
-      finalFallback: `/assets/cards/generated/${slug}.svg`
-    };
-  }
-
-  if (slug.startsWith("chronomancer-")) {
-    return {
-      primary: `/assets/cards/custom/chronomancer/${slug}.png`,
-      fallback: `/assets/cards/generated/png/2x/${slug}.png`,
-      finalFallback: `/assets/cards/generated/${slug}.svg`
-    };
-  }
-
-  return {
-    primary: `/assets/cards/generated/png/2x/${slug}.png`,
-    fallback: `/assets/cards/generated/${slug}.svg`,
-    finalFallback: `/assets/cards/generated/${slug}.svg`
-  };
-}
-
-function handleCardArtError(event: SyntheticEvent<HTMLImageElement, Event>, slug: string) {
-  const image = event.currentTarget;
-  const { fallback, finalFallback } = getCardArtSources(slug);
-
-  if (image.dataset.fallbackStage === "final") {
-    return;
-  }
-
-  if (image.src.endsWith(fallback) || image.dataset.fallbackStage === "fallback") {
-    image.dataset.fallbackStage = "final";
-    image.src = finalFallback;
-    return;
-  }
-
-  image.dataset.fallbackStage = "fallback";
-  image.src = fallback;
-}
 
 function handleAvatarError(event: SyntheticEvent<HTMLImageElement, Event>, avatarId: string) {
   const image = event.currentTarget;

@@ -4,6 +4,7 @@ import "./App.css";
 import { AuthPanel } from "./components/AuthPanel";
 import { GameBoard } from "./components/GameBoard";
 import { TopNav } from "./components/TopNav";
+import { CardLibrary } from "./components/CardLibrary";
 import { ForgotPasswordModal } from "./components/modals/ForgotPasswordModal";
 import { GuideModal } from "./components/modals/GuideModal";
 import { LegalModal } from "./components/modals/LegalModal";
@@ -76,6 +77,7 @@ export function App() {
   const [tabletopMode, setTabletopMode] = useState(false);
   const [toasts, setToasts] = useState<ToastItem[]>([]);
   const [guideOpen, setGuideOpen] = useState(false);
+  const [libraryOpen, setLibraryOpen] = useState(false);
   const [guideSection, setGuideSection] = useState<GuideSection>("lore");
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [impact, setImpact] = useState(false);
@@ -587,11 +589,17 @@ export function App() {
           setGuideSection("how");
           setGuideOpen(true);
         }}
+        onOpenLibrary={() => {
+          playSfx("click");
+          setLibraryOpen(true);
+        }}
         onToggleSound={() => {
           setSoundEnabled((value) => !value);
         }}
         onLogout={handleLogout}
       />
+
+      {libraryOpen ? <CardLibrary onClose={() => setLibraryOpen(false)} /> : null}
 
       {!currentUser || !tabletopMode ? (
         <section className="hero">

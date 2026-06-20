@@ -2597,3 +2597,191 @@ body {
     margin-top: 0.2rem;
   }
 }
+
+/* ===== Card Library ===== */
+.library {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow-y: auto;
+  padding: 1.4rem clamp(0.9rem, 3vw, 2.4rem) 3rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(46, 230, 255, 0.08), transparent 42%),
+    rgba(5, 9, 18, 0.97);
+  backdrop-filter: blur(6px);
+}
+
+.library-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto 1.1rem;
+}
+
+.library-head h1 {
+  margin: 0.3rem 0 0;
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.04;
+}
+
+.library-sub {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  max-width: 46ch;
+}
+
+.library-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  max-width: 1200px;
+  margin: 0 auto 1rem;
+}
+
+.library-count {
+  max-width: 1200px;
+  margin: 0 auto 0.8rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.library-status {
+  max-width: 1200px;
+  margin: 2rem auto;
+  text-align: center;
+  color: var(--muted);
+}
+
+.library-error {
+  color: #ff9bb0;
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.library-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(13, 20, 38, 0.9), rgba(9, 14, 27, 0.9));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.library-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(46, 230, 255, 0.5);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4);
+}
+
+.library-card.rarity-legendary { border-color: rgba(255, 196, 84, 0.55); }
+.library-card.rarity-epic { border-color: rgba(193, 130, 255, 0.5); }
+.library-card.rarity-rare { border-color: rgba(96, 173, 255, 0.5); }
+
+.library-card-art {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: #060a14;
+}
+
+.library-card-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.library-cost {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  min-width: 1.7rem;
+  height: 1.7rem;
+  padding: 0 0.35rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(130deg, var(--accent), var(--accent-2));
+  color: #07111f;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.library-card-body {
+  padding: 0.7rem 0.8rem 0.85rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.library-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.library-card-title h3 {
+  margin: 0;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.1;
+}
+
+.library-tag {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.tag-legendary { color: #ffc454; border-color: rgba(255, 196, 84, 0.5); }
+.tag-epic { color: #c182ff; border-color: rgba(193, 130, 255, 0.5); }
+.tag-rare { color: #60adff; border-color: rgba(96, 173, 255, 0.5); }
+
+.library-card-meta {
+  margin: 0;
+  color: #8ce8ff;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.library-card-desc {
+  margin: 0;
+  color: #cfddf7;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.library-stats {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.15rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.stat-atk { color: #ffb27a; }
+.stat-hp { color: #7affa6; }
+
+@media (max-width: 720px) {
+  .library-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+}
