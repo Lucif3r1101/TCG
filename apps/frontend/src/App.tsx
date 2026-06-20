@@ -1,7 +1,6 @@
 import { FormEvent, MouseEvent as ReactMouseEvent, useEffect, useMemo, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import "./App.css";
-import { AdSlot } from "./components/AdSlot";
 import { AuthPanel } from "./components/AuthPanel";
 import { GameBoard } from "./components/GameBoard";
 import { TopNav } from "./components/TopNav";
@@ -637,18 +636,6 @@ export function App() {
                 every exchange.
               </p>
             </article>
-          </div>
-
-          <div className="landing-ad-column">
-            <div className="landing-copy-card landing-ad-card">
-              <span className="landing-section-kicker">Sponsor</span>
-              <h2>Support The Arena</h2>
-              <p>
-                This placement sits on a real content section instead of the login flow, which is the safer place for
-                AdSense. The sign-in form stays focused, and the landing page still has room for monetization.
-              </p>
-              <AdSlot className="landing-ad-slot" />
-            </div>
           </div>
         </section>
       ) : null}

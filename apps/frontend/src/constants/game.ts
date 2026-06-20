@@ -4,8 +4,6 @@ export const TOKEN_KEY = "tcg_auth_token";
 export const ONBOARDING_KEY = "tcg_intro_seen_v1";
 export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
 export const SOCKET_URL = import.meta.env.VITE_SOCKET_URL ?? API_URL;
-export const ADSENSE_CLIENT_ID = import.meta.env.VITE_ADSENSE_CLIENT_ID ?? "";
-export const ADSENSE_AUTH_SLOT_ID = import.meta.env.VITE_ADSENSE_AUTH_SLOT_ID ?? "";
 export const PASSWORD_RULE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,72}$/;
 export const DEFAULT_AVATAR_IDS = [
   "avatar-01",
