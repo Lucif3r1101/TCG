@@ -753,6 +753,13 @@ function TabletopBoard(props: GameBoardProps) {
             <span className="bsb-stat">Room {currentRoom?.roomCode ?? "--"}</span>
             <button className="bsb-help" type="button" onClick={() => setShowCoach(true)} aria-label="How to play">?</button>
           </div>
+          {inGame ? (
+            <div className="bsb-actions">
+              <button className="button primary bsb-endturn" type="button" onClick={onEndTurn} disabled={!isMyTurn}>End Turn ⏭</button>
+              <button className="button bsb-mini" type="button" onClick={onConcede} disabled={!activeMatchState?.matchId} title="Concede">Concede</button>
+              <button className="button bsb-mini bsb-leave" type="button" onClick={onLeaveRoom} title="Leave">Leave</button>
+            </div>
+          ) : null}
         </div>
 
         {!inGame ? (
@@ -958,6 +965,14 @@ function TabletopBoard(props: GameBoardProps) {
             })()}
 
             <div className="duel-dock">
+            <div className="my-seat">
+              <div className="my-seat-id">
+                <img className="my-seat-avatar" src={getAvatarAssetPath(me?.avatarId ?? "avatar-01")} alt="" onError={(e) => handleAvatarError(e, me?.avatarId ?? "avatar-01")} />
+                <div className="my-seat-info">
+                  <strong>{me?.username ?? "You"}</strong>
+                  <span><b className="seat-hp">❤ {me?.health ?? "--"}</b> <b className="seat-mana">◆ {me ? `${me.mana}/${me.maxMana}` : "--"}</b></span>
+                </div>
+              </div>
             <div className="duel-piles">
               <button
                 className={`pile pile-deck ${isMyTurn && !battle?.manualDrawUsed ? "pile-draw" : ""}`}
@@ -990,6 +1005,7 @@ function TabletopBoard(props: GameBoardProps) {
                 <span key={`disc-${me?.discardCount ?? 0}`} className="pile-count pile-count-pop">{me?.discardCount ?? 0}</span>
                 <span className="pile-label">Graveyard</span>
               </button>
+            </div>
             </div>
 
             <div className="your-hand">
@@ -1043,11 +1059,6 @@ function TabletopBoard(props: GameBoardProps) {
               </div>
             </div>
 
-            <div className="duel-controls">
-              <button className="button primary lobby-cta" type="button" onClick={onEndTurn} disabled={!isMyTurn}>End Turn ⏭</button>
-              <button className="button" type="button" onClick={onConcede} disabled={!activeMatchState?.matchId}>Concede</button>
-              <button className="button lobby-leave" type="button" onClick={onLeaveRoom}>Leave</button>
-            </div>
             </div>
           </>
         )}

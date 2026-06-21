@@ -247,11 +247,12 @@ body {
 
 .card-tabletop {
   width: 100%;
-  min-height: calc(100vh - 62px);
+  height: calc(100dvh - 62px);
+  overflow: hidden;
   border-radius: 0;
   border-left: 0;
   border-right: 0;
-  padding: 1rem 1.4rem 0.8rem;
+  padding: 0.6rem 1rem 0.5rem;
   box-shadow: none;
   background:
     linear-gradient(180deg, rgba(8, 13, 27, 0.96), rgba(8, 12, 23, 0.98)),
@@ -926,6 +927,14 @@ body {
 .grid {
   display: grid;
   gap: 0.75rem;
+}
+/* Tabletop root fills the locked shell so the duel fits one screen (no scroll). */
+.card-tabletop .grid {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  gap: 0;
 }
 
 .meta {
@@ -3919,9 +3928,66 @@ body {
 
 /* ===== Rebuilt duel board (clean, flowing, responsive) ===== */
 .duel {
-  display: grid;
-  gap: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+/* Fixed regions don't grow; the battlefield is the one flexible middle. */
+.duel > .battle-status-bar,
+.duel > .opp-strip,
+.duel > .duel-dock,
+.duel > .spell-zone,
+.duel > .attack-hint-bar { flex: 0 0 auto; }
+.duel > .battlefield {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  /* Oval table */
+  border-radius: 50% / 14%;
+}
+.duel > .battlefield .bf-plane {
+  height: 100%;
+  align-content: center;
+}
+/* Compact opponents row across the table */
+.duel > .opp-strip { gap: 0.5rem; }
+/* Slim top action buttons */
+.bsb-actions { display: flex; gap: 0.4rem; align-items: center; }
+.bsb-endturn { padding: 0.5rem 1rem; font-weight: 800; }
+.bsb-mini { padding: 0.45rem 0.7rem; font-size: 0.8rem; }
+.bsb-leave { color: #ff8da3; }
+/* Bottom dock: avatar+piles (seat) on the left, hand fills the rest. */
+.duel-dock {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem;
+  align-items: center;
+}
+.my-seat { display: flex; align-items: center; gap: 0.5rem; }
+.my-seat-id { display: flex; align-items: center; gap: 0.4rem; }
+.my-seat-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(221,178,105,0.5); }
+.my-seat-info { display: grid; line-height: 1.15; }
+.my-seat-info strong { font-size: 0.85rem; }
+.seat-hp { color: #ff8da3; }
+.seat-mana { color: #8ce8ff; margin-left: 0.3rem; }
+.duel-dock .your-hand { border: none; background: none; padding: 0; min-width: 0; }
+.duel-dock .field-head { display: none; }
+.duel-dock .hand-card { width: 116px; }
+.duel-dock .hand-card-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.64rem;
+  line-height: 1.2;
+}
+@media (max-width: 560px) {
+  .duel-dock { grid-template-columns: 1fr; }
+  .my-seat { justify-content: space-between; }
 }
 
 .duel-wait {
@@ -5007,50 +5073,6 @@ body {
 
 .library-spell-text { color: #c8b3ff; font-weight: 600; }
 
-/* Sticky bottom dock: hand + piles + controls always on screen, no scrolling
-   up/down to play a card then end the turn. The board scrolls behind it. */
-.duel-dock {
-  position: sticky;
-  bottom: 0;
-  z-index: 50;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-areas: "piles hand" "controls controls";
-  gap: 0.5rem 0.7rem;
-  align-items: stretch;
-  margin: 0.4rem -0.8rem 0;
-  padding: 0.55rem 0.8rem calc(0.55rem + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, rgba(6, 12, 22, 0.55), rgba(5, 10, 18, 0.97) 38%);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(221, 178, 105, 0.32);
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.45);
-}
-.duel-dock .duel-piles { grid-area: piles; margin: 0; }
-.duel-dock .your-hand {
-  grid-area: hand;
-  border: none;
-  background: none;
-  padding: 0;
-  min-width: 0;
-}
-.duel-dock .duel-controls { grid-area: controls; }
-/* Compact the dock controls so they don't eat vertical space */
-.duel-dock .duel-controls { gap: 0.5rem; }
-.duel-dock .duel-controls .lobby-cta { flex: 1 1 auto; max-width: none; padding: 0.55rem 0.9rem; }
-/* Shorter hand cards inside the dock */
-.duel-dock .hand-card { width: 128px; }
-.duel-dock .hand-card-desc {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 0.66rem;
-  line-height: 1.25;
-}
-@media (max-width: 560px) {
-  .duel-dock { grid-template-columns: 1fr; grid-template-areas: "hand" "piles" "controls"; }
-  .duel-dock .duel-piles { justify-content: center; }
-}
 
 /* Faction-themed deck back */
 .pile-deck-back { filter: brightness(0.45) saturate(1.15) contrast(1.05); }
