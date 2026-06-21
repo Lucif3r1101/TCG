@@ -14,6 +14,7 @@ import { ForgotPasswordModal } from "./components/modals/ForgotPasswordModal";
 import { GuideModal } from "./components/modals/GuideModal";
 import { IntroVideoModal } from "./components/modals/IntroVideoModal";
 import { StatsModal } from "./components/modals/StatsModal";
+import { Battlefield3DModal } from "./components/three/Battlefield3DModal";
 import { LegalModal } from "./components/modals/LegalModal";
 import { CHARACTER_CLASSES } from "./constants/game";
 import { DEFAULT_AVATAR_IDS, ONBOARDING_KEY, PASSWORD_RULE, SOCKET_URL, TOKEN_KEY } from "./constants/game";
@@ -86,6 +87,7 @@ export function App() {
   const [guideOpen, setGuideOpen] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
+  const [threeOpen, setThreeOpen] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [practiceMode, setPracticeMode] = useState(false);
@@ -602,6 +604,10 @@ export function App() {
           playSfx("click");
           setStatsOpen(true);
         }}
+        onOpenThree={() => {
+          playSfx("click");
+          setThreeOpen(true);
+        }}
         onOpenLore={() => {
           playSfx("click");
           setGuideSection("lore");
@@ -802,6 +808,16 @@ export function App() {
       />
       <IntroVideoModal open={introOpen} onClose={() => setIntroOpen(false)} />
       <StatsModal open={statsOpen} token={token} onClose={() => setStatsOpen(false)} />
+      <Battlefield3DModal
+        open={threeOpen}
+        onClose={() => setThreeOpen(false)}
+        enemySlugs={currentRoom?.players
+          .filter((p) => p.userId !== currentUser?.id)
+          .flatMap((p) => p.board.map((c) => c.slug))}
+        mySlugs={currentRoom?.players
+          .find((p) => p.userId === currentUser?.id)
+          ?.board.map((c) => c.slug)}
+      />
       {currentUser ? (
         <ProfileModal
           open={profileOpen}

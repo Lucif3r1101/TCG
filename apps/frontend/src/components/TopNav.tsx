@@ -7,6 +7,7 @@ type TopNavProps = {
   username?: string;
   isAdmin?: boolean;
   onOpenStats?: () => void;
+  onOpenThree?: () => void;
   onOpenLore: () => void;
   onOpenHow: () => void;
   onOpenJourney: () => void;
@@ -23,6 +24,7 @@ export function TopNav({
   username,
   isAdmin,
   onOpenStats,
+  onOpenThree,
   onOpenLore,
   onOpenHow,
   onOpenJourney,
@@ -105,6 +107,12 @@ export function TopNav({
                   <span className="nav-ico-chip"><img className="nav-icon" src={getIconAssetPath("icon-timer")} alt="" aria-hidden="true" /></span>
                   <span className="nav-label">Card Journey</span>
                 </button>
+                {onOpenThree ? (
+                  <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenThree)}>
+                    <span className="nav-ico-chip"><img className="nav-icon" src={getIconAssetPath("icon-unit")} alt="" aria-hidden="true" /></span>
+                    <span className="nav-label">3D Arena <em className="nav-beta">Beta</em></span>
+                  </button>
+                ) : null}
                 <button className="nav-menu-item" type="button" role="menuitem" onClick={run(onOpenLibrary)}>
                   <span className="nav-ico-chip"><img className="nav-icon" src={getIconAssetPath("icon-room")} alt="" aria-hidden="true" /></span>
                   <span className="nav-label">Card Library</span>
