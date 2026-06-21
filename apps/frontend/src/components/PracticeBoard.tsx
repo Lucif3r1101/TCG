@@ -268,14 +268,17 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
             bot.board.push({ ...card, position: "attack", canAttack: false });
           }
         }
-        // attack: pick a living enemy (prefer one with units, else go face)
-        const enemies = () => s.players.filter((p) => p.userId !== bot.userId && p.health > 0);
+        // Free-for-all: each attack hits a RANDOM living opponent (could be you
+        // OR another bot), so it never feels like everyone ganging up on you.
+        const pick = <T,>(arr: T[]): T | null => (arr.length ? arr[Math.floor(Math.random() * arr.length)] : null);
         for (const unit of bot.board) {
           if (!unit.canAttack || unit.position !== "attack") continue;
-          const foes = enemies();
+          const foes = s.players.filter((p) => p.userId !== bot.userId && p.health > 0);
           if (foes.length === 0) break;
-          const withUnits = foes.find((f) => f.board.length > 0);
-          const foe = withUnits ?? foes[0];
+          // Prefer foes that have units (real combat); otherwise a free hit to the face.
+          const defenders = foes.filter((f) => f.board.length > 0);
+          const foe = pick(defenders.length ? defenders : foes);
+          if (!foe) break;
           const target = foe.board.find((c) => c.position === "attack") ?? foe.board[0] ?? null;
           resolveAttack(unit, bot, target, foe);
           checkWinner(s);
