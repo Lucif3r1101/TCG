@@ -391,6 +391,10 @@ function TabletopBoard(props: GameBoardProps) {
   // any of their cards' slugs), falling back to neutral arena key art.
   const realmSlug = privateHand[0]?.slug ?? me?.board[0]?.slug ?? "";
   const realmBg = getRealmSource(realmSlug) || "/assets/branding/hero-key-art.jpg";
+  // Theme the deck back to the player's chosen faction (characterId === faction).
+  const myFaction = me?.characterId ?? "";
+  const deckBackUrl = myFaction ? `/assets/realms/${myFaction}.jpg` : DECK_BACK_ASSET_PATH;
+  const deckCrestUrl = myFaction ? `/assets/icons/crests/${myFaction}-crest.png` : "";
   const activePlayerName = activePlayerId
     ? currentRoom?.players.find((player) => player.userId === activePlayerId)?.username ?? "Player"
     : null;
@@ -953,6 +957,7 @@ function TabletopBoard(props: GameBoardProps) {
               );
             })()}
 
+            <div className="duel-dock">
             <div className="duel-piles">
               <button
                 className={`pile pile-deck ${isMyTurn && !battle?.manualDrawUsed ? "pile-draw" : ""}`}
@@ -965,8 +970,9 @@ function TabletopBoard(props: GameBoardProps) {
                 }}
                 title="Draw a card"
               >
-                <img className="pile-art" src={DECK_BACK_ASSET_PATH} alt="" aria-hidden="true" />
-                {drawFly ? <img className="pile-flyer" src={DECK_BACK_ASSET_PATH} alt="" aria-hidden="true" /> : null}
+                <img className="pile-art pile-deck-back" src={deckBackUrl} alt="" aria-hidden="true" onError={(e) => { (e.currentTarget as HTMLImageElement).src = DECK_BACK_ASSET_PATH; }} />
+                {deckCrestUrl ? <img className="pile-deck-crest" src={deckCrestUrl} alt="" aria-hidden="true" /> : null}
+                {drawFly ? <img className="pile-flyer" src={deckBackUrl} alt="" aria-hidden="true" /> : null}
                 <span className="pile-count">{me?.deckCount ?? 0}</span>
                 <span className="pile-label">{isMyTurn && !battle?.manualDrawUsed ? "Draw" : "Deck"}</span>
               </button>
@@ -1038,19 +1044,14 @@ function TabletopBoard(props: GameBoardProps) {
             </div>
 
             <div className="duel-controls">
-              <button className="button primary lobby-cta" type="button" onClick={onEndTurn} disabled={!isMyTurn}>End Turn</button>
+              <button className="button primary lobby-cta" type="button" onClick={onEndTurn} disabled={!isMyTurn}>End Turn ⏭</button>
               <button className="button" type="button" onClick={onConcede} disabled={!activeMatchState?.matchId}>Concede</button>
               <button className="button lobby-leave" type="button" onClick={onLeaveRoom}>Leave</button>
+            </div>
             </div>
           </>
         )}
       </section>
-
-      {inGame && isMyTurn ? (
-        <button className="end-turn-fab" type="button" onClick={onEndTurn} title="End your turn">
-          End Turn ⏭
-        </button>
-      ) : null}
     </div>
   );
 }

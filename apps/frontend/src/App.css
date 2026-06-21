@@ -5007,27 +5007,64 @@ body {
 
 .library-spell-text { color: #c8b3ff; font-weight: 600; }
 
-/* Always-visible End Turn (no scrolling to find it) */
-.end-turn-fab {
-  position: fixed;
-  right: clamp(12px, 4vw, 28px);
-  bottom: clamp(14px, 5vh, 32px);
-  z-index: 90;
-  padding: 0.8rem 1.4rem;
-  border-radius: 999px;
-  border: none;
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 800;
-  font-size: 1.02rem;
-  letter-spacing: 0.03em;
-  color: #07111f;
-  background: linear-gradient(135deg, #ffd166, #ff9f1a);
-  box-shadow: 0 10px 28px rgba(255, 159, 26, 0.45), 0 2px 8px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  animation: fabPop 0.3s ease-out;
+/* Sticky bottom dock: hand + piles + controls always on screen, no scrolling
+   up/down to play a card then end the turn. The board scrolls behind it. */
+.duel-dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "piles hand" "controls controls";
+  gap: 0.5rem 0.7rem;
+  align-items: stretch;
+  margin: 0.4rem -0.8rem 0;
+  padding: 0.55rem 0.8rem calc(0.55rem + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(6, 12, 22, 0.55), rgba(5, 10, 18, 0.97) 38%);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(221, 178, 105, 0.32);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.45);
 }
-.end-turn-fab:hover { filter: brightness(1.07); transform: translateY(-1px); }
-@keyframes fabPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.duel-dock .duel-piles { grid-area: piles; margin: 0; }
+.duel-dock .your-hand {
+  grid-area: hand;
+  border: none;
+  background: none;
+  padding: 0;
+  min-width: 0;
+}
+.duel-dock .duel-controls { grid-area: controls; }
+/* Compact the dock controls so they don't eat vertical space */
+.duel-dock .duel-controls { gap: 0.5rem; }
+.duel-dock .duel-controls .lobby-cta { flex: 1 1 auto; max-width: none; padding: 0.55rem 0.9rem; }
+/* Shorter hand cards inside the dock */
+.duel-dock .hand-card { width: 128px; }
+.duel-dock .hand-card-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.66rem;
+  line-height: 1.25;
+}
+@media (max-width: 560px) {
+  .duel-dock { grid-template-columns: 1fr; grid-template-areas: "hand" "piles" "controls"; }
+  .duel-dock .duel-piles { justify-content: center; }
+}
+
+/* Faction-themed deck back */
+.pile-deck-back { filter: brightness(0.45) saturate(1.15) contrast(1.05); }
+.pile-deck-crest {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  width: 58%;
+  height: auto;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.85));
+  pointer-events: none;
+}
 
 /* Intro trailer modal */
 .intro-overlay {
