@@ -3715,14 +3715,47 @@ body {
 /* ===== In-game: turn status bar ===== */
 .battle-status-bar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.45rem;
   border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 0.7rem 1rem;
+  padding: 0.55rem 0.8rem;
   background: rgba(10, 17, 33, 0.8);
+}
+.bsb-main {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.bsb-main .bsb-turn { flex: 1 1 auto; min-width: 0; }
+.bsb-main .bsb-turn-text { min-width: 0; }
+.bsb-main .bsb-turn-text strong,
+.bsb-main .bsb-hint {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+.bsb-endturn { flex: 0 0 auto; padding: 0.5rem 1rem; font-weight: 800; }
+.bsb-collapse {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.bsb-collapse:hover { background: rgba(255, 255, 255, 0.12); }
+.bsb-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .battle-status-bar.bsb-mine {

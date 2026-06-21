@@ -350,6 +350,8 @@ function TabletopBoard(props: GameBoardProps) {
   const [handOpen, setHandOpen] = useState(false);
   // Prompt to rotate to landscape during a duel (only shows on portrait phones).
   const [rotateDismissed, setRotateDismissed] = useState(false);
+  // Collapsible top bar so the essentials stay readable, details on demand.
+  const [statusOpen, setStatusOpen] = useState(false);
   const [selectedBoardCardId, setSelectedBoardCardId] = useState<string | null>(null);
   const [hoveredTargetPlayerId, setHoveredTargetPlayerId] = useState<string | null>(null);
   const [actionHistory, setActionHistory] = useState<RoomActionEvent[]>([]);
@@ -752,26 +754,35 @@ function TabletopBoard(props: GameBoardProps) {
 
       <section className="duel">
         <div className={`battle-status-bar ${!inGame ? "bsb-lobby" : isMyTurn ? "bsb-mine" : "bsb-other"}`}>
-          <div className="bsb-turn">
-            <span className="bsb-dot" />
-            <div>
-              <strong>{turnHeading}</strong>
-              <span className="bsb-hint">{turnHint}</span>
+          <div className="bsb-main">
+            <div className="bsb-turn">
+              <span className="bsb-dot" />
+              <div className="bsb-turn-text">
+                <strong>{turnHeading}</strong>
+                <span className="bsb-hint">{turnHint}</span>
+              </div>
             </div>
-          </div>
-          <div className="bsb-stats">
-            <span key={`me-hp-${me?.health ?? 0}`} className="bsb-stat bsb-hp hp-pop">❤ {me?.health ?? "--"}</span>
-            <span key={`me-mana-${me?.mana ?? 0}`} className="bsb-stat bsb-mana hp-pop">◆ {me ? `${me.mana}/${me.maxMana}` : "--"}</span>
             <span className="bsb-stat bsb-timer">⏱ {formatTimer(timer)}</span>
-            <span className="bsb-stat">Turn {battle?.turn ?? activeMatchState?.turn ?? "--"}</span>
-            <span className="bsb-stat">Room {currentRoom?.roomCode ?? "--"}</span>
-            <button className="bsb-help" type="button" onClick={() => setShowCoach(true)} aria-label="How to play">?</button>
-          </div>
-          {inGame ? (
-            <div className="bsb-actions">
+            {inGame ? (
               <button className="button primary bsb-endturn" type="button" onClick={onEndTurn} disabled={!isMyTurn}>End Turn ⏭</button>
-              <button className="button bsb-mini" type="button" onClick={onConcede} disabled={!activeMatchState?.matchId} title="Concede">Concede</button>
-              <button className="button bsb-mini bsb-leave" type="button" onClick={onLeaveRoom} title="Leave">Leave</button>
+            ) : null}
+            <button className="bsb-collapse" type="button" onClick={() => setStatusOpen((v) => !v)} aria-expanded={statusOpen} aria-label="More info">
+              {statusOpen ? "▲" : "⋯"}
+            </button>
+          </div>
+          {statusOpen ? (
+            <div className="bsb-details">
+              <span key={`me-hp-${me?.health ?? 0}`} className="bsb-stat bsb-hp hp-pop">❤ {me?.health ?? "--"}</span>
+              <span key={`me-mana-${me?.mana ?? 0}`} className="bsb-stat bsb-mana hp-pop">◆ {me ? `${me.mana}/${me.maxMana}` : "--"}</span>
+              <span className="bsb-stat">Turn {battle?.turn ?? activeMatchState?.turn ?? "--"}</span>
+              <span className="bsb-stat">Room {currentRoom?.roomCode ?? "--"}</span>
+              <button className="bsb-help" type="button" onClick={() => setShowCoach(true)} aria-label="How to play">?</button>
+              {inGame ? (
+                <>
+                  <button className="button bsb-mini" type="button" onClick={onConcede} disabled={!activeMatchState?.matchId} title="Concede">Concede</button>
+                  <button className="button bsb-mini bsb-leave" type="button" onClick={onLeaveRoom} title="Leave">Leave</button>
+                </>
+              ) : null}
             </div>
           ) : null}
         </div>
