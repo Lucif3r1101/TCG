@@ -14,6 +14,18 @@ import { CardDetailModal, DetailCard } from "./CardDetailModal";
 
 // Lottie is heavy; load the victory overlay only when a match actually ends.
 const VictoryOverlay = lazy(() => import("./VictoryOverlay").then((m) => ({ default: m.VictoryOverlay })));
+const Battlefield3DLive = lazy(() => import("./three/Battlefield3DLive"));
+
+// True if the browser can run WebGL — gate the 3D board so weak/old devices
+// fall back to the CSS board instead of a blank canvas.
+function supportsWebGL(): boolean {
+  try {
+    const canvas = document.createElement("canvas");
+    return Boolean(window.WebGLRenderingContext && (canvas.getContext("webgl") || canvas.getContext("experimental-webgl")));
+  } catch {
+    return false;
+  }
+}
 
 type GameBoardProps = {
   currentUserId: string;
@@ -346,6 +358,18 @@ function TabletopBoard(props: GameBoardProps) {
   const timer = battle?.turnDeadlineAt ?? activeMatchState?.turnDeadlineAt;
   const seatPositions = ["top", "top-right", "bottom-right", "bottom", "bottom-left", "top-left"] as const;
   const [turnShift, setTurnShift] = useState(false);
+  // 3D board toggle, remembered per device. Only enabled where WebGL works.
+  const [use3D, setUse3D] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem("rift_board_3d") === "1" && supportsWebGL();
+  });
+  const toggle3D = () => {
+    setUse3D((prev) => {
+      const next = !prev && supportsWebGL();
+      try { localStorage.setItem("rift_board_3d", next ? "1" : "0"); } catch { /* ignore */ }
+      return next;
+    });
+  };
   const [selectedBoardCardId, setSelectedBoardCardId] = useState<string | null>(null);
   const [hoveredTargetPlayerId, setHoveredTargetPlayerId] = useState<string | null>(null);
   const [actionHistory, setActionHistory] = useState<RoomActionEvent[]>([]);
@@ -823,6 +847,30 @@ function TabletopBoard(props: GameBoardProps) {
               })}
             </div>
 
+            <div className="board-mode-bar">
+              {attacker ? <span className="board-mode-note">⚔ Attacking — tap an enemy</span> : <span />}
+              <button className="board-mode-toggle" type="button" onClick={toggle3D} title="Switch board view">
+                {use3D ? "🃏 2D Board" : "🧊 3D Board"}
+              </button>
+            </div>
+
+            {use3D ? (
+              <div className="battlefield battlefield-3d">
+                <Suspense fallback={<div className="three-loading">Loading 3D board…</div>}>
+                  <Battlefield3DLive
+                    myUnits={me?.board ?? []}
+                    enemyUnits={enemyUnits}
+                    opponents={opponents}
+                    selectedId={selectedBoardCardId}
+                    attacking={Boolean(attacker)}
+                    isMyTurn={isMyTurn}
+                    onSelectMine={(id) => setSelectedBoardCardId(selectedBoardCardId === id ? null : id)}
+                    onStrikeUnit={strikeUnit}
+                    onStrikePlayer={strikePlayer}
+                  />
+                </Suspense>
+              </div>
+            ) : (
             <div
               className={`battlefield ${attacker ? "bf-attacking" : ""} ${shake ? "bf-shake" : ""} ${isMyTurn ? "bf-myturn" : ""}`}
               style={{ ["--realm-bg" as string]: `url(${realmBg})` }}
@@ -928,6 +976,7 @@ function TabletopBoard(props: GameBoardProps) {
                 </div>
               </div>
             </div>
+            )}
 
             {(() => {
               const mySpells = me?.spellZone ?? [];
