@@ -3967,6 +3967,7 @@ body {
   gap: 0.6rem;
   align-items: center;
 }
+.dock-handle { display: none; }  /* desktop: hand is always shown, no drawer */
 .my-seat { display: flex; align-items: center; gap: 0.5rem; }
 .my-seat-id { display: flex; align-items: center; gap: 0.4rem; }
 .my-seat-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(221,178,105,0.5); }
@@ -5123,10 +5124,44 @@ body {
   /* Status bar wraps its actions below on narrow screens */
   .battle-status-bar { flex-wrap: wrap; gap: 0.4rem; }
   .bsb-actions { width: 100%; justify-content: space-between; }
-  /* Hand dock: avatar/piles on top row, hand scrolls below */
-  .duel-dock { grid-template-columns: 1fr; gap: 0.4rem; }
-  .duel-dock .my-seat { justify-content: space-between; }
-  .duel-dock .hand-card { width: 104px; }
+  /* Collapsible hand drawer: a slim seat bar always visible; the hand slides
+     up only when you tap the handle, so the board owns the screen. */
+  .duel-dock { grid-template-columns: 1fr; gap: 0.35rem; }
+  .duel-dock .my-seat {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .dock-handle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(221, 178, 105, 0.18);
+    border: 1px solid rgba(221, 178, 105, 0.55);
+    color: #ffd9a0;
+    font-weight: 800;
+    font-size: 0.85rem;
+  }
+  /* Hand hidden by default; revealed when the drawer is open. */
+  .duel-dock .your-hand { display: none; }
+  .duel-dock.hand-open .your-hand {
+    display: block;
+    border-top: 1px solid rgba(221, 178, 105, 0.25);
+    padding-top: 0.4rem;
+    max-height: 42vh;
+    overflow-y: auto;
+  }
+  .duel-dock.hand-open .hand-row { flex-wrap: wrap; justify-content: center; }
+  .duel-dock .hand-card { width: 100px; }
+}
+
+/* Hand drawer on larger phones/tablets keeps the same compact card size. */
+@media (max-width: 360px) {
+  .duel-dock .hand-card { width: 88px; }
 }
 
 /* Faction-themed deck back */

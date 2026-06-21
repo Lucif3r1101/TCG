@@ -346,6 +346,8 @@ function TabletopBoard(props: GameBoardProps) {
   const timer = battle?.turnDeadlineAt ?? activeMatchState?.turnDeadlineAt;
   const seatPositions = ["top", "top-right", "bottom-right", "bottom", "bottom-left", "top-left"] as const;
   const [turnShift, setTurnShift] = useState(false);
+  // Mobile: the hand is a collapsible bottom drawer so the board owns the screen.
+  const [handOpen, setHandOpen] = useState(false);
   const [selectedBoardCardId, setSelectedBoardCardId] = useState<string | null>(null);
   const [hoveredTargetPlayerId, setHoveredTargetPlayerId] = useState<string | null>(null);
   const [actionHistory, setActionHistory] = useState<RoomActionEvent[]>([]);
@@ -964,7 +966,7 @@ function TabletopBoard(props: GameBoardProps) {
               );
             })()}
 
-            <div className="duel-dock">
+            <div className={`duel-dock ${handOpen ? "hand-open" : ""}`}>
             <div className="my-seat">
               <div className="my-seat-id">
                 <img className="my-seat-avatar" src={getAvatarAssetPath(me?.avatarId ?? "avatar-01")} alt="" onError={(e) => handleAvatarError(e, me?.avatarId ?? "avatar-01")} />
@@ -973,6 +975,10 @@ function TabletopBoard(props: GameBoardProps) {
                   <span><b className="seat-hp">❤ {me?.health ?? "--"}</b> <b className="seat-mana">◆ {me ? `${me.mana}/${me.maxMana}` : "--"}</b></span>
                 </div>
               </div>
+              {/* Mobile-only handle: tap to slide the hand drawer up/down. */}
+              <button className="dock-handle" type="button" onClick={() => setHandOpen((v) => !v)} aria-expanded={handOpen}>
+                🖐 Hand · {privateHand.length} {handOpen ? "▼" : "▲"}
+              </button>
             <div className="duel-piles">
               <button
                 className={`pile pile-deck ${isMyTurn && !battle?.manualDrawUsed ? "pile-draw" : ""}`}
@@ -1042,12 +1048,12 @@ function TabletopBoard(props: GameBoardProps) {
                       <div className="row">
                         {card.type === "unit" ? (
                           <div className="play-stance">
-                            <button className="button hand-play-btn" type="button" disabled={!playable} onClick={() => onPlayCard(card.instanceId, undefined, "attack")} title="Summon in Attack position (uses ATK)">⚔ Summon</button>
-                            <button className="button hand-play-btn button-secondary" type="button" disabled={!playable} onClick={() => onPlayCard(card.instanceId, undefined, "defense")} title="Set in Defense position (uses DEF, guards you)">🛡 Set</button>
+                            <button className="button hand-play-btn" type="button" disabled={!playable} onClick={() => { onPlayCard(card.instanceId, undefined, "attack"); setHandOpen(false); }} title="Summon in Attack position (uses ATK)">⚔ Summon</button>
+                            <button className="button hand-play-btn button-secondary" type="button" disabled={!playable} onClick={() => { onPlayCard(card.instanceId, undefined, "defense"); setHandOpen(false); }} title="Set in Defense position (uses DEF, guards you)">🛡 Set</button>
                           </div>
                         ) : (
                           // Spells auto-resolve (e.g. hit the strongest enemy unit) — one clear Cast button.
-                          <button className="button hand-play-btn" type="button" disabled={!playable} onClick={() => onPlayCard(card.instanceId)} title={card.spellText || "Cast spell"}>
+                          <button className="button hand-play-btn" type="button" disabled={!playable} onClick={() => { onPlayCard(card.instanceId); setHandOpen(false); }} title={card.spellText || "Cast spell"}>
                             ✦ Cast
                           </button>
                         )}
