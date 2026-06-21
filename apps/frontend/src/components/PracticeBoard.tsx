@@ -19,13 +19,22 @@ type PPlayer = {
 };
 
 type PState = {
-  you: PPlayer;
-  bot: PPlayer;
-  activeId: "you" | "bot";
+  players: PPlayer[]; // players[0] is always "you"; the rest are bots
+  order: string[]; // userIds in turn order
+  activeId: string;
   turn: number;
   manualDrawUsed: boolean;
   winnerId: string | null;
 };
+
+// Distinct faction/avatar/name per practice bot so the multiplayer table is varied.
+const BOT_PROFILES: { characterId: string; avatarId: string; username: string }[] = [
+  { characterId: "void-ranger", avatarId: "avatar-07", username: "Void Bot" },
+  { characterId: "ember-arcanist", avatarId: "avatar-12", username: "Ember Bot" },
+  { characterId: "ironbound-beastmaster", avatarId: "avatar-19", username: "Beast Bot" },
+  { characterId: "chronomancer", avatarId: "avatar-23", username: "Chrono Bot" },
+  { characterId: "abyss-revenant", avatarId: "avatar-04", username: "Abyss Bot" }
+];
 
 type ApiCard = {
   slug: string;
@@ -102,12 +111,28 @@ function clone(s: PState): PState {
     discard: p.discard.map((c) => ({ ...c })),
     spellZone: p.spellZone.map((c) => ({ ...c }))
   });
-  return { ...s, you: cp(s.you), bot: cp(s.bot) };
+  return { ...s, players: s.players.map(cp) };
+}
+
+function byId(s: PState, id: string): PPlayer | undefined {
+  return s.players.find((p) => p.userId === id);
 }
 
 function checkWinner(s: PState) {
-  if (s.you.health <= 0) s.winnerId = "bot";
-  else if (s.bot.health <= 0) s.winnerId = "you";
+  const alive = s.players.filter((p) => p.health > 0);
+  if (alive.length <= 1) {
+    s.winnerId = alive[0]?.userId ?? null;
+  }
+}
+
+// Next living player after `id` in turn order (cyclic).
+function nextAliveAfter(s: PState, id: string): string {
+  const start = s.order.indexOf(id);
+  for (let step = 1; step <= s.order.length; step += 1) {
+    const cand = s.order[(start + step) % s.order.length];
+    if ((byId(s, cand)?.health ?? 0) > 0) return cand;
+  }
+  return id;
 }
 
 // Yu-Gi-Oh-style resolution (mirrors the backend).
@@ -147,10 +172,32 @@ function resolveAttack(attacker: RoomCard, atkOwner: PPlayer, target: RoomCard |
 export function PracticeBoard({ onExit }: { onExit: () => void }) {
   const [state, setState] = useState<PState | null>(null);
   const [error, setError] = useState("");
+  const [playerCount, setPlayerCount] = useState(2);
   const botTimer = useRef<number | null>(null);
   const spellBySlug = useRef<Record<string, SpellInfo>>({});
+  const poolRef = useRef<ApiCard[]>([]);
 
-  // Build decks from the public card list.
+  // Build a fresh game with `count` total players (you + bots).
+  const buildGame = (count: number) => {
+    const pool = poolRef.current;
+    if (pool.length === 0) return;
+    const you = makePlayer("you", "You", "avatar-01", "riftforged-sentinel", pool);
+    you.mana = 1;
+    const bots = BOT_PROFILES.slice(0, count - 1).map((b, i) =>
+      makePlayer(`bot${i + 1}`, b.username, b.avatarId, b.characterId, pool)
+    );
+    const players = [you, ...bots];
+    setState({
+      players,
+      order: players.map((p) => p.userId),
+      activeId: "you",
+      turn: 1,
+      manualDrawUsed: false,
+      winnerId: null
+    });
+  };
+
+  // Load the card pool once, then start a 2-player game.
   useEffect(() => {
     let active = true;
     (async () => {
@@ -162,12 +209,9 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
         );
         const playable = data.cards.filter((c) => c.slug && (c.type === "unit" || c.type === "spell"));
         const units = playable.filter((c) => c.type === "unit");
-        const pool = units.length >= DECK_SIZE ? units : playable;
         if (!active) return;
-        const you = makePlayer("you", "You", "avatar-01", "riftforged-sentinel", pool);
-        const bot = makePlayer("bot", "Practice Bot", "avatar-07", "void-ranger", pool);
-        you.mana = 1;
-        setState({ you, bot, activeId: "you", turn: 1, manualDrawUsed: false, winnerId: null });
+        poolRef.current = units.length >= DECK_SIZE ? units : playable;
+        buildGame(2);
       } catch {
         if (active) setError("Could not load cards for practice.");
       }
@@ -175,7 +219,13 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
     return () => {
       active = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const setCount = (n: number) => {
+    setPlayerCount(n);
+    buildGame(n);
+  };
 
   const mutate = (fn: (s: PState) => void) => {
     setState((prev) => {
@@ -187,28 +237,29 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
     });
   };
 
-  const startTurnFor = (s: PState, who: "you" | "bot") => {
+  const startTurnFor = (s: PState, who: string) => {
     s.activeId = who;
     s.turn += 1;
     s.manualDrawUsed = false;
-    const p = s[who];
+    const p = byId(s, who);
+    if (!p) return;
     p.maxMana = Math.min(10, p.maxMana + 1);
     p.mana = p.maxMana;
     p.board = p.board.map((c) => ({ ...c, canAttack: true, positionChanged: false }));
   };
 
-  // Bot plays when it's its turn.
+  // Each bot plays automatically on its turn, then passes to the next player.
   useEffect(() => {
-    if (!state || state.winnerId || state.activeId !== "bot") return;
+    if (!state || state.winnerId || state.activeId === "you") return;
     botTimer.current = window.setTimeout(() => {
       setState((prev) => {
-        if (!prev || prev.winnerId || prev.activeId !== "bot") return prev;
+        if (!prev || prev.winnerId || prev.activeId === "you") return prev;
         const s = clone(prev);
-        const bot = s.bot;
-        // draw
+        const bot = byId(s, s.activeId);
+        if (!bot) return prev;
         const drawn = bot.deck.shift();
         if (drawn) bot.hand.push(drawn);
-        // play affordable units (attack stance), cheapest first
+        // play affordable units cheapest-first
         const affordable = bot.hand.filter((c) => c.type === "unit").sort((a, b) => a.cost - b.cost);
         for (const card of affordable) {
           if (card.cost <= bot.mana && bot.board.length < 6) {
@@ -217,19 +268,23 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
             bot.board.push({ ...card, position: "attack", canAttack: false });
           }
         }
-        // attack with ready units
+        // attack: pick a living enemy (prefer one with units, else go face)
+        const enemies = () => s.players.filter((p) => p.userId !== bot.userId && p.health > 0);
         for (const unit of bot.board) {
           if (!unit.canAttack || unit.position !== "attack") continue;
-          const youTarget = s.you.board.find((c) => c.position === "attack") ?? s.you.board[0] ?? null;
-          resolveAttack(unit, bot, youTarget, s.you);
+          const foes = enemies();
+          if (foes.length === 0) break;
+          const withUnits = foes.find((f) => f.board.length > 0);
+          const foe = withUnits ?? foes[0];
+          const target = foe.board.find((c) => c.position === "attack") ?? foe.board[0] ?? null;
+          resolveAttack(unit, bot, target, foe);
           checkWinner(s);
           if (s.winnerId) break;
         }
-        // end bot turn -> your turn
-        if (!s.winnerId) startTurnFor(s, "you");
+        if (!s.winnerId) startTurnFor(s, nextAliveAfter(s, s.activeId));
         return s;
       });
-    }, 1100);
+    }, 1000);
     return () => {
       if (botTimer.current) window.clearTimeout(botTimer.current);
     };
@@ -257,19 +312,19 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
       roomCode: "SOLO",
       hostUserId: "you",
       hostMode: "play",
-      maxPlayers: 2,
+      maxPlayers: state.players.length,
       status: "in_game",
       createdAt: new Date().toISOString(),
       expiresAt: new Date(Date.now() + 3_600_000).toISOString(),
       battle: {
         turn: state.turn,
         activePlayerId: state.activeId,
-        playerOrder: ["you", "bot"],
+        playerOrder: state.order,
         turnDeadlineAt: new Date(Date.now() + 3_600_000).toISOString(),
         winnerId: state.winnerId,
         manualDrawUsed: state.manualDrawUsed
       },
-      players: [pub(state.you), pub(state.bot)]
+      players: state.players.map(pub)
     };
   }, [state]);
 
@@ -292,6 +347,21 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
   const noop = () => undefined;
 
   return (
+    <>
+      <div className="practice-players" role="group" aria-label="Practice player count">
+        <span className="practice-players-label">Players</span>
+        {[2, 3, 4, 5, 6].map((n) => (
+          <button
+            key={n}
+            type="button"
+            className={`practice-players-btn ${playerCount === n ? "active" : ""}`}
+            onClick={() => setCount(n)}
+            title={`Practice with ${n} players`}
+          >
+            {n}
+          </button>
+        ))}
+      </div>
     <GameBoard
       currentUserId="you"
       socketConnected
@@ -300,12 +370,12 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
       selectedDeckId="practice"
       selectedCharacterId="riftforged-sentinel"
       roomCodeInput="SOLO"
-      roomMaxPlayers={2}
+      roomMaxPlayers={state.players.length}
       hostMode="play"
       animationPreset="balanced"
       tabletopMode
       currentRoom={room}
-      privateHand={state.you.hand}
+      privateHand={state.players[0].hand}
       roomAction={null}
       meReady
       isInRoom
@@ -326,91 +396,95 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
       onPractice={noop}
       onEndTurn={() => {
         mutate((s) => {
-          if (s.activeId === "you") startTurnFor(s, "bot");
+          if (s.activeId === "you") startTurnFor(s, nextAliveAfter(s, "you"));
         });
       }}
       onDrawCard={() =>
         mutate((s) => {
           if (s.activeId !== "you" || s.manualDrawUsed) return;
-          const c = s.you.deck.shift();
-          if (c) s.you.hand.push(c);
+          const me = s.players[0];
+          const c = me.deck.shift();
+          if (c) me.hand.push(c);
           s.manualDrawUsed = true;
         })
       }
       onPlayCard={(cardInstanceId, _targetUserId, position) =>
         mutate((s) => {
           if (s.activeId !== "you") return;
-          const idx = s.you.hand.findIndex((c) => c.instanceId === cardInstanceId);
+          const me = s.players[0];
+          const idx = me.hand.findIndex((c) => c.instanceId === cardInstanceId);
           if (idx < 0) return;
-          const card = s.you.hand[idx];
-          if (card.cost > s.you.mana) return;
-          s.you.mana -= card.cost;
-          s.you.hand.splice(idx, 1);
+          const card = me.hand[idx];
+          if (card.cost > me.mana) return;
+          me.mana -= card.cost;
+          me.hand.splice(idx, 1);
           if (card.type === "unit") {
-            s.you.board.push({ ...card, position: position ?? "attack", canAttack: false, positionChanged: false });
+            me.board.push({ ...card, position: position ?? "attack", canAttack: false, positionChanged: false });
           } else {
             // Spell: resolve its archetype (mirrors the backend), auto-targeting.
             const spell = spellBySlug.current[card.slug];
-            const strongest = (units: RoomCard[]) =>
-              units.length === 0 ? null : units.reduce((b, u) => (u.attack > b.attack ? u : b));
-            const destroyBotUnit = (u: RoomCard) => {
-              s.bot.board = s.bot.board.filter((c) => c.instanceId !== u.instanceId);
-              s.bot.discard.push(u);
+            const enemies = s.players.filter((p) => p.userId !== "you" && p.health > 0);
+            const strongestOwn = me.board.length ? me.board.reduce((b, u) => (u.attack > b.attack ? u : b)) : null;
+            // Strongest enemy unit across every opponent.
+            let topOwner: PPlayer | null = null;
+            let topUnit: RoomCard | null = null;
+            for (const e of enemies) for (const u of e.board) if (!topUnit || u.attack > topUnit.attack) { topUnit = u; topOwner = e; }
+            const destroy = (owner: PPlayer, u: RoomCard) => {
+              owner.board = owner.board.filter((c) => c.instanceId !== u.instanceId);
+              owner.discard.push(u);
             };
             switch (spell?.archetype) {
-              case "empower": {
-                const t = strongest(s.you.board);
-                if (t) { t.attack += spell.atk ?? 0; t.health += spell.def ?? 0; }
+              case "empower":
+                if (strongestOwn) { strongestOwn.attack += spell.atk ?? 0; strongestOwn.health += spell.def ?? 0; }
                 break;
-              }
               case "rally":
-                s.you.board.forEach((u) => { u.attack += spell.atk ?? 0; u.health += spell.def ?? 0; });
+                me.board.forEach((u) => { u.attack += spell.atk ?? 0; u.health += spell.def ?? 0; });
                 break;
-              case "strike": {
-                const t = strongest(s.bot.board);
-                if (t) { t.health -= spell.damage ?? 0; if (t.health <= 0) destroyBotUnit(t); }
+              case "strike":
+                if (topUnit && topOwner) { topUnit.health -= spell.damage ?? 0; if (topUnit.health <= 0) destroy(topOwner, topUnit); }
                 break;
-              }
               case "volley":
-                [...s.bot.board].forEach((u) => { u.health -= spell?.damage ?? 0; if (u.health <= 0) destroyBotUnit(u); });
+                enemies.forEach((e) => [...e.board].forEach((u) => { u.health -= spell?.damage ?? 0; if (u.health <= 0) destroy(e, u); }));
                 break;
-              case "tradeoff": {
-                const t = strongest(s.you.board);
-                if (t) { t.attack += spell.atk ?? 0; t.health += spell.def ?? 0; }
-                s.you.health = Math.max(0, s.you.health - (spell.life ?? 0));
+              case "tradeoff":
+                if (strongestOwn) { strongestOwn.attack += spell.atk ?? 0; strongestOwn.health += spell.def ?? 0; }
+                me.health = Math.max(0, me.health - (spell.life ?? 0));
                 break;
-              }
-              default: // utility
-                if (spell?.heal) s.you.health = Math.min(START_HP, s.you.health + spell.heal);
-                if (spell?.mana) s.you.mana = Math.min(10, s.you.mana + spell.mana);
+              default:
+                if (spell?.heal) me.health = Math.min(START_HP, me.health + spell.heal);
+                if (spell?.mana) me.mana = Math.min(10, me.mana + spell.mana);
                 break;
             }
-            if (s.you.spellZone.length < 5) s.you.spellZone.push(card);
-            else s.you.discard.push(card);
+            if (me.spellZone.length < 5) me.spellZone.push(card);
+            else me.discard.push(card);
           }
         })
       }
       onSetPosition={(cardInstanceId, position) =>
         mutate((s) => {
-          const unit = s.you.board.find((c) => c.instanceId === cardInstanceId);
+          const unit = s.players[0].board.find((c) => c.instanceId === cardInstanceId);
           if (unit && !unit.positionChanged) {
             unit.position = position;
             unit.positionChanged = true;
           }
         })
       }
-      onAttackPlayer={(attackerCardInstanceId, _targetUserId, targetCardInstanceId) => {
+      onAttackPlayer={(attackerCardInstanceId, targetUserId, targetCardInstanceId) => {
         mutate((s) => {
           if (s.activeId !== "you") return;
-          const attacker = s.you.board.find((c) => c.instanceId === attackerCardInstanceId);
+          const me = s.players[0];
+          const attacker = me.board.find((c) => c.instanceId === attackerCardInstanceId);
           if (!attacker || !attacker.canAttack || attacker.position !== "attack") return;
-          const target = targetCardInstanceId ? s.bot.board.find((c) => c.instanceId === targetCardInstanceId) ?? null : null;
-          resolveAttack(attacker, s.you, target, s.bot);
+          const defOwner = byId(s, targetUserId);
+          if (!defOwner) return;
+          const target = targetCardInstanceId ? defOwner.board.find((c) => c.instanceId === targetCardInstanceId) ?? null : null;
+          resolveAttack(attacker, me, target, defOwner);
         });
       }}
       onConcede={onExit}
       onTilt={noop}
       onTiltReset={noop}
     />
+    </>
   );
 }

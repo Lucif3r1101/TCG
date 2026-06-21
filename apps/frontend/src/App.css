@@ -4016,6 +4016,35 @@ body {
 }
 .dock-handle { display: none; }  /* desktop: hand is always shown, no drawer */
 .pile-hand { display: none; }    /* the Hand pile is mobile-only */
+
+/* Practice-only player-count selector */
+.practice-players {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(8, 14, 26, 0.92);
+  border: 1px solid rgba(221, 178, 105, 0.4);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+.practice-players-label { font-size: 0.72rem; color: var(--muted); padding: 0 0.3rem; }
+.practice-players-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+}
+.practice-players-btn.active { background: #ffd166; color: #07111f; border-color: #ffd166; }
 .my-seat { display: flex; align-items: center; gap: 0.5rem; }
 .my-seat-id { display: flex; align-items: center; gap: 0.4rem; }
 .my-seat-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(221,178,105,0.5); }
