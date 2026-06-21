@@ -5023,6 +5023,15 @@ body {
 }
 .intro-unmute:hover { background: rgba(0, 0, 0, 0.9); }
 .intro-replay-btn { align-self: flex-start; text-decoration: none; margin-bottom: 0.3rem; }
+.hero-trailer-btn {
+  align-self: flex-start;
+  margin-top: 1rem;
+  background: rgba(221, 178, 105, 0.14);
+  border: 1px solid rgba(221, 178, 105, 0.5);
+  color: #ffd9a0;
+  font-weight: 700;
+}
+.hero-trailer-btn:hover { background: rgba(221, 178, 105, 0.26); }
 
 /* Center-stage clash — the attacker lifts to mid-screen and strikes, so the
    result animation is big and never cropped by the tilted battlefield. */

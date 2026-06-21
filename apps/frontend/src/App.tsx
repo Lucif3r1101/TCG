@@ -657,6 +657,9 @@ export function App() {
               <span className="hero-chip">🃏 300+ cards</span>
               <span className="hero-chip">⚡ Live rooms</span>
             </div>
+            <button className="button hero-trailer-btn" type="button" onClick={() => setIntroOpen(true)}>
+              ▶ Watch trailer
+            </button>
           </aside>
           <div className="auth-stage-form">
             <AuthPanel
