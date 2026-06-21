@@ -765,7 +765,7 @@ function TabletopBoard(props: GameBoardProps) {
               <button className="bsb-help" type="button" onClick={() => setShowCoach(true)} aria-label="How to play">?</button>
               {inGame ? (
                 <>
-                  <button className="button bsb-mini" type="button" onClick={onConcede} disabled={!activeMatchState?.matchId} title="Concede">Concede</button>
+                  <button className="button bsb-mini" type="button" onClick={onConcede} disabled={!inGame} title="Concede">Concede</button>
                   <button className="button bsb-mini bsb-leave" type="button" onClick={onLeaveRoom} title="Leave">Leave</button>
                 </>
               ) : null}

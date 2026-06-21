@@ -4016,6 +4016,8 @@ body {
 }
 .dock-handle { display: none; }  /* desktop: hand is always shown, no drawer */
 .pile-hand { display: none; }    /* the Hand pile is mobile-only */
+.confirm-actions { display: flex; gap: 0.6rem; justify-content: flex-end; margin-top: 1rem; flex-wrap: wrap; }
+.confirm-actions .button { flex: 1 1 auto; }
 
 /* Practice-only player-count selector */
 .practice-players {

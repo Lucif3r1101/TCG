@@ -416,9 +416,18 @@ function advanceRoomTurn(room: RoomState): void {
     return;
   }
 
-  const currentIndex = room.battle.playerOrder.findIndex((id) => id === room.battle!.activePlayerId);
-  const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % room.battle.playerOrder.length;
-  const nextPlayerId = room.battle.playerOrder[nextIndex];
+  const order = room.battle.playerOrder;
+  const currentIndex = order.findIndex((id) => id === room.battle!.activePlayerId);
+  // Skip eliminated players (health 0 — conceded or defeated).
+  let nextPlayerId = order[currentIndex < 0 ? 0 : (currentIndex + 1) % order.length];
+  for (let step = 1; step <= order.length; step += 1) {
+    const candidateId = order[((currentIndex < 0 ? 0 : currentIndex) + step) % order.length];
+    const candidate = room.players.find((p) => p.userId === candidateId);
+    if (candidate && candidate.health > 0) {
+      nextPlayerId = candidateId;
+      break;
+    }
+  }
   const nextPlayer = room.players.find((player) => player.userId === nextPlayerId);
 
   room.battle.turn += 1;
@@ -1167,6 +1176,33 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
 
       emitRoomState(io, room);
       socket.emit("room_left", { roomCode });
+    });
+
+    // Concede = forfeit THIS duel but stay in the room (as a spectator). The
+    // conceding player is eliminated (health 0); the duel continues for others.
+    socket.on("room_concede", (payload: unknown) => {
+      const parsed = roomCodePayloadSchema.safeParse(payload);
+      if (!parsed.success) {
+        socket.emit("room_error", { message: "Invalid concede payload." });
+        return;
+      }
+      const room = activeRooms.get(normalizeRoomCode(parsed.data.roomCode));
+      if (!room || !room.battle) {
+        socket.emit("room_error", { message: "No active duel to concede." });
+        return;
+      }
+      const player = room.players.find((p) => p.userId === userId);
+      if (!player || player.health <= 0) {
+        return;
+      }
+      player.health = 0;
+      // If it was their turn, pass play to the next living player.
+      if (room.battle.activePlayerId === userId) {
+        advanceRoomTurn(room);
+      }
+      setRoomWinnerIfResolved(room);
+      emitRoomState(io, room);
+      socket.emit("room_conceded", { roomCode: room.roomCode });
     });
 
     socket.on("room_ready", (payload: unknown) => {

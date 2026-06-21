@@ -86,6 +86,8 @@ export function App() {
   const [guideOpen, setGuideOpen] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<null | "concede" | "leave">(null);
+  const [concedeChoice, setConcedeChoice] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [practiceMode, setPracticeMode] = useState(false);
@@ -516,6 +518,27 @@ export function App() {
     socketRef.current.emit("room_leave", { roomCode: currentRoom.roomCode });
     setPrivateHand([]);
     setTabletopMode(false);
+    setConcedeChoice(false);
+  }
+
+  // Concede confirm → forfeit → choose Spectate or Leave. Leave mid-duel confirms first.
+  function requestConcede() {
+    playSfx("click");
+    if (currentRoom?.status === "in_game") setConfirmAction("concede");
+  }
+  function requestLeave() {
+    playSfx("click");
+    if (currentRoom?.status === "in_game") setConfirmAction("leave");
+    else handleLeaveRoom();
+  }
+  function doConcede() {
+    socketRef.current?.emit("room_concede", { roomCode: currentRoom?.roomCode });
+    setConfirmAction(null);
+    setConcedeChoice(true);
+  }
+  function doLeave() {
+    setConfirmAction(null);
+    handleLeaveRoom();
   }
 
   function handleToggleReady() {
@@ -744,7 +767,7 @@ export function App() {
               onCreateRoom={handleCreateRoom}
               onJoinRoom={handleJoinRoom}
               onJoinAsHostPlayer={handleJoinAsHostPlayer}
-              onLeaveRoom={handleLeaveRoom}
+              onLeaveRoom={requestLeave}
               onToggleReady={handleToggleReady}
               onStartRoom={handleStartRoom}
               onQueueJoin={handleQueueJoin}
@@ -775,7 +798,7 @@ export function App() {
                     })
                   : undefined
               }
-              onConcede={() => socketRef.current?.emit("match_concede", { matchId: activeMatchState?.matchId })}
+              onConcede={requestConcede}
               onTilt={applyTilt}
               onTiltReset={resetTilt}
             />
@@ -802,6 +825,38 @@ export function App() {
       />
       <IntroVideoModal open={introOpen} onClose={() => setIntroOpen(false)} />
       <StatsModal open={statsOpen} token={token} onClose={() => setStatsOpen(false)} />
+
+      {confirmAction ? (
+        <div className="legal-overlay" role="dialog" aria-modal="true" onClick={() => setConfirmAction(null)}>
+          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+            <h3>{confirmAction === "concede" ? "Concede this duel?" : "Leave and forfeit?"}</h3>
+            <p className="auth-hint">
+              {confirmAction === "concede"
+                ? "You'll be defeated and out of this duel — the others keep playing."
+                : "You're in a live duel. Leaving forfeits it and sends you back to the lobby."}
+            </p>
+            <div className="confirm-actions">
+              <button className="button" type="button" onClick={() => setConfirmAction(null)}>Cancel</button>
+              <button className="button primary" type="button" onClick={() => (confirmAction === "concede" ? doConcede() : doLeave())}>
+                {confirmAction === "concede" ? "Concede" : "Leave"}
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {concedeChoice ? (
+        <div className="legal-overlay" role="dialog" aria-modal="true">
+          <div className="auth-modal">
+            <h3>You conceded</h3>
+            <p className="auth-hint">You're out of this duel. Watch how it ends, or head back to the lobby.</p>
+            <div className="confirm-actions">
+              <button className="button" type="button" onClick={() => setConcedeChoice(false)}>👁 Spectate</button>
+              <button className="button primary" type="button" onClick={handleLeaveRoom}>🚪 Leave to Lobby</button>
+            </div>
+          </div>
+        </div>
+      ) : null}
       {currentUser ? (
         <ProfileModal
           open={profileOpen}
