@@ -7,6 +7,7 @@ import { connectToDatabase } from "./db/mongo.js";
 import { buildAuthRouter } from "./routes/auth.js";
 import { buildCardsRouter } from "./routes/cards.js";
 import { buildDecksRouter } from "./routes/decks.js";
+import { buildStatsRouter } from "./routes/stats.js";
 import { buildMatchesRouter } from "./routes/matches.js";
 import { seedBaseCards } from "./services/starterSetup.js";
 import { registerRealtime } from "./services/realtime.js";
@@ -54,6 +55,7 @@ app.use("/auth", authLimiter, buildAuthRouter(jwtSecret));
 app.use("/cards", buildCardsRouter());
 app.use("/decks", buildDecksRouter(jwtSecret));
 app.use("/matches", buildMatchesRouter(jwtSecret));
+app.use("/stats", buildStatsRouter());
 
 const server = createServer(app);
 

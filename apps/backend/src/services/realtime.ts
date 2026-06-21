@@ -7,6 +7,7 @@ import { verifyAuthToken } from "../utils.auth.js";
 import { DeckModel } from "../models/Deck.js";
 import { MatchModel } from "../models/Match.js";
 import { UserModel } from "../models/User.js";
+import { GameEventModel } from "../models/GameEvent.js";
 import { ALL_CARD_BLUEPRINTS } from "../data/starterCards.js";
 import {
   matchActionPayloadSchema,
@@ -92,7 +93,19 @@ type RoomBattleState = {
   turnDeadlineAt: string;
   winnerId: string | null;
   manualDrawUsed: boolean;
+  // Wall-clock start, used to compute duel duration on finish.
+  startedAtMs?: number;
+  // Guards duel_finished from being logged twice for the same room.
+  finishLogged?: boolean;
 };
+
+// Fire-and-forget analytics write. Never awaited and never throws into game
+// logic — if the DB hiccups, the duel continues uninterrupted.
+function logGameEvent(doc: Record<string, unknown>): void {
+  GameEventModel.create(doc).catch((err) => {
+    console.warn("[analytics] failed to log game event", doc.type, err?.message ?? err);
+  });
+}
 
 type RoomState = {
   roomCode: string;
@@ -428,6 +441,21 @@ function setRoomWinnerIfResolved(room: RoomState): void {
   if (alive.length === 1) {
     room.battle.winnerId = alive[0].userId;
     room.status = "open";
+
+    if (!room.battle.finishLogged) {
+      room.battle.finishLogged = true;
+      logGameEvent({
+        type: "duel_finished",
+        roomCode: room.roomCode,
+        userId: alive[0].userId,
+        playerCount: room.players.length,
+        factions: room.players.map((p) => p.characterId),
+        winnerId: alive[0].userId,
+        winnerFaction: alive[0].characterId,
+        turnCount: room.battle.turn,
+        durationMs: room.battle.startedAtMs ? Date.now() - room.battle.startedAtMs : null
+      });
+    }
   }
 }
 
@@ -992,6 +1020,14 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
       activeRooms.set(roomCode, room);
       emitRoomState(io, room);
       socket.emit("room_created", { roomCode });
+
+      logGameEvent({
+        type: "lobby_created",
+        roomCode,
+        userId,
+        playerCount: room.players.length,
+        factions: [characterId]
+      });
     });
 
     socket.on("room_join", async (payload: unknown) => {
@@ -1209,8 +1245,17 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         playerOrder: order,
         turnDeadlineAt,
         winnerId: null,
-        manualDrawUsed: false
+        manualDrawUsed: false,
+        startedAtMs: Date.now()
       };
+
+      logGameEvent({
+        type: "duel_started",
+        roomCode: room.roomCode,
+        userId,
+        playerCount: room.players.length,
+        factions: room.players.map((p) => p.characterId)
+      });
 
       room.players = room.players.map((player) => {
         const isActive = player.userId === activePlayerId;
