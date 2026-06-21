@@ -4071,6 +4071,13 @@ body {
   padding: 0.6rem 0.9rem;
   font-size: 0.9rem;
 }
+.attack-hint-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+.attack-direct-btn {
+  background: linear-gradient(135deg, #ff7a59, #ff4d6d);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+}
 
 /* Opponents */
 .opp-row {
@@ -5163,11 +5170,12 @@ body {
   .bf-zones {
     flex: 1;
     flex-wrap: wrap;            /* smart grid placement — cards wrap, never run off-row */
-    align-content: center;
-    align-items: center;
+    align-content: flex-start;  /* centered overflow clips top/bottom while scrolling */
+    align-items: flex-start;
     justify-content: center;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    padding: 2px 0;
     gap: 0.35rem;
   }
   .bf-zone, .bf-zone-empty { flex: 0 0 auto; }

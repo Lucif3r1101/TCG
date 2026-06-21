@@ -807,8 +807,15 @@ function TabletopBoard(props: GameBoardProps) {
           <>
             {attacker ? (
               <div className="attack-hint-bar">
-                <span>Attacking with <strong>{attacker.name}</strong> — tap an enemy player or unit.</span>
-                <button className="button button-secondary" type="button" onClick={() => setSelectedBoardCardId(null)}>Cancel</button>
+                <span>Attacking with <strong>{attacker.name}</strong> — tap an enemy unit{opponents.some((p) => p.health > 0 && p.board.length === 0) ? ", or attack a player below" : ""}.</span>
+                <div className="attack-hint-actions">
+                  {opponents.filter((p) => p.health > 0 && p.board.length === 0).map((p) => (
+                    <button key={`atk-${p.userId}`} className="button attack-direct-btn" type="button" onClick={() => strikePlayer(p.userId, p.health)}>
+                      ⚔ {p.username}
+                    </button>
+                  ))}
+                  <button className="button button-secondary" type="button" onClick={() => setSelectedBoardCardId(null)}>Cancel</button>
+                </div>
               </div>
             ) : null}
 
@@ -990,7 +997,8 @@ function TabletopBoard(props: GameBoardProps) {
             <div className="duel-piles">
               {/* Mobile-only: Hand as a pile card (matches deck/graveyard). */}
               <button className="pile pile-hand" type="button" onClick={() => setHandOpen(true)} title="Open your hand">
-                <img className="pile-art" src={CARD_BACK_ASSET_PATH} alt="" aria-hidden="true" />
+                <img className="pile-art pile-deck-back" src={deckBackUrl} alt="" aria-hidden="true" onError={(e) => { (e.currentTarget as HTMLImageElement).src = DECK_BACK_ASSET_PATH; }} />
+                {deckCrestUrl ? <img className="pile-deck-crest" src={deckCrestUrl} alt="" aria-hidden="true" /> : null}
                 <span className="pile-count">{privateHand.length}</span>
                 <span className="pile-label">Hand</span>
               </button>
