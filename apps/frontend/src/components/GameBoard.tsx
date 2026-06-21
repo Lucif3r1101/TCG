@@ -348,6 +348,8 @@ function TabletopBoard(props: GameBoardProps) {
   const [turnShift, setTurnShift] = useState(false);
   // Mobile: the hand is a collapsible bottom drawer so the board owns the screen.
   const [handOpen, setHandOpen] = useState(false);
+  // Prompt to rotate to landscape during a duel (only shows on portrait phones).
+  const [rotateDismissed, setRotateDismissed] = useState(false);
   const [selectedBoardCardId, setSelectedBoardCardId] = useState<string | null>(null);
   const [hoveredTargetPlayerId, setHoveredTargetPlayerId] = useState<string | null>(null);
   const [actionHistory, setActionHistory] = useState<RoomActionEvent[]>([]);
@@ -637,6 +639,16 @@ function TabletopBoard(props: GameBoardProps) {
 
   return (
     <div className="grid">
+      {inGame && !rotateDismissed ? (
+        <div className="rotate-gate" role="dialog" aria-label="Rotate your device">
+          <div className="rotate-card">
+            <span className="rotate-icon" aria-hidden="true">📱</span>
+            <h3>Rotate to landscape</h3>
+            <p>Chronicles of the RIFT plays best sideways — turn your phone for the full table.</p>
+            <button className="button" type="button" onClick={() => setRotateDismissed(true)}>Continue in portrait</button>
+          </div>
+        </div>
+      ) : null}
       {clash ? (
         <div className="clash-stage" aria-hidden="true">
           <div className={`clash-card clash-${clash.fx}`}>
