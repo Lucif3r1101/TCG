@@ -938,31 +938,6 @@ function TabletopBoard(props: GameBoardProps) {
               </div>
             </div>
 
-            {(() => {
-              const mySpells = me?.spellZone ?? [];
-              const enemySpells = opponents.flatMap((p) => (p.spellZone ?? []).map((card) => ({ owner: p, card })));
-              if (mySpells.length === 0 && enemySpells.length === 0) return null;
-              return (
-                <div className="spell-zone">
-                  <span className="bf-zone-label spell-zone-label">✦ Spell Zone</span>
-                  <div className="spell-row">
-                    {enemySpells.map(({ owner, card }, i) => (
-                      <button key={`es-${card.instanceId}-${i}`} type="button" className="spell-card spell-enemy" title={`${card.name} — ${owner.username}`} onClick={() => setDetailCard(card)}>
-                        <img src={getCardArtSources(card.slug).primary} alt={card.name} loading="lazy" onError={(e) => handleCardArtError(e, card.slug)} />
-                        <span className="spell-name">{card.name}</span>
-                      </button>
-                    ))}
-                    {mySpells.map((card, i) => (
-                      <button key={`ms-${card.instanceId}-${i}`} type="button" className="spell-card spell-mine" title={card.name} onClick={() => setDetailCard(card)}>
-                        <img src={getCardArtSources(card.slug).primary} alt={card.name} loading="lazy" onError={(e) => handleCardArtError(e, card.slug)} />
-                        <span className="spell-name">{card.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              );
-            })()}
-
             {handOpen ? <div className="hand-backdrop" onClick={() => setHandOpen(false)} aria-hidden="true" /> : null}
             <div className={`duel-dock ${handOpen ? "hand-open" : ""}`}>
             <div className="my-seat">

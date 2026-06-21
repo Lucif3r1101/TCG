@@ -458,8 +458,7 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
                 if (spell?.mana) me.mana = Math.min(10, me.mana + spell.mana);
                 break;
             }
-            if (me.spellZone.length < 5) me.spellZone.push(card);
-            else me.discard.push(card);
+            me.discard.push(card);
           }
         })
       }

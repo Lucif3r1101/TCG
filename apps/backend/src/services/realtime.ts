@@ -1460,12 +1460,9 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
 
       executeCardEffect(room, player, card, parsed.data.targetUserId, parsed.data.position ?? "attack");
       if (card.type === "spell") {
-        // Spells now stay on the field in the spell zone (cap 5); overflow is discarded.
-        if (player.spellZone.length < 5) {
-          player.spellZone.push(card);
-        } else {
-          player.discard.push(card);
-        }
+        // Spells are one-time: resolve instantly, then the spent card goes to the
+        // graveyard (no reusable spell zone cluttering the board).
+        player.discard.push(card);
       }
       player.handCount = player.hand.length;
       player.deckCount = player.deck.length;
