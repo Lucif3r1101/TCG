@@ -9,7 +9,6 @@ import { PracticeBoard } from "./components/PracticeBoard";
 import { ProfileModal } from "./components/modals/ProfileModal";
 import { RiftBackground } from "./components/RiftBackground";
 // Lottie is heavy (~250KB); load it only when the hero actually renders.
-const RiftOrb = lazy(() => import("./components/RiftOrb").then((m) => ({ default: m.RiftOrb })));
 import { ForgotPasswordModal } from "./components/modals/ForgotPasswordModal";
 import { GuideModal } from "./components/modals/GuideModal";
 import { IntroVideoModal } from "./components/modals/IntroVideoModal";
@@ -674,26 +673,7 @@ export function App() {
       ) : null}
 
       {!currentUser ? (
-        <section className="auth-stage">
-          <aside className="auth-stage-pitch">
-            <div className="hero-emblem">
-              <Suspense fallback={null}>
-                <RiftOrb className="hero-orb" />
-              </Suspense>
-              <img className="hero-logo" src="/assets/branding/chronicles-rift-logo.png" alt="" aria-hidden="true" />
-            </div>
-            <span className="hero-kicker">Sci-Fantasy Trading Card Game</span>
-            <h1>Chronicles of the RIFT</h1>
-            <p>Build a board, spend mana, and outplay opponents in live multiplayer duels across six rival realms. Free to play.</p>
-            <div className="hero-chips">
-              <span className="hero-chip">⚔ 6 realms</span>
-              <span className="hero-chip">🃏 300+ cards</span>
-              <span className="hero-chip">⚡ Live rooms</span>
-            </div>
-            <button className="button hero-trailer-btn" type="button" onClick={() => setIntroOpen(true)}>
-              ▶ Watch trailer
-            </button>
-          </aside>
+        <section className="auth-stage auth-stage-center">
           <div className="auth-stage-form">
             <AuthPanel
               embedded

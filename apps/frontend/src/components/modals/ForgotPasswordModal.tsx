@@ -21,6 +21,16 @@ type ForgotPasswordModalProps = {
   onClose: () => void;
 };
 
+function EyeIcon({ open }: { open: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+      <circle cx="12" cy="12" r="3" />
+      {!open ? <line x1="4" y1="20" x2="20" y2="4" /> : null}
+    </svg>
+  );
+}
+
 export function ForgotPasswordModal(props: ForgotPasswordModalProps) {
   const {
     open,
@@ -52,8 +62,8 @@ export function ForgotPasswordModal(props: ForgotPasswordModalProps) {
   const isRequest = step === "request";
 
   return (
-    <div className="legal-overlay" role="dialog" aria-modal="true" onClick={onClose}>
-      <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+    <div className="legal-overlay rift-dialog-overlay" role="dialog" aria-modal="true" onClick={onClose}>
+      <div className="auth-modal rift-dialog" onClick={(e) => e.stopPropagation()}>
         <div className="auth-modal-head">
           <div>
             <span className="auth-hero-kicker">Account recovery</span>
@@ -113,8 +123,8 @@ export function ForgotPasswordModal(props: ForgotPasswordModalProps) {
                   autoComplete="new-password"
                   placeholder="••••••••"
                 />
-                <button className="peek" type="button" onClick={onTogglePasswordVisible} aria-label={passwordVisible ? "Hide password" : "Show password"}>
-                  {passwordVisible ? "Hide" : "Show"}
+                <button className="peek peek-eye" type="button" onClick={onTogglePasswordVisible} aria-label={passwordVisible ? "Hide password" : "Show password"}>
+                  <EyeIcon open={passwordVisible} />
                 </button>
               </div>
             </label>
@@ -129,8 +139,8 @@ export function ForgotPasswordModal(props: ForgotPasswordModalProps) {
                   autoComplete="new-password"
                   placeholder="Re-enter password"
                 />
-                <button className="peek" type="button" onClick={onToggleConfirmVisible} aria-label={confirmVisible ? "Hide password" : "Show password"}>
-                  {confirmVisible ? "Hide" : "Show"}
+                <button className="peek peek-eye" type="button" onClick={onToggleConfirmVisible} aria-label={confirmVisible ? "Hide password" : "Show password"}>
+                  <EyeIcon open={confirmVisible} />
                 </button>
               </div>
             </label>

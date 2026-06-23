@@ -32,6 +32,16 @@ type AuthPanelProps = {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 };
 
+function EyeIcon({ open }: { open: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+      <circle cx="12" cy="12" r="3" />
+      {!open ? <line x1="4" y1="20" x2="20" y2="4" /> : null}
+    </svg>
+  );
+}
+
 export function AuthPanel(props: AuthPanelProps) {
   const {
     embedded = false,
@@ -72,42 +82,48 @@ export function AuthPanel(props: AuthPanelProps) {
     image.src = getAvatarFallbackPath(avatarId);
   };
 
-  return (
-    <div className={`auth ${embedded ? "auth-embedded" : ""}`}>
-      {embedded ? null : (
-        <aside className="auth-hero">
-          <img className="auth-hero-logo" src="/assets/branding/chronicles-rift-logo.png" alt="Chronicles of the RIFT" />
-          <span className="auth-hero-kicker">Rift · Season 2026</span>
-          <h2>{isRegister ? "Create your Battler ID" : "Welcome back, Challenger"}</h2>
-          <p>Assemble your deck, enter tactical multiplayer rooms, and battle through live turn-based duels.</p>
-          <ul className="auth-hero-points">
-            <li>Six factions, 300+ cards</li>
-            <li>Real-time rooms &amp; matchmaking</li>
-            <li>Free to play</li>
-          </ul>
-        </aside>
-      )}
+  const FACTIONS = [
+    { id: "riftforged-sentinel", label: "SENTINEL", color: "#e0b357" },
+    { id: "void-ranger", label: "VOID", color: "#a855f7" },
+    { id: "ember-arcanist", label: "EMBER", color: "#ef6a36" },
+    { id: "ironbound-beastmaster", label: "BEAST", color: "#6abf4b" },
+    { id: "chronomancer", label: "CHRONO", color: "#33b6ff" },
+    { id: "abyss-revenant", label: "ABYSS", color: "#14c8a0" }
+  ];
+  const realms = [
+    "riftforged-sentinel.jpg", "void-ranger.jpg", "ember-arcanist.jpg",
+    "ironbound-beastmaster.jpg", "chronomancer.jpg", "abyss-revenant.jpg"
+  ];
 
-      <section className="auth-form-col">
+  return (
+    <div className={`rift-auth ${embedded ? "auth-embedded" : ""}`}>
+      <div className="rift-auth-bg" aria-hidden="true">
+        {realms.map((src, i) => (
+          <div key={src} className="rift-auth-slide" style={{ backgroundImage: `url(/assets/realms/${src})`, animationDelay: `${i * 5}s`, animationDuration: `${realms.length * 5}s` }} />
+        ))}
+        <div className="rift-auth-veil" />
+        {Array.from({ length: 16 }, (_, i) => (
+          <span key={`em-${i}`} className="rift-auth-ember" style={{ left: `${5 + (i * 6) % 92}%`, background: i % 3 === 0 ? "#e05c28" : i % 3 === 1 ? "#c9973a" : "#7c3aed", animationDelay: `${(i * 0.5) % 5}s`, animationDuration: `${5 + (i % 4)}s` }} />
+        ))}
+      </div>
+
+      <div className="rift-auth-center">
+        <div className="rift-auth-titlebar">
+          <div className="rift-auth-kicker">WELCOME TO</div>
+          <h1 className="rift-auth-title-1">Chronicles</h1>
+          <h1 className="rift-auth-title-2">OF THE RIFT</h1>
+          <p className="rift-auth-tagline">Six fractured realms. Three hundred forgotten champions. One living arena where time itself breaks.</p>
+          <div className="rift-auth-factions">
+            {FACTIONS.map((f) => (
+              <span key={f.id} className="rift-auth-faction" style={{ ["--fc" as string]: f.color }}>{f.label}</span>
+            ))}
+          </div>
+        </div>
+
+      <section className="rift-auth-panel gold-panel">
         <div className="auth-tabs" role="tablist" aria-label="Authentication mode">
-          <button
-            className={`auth-tab ${isRegister ? "active" : ""}`}
-            type="button"
-            role="tab"
-            aria-selected={isRegister}
-            onClick={() => onSetMode("register")}
-          >
-            Sign Up
-          </button>
-          <button
-            className={`auth-tab ${!isRegister ? "active" : ""}`}
-            type="button"
-            role="tab"
-            aria-selected={!isRegister}
-            onClick={() => onSetMode("login")}
-          >
-            Sign In
-          </button>
+          <button className={`auth-tab ${!isRegister ? "active" : ""}`} type="button" role="tab" aria-selected={!isRegister} onClick={() => onSetMode("login")}>LOG IN</button>
+          <button className={`auth-tab ${isRegister ? "active" : ""}`} type="button" role="tab" aria-selected={isRegister} onClick={() => onSetMode("register")}>REGISTER</button>
         </div>
 
         <form className="auth-form" onSubmit={onSubmit}>
@@ -159,8 +175,8 @@ export function AuthPanel(props: AuthPanelProps) {
                 onChange={(e) => onPasswordChange(e.target.value)}
                 required
               />
-              <button className="peek" type="button" onClick={onTogglePasswordVisible} aria-label={passwordVisible ? "Hide password" : "Show password"}>
-                {passwordVisible ? "Hide" : "Show"}
+              <button className="peek peek-eye" type="button" onClick={onTogglePasswordVisible} aria-label={passwordVisible ? "Hide password" : "Show password"}>
+                <EyeIcon open={passwordVisible} />
               </button>
             </div>
           </label>
@@ -178,8 +194,8 @@ export function AuthPanel(props: AuthPanelProps) {
                   onChange={(e) => onConfirmPasswordChange(e.target.value)}
                   required
                 />
-                <button className="peek" type="button" onClick={onToggleConfirmPasswordVisible} aria-label={confirmPasswordVisible ? "Hide password" : "Show password"}>
-                  {confirmPasswordVisible ? "Hide" : "Show"}
+                <button className="peek peek-eye" type="button" onClick={onToggleConfirmPasswordVisible} aria-label={confirmPasswordVisible ? "Hide password" : "Show password"}>
+                  <EyeIcon open={confirmPasswordVisible} />
                 </button>
               </div>
             </label>
@@ -230,18 +246,16 @@ export function AuthPanel(props: AuthPanelProps) {
           {errorMessage ? <p className="error">{errorMessage}</p> : null}
           {successMessage ? <p className="good">{successMessage}</p> : null}
 
-          <button className="button primary auth-submit" type="submit" disabled={isLoading || !canSubmit}>
-            {isLoading ? "Working…" : isRegister ? "Create Account" : "Sign In"}
+          <button className="button primary auth-submit gold-btn" type="submit" disabled={isLoading || !canSubmit}>
+            {isLoading ? "Summoning…" : isRegister ? "Forge Your Legacy" : "Enter the Rift"}
           </button>
 
-          <p className="auth-switch">
-            {isRegister ? "Already have an account?" : "New to the Rift?"}{" "}
-            <button type="button" className="link" onClick={() => onSetMode(isRegister ? "login" : "register")}>
-              {isRegister ? "Sign in" : "Create one"}
-            </button>
-          </p>
+          {!isRegister ? (
+            <button type="button" className="rift-auth-forgot-link" onClick={onOpenForgot}>Forgot your access key?</button>
+          ) : null}
         </form>
       </section>
+      </div>
     </div>
   );
 }

@@ -75,10 +75,18 @@ body {
   background: linear-gradient(130deg, var(--accent), var(--accent-2));
 }
 
+.brand strong {
+  font-family: "Cinzel", "Rajdhani", serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #e7c46b;
+}
 .brand p {
   margin: 0;
-  color: var(--muted);
-  font-size: 0.78rem;
+  color: #9aa6c0;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
 }
 
 
@@ -636,6 +644,9 @@ body {
   font-size: 0.8rem;
   text-decoration: none;
 }
+.rift-auth-panel .auth-forgot { font-family: "Cinzel", "Rajdhani", serif; color: #e7c46b; letter-spacing: 0.06em; }
+.rift-auth-panel .auth-forgot:hover { color: #f3dea0; }
+.rift-auth-panel .label-row { display: flex; align-items: center; justify-content: space-between; }
 
 .auth-hint {
   margin: 0;
@@ -3556,16 +3567,19 @@ body {
   cursor: pointer;
 }
 
+.nav-burger {
+  border-color: rgba(201, 151, 58, 0.4);
+}
 .nav-burger span {
   display: block;
   height: 2px;
   border-radius: 2px;
-  background: var(--text);
+  background: #e7c46b;
   transition: opacity 0.16s ease;
 }
 
 .nav-burger:hover span {
-  background: var(--accent);
+  background: #f3dea0;
 }
 
 /* Right-side slide-in drawer */
@@ -6355,6 +6369,7 @@ body {
   padding: 1.1rem;
 }
 .gp-label { font-family: "Cinzel", "Rajdhani", serif; font-size: 0.66rem; letter-spacing: 0.25em; color: #7a6e5a; margin-bottom: 0.8rem; }
+.rift-setup .gp-label { font-size: 0.95rem; letter-spacing: 0.2em; color: #b9a98a; }
 
 .faction-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
 @media (max-width: 560px) { .faction-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -6557,9 +6572,9 @@ body {
 .gold-panel {
   background:
     linear-gradient(180deg, rgba(201, 151, 58, 0.12), transparent 14%),
-    linear-gradient(160deg, rgba(16, 22, 38, 0.96), rgba(9, 13, 24, 0.96));
+    linear-gradient(160deg, rgba(14, 19, 33, 0.99), rgba(7, 11, 20, 0.99));
   border: 1px solid rgba(201, 151, 58, 0.45);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 240, 200, 0.08), inset 0 0 60px rgba(124, 58, 237, 0.04);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 240, 200, 0.08), inset 0 0 60px rgba(124, 58, 237, 0.04);
 }
 .champ-card { position: relative; isolation: isolate; }
 
@@ -7044,3 +7059,114 @@ body {
   transition: color 0.15s ease;
 }
 .pw-eye:hover { color: #e7c46b; }
+
+/* ===== Auth screen — prototype "Chronicles of the RIFT" ===== */
+.rift-auth { position: relative; min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 2rem 1.2rem; overflow: hidden; }
+.rift-auth-center { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; width: 100%; }
+.rift-auth-titlebar { text-align: center; max-width: 560px; }
+@media (min-width: 980px) {
+  .rift-auth-center { flex-direction: row; align-items: center; justify-content: center; gap: 4rem; max-width: 1080px; }
+  .rift-auth-titlebar { text-align: left; flex: 1; max-width: 480px; }
+  .rift-auth-titlebar .rift-auth-factions { justify-content: flex-start; }
+  .rift-auth-center .rift-auth-panel { flex: 0 0 auto; }
+}
+
+.rift-auth-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.rift-auth-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; animation: lobbySlide 30s ease-in-out infinite; }
+.rift-auth-veil { position: absolute; inset: 0; background: radial-gradient(ellipse 120% 80% at 50% 0%, rgba(80, 100, 180, 0.12), transparent 60%), linear-gradient(180deg, rgba(5, 12, 24, 0.86), rgba(4, 10, 20, 0.94)); }
+.rift-auth-ember { position: absolute; bottom: 0; width: 3px; height: 3px; border-radius: 50%; opacity: 0; animation: emberDrift 5s ease-in infinite; }
+
+.rift-auth-hero { position: relative; z-index: 1; text-align: center; max-width: 460px; }
+.rift-auth-kicker { font-family: "Cinzel", serif; font-size: 0.7rem; letter-spacing: 0.5em; color: #7a6e5a; margin-bottom: 0.6rem; }
+.rift-auth-title-1 { font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900; font-size: clamp(2rem, 5vw, 3.4rem); color: #c9973a; letter-spacing: 0.08em; line-height: 1; margin: 0; animation: lobbyTitleGlow 5s ease-in-out infinite; }
+.rift-auth-title-2 { font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900; font-size: clamp(2.6rem, 6.5vw, 4.5rem); color: #e8b84b; letter-spacing: 0.12em; line-height: 1; margin: 0 0 1.2rem; text-shadow: 0 0 40px rgba(201, 151, 58, 0.4); }
+.rift-auth-tagline { color: #b0a898; font-family: "Rajdhani", "Exo 2", sans-serif; font-size: 1rem; line-height: 1.7; max-width: 400px; margin: 0 auto 1.6rem; }
+.rift-auth-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.2rem; }
+.rift-auth-chip { font-family: "Rajdhani", sans-serif; font-weight: 700; font-size: 0.78rem; padding: 0.3rem 0.8rem; border-radius: 999px; color: #e7c46b; background: rgba(201, 151, 58, 0.1); border: 1px solid rgba(201, 151, 58, 0.35); }
+.rift-auth-factions { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.rift-auth-faction { font-family: "Cinzel", serif; font-size: 0.62rem; letter-spacing: 0.12em; padding: 0.3rem 0.7rem; border-radius: 6px; color: var(--fc); background: rgba(255, 255, 255, 0.03); border: 1px solid color-mix(in srgb, var(--fc) 40%, transparent); }
+
+.rift-auth-panel { position: relative; z-index: 1; width: min(400px, 100%); padding: 2rem; }
+.rift-auth-panel .auth-tabs { display: flex; margin-bottom: 1.4rem; border: 1px solid rgba(201, 151, 58, 0.25); border-radius: 8px; overflow: hidden; }
+.rift-auth-panel .auth-tab {
+  flex: 1; padding: 0.7rem; cursor: pointer; background: transparent; border: none;
+  font-family: "Cinzel", serif; font-size: 0.78rem; letter-spacing: 0.12em; color: #7a6e5a;
+  border-bottom: 2px solid transparent;
+}
+.rift-auth-panel .auth-tab.active { background: rgba(201, 151, 58, 0.18); color: #e7c46b; border-bottom-color: #c9973a; }
+.rift-auth-panel .label { font-family: "Cinzel", serif; font-size: 0.7rem; letter-spacing: 0.12em; color: #b9a98a; text-transform: uppercase; }
+.rift-auth-panel .input {
+  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(201, 151, 58, 0.25); color: #e8d5b0;
+  font-family: "Rajdhani", "Exo 2", sans-serif; border-radius: 8px;
+}
+.rift-auth-panel .input:focus { border-color: rgba(201, 151, 58, 0.7); outline: none; box-shadow: 0 0 12px rgba(201, 151, 58, 0.18); }
+.rift-auth-panel .auth-submit { width: 100%; justify-content: center; margin-top: 0.5rem; }
+.rift-auth-forgot-link { display: block; width: 100%; margin-top: 0.6rem; background: none; border: none; cursor: pointer; font-family: "Rajdhani", sans-serif; font-size: 0.82rem; color: #7a6e5a; text-align: center; }
+.rift-auth-forgot-link:hover { color: #e7c46b; }
+.rift-auth-back { background: none; border: none; cursor: pointer; color: #7a6e5a; font-family: "Cinzel", serif; font-size: 0.78rem; margin-bottom: 0.8rem; }
+.rift-auth-panel .avatar-option.active { border-color: #e7c46b; box-shadow: 0 0 0 2px rgba(201, 151, 58, 0.4), 0 0 14px rgba(201, 151, 58, 0.3); }
+.rift-auth-panel { min-height: 460px; }
+.rift-auth-panel .input-wrap { position: relative; }
+.rift-auth-panel .input-wrap .input { width: 100%; padding-right: 2.6rem; box-sizing: border-box; }
+.rift-auth-panel .peek-eye {
+  position: absolute; top: 50%; right: 8px; transform: translateY(-50%);
+  display: grid; place-items: center; width: 30px; height: 30px;
+  padding: 0; border: none; background: none; cursor: pointer; color: #b9a98a;
+  transition: color 0.15s ease;
+}
+.rift-auth-panel .peek-eye:hover { color: #e7c46b; }
+
+.rift-dialog.legal-card h3 { font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900; color: #e7c46b; font-size: 1.5rem; margin: 0.3rem 0 0.6rem; }
+.rift-dialog.legal-card .auth-hint { margin-bottom: 1.2rem; }
+
+/* Auth submit = gold (override the teal .button.primary), themed terms links */
+.rift-auth-panel .auth-submit, .rift-auth-panel .auth-submit.primary {
+  background: linear-gradient(180deg, #f3dea0 0%, #e0b35e 38%, #c9973a 70%, #a87a2c 100%) !important;
+  color: #0a1020 !important;
+  border: 1px solid #f0dca0 !important;
+  font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; letter-spacing: 0.06em;
+  text-shadow: 0 1px 0 rgba(255, 248, 220, 0.5);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.rift-auth-panel .checkbox { font-family: "Rajdhani", "Exo 2", sans-serif; color: #c3cde0; }
+.rift-auth-panel .checkbox .link { color: #e7c46b; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.rift-auth-panel .checkbox .link:hover { color: #f3dea0; }
+
+/* Forgot/Reset dialog — eye icons, themed kicker/inputs/links */
+.rift-dialog .auth-hero-kicker { color: #b9a98a !important; text-transform: uppercase; }
+.rift-dialog .input-wrap { position: relative; }
+.rift-dialog .input-wrap .input { width: 100%; padding-right: 2.6rem; box-sizing: border-box; }
+.rift-dialog .peek-eye {
+  position: absolute; top: 50%; right: 8px; transform: translateY(-50%);
+  display: grid; place-items: center; width: 30px; height: 30px;
+  padding: 0; border: none; background: none; cursor: pointer; color: #b9a98a;
+}
+.rift-dialog .peek-eye:hover { color: #e7c46b; }
+.rift-dialog .input { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(201, 151, 58, 0.3); color: #e8d5b0; }
+.rift-dialog .input:focus { border-color: #e7c46b; outline: none; box-shadow: 0 0 0 2px rgba(201, 151, 58, 0.25); }
+.rift-dialog .label { font-family: "Cinzel", "Rajdhani", serif; color: #e7c46b; font-size: 0.72rem; letter-spacing: 0.08em; }
+.rift-dialog .auth-switch .link, .rift-dialog .link { color: #e7c46b; }
+
+/* Auth panel: contain content + kill browser autofill white bg */
+.rift-auth-panel { box-sizing: border-box; overflow: hidden; }
+.rift-auth-panel .auth-form, .rift-auth-panel .auth-tabs, .rift-auth-panel .label, .rift-auth-panel .input-wrap { width: 100%; box-sizing: border-box; }
+.rift-auth-panel .input { width: 100%; box-sizing: border-box; }
+.rift-auth-panel .input:-webkit-autofill,
+.rift-auth-panel .input:-webkit-autofill:hover,
+.rift-auth-panel .input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #e8d5b0;
+  -webkit-box-shadow: 0 0 0 1000px rgba(16, 22, 38, 0.98) inset;
+  caret-color: #e8d5b0;
+  transition: background-color 9999s ease-in-out 0s;
+}
+/* Same autofill fix for profile + dialogs */
+.rift-dialog .input:-webkit-autofill,
+.profile-modal .input:-webkit-autofill {
+  -webkit-text-fill-color: #e8d5b0;
+  -webkit-box-shadow: 0 0 0 1000px rgba(16, 22, 38, 0.98) inset;
+}
+
+/* Let AuthPanel's own .rift-auth fully control the auth screen layout */
+.auth-stage:has(.rift-auth) { display: block; max-width: none; margin: 0; padding: 0; }
+.auth-stage:has(.rift-auth) .auth-stage-form { display: block; }
+.rift-auth-panel { overflow: visible; }
