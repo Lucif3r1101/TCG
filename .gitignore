@@ -41,3 +41,7 @@ test-results/
 # Misc
 *.tmp
 *.temp
+
+# Local-only design reference + editor history
+.design-import/
+.history/
