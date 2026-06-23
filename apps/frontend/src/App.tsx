@@ -77,7 +77,7 @@ export function App() {
   const [roomMaxPlayers, setRoomMaxPlayers] = useState(4);
   const [hostMode, setHostMode] = useState<"play" | "manage">("play");
   const [animationPreset, setAnimationPreset] = useState<"subtle" | "balanced" | "cinematic">("balanced");
-  const [selectedCharacterId, setSelectedCharacterId] = useState<string>(CHARACTER_CLASSES[0].id);
+  const [selectedCharacterId, setSelectedCharacterId] = useState<string>("");
   const [currentRoom, setCurrentRoom] = useState<RoomState | null>(null);
   const [privateHand, setPrivateHand] = useState<RoomCard[]>([]);
   const [roomAction, setRoomAction] = useState<RoomActionEvent | null>(null);
@@ -511,14 +511,17 @@ export function App() {
   }
 
   function handleLeaveRoom() {
-    if (!socketRef.current || !currentRoom?.roomCode) {
-      return;
-    }
     playSfx("click");
-    socketRef.current.emit("room_leave", { roomCode: currentRoom.roomCode });
+    if (socketRef.current && currentRoom?.roomCode) {
+      socketRef.current.emit("room_leave", { roomCode: currentRoom.roomCode });
+    }
+    // Always reset local UI so Leave can never strand the player, even if the
+    // socket dropped (e.g. after a network change).
     setPrivateHand([]);
     setTabletopMode(false);
     setConcedeChoice(false);
+    setCurrentRoom(null);
+    setActiveMatchState(null);
   }
 
   // Concede confirm → forfeit → choose Spectate or Leave. Leave mid-duel confirms first.
@@ -614,8 +617,8 @@ export function App() {
   }
 
   return (
-    <div className={`page ${impact ? "impact" : ""} ${tabletopMode ? "tabletop-page" : ""}`}>
-      {!tabletopMode ? <RiftBackground /> : null}
+    <div className={`page ${impact ? "impact" : ""} ${tabletopMode || practiceMode ? "tabletop-page" : ""}`}>
+      {!tabletopMode && !practiceMode ? <RiftBackground /> : null}
       <TopNav
         soundEnabled={soundEnabled}
         showLogout={Boolean(currentUser)}
@@ -661,7 +664,7 @@ export function App() {
 
       {libraryOpen ? <CardLibrary onClose={() => setLibraryOpen(false)} /> : null}
 
-      {currentUser && !tabletopMode ? (
+      {currentUser && !tabletopMode && !practiceMode ? (
         <section className="hero hero-compact">
           <div className="hero-content">
             <h1>Chronicles of the RIFT</h1>
@@ -827,8 +830,8 @@ export function App() {
       <StatsModal open={statsOpen} token={token} onClose={() => setStatsOpen(false)} />
 
       {confirmAction ? (
-        <div className="legal-overlay" role="dialog" aria-modal="true" onClick={() => setConfirmAction(null)}>
-          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="legal-overlay rift-dialog-overlay" role="dialog" aria-modal="true" onClick={() => setConfirmAction(null)}>
+          <div className="auth-modal rift-dialog" onClick={(e) => e.stopPropagation()}>
             <h3>{confirmAction === "concede" ? "Concede this duel?" : "Leave and forfeit?"}</h3>
             <p className="auth-hint">
               {confirmAction === "concede"
@@ -846,8 +849,8 @@ export function App() {
       ) : null}
 
       {concedeChoice ? (
-        <div className="legal-overlay" role="dialog" aria-modal="true">
-          <div className="auth-modal">
+        <div className="legal-overlay rift-dialog-overlay" role="dialog" aria-modal="true">
+          <div className="auth-modal rift-dialog">
             <h3>You conceded</h3>
             <p className="auth-hint">You're out of this duel. Watch how it ends, or head back to the lobby.</p>
             <div className="confirm-actions">

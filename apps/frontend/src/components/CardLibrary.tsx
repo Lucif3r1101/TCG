@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { API_URL } from "../constants/game";
 import { getCardArtSources, handleCardArtError, factionFromSlug } from "../lib/cardArt";
-import { CardDetailModal, DetailCard } from "./CardDetailModal";
+import { DetailCard } from "./CardDetailModal";
+import { CardView } from "./CardView";
 
 export type LibraryCard = {
   id: string;
@@ -80,44 +81,42 @@ export function CardLibrary({ onClose }: CardLibraryProps) {
   }, [cards, search, faction, type, rarity]);
 
   return (
-    <section className="library" aria-label="Card library">
-      {detail ? <CardDetailModal card={detail} onClose={() => setDetail(null)} /> : null}
-      <div className="library-head">
-        <div>
-          <span className="landing-section-kicker">Card Library</span>
-          <h1>All Cards of the RIFT</h1>
-          <p className="library-sub">
-            Browse every card across the six factions — units, spells, costs, and abilities.
-          </p>
-        </div>
-        <button className="button nav-btn" type="button" onClick={onClose}>
-          Close
-        </button>
+    <section className="rift-library" aria-label="Card library">
+      {detail ? <CardView card={detail} onClose={() => setDetail(null)} /> : null}
+
+      <button className="rift-library-close" type="button" onClick={onClose} aria-label="Close">×</button>
+
+      <div className="rift-library-head">
+        <div className="rift-library-kicker">CHAMPION CODEX</div>
+        <h1 className="rift-library-title">Card Library</h1>
+        <div className="rift-library-count">{filtered.length} cards of the RIFT</div>
       </div>
 
-      <div className="library-filters">
-        <input
-          className="input"
-          type="search"
-          placeholder="Search cards by name or ability…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          aria-label="Search cards"
-        />
-        <select className="input" value={faction} onChange={(e) => setFaction(e.target.value)} aria-label="Filter by faction">
-          <option value="all">All factions</option>
+      <div className="gold-panel rift-library-filters">
+        <div className="rlf-search">
+          <span aria-hidden="true">⌕</span>
+          <input
+            type="search"
+            placeholder="Search cards…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            aria-label="Search cards"
+          />
+        </div>
+        <select className="rlf-select" value={faction} onChange={(e) => setFaction(e.target.value)} aria-label="Filter by faction">
+          <option value="all">All Factions</option>
           {Object.entries(FACTION_LABELS).map(([id, label]) => (
             <option key={id} value={id}>{label}</option>
           ))}
         </select>
-        <select className="input" value={type} onChange={(e) => setType(e.target.value)} aria-label="Filter by type">
-          <option value="all">All types</option>
+        <select className="rlf-select" value={type} onChange={(e) => setType(e.target.value)} aria-label="Filter by type">
+          <option value="all">All Types</option>
           {TYPES.map((t) => (
             <option key={t} value={t}>{t === "unit" ? "Units" : "Spells"}</option>
           ))}
         </select>
-        <select className="input" value={rarity} onChange={(e) => setRarity(e.target.value)} aria-label="Filter by rarity">
-          <option value="all">All rarities</option>
+        <select className="rlf-select" value={rarity} onChange={(e) => setRarity(e.target.value)} aria-label="Filter by rarity">
+          <option value="all">All Rarities</option>
           {RARITIES.map((r) => (
             <option key={r} value={r}>{r[0].toUpperCase() + r.slice(1)}</option>
           ))}
@@ -125,52 +124,29 @@ export function CardLibrary({ onClose }: CardLibraryProps) {
       </div>
 
       {loading ? (
-        <p className="library-status">Loading cards…</p>
+        <p className="rift-library-status">Loading cards…</p>
       ) : error ? (
-        <p className="library-status library-error">{error}</p>
+        <p className="rift-library-status library-error">{error}</p>
+      ) : filtered.length === 0 ? (
+        <div className="rift-library-empty">
+          <div className="rift-library-empty-icon">⚔</div>
+          <div>No cards match your search</div>
+          <small>Try clearing your filters</small>
+        </div>
       ) : (
-        <>
-          <p className="library-count">{filtered.length} of {cards.length} cards</p>
-          {filtered.length === 0 ? (
-            <p className="library-status">No cards match your filters. Try clearing the search.</p>
-          ) : (
-            <div className="library-grid">
-              {filtered.map((card) => (
-                <article key={card.id} className={`library-card rarity-${card.rarity}`} role="button" tabIndex={0} onClick={() => setDetail(card)} title={`${card.name} — tap for details`}>
-                  <div className="library-card-art">
-                    <img
-                      src={getCardArtSources(card.slug).primary}
-                      alt={card.name}
-                      loading="lazy"
-                      onError={(e) => handleCardArtError(e, card.slug)}
-                    />
-                    <span className="library-cost" title="Mana cost">{card.cost}</span>
-                  </div>
-                  <div className="library-card-body">
-                    <div className="library-card-title">
-                      <h3>{card.name}</h3>
-                      <span className={`library-tag tag-${card.rarity}`}>{card.rarity}</span>
-                    </div>
-                    <p className="library-card-meta">
-                      {FACTION_LABELS[card.faction] ?? card.faction} · {card.type === "unit" ? "Unit" : "Spell"}
-                    </p>
-                    {card.type === "spell" && card.spellText ? (
-                      <p className="library-card-desc library-spell-text">✦ {card.spellText}</p>
-                    ) : card.description ? (
-                      <p className="library-card-desc">{card.description}</p>
-                    ) : null}
-                    {card.type === "unit" ? (
-                      <div className="library-stats">
-                        <span className="stat-atk" title="Attack">⚔ {card.attack}</span>
-                        <span className="stat-hp" title="Health">❤ {card.health}</span>
-                      </div>
-                    ) : null}
-                  </div>
-                </article>
-              ))}
-            </div>
-          )}
-        </>
+        <div className="rift-library-grid">
+          {filtered.map((card) => (
+            <button key={card.id} className={`rift-lib-card rarity-${card.rarity}`} type="button" onClick={() => setDetail(card)} title={`${card.name} — tap for details`}>
+              <img className="rift-lib-art" src={getCardArtSources(card.slug).primary} alt={card.name} loading="lazy" onError={(e) => handleCardArtError(e, card.slug)} />
+              <span className="rift-lib-cost">◆ {card.cost}</span>
+              {card.type === "unit" ? (
+                <span className="rift-lib-stats"><b className="ut-atk">⚔ {card.attack}</b><b className="ut-def">🛡 {card.health}</b></span>
+              ) : <span className="rift-lib-spelltag">Spell</span>}
+              <span className="rift-lib-name">{card.name}</span>
+              <span className="rift-lib-frame" aria-hidden="true" />
+            </button>
+          ))}
+        </div>
       )}
     </section>
   );

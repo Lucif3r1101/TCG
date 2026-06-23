@@ -11,6 +11,16 @@ type ProfileModalProps = {
   onUpdated: (user: AuthUser) => void;
 };
 
+function EyeIcon({ open }: { open: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+      <circle cx="12" cy="12" r="3" />
+      {!open ? <line x1="4" y1="20" x2="20" y2="4" /> : null}
+    </svg>
+  );
+}
+
 export function ProfileModal({ open, token, user, onClose, onUpdated }: ProfileModalProps) {
   const [username, setUsername] = useState(user.username);
   const [avatarId, setAvatarId] = useState(user.avatarId);
@@ -24,6 +34,9 @@ export function ProfileModal({ open, token, user, onClose, onUpdated }: ProfileM
   const [pwMsg, setPwMsg] = useState("");
   const [pwErr, setPwErr] = useState("");
   const [savingPw, setSavingPw] = useState(false);
+  const [showCur, setShowCur] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConf, setShowConf] = useState(false);
 
   if (!open) return null;
 
@@ -81,11 +94,11 @@ export function ProfileModal({ open, token, user, onClose, onUpdated }: ProfileM
   };
 
   return (
-    <div className="legal-overlay" role="dialog" aria-modal="true" onClick={onClose}>
-      <div className="auth-modal profile-modal" onClick={(e) => e.stopPropagation()}>
+    <div className="legal-overlay rift-dialog-overlay" role="dialog" aria-modal="true" onClick={onClose}>
+      <div className="auth-modal profile-modal rift-dialog" onClick={(e) => e.stopPropagation()}>
         <div className="auth-modal-head">
           <div>
-            <span className="auth-hero-kicker">Your account</span>
+            <span className="auth-hero-kicker">YOUR ACCOUNT</span>
             <h3>Profile</h3>
           </div>
           <button className="icon-close" type="button" onClick={onClose} aria-label="Close">×</button>
@@ -133,30 +146,45 @@ export function ProfileModal({ open, token, user, onClose, onUpdated }: ProfileM
         {/* Password */}
         <div className="auth-form">
           <span className="label-text">Change password</span>
-          <input
-            className="input"
-            type="password"
-            placeholder="Current password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            autoComplete="current-password"
-          />
-          <input
-            className="input"
-            type="password"
-            placeholder="New password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            autoComplete="new-password"
-          />
-          <input
-            className="input"
-            type="password"
-            placeholder="Confirm new password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            autoComplete="new-password"
-          />
+          <div className="pw-field">
+            <input
+              className="input"
+              type={showCur ? "text" : "password"}
+              placeholder="Current password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+            <button type="button" className="pw-eye" onClick={() => setShowCur((v) => !v)} aria-label={showCur ? "Hide password" : "Show password"}>
+              <EyeIcon open={showCur} />
+            </button>
+          </div>
+          <div className="pw-field">
+            <input
+              className="input"
+              type={showNew ? "text" : "password"}
+              placeholder="New password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              autoComplete="new-password"
+            />
+            <button type="button" className="pw-eye" onClick={() => setShowNew((v) => !v)} aria-label={showNew ? "Hide password" : "Show password"}>
+              <EyeIcon open={showNew} />
+            </button>
+          </div>
+          <div className="pw-field">
+            <input
+              className="input"
+              type={showConf ? "text" : "password"}
+              placeholder="Confirm new password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              autoComplete="new-password"
+            />
+            <button type="button" className="pw-eye" onClick={() => setShowConf((v) => !v)} aria-label={showConf ? "Hide password" : "Show password"}>
+              <EyeIcon open={showConf} />
+            </button>
+          </div>
           <p className="auth-hint">Must include uppercase, lowercase, a number, and a symbol.</p>
 
           {pwErr ? <p className="error">{pwErr}</p> : null}

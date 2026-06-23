@@ -54,14 +54,13 @@ export function IntroVideoModal({ open, onClose }: IntroVideoModalProps) {
   return (
     <div className="intro-overlay" role="dialog" aria-modal="true" aria-label="Intro trailer" onClick={onClose}>
       <div className="intro-stage" onClick={(e) => e.stopPropagation()}>
-        <button className="intro-close" type="button" onClick={onClose} aria-label="Close intro">×</button>
+        <button className="intro-close" type="button" onClick={onClose} aria-label="Skip intro">Skip ⏭</button>
         <video
           ref={videoRef}
           className="intro-video"
           src={INTRO_SRC}
           playsInline
           autoPlay
-          controls
           onEnded={onClose}
         />
         {muted ? (

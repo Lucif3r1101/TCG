@@ -1168,7 +1168,19 @@ export function registerRealtime(io: Server, jwtSecret: string): void {
         return;
       }
 
-      if ((room.status === "in_game" && room.players.length < 2)) {
+      // Mid-duel: if only one player is left, they win by default (last one standing).
+      if (room.status === "in_game" && room.players.length === 1) {
+        room.battle?.playerOrder && (room.battle.playerOrder = [room.players[0].userId]);
+        room.battle && (room.battle.activePlayerId = room.players[0].userId);
+        room.battle && (room.battle.winnerId = room.players[0].userId);
+        room.status = "open";
+        emitRoomState(io, room);
+        socket.emit("room_left", { roomCode });
+        return;
+      }
+
+      // Mid-duel with nobody left → tidy up the empty room.
+      if (room.status === "in_game" && room.players.length === 0) {
         activeRooms.delete(roomCode);
         socket.emit("room_left", { roomCode });
         return;

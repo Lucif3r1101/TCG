@@ -90,8 +90,8 @@ function toRoomCard(card: ApiCard, owner: string, n: number): RoomCard {
     canAttack: false,
     position: "attack",
     positionChanged: false,
-    archetype: card.archetype,
-    spellText: card.spellText
+    archetype: card.archetype ?? card.spell?.archetype,
+    spellText: card.spellText ?? card.description
   };
 }
 
@@ -208,9 +208,11 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
           data.cards.filter((c) => c.spell?.archetype).map((c) => [c.slug, c.spell as SpellInfo])
         );
         const playable = data.cards.filter((c) => c.slug && (c.type === "unit" || c.type === "spell"));
+        const spells = playable.filter((c) => c.type === "spell");
         const units = playable.filter((c) => c.type === "unit");
         if (!active) return;
-        poolRef.current = units.length >= DECK_SIZE ? units : playable;
+        // Mix in spells so they can be drawn and tested (units + every spell, repeated a bit).
+        poolRef.current = playable.length ? [...units, ...spells, ...spells, ...spells] : playable;
         buildGame(2);
       } catch {
         if (active) setError("Could not load cards for practice.");
@@ -306,6 +308,7 @@ export function PracticeBoard({ onExit }: { onExit: () => void }) {
       handCount: p.hand.length,
       deckCount: p.deck.length,
       discardCount: p.discard.length,
+      discard: p.discard,
       mana: p.mana,
       maxMana: p.maxMana,
       board: p.board,

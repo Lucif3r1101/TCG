@@ -152,11 +152,17 @@ export function GuideModal({ open, section, onClose, onPlayIntro }: GuideModalPr
                 </div>
               </div>
 
-              <div className="lore-pillars">
-                <div className="lore-pillar"><h4>Frontend</h4><p>React + Vite + TypeScript, Socket.IO, CSS-3D battlefield.</p></div>
-                <div className="lore-pillar"><h4>Backend</h4><p>Node + Express, real-time rooms, MongoDB Atlas.</p></div>
-                <div className="lore-pillar"><h4>Content</h4><p>312 cards across 6 factions with custom art and effects.</p></div>
-              </div>
+              <h4 className="guide-h about-stack-title">Tech Stack</h4>
+              <ul className="about-stack">
+                {["Android", "AOSP", "Java / Kotlin", "Python", "LLMs & Gen AI", "React", "React Native"].map((t) => (
+                  <li key={t} className="about-stack-item">{t}</li>
+                ))}
+              </ul>
+
+              <p className="about-storyteller">
+                I'm a storyteller who understands users and tries to reach them through my work: strong
+                ownership, thoughtful product decisions, and code that stays maintainable after the launch rush.
+              </p>
             </div>
           ) : null}
         </div>

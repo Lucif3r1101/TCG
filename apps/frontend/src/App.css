@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Exo+2:wght@400;500;700&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Exo+2:wght@400;500;700&family=Cinzel:wght@500;700;900&family=Cinzel+Decorative:wght@700;900&display=swap");
 
 :root {
   --bg: #060a15;
@@ -42,10 +42,13 @@ body {
   align-items: center;
   gap: 0.8rem;
   padding: 0.65rem clamp(0.8rem, 2vw, 1.6rem);
-  background: rgba(5, 10, 23, 0.88);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(10px);
+  background: transparent;
+  border-bottom: none;
+  backdrop-filter: none;
 }
+.tabletop-page .top-nav { background: none !important; }
+/* Soft shadow keeps logo/menu legible over bright art without a visible bar */
+.top-nav .brand strong, .top-nav .brand span { text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9); }
 
 .brand {
   display: flex;
@@ -250,13 +253,14 @@ body {
   height: calc(100dvh - 62px);
   overflow: hidden;
   border-radius: 0;
-  border-left: 0;
-  border-right: 0;
-  padding: 0.6rem 1rem 0.5rem;
+  border: none;
+  padding: 0.6rem 0 0.5rem;
   box-shadow: none;
-  background:
-    linear-gradient(180deg, rgba(8, 13, 27, 0.96), rgba(8, 12, 23, 0.98)),
-    rgba(8, 12, 23, 0.98);
+  background: transparent;
+  /* These trap position:fixed children (realm bg) under the nav — disable them. */
+  backdrop-filter: none;
+  animation: none;
+  transform: none;
 }
 
 .footer-note-tabletop {
@@ -3579,31 +3583,36 @@ body {
   top: 0;
   right: 0;
   height: 100dvh;
-  width: min(300px, 86vw);
+  width: min(340px, 90vw);
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  padding: 0.9rem;
-  border-left: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(11, 17, 31, 0.99), rgba(8, 12, 24, 0.99));
-  box-shadow: -24px 0 60px rgba(0, 0, 0, 0.5);
-  animation: slideInRight 220ms cubic-bezier(0.2, 0.82, 0.2, 1);
+  gap: 0;
+  padding: 0;
+  border-left: 1px solid rgba(201, 151, 58, 0.3);
+  background: linear-gradient(145deg, #080f1e, #0a1525);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8);
+  animation: slideInRight 350ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .drawer-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.2rem 0.3rem 0.6rem;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 0.4rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid rgba(201, 151, 58, 0.2);
+  margin-bottom: 0;
 }
 
 .drawer-head strong {
-  font-family: "Rajdhani", sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
+  font-family: "Cinzel Decorative", "Cinzel", serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: #c9973a;
+  text-transform: none;
 }
+.drawer-head .icon-close { color: #7a6e5a; background: none; border: none; }
+.drawer-items { padding: 1rem; gap: 0.25rem; }
 
 .drawer-items {
   display: grid;
@@ -3619,34 +3628,36 @@ body {
   gap: 0.85rem;
   width: 100%;
   text-align: left;
-  border: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--text);
-  padding: 0.7rem 0.8rem;
-  border-radius: 12px;
-  font-family: inherit;
-  font-size: 0.98rem;
+  border: none;
+  border-left: 2px solid transparent;
+  background: none;
+  color: #e8d5b0;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-family: "Cinzel", "Rajdhani", serif;
+  font-size: 0.78rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
   cursor: pointer;
-  transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+  transition: background 0.16s ease, border-color 0.16s ease;
 }
 
 .nav-menu-item:hover {
-  background: rgba(46, 230, 255, 0.1);
-  border-color: rgba(46, 230, 255, 0.3);
-  transform: translateX(2px);
+  background: rgba(255, 255, 255, 0.05);
 }
+.nav-menu-item:hover .nav-label { color: #e7c46b; }
 
 .nav-ico-chip {
   flex: 0 0 auto;
-  width: 34px;
-  height: 34px;
+  width: 24px;
+  height: 24px;
   display: grid;
   place-items: center;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: rgba(46, 230, 255, 0.08);
+  border: none;
+  background: none;
 }
+.nav-ico-chip .nav-icon, .nav-ico-chip .nav-svg { width: 16px; height: 16px; }
+.nav-menu-item .nav-ico-chip { color: #c9973a; }
 
 .nav-label {
   flex: 1;
@@ -3657,8 +3668,9 @@ body {
   flex: 0 0 auto;
   font-size: 0.74rem;
   font-weight: 700;
-  color: var(--accent-2);
-  background: rgba(53, 243, 177, 0.12);
+  color: #e7c46b;
+  background: rgba(201, 151, 58, 0.14);
+  border: 1px solid rgba(201, 151, 58, 0.4);
   border-radius: 999px;
   padding: 0.15rem 0.55rem;
 }
@@ -3666,24 +3678,25 @@ body {
 .drawer-logout {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  width: 100%;
-  margin-top: auto;
-  padding: 0.8rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 111, 140, 0.5);
-  background: rgba(255, 111, 140, 0.12);
-  color: #ff8da3;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
+  gap: 0.75rem;
+  width: calc(100% - 2rem);
+  margin: auto 1rem 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(190, 18, 60, 0.3);
+  background: none;
+  color: #be123c;
+  font-family: "Cinzel", "Rajdhani", serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   cursor: pointer;
 }
-
-.drawer-logout:hover {
-  background: rgba(255, 111, 140, 0.2);
-}
+.drawer-logout .nav-icon, .drawer-logout .nav-svg { width: 16px; height: 16px; }
+.drawer-logout:hover { background: rgba(190, 18, 60, 0.14); }
+/* Items scroll; logout pinned at the very bottom with a divider above it. */
+.drawer-items { flex: 1; overflow-y: auto; border-bottom: 1px solid rgba(201, 151, 58, 0.12); padding-bottom: 1rem; }
+.drawer-logout { margin: 1rem; width: calc(100% - 2rem); }
 
 .drawer .nav-icon {
   width: 18px;
@@ -3975,6 +3988,7 @@ body {
 
 /* ===== Rebuilt duel board (clean, flowing, responsive) ===== */
 .duel {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -3982,6 +3996,162 @@ body {
   flex: 1;
   min-height: 0;
   overflow: hidden;
+}
+/* Hand + seat float over the bottom of the felt so cards sit on the board */
+.duel > .duel-dock {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 30;
+  background: linear-gradient(180deg, transparent, rgba(6, 11, 24, 0.55) 60%);
+  padding-bottom: 0.4rem;
+}
+
+/* ─── Prototype gold HUD (replaces the green status bar in-duel) ─── */
+.rift-hud {
+  position: fixed;
+  top: 14px;
+  right: 84px;
+  z-index: 60;
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 0.5rem;
+  background: none;
+}
+@media (max-width: 768px) {
+  .rift-hud { top: 10px; right: 70px; gap: 0.35rem; }
+  .rift-hud .hud-btn { padding: 0.3rem 0.5rem; font-size: 0.7rem; }
+}
+.rift-hud .hud-left, .rift-hud .hud-right { display: flex; align-items: center; gap: 0.5rem; }
+.hud-turn {
+  font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; letter-spacing: 0.1em;
+  font-size: 0.8rem; padding: 0.3rem 0.7rem; border-radius: 6px;
+  color: #e7c46b; background: rgba(201, 151, 58, 0.15); border: 1px solid rgba(201, 151, 58, 0.5);
+}
+.hud-other .hud-turn { color: var(--muted); background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); }
+.hud-timer, .hud-stat { font-size: 0.78rem; color: #cfe9ff; padding: 0.25rem 0.5rem; border-radius: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); }
+.hud-stat { font-weight: 700; }
+.hud-btn {
+  font-family: "Cinzel", "Rajdhani", serif; letter-spacing: 0.06em; font-size: 0.78rem;
+  padding: 0.35rem 0.8rem; border-radius: 7px; cursor: pointer;
+  color: #e8d5b0; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(201, 151, 58, 0.4);
+}
+.hud-btn:hover { background: rgba(201, 151, 58, 0.15); }
+.hud-end { background: linear-gradient(180deg, #e7c46b, #c9973a); color: #0a1020; font-weight: 700; border-color: #e7c46b; }
+.hud-end:disabled { opacity: 0.4; cursor: not-allowed; }
+.hud-leave { border-color: rgba(190, 18, 60, 0.5); color: #ff8da3; }
+
+/* In-duel dock: corner seat + fanned hand */
+.duel > .duel-dock { display: block; padding-left: 230px; }
+.duel-dock .pile-hand { display: none !important; }
+.duel-dock .duel-piles { gap: 0.6rem; justify-content: space-evenly; width: 100%; }
+.duel-dock .duel-piles .pile { width: 56px; padding: 0.2rem; gap: 0.12rem; }
+.duel-dock .duel-piles .pile-label { font-size: 0.6rem; white-space: nowrap; }
+.duel-dock .duel-piles .pile-count { font-size: 0.72rem; padding: 0 0.3rem; }
+.duel-dock .my-seat {
+  position: absolute; left: 0.5rem; bottom: 0.5rem; z-index: 20;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; padding: 0.5rem 0.7rem;
+  border-radius: 14px; background: linear-gradient(160deg, rgba(12, 18, 32, 0.95), rgba(8, 12, 22, 0.9));
+  border: 1px solid rgba(201, 151, 58, 0.45); box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+  width: 252px;
+}
+.seat-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; width: 100%; box-sizing: border-box; }
+.seat-actions .hud-btn { flex: 1 1 auto; padding: 0.38rem 0.4rem; font-size: 0.68rem; white-space: nowrap; min-width: 0; }
+.seat-actions .hud-end { flex: 1 1 100%; }
+.your-hand .hand-row { align-items: flex-end; justify-content: center; padding-top: 1.4rem; overflow: visible; }
+
+/* Bottom-peeking hand: tucks below the screen, rises + fans on hover */
+.duel > .duel-dock .your-hand {
+  position: fixed;
+  left: 50%; bottom: 0;
+  width: max-content; max-width: 78vw;
+  display: flex; justify-content: center;
+  transform: translate(-50%, 56%);
+  transition: transform 0.28s cubic-bezier(0.3, 0.9, 0.4, 1);
+  z-index: 45;
+  pointer-events: auto;
+}
+.duel > .duel-dock .your-hand:hover { transform: translate(-50%, 0); }
+.duel > .duel-dock .your-hand:has(.hand-selected) { transform: translate(-50%, 0); }
+.duel-dock .hand-card {
+  width: 96px; flex: 0 0 auto; cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.duel-dock .hand-card:hover { transform: translateY(-26px) scale(1.08) !important; z-index: 60 !important; box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7); }
+.duel-dock .hand-card .hand-card-desc { display: none; }
+.duel-dock .hand-card strong { font-size: 0.66rem; }
+/* Fanned hand — bigger art cards with a name strip, names always visible */
+.your-hand .hand-row { gap: 0; flex-wrap: nowrap; align-items: flex-end; justify-content: center; padding-top: 4rem; }
+.duel-dock .your-hand .hand-row .hand-card { width: 122px; aspect-ratio: 3 / 4; display: block; }
+.duel-dock .hand-card {
+  position: relative;
+  width: 122px;
+  aspect-ratio: 3 / 4;
+  margin-left: -34px;
+  padding: 0;
+  gap: 0;
+  border: 1px solid rgba(201, 151, 58, 0.5);
+  border-radius: 11px;
+  overflow: visible;
+  background: #0a1020;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.duel-dock .hand-card:first-child { margin-left: 0; }
+.duel-dock .hand-card .hand-card-media { position: absolute; inset: 0; border-radius: 11px; overflow: hidden; }
+.duel-dock .hand-card .hand-card-art { width: 100%; height: 100%; max-height: none; object-fit: cover; border-radius: 11px; background: #0a1020; }
+.duel-dock .hand-card .hand-card-desc { display: none; }
+/* Name strip at the bottom of every card */
+.duel-dock .hand-card strong {
+  display: block; position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+  padding: 16px 4px 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-size: 0.6rem; color: #fff; text-shadow: 0 1px 3px #000;
+  background: linear-gradient(transparent, rgba(3, 6, 14, 0.95) 55%);
+  border-radius: 0 0 11px 11px;
+}
+/* ATK/DEF badges sit just above the name strip */
+.duel-dock .hand-card .opp-unit-stats { z-index: 5; }
+.duel-dock .hand-card .opp-unit-stats .ut-atk,
+.duel-dock .hand-card .opp-unit-stats .ut-def { bottom: 20px; }
+.duel-dock .hand-card:hover,
+.duel-dock .hand-card.hand-selected { transform: translateY(-30px) scale(1.12) !important; z-index: 60 !important; }
+.duel-dock .hand-card.hand-selected { box-shadow: 0 0 0 2px #e7c46b, 0 16px 36px rgba(0, 0, 0, 0.7); }
+/* compact cost (top-left) + info (top-right) + corner ATK/DEF badges */
+.duel-dock .hand-card .hand-cost { top: 3px; left: 3px; min-width: 18px; height: 18px; font-size: 0.72rem; }
+.duel-dock .hand-card .hand-card-media .card-info-btn {
+  position: absolute; top: 3px; right: 3px; left: auto;
+  width: 18px; height: 18px; line-height: 16px; padding: 0; text-align: center;
+  border-radius: 50%; font-size: 11px;
+}
+.duel-dock .hand-card .hand-type-tag { bottom: 4px; left: 4px; right: auto; background: rgba(124, 58, 237, 0.7); border-radius: 6px; padding: 1px 6px; font-size: 0.62rem; }
+
+/* Per-card row hidden — actions live in the fixed action bar */
+.duel-dock .hand-card .row,
+.duel-dock .hand-card .hand-reason { display: none; }
+
+/* Fixed action bar above the hand for the selected card */
+.hand-action-bar {
+  position: fixed;
+  left: 50%; bottom: 235px;
+  transform: translateX(-50%);
+  z-index: 80;
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(8, 14, 26, 0.97);
+  border: 1px solid rgba(201, 151, 58, 0.5);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+}
+.hab-name { font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; font-size: 0.85rem; color: #e8d5b0; }
+.hab-btn {
+  padding: 0.45rem 0.9rem; font-size: 0.82rem; font-weight: 700; border-radius: 8px;
+  border: 1px solid rgba(231, 196, 107, 0.6);
+  background: linear-gradient(180deg, #e7c46b, #c9973a); color: #0a1020; cursor: pointer;
+}
+.hab-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.hab-set { background: rgba(12, 20, 36, 0.96); color: #cfe9ff; border-color: rgba(140, 232, 255, 0.55); }
+.hab-reason { font-size: 0.72rem; color: #ff9bb0; }
+.hab-cancel {
+  width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
+  border: 1px solid rgba(255, 93, 122, 0.6); background: rgba(255, 93, 122, 0.15); color: #ff8da3;
 }
 /* Fixed regions don't grow; the battlefield is the one flexible middle. */
 .duel > .battle-status-bar,
@@ -3993,12 +4163,12 @@ body {
   flex: 1 1 auto;
   min-height: 0;
   overflow: hidden;
-  /* Oval table */
-  border-radius: 50% / 14%;
+  border-radius: 0;
 }
 .duel > .battlefield .bf-plane {
   height: 100%;
   align-content: center;
+  position: relative;
 }
 /* Compact opponents row across the table */
 .duel > .opp-strip { gap: 0.5rem; }
@@ -4021,10 +4191,10 @@ body {
 
 /* Practice-only player-count selector */
 .practice-players {
+  display: none;
   position: fixed;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 64px;
+  right: 12px;
   z-index: 120;
   display: flex;
   align-items: center;
@@ -4052,6 +4222,9 @@ body {
 .my-seat-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(221,178,105,0.5); }
 .my-seat-info { display: grid; line-height: 1.15; }
 .my-seat-info strong { font-size: 0.85rem; }
+.my-seat-stats { font-size: 1rem; font-weight: 700; }
+.my-seat-stats .seat-hp { color: #ff8da3; }
+.my-seat-stats .seat-mana { color: #8ce8ff; margin-left: 0.5rem; }
 .seat-hp { color: #ff8da3; }
 .seat-mana { color: #8ce8ff; margin-left: 0.3rem; }
 .duel-dock .your-hand { border: none; background: none; padding: 0; min-width: 0; }
@@ -4379,35 +4552,172 @@ body {
 
 .battlefield {
   position: relative;
+  z-index: 1;
   perspective: 1300px;
   border-radius: 18px;
-  padding: clamp(0.8rem, 3vw, 1.6rem) 0.8rem;
-  border: 1px solid rgba(221, 178, 105, 0.4);
-  background:
-    radial-gradient(circle at 50% 30%, rgba(58, 119, 255, 0.18), transparent 55%),
-    radial-gradient(circle at 50% 92%, rgba(53, 243, 177, 0.14), transparent 55%),
-    radial-gradient(ellipse at 50% 50%, rgba(8, 16, 28, 0.78), rgba(4, 8, 16, 0.95) 72%),
-    var(--realm-bg, none) center/cover no-repeat,
-    linear-gradient(165deg, #0a1320, #070d18);
-  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.7), 0 18px 50px rgba(0, 0, 0, 0.45);
+  padding: clamp(0.8rem, 3vw, 1.6rem) 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
   overflow: hidden;
 }
-/* Soft golden vignette frame around the mat */
-.battlefield::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  box-shadow: inset 0 0 0 1px rgba(221, 178, 105, 0.18), inset 0 0 90px rgba(0, 0, 0, 0.55);
+/* Local player's realm themes the whole screen behind the table */
+.duel-realm-bg { position: fixed; inset: 0; z-index: 0; background-size: cover; background-position: center; pointer-events: none; }
+.duel-realm-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 42%, rgba(6, 11, 24, 0.15), rgba(6, 11, 24, 0.55) 75%),
+    linear-gradient(180deg, rgba(6, 11, 24, 0.42), rgba(6, 11, 24, 0.62));
 }
+/* Soft golden vignette frame around the mat */
+.battlefield::after { content: none; }
 
 .bf-plane {
-  transform: rotateX(15deg);
   transform-style: preserve-3d;
   display: grid;
   gap: 0.6rem;
 }
+/* Flatten the arena when seats are arc-positioned (cards shouldn't counter-tilt) */
+.bf-plane:has(.bf-arena) { transform: none; }
+.bf-plane:has(.bf-arena) .tcg-card { transform: none; }
+
+/* ─── Prototype-style arena: perspective felt, arc seats, overlapped units ─── */
+.bf-arena {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.bf-arena-wait { position: absolute; left: 50%; top: 30%; transform: translateX(-50%); z-index: 25; }
+
+/* Your field — cards on the felt, no boxed green zone */
+.bf-plane:has(.bf-arena) .bf-row.bf-you {
+  background: none;
+  border: none;
+  box-shadow: none;
+  min-height: 0;
+  padding: 0;
+  position: absolute;
+  left: 0; right: 0;
+  top: 67%;
+  z-index: 22;
+}
+.bf-plane:has(.bf-arena) .bf-row.bf-you .bf-zones { justify-content: center; gap: 0.5rem; flex-wrap: wrap; max-width: 60%; margin: 0 auto; }
+/* My field cards as clean tiles (cover art, no squeezed name; badges clear) */
+.bf-plane:has(.bf-arena) .bf-row.bf-you .tcg-card { width: 90px; height: 122px; }
+.bf-plane:has(.bf-arena) .bf-row.bf-you .tcg-art { object-fit: cover; }
+.bf-plane:has(.bf-arena) .bf-row.bf-you .tcg-name { display: none; }
+.bf-plane:has(.bf-arena) .bf-row.bf-you .tcg-card:hover .tcg-name {
+  display: block; bottom: auto; top: calc(100% + 2px);
+  background: none; padding: 0; font-size: 0.62rem; color: #e8d5b0; text-shadow: 0 1px 4px #000;
+}
+.bf-plane:has(.bf-arena) .bf-row.bf-you .flip-btn { font-size: 0.6rem; padding: 0.18rem 0.4rem; }
+/* Defense units lie slanted like a set monster */
+.bf-plane:has(.bf-arena) .bf-row.bf-you .tcg-card.tcg-defense { transform: rotate(10deg); border-style: dashed; }
+
+/* Perspective ellipse felt seen at an angle */
+.bf-table {
+  position: absolute;
+  left: 50%; top: 45%;
+  width: min(1320px, 94%); height: min(820px, 98%);
+  transform: translate(-50%, -50%) perspective(1300px) rotateX(50deg);
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 42%, rgba(8, 12, 24, 0.32), rgba(8, 14, 28, 0.5) 70%, rgba(8, 14, 28, 0.68) 100%),
+    url(/assets/realms/table.png) center/cover no-repeat,
+    radial-gradient(ellipse 70% 60% at 50% 42%, rgba(46, 62, 108, 0.5), rgba(14, 22, 42, 0.82) 68%, rgba(8, 14, 28, 0.92) 100%);
+  border: 2px solid rgba(201, 151, 58, 0.3);
+  box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.65), inset 0 0 60px rgba(124, 58, 237, 0.1), 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 70px rgba(201, 151, 58, 0.1);
+  pointer-events: none;
+  z-index: 0;
+}
+.bf-table-rim { position: absolute; inset: 7%; border-radius: 50%; border: 1px solid rgba(201, 151, 58, 0.16); }
+
+/* RIFT broken disc at table center */
+.bf-arena .bf-rift-center { position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%); z-index: 10; }
+.bf-rift-crack {
+  position: absolute; left: 50%; top: 50%;
+  width: 78px; height: 2px; transform-origin: center;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.6), rgba(196, 161, 255, 0.4), transparent);
+}
+
+/* Seat + unit layers fill the arena; children absolute via inline coords */
+.bf-seats-layer { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
+.bf-units-layer { position: absolute; inset: 0; z-index: 15; pointer-events: none; }
+.bf-seats-layer .enemy-seat,
+.bf-units-layer .opp-units-row { pointer-events: auto; }
+.bf-seats-layer .enemy-seat { width: 138px; }
+
+.seat-hpbar { grid-area: bar; display: block; height: 5px; border-radius: 99px; overflow: hidden; background: rgba(255, 255, 255, 0.1); }
+.seat-hpbar > span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #be123c, #e05c28); }
+.seat-hand { color: #9aa6c0; }
+/* Opponent hidden hand — fanned face-down card backs below the seat */
+.seat-hand-backs { display: flex; justify-content: center; margin-top: 3px; height: 38px; }
+.seat-hand-back {
+  width: 28px; height: 39px; border-radius: 5px;
+  border: 1px solid rgba(201, 151, 58, 0.45);
+  background: linear-gradient(145deg, #0a1525, #111f35);
+  transform-origin: bottom center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  display: grid; place-items: center;
+}
+.seat-hand-back img { width: 17px; height: 17px; object-fit: contain; opacity: 0.85; }
+
+/* Overlapped opponent units */
+.opp-units-row { display: flex; align-items: center; }
+.opp-unit-tile {
+  position: relative; flex-shrink: 0;
+  width: 80px; height: 110px; padding: 0;
+  border-radius: 7px; overflow: hidden; cursor: pointer;
+  border: 1px solid rgba(201, 151, 58, 0.45);
+  background: #0a1020;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.opp-unit-tile:hover { transform: translateY(-10px) scale(1.04); z-index: 30 !important; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7); }
+.opp-unit-tile .tcg-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.opp-unit-tile .tcg-crest { position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; opacity: 0.85; }
+.opp-unit-tile .tcg-frame { position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.opp-unit-tile.tcg-target { border-color: #ff5d7a; box-shadow: 0 0 14px rgba(255, 93, 122, 0.7); }
+.opp-unit-stats { position: absolute; inset: 0; pointer-events: none; }
+.opp-unit-stats .ut-atk, .opp-unit-stats .ut-def {
+  position: absolute; bottom: 3px;
+  min-width: 18px; height: 18px; line-height: 18px; text-align: center;
+  padding: 0 4px; border-radius: 6px;
+  font-size: 11px; font-weight: 800; color: #0a1020;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+.opp-unit-stats .ut-atk::before { content: "⚔ "; font-size: 9px; }
+.opp-unit-stats .ut-def::before { content: "🛡 "; font-size: 9px; }
+.opp-unit-stats .ut-atk { left: 3px; background: linear-gradient(130deg, #ffce6b, #ff9d3a); }
+.opp-unit-stats .ut-def { right: 3px; background: linear-gradient(130deg, #8ce8ff, #2ee6ff); }
+.opp-info-btn {
+  position: absolute; top: 2px; right: 2px; z-index: 4;
+  width: 16px; height: 16px; line-height: 16px; text-align: center;
+  font-size: 11px; border-radius: 50%;
+  background: rgba(8, 14, 26, 0.85); color: #cfe9ff; cursor: pointer;
+}
+
+/* Compact attack indicator pill (replaces the verbose hint bar) */
+.attack-pill {
+  position: absolute;
+  top: 8px; left: 50%; transform: translateX(-50%);
+  z-index: 40;
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.35rem 0.5rem 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(8, 14, 26, 0.95);
+  border: 1px solid rgba(255, 93, 122, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+.attack-pill-dot { width: 9px; height: 9px; border-radius: 50%; background: #41e07a; box-shadow: 0 0 8px #41e07a; animation: deckPulse 1.2s ease-in-out infinite; }
+.attack-pill-name { font-size: 0.8rem; font-weight: 700; color: #e8d5b0; white-space: nowrap; }
+.attack-pill-cancel {
+  width: 24px; height: 24px; border-radius: 50%; cursor: pointer;
+  border: 1px solid rgba(255, 93, 122, 0.6); background: rgba(255, 93, 122, 0.15); color: #ff8da3;
+  font-size: 0.8rem; line-height: 1;
+}
+.attack-pill-cancel:hover { background: rgba(255, 93, 122, 0.3); }
 
 .bf-row {
   position: relative;
@@ -4441,38 +4751,74 @@ body {
   padding: 0.3rem;
   overflow: auto;
 }
+/* Desktop arc — opponents seated around the table rim (absolute via inline coords) */
+.bf-enemy-seats.bf-arc {
+  display: block;
+  position: relative;
+  height: clamp(300px, 40vh, 430px);
+  width: 100%;
+  overflow: visible;
+  padding: 0;
+}
+.bf-enemy-seats.bf-arc .enemy-seat { width: 150px; }
+
+/* Mobile: opponent pods + expanded battle zone */
+.mob-pods { display: flex; gap: 0.5rem; overflow-x: auto; padding: 0.2rem 0.1rem 0.4rem; scrollbar-width: none; }
+.mob-pods::-webkit-scrollbar { display: none; }
+.mob-pod {
+  display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0;
+  padding: 0.4rem 0.6rem; border-radius: 12px;
+  background: rgba(8, 14, 26, 0.8); border: 1px solid rgba(255, 99, 132, 0.3);
+  color: var(--text); cursor: pointer;
+}
+.mob-pod.active { background: linear-gradient(180deg, rgba(255, 99, 132, 0.22), rgba(8, 14, 26, 0.95)); border-color: rgba(255, 99, 132, 0.7); box-shadow: 0 0 12px rgba(255, 99, 132, 0.3); }
+.mob-pod-turn { border-color: rgba(255, 196, 84, 0.7); }
+.mob-pod-av { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(221, 178, 105, 0.5); }
+.mob-pod-info { display: flex; flex-direction: column; line-height: 1.15; }
+.mob-pod-name { font-family: "Rajdhani", sans-serif; font-weight: 700; font-size: 0.78rem; }
+.mob-pod-stats { font-size: 0.66rem; color: #ff9bb0; }
+.mob-battlezone {
+  flex: 1; min-height: 0; display: flex; flex-direction: column;
+  margin-top: 0.3rem; padding: 0.4rem; border-radius: 14px;
+  border: 1px solid rgba(255, 99, 132, 0.25);
+  background: linear-gradient(180deg, rgba(255, 80, 120, 0.06), rgba(255, 80, 120, 0.01));
+}
+.mob-zone-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.4rem; font-size: 0.62rem; letter-spacing: 0.05em; color: var(--muted); text-transform: uppercase; }
+.mob-zone-units { flex: 1; min-height: 0; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 0.4rem; overflow-y: auto; }
 .enemy-seat {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.4rem 0.5rem;
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(255, 80, 120, 0.1), rgba(255, 80, 120, 0.02));
-  border: 1px solid rgba(255, 99, 132, 0.25);
+  gap: 0.2rem;
 }
-.enemy-seat-turn { border-color: rgba(255, 196, 84, 0.7); box-shadow: 0 0 12px rgba(255, 196, 84, 0.3); }
+.enemy-seat-turn .seat-plate { border-color: rgba(255, 196, 84, 0.8) !important; box-shadow: 0 0 14px rgba(255, 196, 84, 0.35); animation: goldGlow 2s ease-in-out infinite; }
+/* Compact dark gold-bordered plate (prototype style) */
 .seat-plate {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  width: 126px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "av name" "bar bar" "stats stats";
   align-items: center;
-  gap: 2px;
-  border: none;
-  background: none;
+  column-gap: 0.4rem;
+  row-gap: 3px;
+  border: 1px solid rgba(221, 178, 105, 0.4);
+  background: rgba(8, 14, 26, 0.92);
+  border-radius: 9px;
   color: var(--text);
   cursor: default;
-  padding: 0.2rem;
+  padding: 0.4rem 0.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
-.seat-plate.plate-target { cursor: crosshair; }
+.seat-plate.plate-target { cursor: crosshair; border-color: #ff5d7a; box-shadow: 0 0 14px rgba(255, 93, 122, 0.6); }
 .seat-plate.plate-target:hover { filter: brightness(1.12); }
-.seat-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(221, 178, 105, 0.5); }
-.seat-name { font-weight: 700; font-size: 0.8rem; }
-.seat-stats { font-size: 0.78rem; }
+.seat-avatar { grid-area: av; width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(221, 178, 105, 0.6); }
+.seat-name { grid-area: name; font-weight: 700; font-size: 0.74rem; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.seat-stats { grid-area: stats; display: flex; justify-content: space-between; width: 100%; font-size: 0.8rem; padding: 0 2px; }
 .seat-stats .plate-hp { color: #ff8da3; }
-.seat-stats .seat-mana { color: #8ce8ff; margin-left: 0.3rem; }
+.seat-stats .seat-mana { color: #8ce8ff; }
 .seat-meta { font-size: 0.7rem; color: var(--muted); }
-.seat-grave { font-size: 0.7rem; padding: 0.15rem 0.5rem; }
+.seat-grave { font-size: 0.66rem; padding: 0.1rem 0.45rem; }
 .enemy-seat-field {
   display: flex;
   gap: 0.35rem;
@@ -4502,6 +4848,56 @@ body {
   background: #0a1320;
   padding: 0 0.6rem;
 }
+
+/* Broken-table RIFT center */
+.bf-rift-center { display: flex; align-items: center; justify-content: center; position: relative; height: 0; z-index: 2; }
+.bf-rift-disc {
+  position: relative;
+  width: clamp(72px, 8vw, 100px);
+  height: clamp(72px, 8vw, 100px);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 40%, #1c2740, #0d1424 60%, #070d18);
+  border: 2px solid rgba(221, 178, 105, 0.5);
+  box-shadow: inset 0 0 26px rgba(0, 0, 0, 0.7), 0 0 26px rgba(124, 58, 237, 0.25);
+}
+.bf-rift-seam {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 64%; height: 4px;
+  transform: translate(-50%, -50%) rotate(22deg);
+  border-radius: 3px;
+  background: linear-gradient(90deg, transparent, #7c3aed, #c4a1ff, #7c3aed, transparent);
+  animation: deckPulse 3s ease-in-out infinite;
+}
+.bf-rift-logo {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: #e8d5b0;
+  text-shadow: 0 0 14px rgba(124, 58, 237, 0.8), 0 2px 4px #000;
+  z-index: 1;
+}
+
+/* Per-player realm backgrounds (faint, behind the felt) */
+.bf-realms { display: none; }
+.panel-tabletop, .card-tabletop, .panel-tabletop .duel { box-shadow: none !important; }
+.duel > .battlefield { box-shadow: none !important; }
+.bf-realms-disabled { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: inherit; z-index: 0; }
+.bf-realm {
+  position: absolute;
+  width: 300px; height: 220px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  filter: saturate(1.1);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 68%);
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 68%);
+}
+.bf-realm-enemy { top: 4%; transform: translateX(-50%); }
+.bf-realm-mine { left: 50%; bottom: -6%; width: 64%; height: 44%; transform: translateX(-50%); opacity: 0.1; }
 
 .bf-empty {
   color: var(--muted);
@@ -4557,18 +4953,24 @@ body {
 .tcg-hp {
   position: absolute;
   bottom: 2px;
-  width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  font-size: 0.74rem;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  white-space: nowrap;
+  border-radius: 7px;
+  font-size: 0.72rem;
   font-weight: 800;
   color: #0a0e1a;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 .tcg-atk { left: 2px; background: linear-gradient(140deg, #ffd166, #ff9f1a); }
 .tcg-hp { right: 2px; background: linear-gradient(140deg, #ff9bb0, #ff4d6d); color: #fff; }
+.tcg-atk::before { content: "⚔"; font-size: 0.5rem; margin-right: 1px; }
+.tcg-def::before { content: "🛡"; font-size: 0.5rem; margin-right: 1px; }
 
 .tcg-ready {
   position: absolute;
@@ -4642,12 +5044,16 @@ body {
   position: absolute;
   bottom: 2px;
   right: 2px;
-  width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  border-radius: 6px;
-  font-size: 0.74rem;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  white-space: nowrap;
+  border-radius: 7px;
+  font-size: 0.72rem;
   font-weight: 800;
   color: #07111f;
   background: linear-gradient(140deg, #8ce8ff, #2ea6ff);
@@ -4907,9 +5313,12 @@ body {
   z-index: 2;
 }
 @keyframes deckLift {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-46px) scale(0.7) rotate(-8deg); opacity: 0; }
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+  18% { opacity: 1; }
+  45% { transform: translate(0, -150px) scale(1.35) rotate(-4deg); opacity: 1; }
+  100% { transform: translate(40vw, -70px) scale(0.7) rotate(0deg); opacity: 0; }
 }
+.pile-flyer { z-index: 50; }
 
 .pile-count-pop { animation: hpPop 0.4s ease; }
 
@@ -4919,38 +5328,52 @@ body {
 /* Graveyard viewer */
 .grave-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 0.7rem;
   max-height: 60vh;
   overflow-y: auto;
 }
 .grave-card {
-  display: grid;
-  gap: 0.2rem;
+  position: relative;
+  aspect-ratio: 3 / 4;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 11px;
   overflow: hidden;
-  background: rgba(8, 13, 24, 0.7);
-  padding-bottom: 0.3rem;
+  background: #0a1020;
+  padding: 0;
+  cursor: pointer;
 }
 .grave-card.rarity-rare { border-color: #60adff; }
 .grave-card.rarity-epic { border-color: #c182ff; }
 .grave-card.rarity-legendary { border-color: #ffc454; }
 .grave-card img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
 }
 .grave-name {
-  font-size: 0.7rem;
+  position: absolute; bottom: 18px; left: 0; right: 0; z-index: 2;
+  font-size: 0.62rem;
   font-weight: 700;
   text-align: center;
-  padding: 0 0.2rem;
+  padding: 14px 4px 2px;
+  color: #fff;
+  text-shadow: 0 1px 3px #000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: linear-gradient(transparent, rgba(3, 6, 14, 0.92) 60%);
 }
-.grave-stats { font-size: 0.66rem; color: var(--muted); text-align: center; }
+.grave-stats {
+  position: absolute; bottom: 3px; left: 0; right: 0; z-index: 2;
+  font-size: 0.62rem; font-weight: 700; color: #c4a1ff; text-align: center; text-shadow: 0 1px 3px #000;
+}
+.grave-card .grave-card-stats { z-index: 3; }
+.grave-card .grave-card-stats .ut-atk,
+.grave-card .grave-card-stats .ut-def { bottom: 20px; }
+.grave-card .grave-name { bottom: 2px; }
 
 /* ===== Graveyard: per-player ===== */
 .plate-wrap {
@@ -4992,6 +5415,24 @@ body {
   border-color: transparent;
 }
 
+/* ===== Graveyard modal — prototype gold/dark theme ===== */
+.grave-overlay { background: rgba(4, 8, 16, 0.82); backdrop-filter: blur(6px); }
+.grave-modal {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(124, 58, 237, 0.14), transparent 60%),
+    linear-gradient(160deg, rgba(12, 18, 32, 0.98), rgba(8, 12, 22, 0.98));
+  border: 1px solid rgba(201, 151, 58, 0.5);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7), inset 0 0 60px rgba(124, 58, 237, 0.06);
+}
+.grave-modal .auth-modal-head h3 { font-family: "Cinzel", "Rajdhani", serif; color: #e8d5b0; letter-spacing: 0.04em; }
+.grave-kicker { color: #c4a1ff !important; letter-spacing: 0.15em; }
+.grave-modal .grave-tab { border-color: rgba(201, 151, 58, 0.3); background: rgba(8, 14, 26, 0.7); color: #b9a98a; }
+.grave-modal .grave-tab.active { background: linear-gradient(180deg, #e7c46b, #c9973a); color: #0a1020; }
+.grave-modal .grave-card { border-color: rgba(201, 151, 58, 0.4); background: rgba(8, 14, 26, 0.8); }
+.grave-modal .grave-card:hover { border-color: #e7c46b; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); }
+.grave-modal .grave-name { font-family: "Cinzel", "Rajdhani", serif; color: #e8d5b0; }
+.grave-modal .icon-close:hover { color: #e7c46b; }
+
 /* ===== Card type / stance color coding ===== */
 .tcg-card.stance-attack::before,
 .tcg-card.stance-defense::before,
@@ -4999,19 +5440,19 @@ body {
 .hand-row .hand-card.card-spell::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
+  inset: 0;
+  border-radius: inherit;
+  border: 4px solid transparent;
   z-index: 3;
+  pointer-events: none;
 }
 .tcg-card { position: relative; }
 .hand-row .hand-card { position: relative; overflow: hidden; }
 
-.tcg-card.stance-attack::before { background: linear-gradient(90deg, #ff7a59, #ff4d6d); }
-.tcg-card.stance-defense::before { background: linear-gradient(90deg, #60adff, #8ce8ff); }
-.hand-row .hand-card.card-unit::before { background: linear-gradient(90deg, #ff7a59, #ffb27a); }
-.hand-row .hand-card.card-spell::before { background: linear-gradient(90deg, #c182ff, #8a5cff); }
+.tcg-card.stance-attack::before { border-color: #ff5d6d; box-shadow: inset 0 0 10px rgba(255, 93, 109, 0.4); }
+.tcg-card.stance-defense::before { border-color: #60adff; box-shadow: inset 0 0 10px rgba(96, 173, 255, 0.4); }
+.hand-row .hand-card.card-unit::before { border-color: #ff8d59; box-shadow: inset 0 0 10px rgba(255, 141, 89, 0.35); }
+.hand-row .hand-card.card-spell::before { border-color: #a86bff; box-shadow: inset 0 0 12px rgba(168, 107, 255, 0.45); }
 
 /* spell hand cards get a violet wash so they read as "different" */
 .hand-row .hand-card.card-spell {
@@ -5349,41 +5790,43 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  background: rgba(2, 6, 12, 0.92);
-  backdrop-filter: blur(6px);
+  padding: 0;
+  background: #000;
 }
 .intro-stage {
   position: relative;
-  width: min(92vw, 960px);
-  aspect-ratio: 16 / 9;
-  border-radius: 16px;
+  width: 100vw;
+  height: 100dvh;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(221, 178, 105, 0.35);
   background: #000;
 }
 .intro-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 .intro-close {
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 18px;
+  right: 20px;
   z-index: 2;
-  width: 36px;
-  height: 36px;
+  padding: 0.5rem 1.1rem;
   border-radius: 999px;
-  border: none;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
-  font-size: 1.4rem;
+  border: 1px solid rgba(201, 151, 58, 0.6);
+  background: rgba(6, 10, 20, 0.7);
+  color: #e8d5b0;
+  font-family: "Cinzel", "Rajdhani", serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
   line-height: 1;
   cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.15s ease, color 0.15s ease;
 }
-.intro-close:hover { background: rgba(0, 0, 0, 0.8); }
+.intro-close:hover { background: rgba(201, 151, 58, 0.2); color: #e7c46b; }
 .intro-unmute {
   position: absolute;
   bottom: 14px;
@@ -5422,19 +5865,40 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.2rem;
+}
+.clash-dim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 46% 46% at 50% 50%, rgba(4, 8, 16, 0.85) 0%, rgba(4, 8, 16, 0.5) 50%, transparent 72%);
+  animation: fadeIn 0.25s ease both;
+}
+.clash-title {
+  position: relative;
+  font-family: "Cinzel", "Rajdhani", serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+  letter-spacing: 0.06em;
+  color: #e8d5b0;
+  animation: bannerIn 0.4s ease both;
+}
+.clash-title .clash-attacker { color: #e7c46b; }
+.clash-title .clash-defender { color: #cfe9ff; }
+.clash-duo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(28px, 6vw, 56px);
 }
 .clash-card {
   position: relative;
-  width: clamp(120px, 24vw, 180px);
+  width: clamp(110px, 20vw, 160px);
   aspect-ratio: 3 / 4;
   border-radius: 14px;
   overflow: visible;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-  transform-origin: center bottom;
+  transform-origin: center center;
 }
-.clash-card.clash-slash { animation: clashLunge 1.25s cubic-bezier(0.3, 0.8, 0.2, 1) forwards; }
-.clash-card.clash-shield { animation: clashBounce 1.25s cubic-bezier(0.3, 0.8, 0.2, 1) forwards; }
+.clash-card.clash-shatter { animation: cardShatter 0.7s ease 0.45s both; }
 .clash-art {
   width: 100%;
   height: 100%;
@@ -5450,20 +5914,186 @@ body {
   text-align: center;
   font-family: "Rajdhani", sans-serif;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: #fff;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
 }
-.clash-burst {
+.clash-sword {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: clamp(3rem, 10vw, 6rem);
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
+  left: 50%; top: 50%;
+  font-size: clamp(4rem, 12vw, 8rem);
+  filter: drop-shadow(0 0 26px rgba(255, 59, 47, 0.95));
+  animation: swordLunge 0.55s ease 0.45s both;
 }
-.burst-slash { color: #ff6b3a; filter: drop-shadow(0 0 18px rgba(255, 107, 58, 0.9)); animation: burstPop 0.6s ease-out 0.55s forwards; }
-.burst-shield { color: #6bc6ff; filter: drop-shadow(0 0 18px rgba(107, 198, 255, 0.9)); animation: burstPop 0.6s ease-out 0.55s forwards; }
+.clash-shield {
+  position: absolute;
+  left: 50%; top: 50%;
+  font-size: clamp(3rem, 8vw, 5rem);
+  filter: drop-shadow(0 0 22px rgba(96, 198, 255, 0.9));
+  animation: shieldHold 1.4s ease both;
+}
+.clash-dmg {
+  position: absolute;
+  left: 50%; top: 22%;
+  font-family: "Cinzel", "Rajdhani", serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-shadow: 0 0 24px rgba(255, 59, 47, 0.8);
+  animation: dmgFloat 1.1s ease 0.65s both;
+}
+.clash-dmg.dmg-self { color: #ff5d7a; }
+.clash-dmg.dmg-enemy { color: #ffd166; }
+
+@keyframes swordLunge {
+  0% { transform: translate(-50%, -50%) translateX(-60px) rotate(-40deg) scale(0.4); opacity: 0; }
+  40% { transform: translate(-50%, -50%) rotate(18deg) scale(2.1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotate(0deg) scale(1.5); opacity: 0; }
+}
+@keyframes shieldHold {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  25% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  85% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0; }
+}
+@keyframes cardShatter {
+  0% { opacity: 1; filter: brightness(1); transform: scale(1) rotate(0deg); }
+  35% { opacity: 1; filter: brightness(2.2); transform: scale(1.06) rotate(-3deg); }
+  100% { opacity: 0; filter: brightness(3); transform: scale(0.55) rotate(10deg); }
+}
+@keyframes dmgFloat {
+  0% { transform: translateX(-50%) translateY(10px) scale(0.6); opacity: 0; }
+  25% { transform: translateX(-50%) translateY(0) scale(1.4); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(-80px) scale(1); opacity: 0; }
+}
+@keyframes bannerIn {
+  0% { transform: scaleX(0) translateY(-10px); opacity: 0; }
+  60% { transform: scaleX(1.05) translateY(0); opacity: 1; }
+  100% { transform: scaleX(1) translateY(0); opacity: 1; }
+}
+
+/* Draw — drawn card rises to center big (revealed to you), then tucks into hand */
+.draw-stage { position: fixed; inset: 0; z-index: 72; pointer-events: none; }
+.draw-card {
+  position: absolute; left: 60px; bottom: 120px;
+  width: clamp(150px, 18vw, 200px); aspect-ratio: 3 / 4; object-fit: cover;
+  border-radius: 14px; border: 2px solid rgba(231, 196, 107, 0.8);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(231, 196, 107, 0.3);
+  transform-origin: center;
+  animation: drawReveal 1.4s cubic-bezier(0.3, 0.9, 0.4, 1) both;
+}
+@keyframes drawReveal {
+  0% { left: 60px; bottom: 120px; transform: translate(0, 0) scale(0.4) rotate(-8deg); opacity: 0; }
+  18% { opacity: 1; }
+  40% { left: 50%; bottom: 40%; transform: translate(-50%, 50%) scale(1.15) rotate(0deg); opacity: 1; }
+  70% { left: 50%; bottom: 40%; transform: translate(-50%, 50%) scale(1.15) rotate(0deg); opacity: 1; }
+  100% { left: 50%; bottom: 0; transform: translate(-50%, 60%) scale(0.45) rotate(0deg); opacity: 0; }
+}
+
+/* Summon — card flies up and slams onto your field, with shockwave + glow */
+.summon-stage {
+  position: fixed;
+  left: 50%; top: 60%;
+  z-index: 68;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+.summon-card {
+  position: absolute; left: 50%; top: 50%;
+  width: clamp(110px, 16vw, 150px);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(231, 196, 107, 0.7);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7);
+  animation: summonFly 0.9s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+.summon-shock {
+  position: absolute; left: 50%; top: 50%;
+  width: 150px; height: 150px; border-radius: 50%;
+  border: 3px solid rgba(231, 196, 107, 0.8);
+  animation: shockwave 0.7s ease 0.5s both;
+}
+.summon-glow {
+  position: absolute; left: 50%; top: 50%;
+  width: 230px; height: 230px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(231, 196, 107, 0.4), transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: summonFade 0.9s ease 0.45s both;
+}
+@keyframes summonFly {
+  0% { transform: translate(-50%, -50%) translateY(300px) scale(0.6) rotate(-6deg); opacity: 0; }
+  45% { opacity: 1; }
+  70% { transform: translate(-50%, -50%) translateY(-22px) scale(1.18) rotate(2deg); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translateY(0) scale(1); opacity: 0; }
+}
+@keyframes shockwave {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) scale(2.8); opacity: 0; }
+}
+@keyframes summonFade {
+  0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; }
+}
+
+/* Spell cast — card rises to center, energy bursts on targets */
+.cast-stage { position: fixed; inset: 0; z-index: 69; pointer-events: none; }
+.cast-banner {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  text-align: center; white-space: nowrap;
+  font-family: "Cinzel", "Rajdhani", serif; font-weight: 700;
+  font-size: clamp(1rem, 2.6vw, 1.5rem); letter-spacing: 0.05em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+  animation: bannerIn 0.4s ease both;
+}
+.cast-card {
+  position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%);
+  width: clamp(110px, 16vw, 150px); aspect-ratio: 3 / 4; object-fit: cover;
+  border-radius: 12px; border: 2px solid rgba(196, 161, 255, 0.7);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7);
+  animation: castRise 1.4s ease both;
+}
+.cast-burst {
+  position: absolute; width: 120px; height: 120px; border-radius: 50%;
+  transform: translate(-50%, -50%); opacity: 0;
+  animation: castBurst 0.9s ease both;
+}
+@keyframes castRise {
+  0% { transform: translate(-50%, -50%) translateY(220px) scale(0.7); opacity: 0; }
+  35% { transform: translate(-50%, -50%) translateY(0) scale(1.12); opacity: 1; }
+  65% { transform: translate(-50%, -50%) translateY(0) scale(1.12); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translateY(-30px) scale(0.85); opacity: 0; filter: blur(6px); }
+}
+@keyframes castBurst {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+  45% { opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
+}
+
+/* Hover enemy unit — float it big at the dimmed center */
+.center-preview { position: fixed; inset: 0; z-index: 66; pointer-events: none; display: flex; align-items: center; justify-content: center; }
+.center-preview-dim { position: absolute; inset: 0; background: radial-gradient(ellipse 40% 40% at 50% 45%, rgba(4, 8, 16, 0.8) 0%, rgba(4, 8, 16, 0.45) 45%, transparent 70%); }
+.center-preview-wrap { position: relative; animation: bannerIn 0.16s ease both; }
+.center-preview-card {
+  display: block; width: clamp(150px, 20vw, 220px); aspect-ratio: 3 / 4; object-fit: cover;
+  border-radius: 14px; border: 2px solid rgba(231, 196, 107, 0.6); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+.center-preview-name {
+  position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); white-space: nowrap;
+  font-family: "Cinzel", serif; font-size: 1rem; color: #fff; text-shadow: 0 2px 8px #000;
+}
+.cp-atk, .cp-def {
+  position: absolute; bottom: 34px; min-width: 30px; height: 30px; line-height: 30px; text-align: center;
+  border-radius: 8px; font-weight: 800; font-size: 1rem; color: #0a1020; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+.cp-atk { left: 8px; background: linear-gradient(130deg, #ffce6b, #ff9d3a); }
+.cp-def { right: 8px; background: linear-gradient(130deg, #8ce8ff, #2ee6ff); }
+
+/* Ambient: drifting embers + rift core pulse */
+.bf-ember { position: absolute; bottom: 8%; width: 2px; height: 2px; border-radius: 50%; pointer-events: none; opacity: 0; animation: emberDrift 6s ease-in infinite; }
+@keyframes emberDrift {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  50% { opacity: 0.4; }
+  100% { transform: translate(var(--dx, 20px), -160px) scale(0.3); opacity: 0; }
+}
 .clash-label {
   font-family: "Rajdhani", sans-serif;
   font-weight: 800;
@@ -5697,3 +6327,720 @@ body {
   70% { transform: translateX(0); opacity: 1; }
   100% { transform: translateX(60vw) skewX(12deg); opacity: 0; }
 }
+
+/* ===== Prototype "War Council" lobby ===== */
+.rift-lobby {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0.2rem 1rem 2rem;
+}
+.rift-lobby-head { text-align: center; margin-bottom: 1.2rem; }
+.rift-lobby-kicker { font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; font-size: clamp(0.95rem, 2vw, 1.3rem); letter-spacing: 0.5em; color: #b9a98a; margin-bottom: 0.5rem; text-transform: uppercase; }
+.rift-lobby-title {
+  font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900;
+  font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.05;
+  background: linear-gradient(180deg, #f6e6b4 0%, #e7c46b 45%, #b8842f 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #e7c46b;
+}
+.rift-lobby-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; align-items: start; }
+@media (max-width: 820px) { .rift-lobby-grid { grid-template-columns: 1fr; } }
+.rift-lobby-left { display: flex; flex-direction: column; gap: 0.9rem; }
+
+.gold-panel {
+  border: 1px solid rgba(201, 151, 58, 0.3);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(12, 18, 32, 0.92), rgba(8, 12, 22, 0.92));
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  padding: 1.1rem;
+}
+.gp-label { font-family: "Cinzel", "Rajdhani", serif; font-size: 0.66rem; letter-spacing: 0.25em; color: #7a6e5a; margin-bottom: 0.8rem; }
+
+.faction-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+@media (max-width: 560px) { .faction-grid { grid-template-columns: repeat(2, 1fr); } }
+.faction-tile {
+  display: flex; flex-direction: column; gap: 0.2rem;
+  text-align: left; padding: 0.7rem; cursor: pointer;
+  border-radius: 10px; border: 1px solid rgba(201, 151, 58, 0.2);
+  background: rgba(255, 255, 255, 0.02); color: var(--text);
+  transition: transform 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+}
+.faction-tile:hover { border-color: rgba(201, 151, 58, 0.5); }
+.faction-sel { border-color: #e7c46b; background: rgba(201, 151, 58, 0.12); box-shadow: 0 0 18px rgba(201, 151, 58, 0.25); transform: scale(1.02); }
+.faction-locked { opacity: 0.4; cursor: not-allowed; }
+.faction-crest { width: 28px; height: 28px; object-fit: contain; }
+.faction-name { font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; font-size: 0.8rem; color: #e8d5b0; }
+.faction-tag { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: #c9973a; }
+.faction-style { font-size: 0.66rem; color: #8a9; opacity: 0.8; line-height: 1.3; }
+.faction-ability { font-size: 0.64rem; color: #41e07a; margin-top: 0.2rem; line-height: 1.3; }
+.faction-taken { font-size: 0.6rem; color: #ff8da3; }
+
+.rift-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.rift-setting:first-child { grid-column: 1 / -1; }
+.rift-select { width: 100%; }
+.rift-pills { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.rift-pill {
+  min-width: 38px; height: 38px; padding: 0 0.6rem; border-radius: 8px; cursor: pointer;
+  font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; font-size: 0.85rem;
+  border: 1px solid rgba(201, 151, 58, 0.25); background: rgba(255, 255, 255, 0.04); color: #7a6e5a;
+}
+.rift-pill.wide { padding: 0 0.9rem; }
+.rift-pill.active { border-color: #e7c46b; background: rgba(201, 151, 58, 0.2); color: #e7c46b; box-shadow: 0 0 12px rgba(201, 151, 58, 0.3); }
+
+.rift-lobby-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.rift-lobby-actions.stack { flex-direction: column; margin-top: 1rem; }
+.gold-btn {
+  flex: 1 1 auto; padding: 0.7rem 1.1rem; cursor: pointer;
+  font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em;
+  border-radius: 9px; border: 1px solid #e7c46b;
+  background: linear-gradient(180deg, #e7c46b, #c9973a); color: #0a1020;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+.gold-btn.ghost { background: rgba(12, 20, 36, 0.85); color: #e8d5b0; border-color: rgba(201, 151, 58, 0.4); }
+.gold-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.rift-lobby-join { display: flex; gap: 0.5rem; }
+.rift-join-input {
+  flex: 1; padding: 0.65rem 0.9rem; border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(201, 151, 58, 0.25); color: #e8d5b0;
+}
+
+.rift-roster { display: flex; flex-direction: column; gap: 0.6rem; }
+.rift-duelist {
+  display: flex; align-items: center; gap: 0.7rem; padding: 0.6rem 0.7rem;
+  border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(201, 151, 58, 0.15);
+}
+.rift-duelist.is-ready { border-color: rgba(93, 140, 58, 0.5); }
+.rift-duelist-av { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(201, 151, 58, 0.4); }
+.rift-duelist-info { flex: 1; min-width: 0; display: grid; line-height: 1.2; }
+.rift-duelist-info strong { font-family: "Cinzel", "Rajdhani", serif; font-size: 0.8rem; color: #e8d5b0; }
+.rift-duelist-info span { font-size: 0.66rem; color: #c9973a; }
+.rift-ready-dot { width: 10px; height: 10px; border-radius: 50%; background: #7a6e5a; flex-shrink: 0; }
+.rift-ready-dot.on { background: #5d8c3a; box-shadow: 0 0 8px #5d8c3a; }
+.rift-roomcode { margin-top: 0.8rem; text-align: center; font-size: 0.72rem; color: #7a6e5a; }
+.rift-roomcode span { color: #e7c46b; font-family: "Cinzel", "Rajdhani", serif; letter-spacing: 0.1em; }
+.rift-roster-hint { margin-top: 0.8rem; font-size: 0.72rem; }
+
+/* Lobby background slideshow (realms + characters cross-fading) */
+.card-lobby:has(.rift-lobby) { background: none !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; padding: 0 !important; }
+/* When the lobby is on screen, the slideshow replaces the green theme */
+.page:has(.rift-lobby) { background: #060b18 !important; }
+.page:has(.rift-lobby) .rift-bg { display: none; }
+.page:has(.rift-lobby) .hero { display: none; }
+.rift-lobby { position: relative; }
+.rift-lobby-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.rift-lobby-head, .rift-lobby-grid { position: relative; z-index: 2; }
+.rift-lobby-slide {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0;
+  animation: lobbySlide 30s ease-in-out infinite;
+}
+.rift-lobby-bg-veil {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6, 11, 24, 0.72) 0%, rgba(6, 11, 24, 0.35) 42%, transparent 68%),
+    linear-gradient(180deg, transparent 45%, rgba(6, 11, 24, 0.55) 100%);
+}
+@keyframes lobbySlide {
+  0% { opacity: 0; }
+  3% { opacity: 1; }
+  14% { opacity: 1; }
+  17% { opacity: 0; }
+  100% { opacity: 0; }
+}
+/* Title glow */
+.rift-lobby-title { animation: lobbyTitleGlow 3.5s ease-in-out infinite; }
+@keyframes lobbyTitleGlow {
+  0%, 100% { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 18px rgba(201, 151, 58, 0.4)); }
+  50% { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 32px rgba(201, 151, 58, 0.7)); }
+}
+
+/* Lobby champion showcase card (table-card style) */
+.rift-lobby-right { display: flex; flex-direction: column; gap: 0.9rem; }
+.champ-card {
+  border: 1px solid rgba(201, 151, 58, 0.5);
+  border-radius: 16px; overflow: hidden;
+  background: linear-gradient(160deg, rgba(12, 18, 32, 0.95), rgba(8, 12, 22, 0.95));
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(201, 151, 58, 0.15);
+}
+.champ-card-art {
+  position: relative; height: 200px;
+  background-size: cover; background-position: center top;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.champ-card-sprite { height: 96%; object-fit: contain; filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.7)); }
+.champ-card-crest { position: absolute; top: 10px; left: 10px; width: 30px; height: 30px; object-fit: contain; }
+.champ-card-tag {
+  position: absolute; top: 10px; right: 10px;
+  font-family: "Cinzel", serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.2rem 0.55rem; border-radius: 999px;
+  background: rgba(6, 10, 20, 0.9); border: 1px solid rgba(201, 151, 58, 0.5); color: #e7c46b;
+}
+.champ-card-body { padding: 0.9rem 1rem 1.1rem; }
+.champ-card-name { font-family: "Cinzel", serif; font-weight: 700; font-size: 1.05rem; color: #e8d5b0; }
+.champ-card-style { margin: 0.3rem 0 0.7rem; font-size: 0.78rem; color: #9aa6c0; line-height: 1.35; }
+.champ-card-ability {
+  font-size: 0.76rem; color: #e8d5b0; line-height: 1.4;
+  padding: 0.6rem 0.7rem; border-radius: 10px;
+  background: rgba(65, 224, 122, 0.08); border: 1px solid rgba(65, 224, 122, 0.3);
+}
+.champ-ability-label { display: block; font-family: "Cinzel", serif; font-size: 0.64rem; letter-spacing: 0.1em; color: #41e07a; margin-bottom: 0.2rem; }
+.champ-card-empty { padding: 1.5rem; text-align: center; color: #7a6e5a; font-size: 0.82rem; }
+
+/* Champion carousel (right side) */
+.champ-carousel { position: relative; }
+.champ-arrow {
+  position: absolute; top: 100px; transform: translateY(-50%); z-index: 8;
+  width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+  display: grid; place-items: center; font-size: 1.3rem; line-height: 1;
+  color: #e7c46b; background: rgba(6, 10, 20, 0.95);
+  border: 1px solid rgba(201, 151, 58, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+.champ-arrow:hover { background: rgba(201, 151, 58, 0.22); }
+.champ-arrow.left { left: -18px; }
+.champ-arrow.right { right: -18px; }
+.champ-card.is-selected { border-color: #41e07a; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 26px rgba(65, 224, 122, 0.35); }
+.champ-card.slide-from-right { animation: champSlideR 0.4s cubic-bezier(0.3, 0.9, 0.4, 1) both; }
+.champ-card.slide-from-left { animation: champSlideL 0.4s cubic-bezier(0.3, 0.9, 0.4, 1) both; }
+@keyframes champSlideR { 0% { opacity: 0; transform: translateX(40px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes champSlideL { 0% { opacity: 0; transform: translateX(-40px); } 100% { opacity: 1; transform: translateX(0); } }
+.champ-select-btn { width: 100%; margin-top: 0.8rem; justify-content: center; }
+.champ-select-btn:disabled { opacity: 0.4; }
+.champ-dots { display: flex; justify-content: center; gap: 0.4rem; margin-top: 0.8rem; }
+.champ-dot { width: 9px; height: 9px; border-radius: 50%; cursor: pointer; border: 1px solid rgba(201, 151, 58, 0.45); background: rgba(6, 10, 20, 0.9); }
+.champ-dot.on { background: #060a14; border-color: #e7c46b; box-shadow: 0 0 8px rgba(231, 196, 107, 0.5); }
+
+/* ===== Lobby polish: spacing, layout, entrance animations ===== */
+.rift-lobby-title { letter-spacing: 0.05em; word-spacing: 0.15em; }
+.rift-lobby-kicker { letter-spacing: 0.55em; }
+
+/* Consolidated setup panel fills the left column elegantly */
+.rift-setup { display: flex; flex-direction: column; gap: 1.1rem; }
+.rift-setup .rift-pills { gap: 0.5rem; }
+.rift-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(201, 151, 58, 0.45), transparent); margin: 0.2rem 0; }
+.rift-setup .rift-lobby-actions { gap: 0.7rem; }
+.rift-setup .gold-btn { padding: 0.85rem 1.1rem; font-size: 0.92rem; }
+
+/* Buttons: smooth hover lift */
+.gold-btn { transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease; }
+.gold-btn:not(:disabled):hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5); }
+.rift-pill { transition: transform 0.12s ease, border-color 0.14s ease, background 0.14s ease; }
+.rift-pill:hover { transform: translateY(-1px); border-color: rgba(201, 151, 58, 0.55); }
+
+/* Entrance animations (staggered) */
+.rift-lobby-head { animation: lobbyEnter 0.6s ease both; }
+.rift-lobby-left { animation: lobbyEnter 0.6s ease 0.12s both; }
+.rift-lobby-right { animation: lobbyEnter 0.6s ease 0.22s both; }
+@keyframes lobbyEnter {
+  0% { opacity: 0; transform: translateY(22px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Lobby premium pass — ornamented panels, Ken Burns, vignette ===== */
+/* Ornate gold corner brackets on every panel */
+.gold-panel { position: relative; isolation: isolate; }
+.gold-panel::after {
+  content: ""; position: absolute; inset: 7px; pointer-events: none; border-radius: 9px;
+  --b: #d8b56a; --len: 20px; --th: 2px;
+  background:
+    linear-gradient(var(--b), var(--b)) left top / var(--len) var(--th) no-repeat,
+    linear-gradient(var(--b), var(--b)) left top / var(--th) var(--len) no-repeat,
+    linear-gradient(var(--b), var(--b)) right top / var(--len) var(--th) no-repeat,
+    linear-gradient(var(--b), var(--b)) right top / var(--th) var(--len) no-repeat,
+    linear-gradient(var(--b), var(--b)) left bottom / var(--len) var(--th) no-repeat,
+    linear-gradient(var(--b), var(--b)) left bottom / var(--th) var(--len) no-repeat,
+    linear-gradient(var(--b), var(--b)) right bottom / var(--len) var(--th) no-repeat,
+    linear-gradient(var(--b), var(--b)) right bottom / var(--th) var(--len) no-repeat;
+  opacity: 0.7;
+}
+.gold-panel {
+  background:
+    linear-gradient(180deg, rgba(201, 151, 58, 0.12), transparent 14%),
+    linear-gradient(160deg, rgba(16, 22, 38, 0.96), rgba(9, 13, 24, 0.96));
+  border: 1px solid rgba(201, 151, 58, 0.45);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 240, 200, 0.08), inset 0 0 60px rgba(124, 58, 237, 0.04);
+}
+.champ-card { position: relative; isolation: isolate; }
+
+/* Beveled engraved gold buttons */
+.gold-btn {
+  background: linear-gradient(180deg, #f3dea0 0%, #e0b35e 38%, #c9973a 70%, #a87a2c 100%);
+  border: 1px solid #f0dca0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -2px 4px rgba(120, 80, 20, 0.5);
+  text-shadow: 0 1px 0 rgba(255, 248, 220, 0.5);
+}
+.gold-btn.ghost {
+  background: linear-gradient(180deg, rgba(20, 28, 46, 0.92), rgba(12, 18, 32, 0.92));
+  border: 1px solid rgba(201, 151, 58, 0.5); color: #e8d5b0; text-shadow: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 240, 200, 0.08);
+}
+
+/* (Ken Burns removed — animating transform on full-screen images caused flicker) */
+.rift-lobby-slide { transform: none; will-change: opacity; }
+
+/* Cinematic vignette over the whole lobby */
+.rift-lobby::before {
+  content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 90% 80% at 50% 42%, transparent 55%, rgba(3, 6, 14, 0.6) 100%);
+}
+
+/* ===== Champion detail overlay (realm + card library) ===== */
+.champ-detail-overlay {
+  position: fixed; inset: 0; z-index: 90;
+  animation: fadeIn 0.2s ease both;
+}
+.champ-detail {
+  position: relative; width: 100%; height: 100%; overflow-y: auto;
+  background:
+    linear-gradient(180deg, rgba(6, 10, 20, 0.45), rgba(6, 10, 20, 0.92) 60%),
+    var(--realm) center top / cover no-repeat,
+    #0a0f1c;
+  animation: champDetailIn 0.4s cubic-bezier(0.3, 0.9, 0.4, 1) both;
+}
+@keyframes champDetailIn { 0% { opacity: 0; transform: scale(1.03); } 100% { opacity: 1; transform: none; } }
+.champ-detail-close {
+  position: fixed; top: 18px; right: 18px; z-index: 95;
+  width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; line-height: 1;
+  color: #e8d5b0; background: rgba(6, 10, 20, 0.85); border: 1px solid rgba(201, 151, 58, 0.5);
+}
+.champ-detail-hero {
+  display: grid; grid-template-columns: minmax(220px, 1fr) 1.3fr; gap: 2rem;
+  max-width: 1100px; margin: 0 auto; padding: clamp(3rem, 8vh, 6rem) 2rem 2rem;
+}
+@media (max-width: 640px) { .champ-detail-hero { grid-template-columns: 1fr; } }
+.champ-detail-sprite { width: 100%; max-height: 340px; object-fit: contain; filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.8)); }
+.champ-detail-meta { display: flex; flex-direction: column; gap: 0.5rem; align-self: center; }
+.champ-detail-crest { width: 40px; height: 40px; object-fit: contain; }
+.champ-detail-name { font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900; font-size: clamp(1.6rem, 4vw, 2.4rem); color: #f0d894; }
+.champ-detail-style { font-size: 0.95rem; color: #c3cde0; line-height: 1.5; }
+.champ-detail-select { margin-top: 0.6rem; }
+.champ-detail-lib { max-width: 1100px; margin: 0 auto; padding: 0 2rem 3rem; }
+.champ-lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 0.6rem; margin-top: 0.7rem; }
+.champ-lib-card {
+  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 9px;
+  border: 1px solid rgba(201, 151, 58, 0.35); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.champ-lib-card:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 26px rgba(0, 0, 0, 0.7); z-index: 2; }
+
+/* ===== Selected champion pill (glowing) ===== */
+.champ-selected-wrap { display: flex; flex-direction: column; gap: 0.8rem; }
+.champ-pill {
+  position: relative; display: flex; align-items: center; gap: 0.9rem; padding: 1rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--realm-col, #e7c46b) 70%, transparent);
+  background: linear-gradient(160deg, rgba(10, 14, 24, 0.97), rgba(7, 10, 18, 0.97));
+  animation: pillGlow 2.6s ease-in-out infinite;
+}
+@keyframes pillGlow {
+  0%, 100% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--realm-col, #e7c46b) 25%, transparent), 0 0 26px color-mix(in srgb, var(--realm-col, #e7c46b) 35%, transparent), 0 14px 40px rgba(0, 0, 0, 0.5); }
+  50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--realm-col, #e7c46b) 35%, transparent), 0 0 50px color-mix(in srgb, var(--realm-col, #e7c46b) 60%, transparent), 0 14px 40px rgba(0, 0, 0, 0.5); }
+}
+.champ-pill-name { color: var(--realm-col, #e7c46b) !important; }
+.champ-pill-crest { width: 52px; height: 52px; object-fit: contain; }
+.champ-pill-info { display: flex; flex-direction: column; }
+.champ-pill-label { font-family: "Cinzel", serif; font-size: 0.6rem; letter-spacing: 0.25em; color: #b9a98a; }
+.champ-pill-name { font-family: "Cinzel", serif; font-weight: 700; font-size: 1.15rem; color: #e7c46b; }
+.champ-pill-tag { font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: #9aa6c0; }
+.champ-pill-actions { display: flex; gap: 0.6rem; }
+.champ-pill-actions .gold-btn { flex: 1; }
+
+/* ===== Lobby fixes: flicker, small pill, stacked buttons, equal heights ===== */
+/* Static title glow (animated filter caused full-screen flicker) */
+.rift-lobby-title { animation: none !important; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 22px rgba(201, 151, 58, 0.45)); }
+
+/* Small champion pill, top-right */
+.champ-pill-head {
+  position: static; margin: 0.9rem auto 0; width: max-content;
+  padding: 0.4rem 0.9rem 0.4rem 0.45rem; gap: 0.5rem; border-radius: 999px;
+}
+.champ-lib-cell { cursor: pointer; }
+.champ-pill-head .champ-pill-crest { width: 30px; height: 30px; }
+.champ-pill-head .champ-pill-label { font-size: 0.5rem; letter-spacing: 0.2em; }
+.champ-pill-head .champ-pill-name { font-size: 0.82rem; }
+
+/* Carousel action buttons stacked, full width, spaced */
+.champ-card-actions { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.7rem; }
+.champ-card-actions .gold-btn { width: 100%; justify-content: center; }
+
+/* Left setup panel matches the right carousel height */
+.rift-lobby-grid { align-items: stretch; }
+.rift-lobby-left, .rift-lobby-right { display: flex; flex-direction: column; }
+.rift-lobby-left .rift-setup { flex: 1; justify-content: space-evenly; gap: 1.4rem; }
+
+/* ===== Champion detail: lore layout + game-card-style library ===== */
+.champ-detail-lore-grid {
+  max-width: 1100px; margin: 0 auto; padding: 0 2rem 0.5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+@media (max-width: 640px) { .champ-detail-lore-grid { grid-template-columns: 1fr; } }
+.champ-detail-lore {
+  padding: 1rem 1.1rem; border-radius: 12px;
+  background: rgba(8, 12, 22, 0.55); border: 1px solid rgba(201, 151, 58, 0.25);
+}
+.champ-detail-lore p { margin: 0.4rem 0 0; font-size: 0.86rem; line-height: 1.5; color: #d6def0; }
+
+/* Library cards use the in-game card look: framed art + ⓘ top-right */
+.champ-lib-cell { position: relative; }
+.champ-lib-card {
+  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+  border-radius: 10px; border: 2px solid rgba(201, 151, 58, 0.5);
+  background: #0a1020; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.champ-lib-cell:hover .champ-lib-card { transform: translateY(-4px) scale(1.04); box-shadow: 0 12px 26px rgba(0, 0, 0, 0.7); z-index: 2; }
+.champ-lib-frame { position: absolute; inset: 0; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 0 18px rgba(0, 0, 0, 0.4); pointer-events: none; }
+.champ-lib-info {
+  position: absolute; top: 5px; right: 5px; z-index: 3;
+  width: 20px; height: 20px; line-height: 18px; text-align: center; padding: 0;
+  border-radius: 50%; font-size: 12px; cursor: pointer;
+  color: #cfe9ff; background: rgba(6, 10, 20, 0.85); border: 1px solid rgba(201, 151, 58, 0.5);
+}
+.champ-lib-info:hover { background: rgba(201, 151, 58, 0.25); }
+
+/* Card view — slides in on the right as a framed card */
+.champ-cardview { position: fixed; inset: 0; z-index: 99; background: rgba(3, 6, 14, 0.95); animation: fadeIn 0.18s ease both; }
+.champ-cardview-panel {
+  position: fixed; top: 0; right: 0; height: 100%; width: min(360px, 88vw);
+  display: flex; flex-direction: column; gap: 1rem; padding: 2rem 1.4rem;
+  background: linear-gradient(160deg, rgba(12, 18, 32, 0.98), rgba(8, 12, 22, 0.99));
+  border-left: 1px solid rgba(201, 151, 58, 0.5); box-shadow: -20px 0 60px rgba(0, 0, 0, 0.7);
+  animation: cardViewIn 0.3s cubic-bezier(0.3, 0.9, 0.4, 1) both;
+  align-items: center; justify-content: center;
+}
+@keyframes cardViewIn { 0% { transform: translateX(40px); opacity: 0; } 100% { transform: none; opacity: 1; } }
+.champ-cardview-close { position: absolute; top: 12px; right: 14px; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.3rem; color: #e8d5b0; background: rgba(6, 10, 20, 0.85); border: 1px solid rgba(201, 151, 58, 0.5); }
+.champ-cardview-img { width: 78%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 16px; border: 2px solid rgba(201, 151, 58, 0.65); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(201, 151, 58, 0.25); }
+.champ-cardview-meta { text-align: center; }
+.champ-cardview-meta strong { display: block; margin: 0.5rem 0 0.3rem; font-family: "Cinzel", serif; font-size: 1rem; color: #e8d5b0; }
+.champ-cardview-meta p { font-size: 0.8rem; color: #aeb9d0; line-height: 1.4; }
+
+/* ===== Lobby card view — zoomed card centered, info on the right ===== */
+.lib-cardview-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center; padding: 90px 4vw 4vh;
+  background: rgba(3, 6, 14, 0.92); backdrop-filter: blur(8px);
+  animation: fadeIn 0.18s ease both;
+}
+.lib-cardview-close { position: fixed; top: 18px; right: 22px; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; font-size: 1.6rem; color: #e8d5b0; background: rgba(6, 10, 20, 0.92); border: 1px solid rgba(201, 151, 58, 0.6); z-index: 201; }
+.lib-cardview-row { display: flex; align-items: center; gap: clamp(1.5rem, 5vw, 4rem); animation: champDetailIn 0.3s cubic-bezier(0.3, 0.9, 0.4, 1) both; }
+@media (max-width: 720px) { .lib-cardview-row { flex-direction: column; gap: 1.2rem; } }
+.lib-cardview-card { position: relative; flex-shrink: 0; }
+.lib-cardview-card img {
+  height: min(70vh, 440px); aspect-ratio: 3 / 4; object-fit: cover;
+  border-radius: 18px; border: 3px solid rgba(201, 151, 58, 0.7);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(201, 151, 58, 0.3);
+}
+.lib-cardview-cost { position: absolute; top: 12px; left: 12px; padding: 0.4rem 0.8rem; border-radius: 999px; font-size: 1.2rem; font-weight: 800; background: linear-gradient(130deg, #8ce8ff, #2ee6ff); color: #07111f; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5); }
+.lib-cardview-stats { position: absolute; bottom: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; }
+.lib-cardview-stats b { padding: 0.3rem 0.7rem; border-radius: 10px; font-size: 1.4rem; font-weight: 800; }
+.lib-cardview-stats .ut-atk { color: #07111f; background: linear-gradient(130deg, #ffce6b, #ff9d3a); box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6); }
+.lib-cardview-stats .ut-def { color: #07111f; background: linear-gradient(130deg, #8ce8ff, #2ee6ff); box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6); }
+.lib-cardview-info { max-width: 380px; }
+.lib-cardview-info h3 { font-family: "Cinzel", serif; font-size: clamp(1.6rem, 4vw, 2.2rem); color: #e8d5b0; }
+.lib-cardview-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.7rem 0; }
+.lib-cardview-tags .cd-tag { font-size: 0.72rem; padding: 0.25rem 0.6rem; border-radius: 999px; border: 1px solid rgba(201, 151, 58, 0.4); color: #c3cde0; text-transform: capitalize; }
+.lib-cardview-tags .tag-rare { color: #60adff; border-color: rgba(96, 173, 255, 0.5); }
+.lib-cardview-tags .tag-epic { color: #c182ff; border-color: rgba(193, 130, 255, 0.5); }
+.lib-cardview-tags .tag-legendary { color: #ffc454; border-color: rgba(255, 196, 84, 0.5); }
+.lib-cardview-desc { font-size: 0.92rem; line-height: 1.55; color: #d6def0; margin-bottom: 1rem; }
+.lib-cardview-mana { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1rem; border-radius: 10px; border: 1px solid rgba(201, 151, 58, 0.3); background: rgba(8, 12, 22, 0.6); margin-bottom: 0.8rem; }
+.lib-cardview-mana span { font-size: 0.66rem; letter-spacing: 0.2em; color: #8a93aa; }
+.lib-cardview-mana strong { font-size: 1.1rem; color: #8ce8ff; }
+.lib-cardview-block { padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid rgba(96, 173, 255, 0.35); background: rgba(96, 173, 255, 0.08); }
+.lib-cardview-block strong { display: block; color: #8ce8ff; margin-bottom: 0.2rem; }
+.lib-cardview-block span { font-size: 0.85rem; color: #c3cde0; }
+.lib-cardview-block.lib-spell { border-color: rgba(193, 130, 255, 0.4); background: rgba(193, 130, 255, 0.1); }
+.lib-cardview-block.lib-spell strong { color: #c4a1ff; }
+
+.champ-detail-crestrow { display: flex; align-items: center; gap: 0.6rem; }
+.champ-detail-crestrow .champ-card-tag { position: static; top: auto; right: auto; }
+
+.rift-pick-hint { text-align: center; font-size: 0.78rem; color: #e7c46b; opacity: 0.85; }
+
+/* In-duel turn + timer chip (top center) */
+.duel-turnchip {
+  position: fixed; top: 70px; right: 16px; z-index: 25;
+  display: flex; align-items: center; gap: 0.55rem;
+  padding: 0.35rem 0.9rem; border-radius: 999px;
+  background: rgba(8, 14, 26, 0.92); border: 1px solid rgba(201, 151, 58, 0.4);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  font-family: "Cinzel", "Rajdhani", serif;
+}
+.duel-turnchip-dot { width: 9px; height: 9px; border-radius: 50%; background: #7a6e5a; }
+.duel-turnchip.mine .duel-turnchip-dot { background: #41e07a; box-shadow: 0 0 8px #41e07a; }
+.duel-turnchip-text { font-size: 0.8rem; font-weight: 700; color: #e8d5b0; letter-spacing: 0.04em; }
+.duel-turnchip.mine .duel-turnchip-text { color: #e7c46b; }
+.duel-turnchip-timer { font-size: 0.78rem; color: #cfe9ff; padding-left: 0.5rem; border-left: 1px solid rgba(255, 255, 255, 0.15); }
+
+/* ===== Unify duel-board typography with the lobby (Cinzel / Rajdhani) ===== */
+.duel .seat-name,
+.duel .mob-pod-name,
+.duel .rift-duelist-info strong,
+.duel .my-seat-info strong,
+.duel .clash-title,
+.duel .clash-label,
+.duel .cast-banner,
+.duel .bf-rift-logo,
+.duel .hud-turn,
+.duel .duel-turnchip-text,
+.duel .attack-pill-name,
+.duel .pile-label,
+.duel .tcg-name,
+.duel .opp-unit-stats,
+.duel .center-preview-name { font-family: "Cinzel", "Rajdhani", serif; }
+
+.duel .seat-stats,
+.duel .my-seat-stats,
+.duel .hand-card strong,
+.duel .hud-btn,
+.duel .hand-play-btn,
+.duel .hab-btn,
+.duel .duel-turnchip-timer { font-family: "Rajdhani", "Exo 2", sans-serif; font-weight: 700; }
+
+/* Post-duel result banner in the room lobby */
+.room-result {
+  display: flex; flex-direction: column; gap: 0.2rem; text-align: center;
+  padding: 0.8rem 1rem; margin-bottom: 1rem; border-radius: 12px;
+  background: linear-gradient(160deg, rgba(231, 196, 107, 0.16), rgba(8, 12, 22, 0.6));
+  border: 1px solid rgba(231, 196, 107, 0.5);
+}
+.room-result-label { font-family: "Cinzel", serif; font-size: 0.62rem; letter-spacing: 0.2em; color: #b9a98a; }
+.room-result strong { font-family: "Cinzel", serif; font-size: 1.2rem; color: #e7c46b; }
+.room-result-hint { font-size: 0.72rem; color: #aeb9d0; }
+
+/* ===== Concede / Leave dialogs — RIFT gold theme ===== */
+.rift-dialog-overlay { background: rgba(3, 6, 14, 0.78); backdrop-filter: blur(8px); }
+.rift-dialog {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(124, 58, 237, 0.14), transparent 60%),
+    linear-gradient(160deg, rgba(16, 22, 38, 0.98), rgba(9, 13, 24, 0.98)) !important;
+  border: 1px solid rgba(201, 151, 58, 0.5) !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 240, 200, 0.08) !important;
+  border-radius: 16px !important;
+}
+.rift-dialog h3 {
+  font-family: "Cinzel", "Rajdhani", serif; font-weight: 700;
+  font-size: 1.3rem; color: #e7c46b; letter-spacing: 0.04em;
+}
+.rift-dialog .auth-hint { font-family: "Rajdhani", "Exo 2", sans-serif; font-weight: 500; font-size: 0.95rem; color: #c3cde0; line-height: 1.55; }
+.rift-dialog .confirm-actions .button {
+  font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; letter-spacing: 0.04em;
+  border-radius: 9px; border: 1px solid rgba(201, 151, 58, 0.4);
+  background: rgba(12, 20, 36, 0.9); color: #e8d5b0;
+}
+.rift-dialog .confirm-actions .button.primary {
+  background: linear-gradient(180deg, #e7c46b, #c9973a); color: #0a1020; border-color: #e7c46b;
+}
+
+/* ===== Waiting Room — full-width themed layout ===== */
+.rift-waitroom { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.1rem; }
+.rift-waitroom .waitroom-banner { animation: lobbyEnter 0.5s ease both; }
+.rift-waitroom .waitroom-slots { animation: lobbyEnter 0.5s ease 0.08s both; }
+.waitroom-banner {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  padding: 1rem 1.4rem; border-radius: 14px;
+  background: linear-gradient(160deg, rgba(16, 22, 38, 0.95), rgba(9, 13, 24, 0.95));
+  border: 1px solid rgba(201, 151, 58, 0.45);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 240, 200, 0.08);
+}
+.waitroom-code { display: flex; flex-direction: column; }
+.waitroom-code strong { font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900; font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: 0.15em; color: #e7c46b; }
+.waitroom-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.waitroom-chip { font-family: "Rajdhani", sans-serif; font-weight: 700; font-size: 0.78rem; padding: 0.3rem 0.7rem; border-radius: 999px; background: rgba(201, 151, 58, 0.14); border: 1px solid rgba(201, 151, 58, 0.4); color: #e8d5b0; }
+
+.waitroom-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.9rem; }
+.waitroom-slot {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+  padding: 1.3rem 1rem 1.1rem; border-radius: 14px;
+  border: 1px solid rgba(201, 151, 58, 0.3);
+  background: linear-gradient(160deg, rgba(16, 22, 38, 0.92), rgba(9, 13, 24, 0.92));
+  min-height: 190px;
+}
+.waitroom-slot.is-ready { border-color: color-mix(in srgb, var(--realm-col, #41e07a) 70%, transparent); box-shadow: 0 0 22px color-mix(in srgb, var(--realm-col, #41e07a) 30%, transparent); }
+.waitroom-slot-art { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center top; opacity: 0.5; }
+.waitroom-slot > *:not(.waitroom-slot-art) { position: relative; z-index: 1; }
+.waitroom-av { width: 62px; height: 62px; border-radius: 50%; object-fit: cover; border: 3px solid color-mix(in srgb, var(--realm-col, #e7c46b) 70%, transparent); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6); }
+.waitroom-name { font-family: "Cinzel", serif; font-weight: 700; font-size: 0.92rem; color: #e8d5b0; text-align: center; text-shadow: 0 1px 4px #000; }
+.waitroom-champ { font-family: "Rajdhani", sans-serif; font-size: 0.76rem; color: var(--realm-col, #c9973a); }
+.waitroom-status { margin-top: 0.2rem; font-family: "Rajdhani", sans-serif; font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px; background: rgba(255, 255, 255, 0.06); color: #9aa6c0; border: 1px solid rgba(255, 255, 255, 0.12); }
+.waitroom-status.on { background: rgba(65, 224, 122, 0.16); color: #6fe89a; border-color: rgba(65, 224, 122, 0.5); }
+.waitroom-empty { justify-content: center; color: #6c7790; border-style: dashed; background: rgba(8, 12, 22, 0.5); }
+.waitroom-empty-icon { font-size: 1.8rem; color: rgba(201, 151, 58, 0.4); }
+.waitroom-empty span:last-child { font-size: 0.76rem; }
+
+.waitroom-actions { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin-top: 0.4rem; }
+.waitroom-actions .gold-btn { flex: 0 1 220px; }
+
+/* Waiting-room battle backdrop */
+.rift-waitroom { position: relative; }
+.rift-waitroom > *:not(.waitroom-bg) { position: relative; z-index: 1; }
+.waitroom-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(180deg, rgba(6, 10, 20, 0.62), rgba(6, 10, 20, 0.85)),
+    url(/assets/realms/war_council.png);
+  background-size: cover; background-position: center;
+}
+
+/* ===== Guide / About modal — RIFT gold theme ===== */
+.info-screen {
+  background:
+    radial-gradient(ellipse 90% 35% at 50% 0%, rgba(124, 58, 237, 0.14), transparent 60%),
+    linear-gradient(160deg, rgba(16, 22, 38, 0.98), rgba(8, 12, 22, 0.98)) !important;
+  border: 1px solid rgba(201, 151, 58, 0.5) !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 240, 200, 0.08) !important;
+}
+.info-head .landing-section-kicker { font-family: "Cinzel", serif; font-size: 0.6rem; letter-spacing: 0.3em; color: #b9a98a; text-transform: uppercase; }
+.info-head h2 { font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900; color: #e7c46b; letter-spacing: 0.03em; }
+.info-head .icon-close { color: #e8d5b0; background: rgba(6, 10, 20, 0.85); border: 1px solid rgba(201, 151, 58, 0.45); }
+.info-body .guide-lead { font-family: "Rajdhani", "Exo 2", sans-serif; }
+.info-body .guide-h { font-family: "Cinzel", serif; color: #e7c46b; letter-spacing: 0.03em; }
+
+/* About-the-dev card */
+.guide-about .about-dev-card {
+  border: 1px solid rgba(201, 151, 58, 0.45);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(20, 28, 46, 0.7), rgba(10, 14, 24, 0.7));
+  padding: 1.2rem 1.3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.guide-about .about-dev-card h3 { font-family: "Cinzel", serif; font-weight: 700; color: #e7c46b; font-size: 1.35rem; }
+.guide-about .about-dev-links { display: flex; gap: 0.6rem; margin-top: 0.9rem; flex-wrap: wrap; }
+.guide-about .about-dev-links .nav-btn {
+  font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; letter-spacing: 0.04em;
+  padding: 0.55rem 1.1rem; border-radius: 9px; text-decoration: none;
+  border: 1px solid rgba(201, 151, 58, 0.5); background: rgba(12, 20, 36, 0.9); color: #e8d5b0;
+}
+.guide-about .about-dev-links .nav-btn:first-child { background: linear-gradient(180deg, #e7c46b, #c9973a); color: #0a1020; border-color: #e7c46b; }
+.guide-about .lore-pillar { border: 1px solid rgba(201, 151, 58, 0.25); background: rgba(8, 12, 22, 0.55); }
+.guide-about .lore-pillar h4 { font-family: "Cinzel", serif; color: #e7c46b; }
+
+/* About-the-dev tech stack + storyteller line */
+.about-stack-title { margin-top: 0.4rem; }
+.about-stack { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0.6rem 0 0; }
+.about-stack-item {
+  font-family: "Rajdhani", "Exo 2", sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.02em;
+  padding: 0.35rem 0.8rem; border-radius: 999px;
+  color: #e8d5b0; background: rgba(201, 151, 58, 0.12); border: 1px solid rgba(201, 151, 58, 0.4);
+}
+.about-storyteller { margin-top: 1rem; font-family: "Rajdhani", "Exo 2", sans-serif; font-size: 0.95rem; line-height: 1.65; color: #cfddf7; font-style: italic; }
+
+/* ===== Card Library — prototype Champion Codex ===== */
+.rift-library {
+  position: fixed; inset: 0; z-index: 85; overflow-y: auto;
+  padding: 84px 1rem 3rem;
+  background:
+    radial-gradient(ellipse 90% 30% at 50% 0%, rgba(124, 58, 237, 0.1), transparent 60%),
+    linear-gradient(180deg, #060d18, #080e1e);
+}
+.rift-library > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
+.rift-library > .rift-library-close { max-width: none; margin: 0; }
+.rift-library-close {
+  position: fixed; top: 76px; right: 18px; z-index: 80;
+  width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; line-height: 1;
+  color: #e8d5b0; background: rgba(6, 10, 20, 0.9); border: 1px solid rgba(201, 151, 58, 0.5);
+}
+.rift-library-head { text-align: center; margin-bottom: 1.4rem; }
+.rift-library-kicker { font-family: "Cinzel", serif; font-size: 0.62rem; letter-spacing: 0.5em; color: #7a6e5a; margin-bottom: 0.3rem; }
+.rift-library-title { font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900; font-size: clamp(1.8rem, 5vw, 2.6rem); color: #e7c46b; }
+.rift-library-count { font-family: "Rajdhani", sans-serif; font-size: 0.85rem; color: #8a93aa; margin-top: 0.2rem; }
+
+.rift-library-filters { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; margin-bottom: 1.4rem; padding: 0.9rem 1rem; }
+.rlf-search { display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 200px; color: #c9973a; }
+.rlf-search > span { font-size: 1.4rem; line-height: 1; }
+.rlf-search input { flex: 1; background: none; border: none; outline: none; color: #e8d5b0; font-family: "Rajdhani", sans-serif; font-size: 0.95rem; }
+.rlf-select {
+  padding: 0.5rem 0.8rem; border-radius: 8px; cursor: pointer;
+  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(201, 151, 58, 0.3);
+  color: #e8d5b0; font-family: "Cinzel", "Rajdhani", serif; font-size: 0.78rem;
+}
+
+.rift-library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 1rem; }
+.rift-lib-card {
+  position: relative; aspect-ratio: 3 / 4; padding: 0; cursor: pointer; overflow: hidden;
+  border-radius: 12px; border: 2px solid rgba(201, 151, 58, 0.45); background: #0a1020;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+.rift-lib-card:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 16px 34px rgba(0, 0, 0, 0.7); z-index: 2; }
+.rift-lib-card.rarity-rare { border-color: #60adff; }
+.rift-lib-card.rarity-epic { border-color: #c182ff; }
+.rift-lib-card.rarity-legendary { border-color: #ffc454; box-shadow: 0 8px 20px rgba(0,0,0,0.55), 0 0 16px rgba(255,196,84,0.3); }
+.rift-lib-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.rift-lib-frame { position: absolute; inset: 0; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1); pointer-events: none; }
+.rift-lib-cost { position: absolute; top: 5px; left: 5px; padding: 0.15rem 0.5rem; border-radius: 999px; font-weight: 800; font-size: 0.78rem; background: linear-gradient(130deg, #8ce8ff, #2ee6ff); color: #07111f; box-shadow: 0 2px 6px rgba(0,0,0,0.5); }
+.rift-lib-stats { position: absolute; bottom: 24px; left: 5px; right: 5px; display: flex; justify-content: space-between; }
+.rift-lib-stats b { font-size: 0.74rem; font-weight: 800; padding: 0.1rem 0.4rem; border-radius: 6px; }
+.rift-lib-stats .ut-atk { color: #07111f; background: linear-gradient(130deg, #ffce6b, #ff9d3a); }
+.rift-lib-stats .ut-def { color: #07111f; background: linear-gradient(130deg, #8ce8ff, #2ee6ff); }
+.rift-lib-spelltag { position: absolute; bottom: 24px; left: 5px; font-size: 0.62rem; font-weight: 700; padding: 0.1rem 0.45rem; border-radius: 6px; background: rgba(124, 58, 237, 0.7); color: #fff; }
+.rift-lib-name { position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; padding: 14px 4px 4px; text-align: center; font-family: "Cinzel", serif; font-size: 0.6rem; color: #fff; text-shadow: 0 1px 3px #000; background: linear-gradient(transparent, rgba(3, 6, 14, 0.95) 55%); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.rift-library-status { text-align: center; color: #8a93aa; padding: 2rem; }
+.rift-library-empty { text-align: center; padding: 4rem 1rem; color: #7a6e5a; }
+.rift-library-empty-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+.rift-library-empty div { font-family: "Cinzel", serif; font-size: 1rem; }
+.rift-library-empty small { display: block; margin-top: 0.4rem; color: #4a4438; }
+
+/* ===== Profile modal — RIFT gold theme ===== */
+.rift-dialog.profile-modal { width: min(520px, 94vw); max-height: calc(100dvh - 2rem); overflow-y: auto; padding: clamp(1.2rem, 3vw, 1.7rem); }
+.rift-dialog .auth-modal-head h3 { font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900; color: #e7c46b; font-size: 1.6rem; }
+.rift-dialog .auth-hero-kicker { font-family: "Cinzel", serif; font-size: 0.6rem; letter-spacing: 0.3em; color: #b9a98a; }
+.rift-dialog .auth-modal-head .icon-close { color: #e8d5b0; background: rgba(6, 10, 20, 0.85); border: 1px solid rgba(201, 151, 58, 0.45); border-radius: 50%; }
+.rift-dialog .label, .rift-dialog .label-text { font-family: "Rajdhani", "Exo 2", sans-serif; font-weight: 700; letter-spacing: 0.04em; color: #c3cde0; }
+.rift-dialog .label-text { display: block; font-family: "Cinzel", serif; color: #e7c46b; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.rift-dialog .input {
+  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(201, 151, 58, 0.3); color: #e8d5b0;
+  font-family: "Rajdhani", "Exo 2", sans-serif;
+}
+.rift-dialog .input:focus { border-color: #e7c46b; outline: none; box-shadow: 0 0 0 2px rgba(201, 151, 58, 0.25); }
+.rift-dialog .auth-submit { font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; letter-spacing: 0.04em; border-radius: 9px; }
+.rift-dialog .auth-submit.primary { background: linear-gradient(180deg, #e7c46b, #c9973a); color: #0a1020; border: 1px solid #e7c46b; }
+.rift-dialog .auth-submit:not(.primary) { background: rgba(12, 20, 36, 0.9); color: #e8d5b0; border: 1px solid rgba(201, 151, 58, 0.45); }
+.rift-dialog .profile-divider { border: none; border-top: 1px solid rgba(201, 151, 58, 0.25); margin: 1.2rem 0; }
+.rift-dialog .avatar-option { border: 1px solid rgba(201, 151, 58, 0.25); border-radius: 10px; }
+.rift-dialog .avatar-option:hover { border-color: rgba(201, 151, 58, 0.6); }
+.rift-dialog .avatar-option.active { border-color: #e7c46b; box-shadow: 0 0 0 2px rgba(201, 151, 58, 0.4), 0 0 16px rgba(201, 151, 58, 0.3); }
+
+/* ===== Victory / Defeat overlay — unify with RIFT theme ===== */
+.victory-card {
+  width: min(420px, 94vw) !important;
+  border: 1px solid rgba(201, 151, 58, 0.5) !important;
+  background:
+    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(124, 58, 237, 0.16), transparent 60%),
+    linear-gradient(160deg, rgba(16, 22, 38, 0.98), rgba(8, 12, 22, 0.98)) !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 240, 200, 0.08) !important;
+  gap: 0.7rem !important;
+  padding: 2rem 1.5rem !important;
+}
+.victory-win { box-shadow: 0 0 0 1px rgba(231, 196, 107, 0.4), 0 0 40px rgba(231, 196, 107, 0.25), 0 30px 80px rgba(0, 0, 0, 0.7) !important; }
+.victory-emoji { font-size: 4rem; filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6)); }
+.victory-card h2 {
+  font-family: "Cinzel Decorative", "Cinzel", serif !important;
+  font-weight: 900 !important;
+  font-size: clamp(2.2rem, 7vw, 3rem) !important;
+  letter-spacing: 0.04em;
+}
+.victory-win h2 { background: linear-gradient(180deg, #f6e6b4, #e7c46b 50%, #b8842f) !important; -webkit-background-clip: text; background-clip: text; color: transparent !important; filter: drop-shadow(0 0 18px rgba(231, 196, 107, 0.4)); }
+.victory-lose h2 { color: #ff8da3 !important; }
+.victory-card p { font-family: "Rajdhani", "Exo 2", sans-serif; font-size: 1rem; color: #c3cde0; }
+.victory-card .auth-submit {
+  font-family: "Cinzel", "Rajdhani", serif; font-weight: 700; letter-spacing: 0.05em;
+  border-radius: 10px; padding: 0.7rem 1.4rem; margin-top: 0.5rem;
+  background: linear-gradient(180deg, #e7c46b, #c9973a); color: #0a1020; border: 1px solid #e7c46b;
+}
+
+/* Profile password show/hide — eye icon inside each field */
+.pw-field { position: relative; }
+.pw-field .input { width: 100%; padding-right: 2.6rem; box-sizing: border-box; }
+.pw-eye {
+  position: absolute; top: 50%; right: 8px; transform: translateY(-50%);
+  display: grid; place-items: center; width: 30px; height: 30px;
+  border-radius: 8px; cursor: pointer; padding: 0;
+  color: #b9a98a; background: none; border: none;
+  transition: color 0.15s ease;
+}
+.pw-eye:hover { color: #e7c46b; }

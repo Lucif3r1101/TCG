@@ -3,7 +3,6 @@ import { useCallback, useEffect, useRef } from "react";
 type SfxKey = "click" | "turn" | "error" | "draw" | "play";
 
 export function useAudioEngine(enabled: boolean) {
-  const ambientRef = useRef<HTMLAudioElement | null>(null);
   const sfxRef = useRef<Record<SfxKey, HTMLAudioElement | null>>({
     click: null,
     turn: null,
@@ -13,10 +12,7 @@ export function useAudioEngine(enabled: boolean) {
   });
 
   useEffect(() => {
-    ambientRef.current = new Audio("/assets/audio/ambient-loop.wav");
-    ambientRef.current.loop = true;
-    ambientRef.current.volume = 0.2;
-
+    // No looping ambient track — the continuous drone pinned the CPU and hummed.
     sfxRef.current = {
       click: new Audio("/assets/audio/sfx-click.wav"),
       turn: new Audio("/assets/audio/sfx-turn.wav"),
@@ -31,25 +27,9 @@ export function useAudioEngine(enabled: boolean) {
     sfxRef.current.play!.volume = 0.45;
 
     return () => {
-      ambientRef.current?.pause();
-      ambientRef.current = null;
       sfxRef.current = { click: null, turn: null, error: null, draw: null, play: null };
     };
   }, []);
-
-  useEffect(() => {
-    const ambient = ambientRef.current;
-    if (!ambient) {
-      return;
-    }
-
-    if (enabled) {
-      void ambient.play().catch(() => undefined);
-    } else {
-      ambient.pause();
-      ambient.currentTime = 0;
-    }
-  }, [enabled]);
 
   const playSfx = useCallback((key: SfxKey) => {
     if (!enabled) {
